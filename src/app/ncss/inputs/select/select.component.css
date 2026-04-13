@@ -47,6 +47,8 @@
     top: 100%;
     left: 0;
     min-width: var(--nc-select-width);
+    max-height: calc(5 * var(--nc-input-height)); /* Show up to 6 options, then scroll */
+    overflow-y: auto;
     background-color: var(--nc-select-options-bg);
     border: 1px solid var(--nc-input-border-color);
     box-shadow: var(--nc-select-options-shadow);
@@ -58,7 +60,7 @@
 
 .nc-select-option {
     width: 100%;
-    height: var(--nc-input-height);
+    height: var(--nc-input-height); /* 2.5rem */
     padding: 0.25rem;
     display: flex;
     align-items: center;
