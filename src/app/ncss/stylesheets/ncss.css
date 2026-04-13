@@ -1,0 +1,110 @@
+/* Font Face Declarations */
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+    font-weight: 200 1000;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('../fonts/NunitoSans-Italic-VariableFont_YTLC,opsz,wdth,wght.ttf') format('truetype');
+    font-weight: 200 1000;
+    font-style: italic;
+}
+
+
+
+/* Global Reset */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+    font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+
+
+/* Variables */
+:root {
+    /* Colors scales */
+    --nc-black-950: rgba(0, 0, 0, 1);
+    --nc-black-900: rgba(0, 0, 0, 0.95);
+    --nc-black-800: rgba(0, 0, 0, 0.9);
+    --nc-black-700: rgba(0, 0, 0, 0.85);
+    --nc-black-600: rgba(0, 0, 0, 0.8);
+    --nc-black-500: rgba(0, 0, 0, 0.75);
+    --nc-black-400: rgba(0, 0, 0, 0.7);
+    --nc-black-300: rgba(0, 0, 0, 0.65);
+    --nc-black-200: rgba(0, 0, 0, 0.6);
+    --nc-black-100: rgba(0, 0, 0, 0.5);
+
+    --nc-white-950: #ffffff;
+    --nc-white-900: #fafafa;
+    --nc-white-800: #f5f5f5;
+    --nc-white-700: #f0f0f0;
+    --nc-white-600: #ebebeb;
+    --nc-white-500: #e5e5e5;
+    --nc-white-400: #e0e0e0;
+    --nc-white-300: #dbdbdb;
+    --nc-white-200: #d6d6d6;
+    --nc-white-100: #d1d1d1;
+
+    /* Border radius */
+    --nc-border-radius: 5px;
+
+    /* Inputs */
+    --nc-input-bg: var(--nc-white-600);
+    --nc-input-bg-hover: var(--nc-white-800);
+    --nc-input-bg-focus: var(--nc-white-700);
+    --nc-input-disabled-opacity: 0.5;
+
+    --nc-input-padding: 0.5rem;
+
+    --nc-input-border-color: var(--nc-white-100);
+
+    --nc-input-outline: 0;
+    --nc-input-outline-hover: 0;
+    --nc-input-outline-focus: 0;
+
+    --nc-input-shadow: 0;
+    --nc-input-shadow-hover: 0;
+    --nc-input-shadow-focus: 0px 0px 1px 1px var(--nc-white-100);
+
+    --nc-input-text-color: var(--nc-black-500);
+    --nc-input-text-color-hover: var(--nc-black-700);
+    --nc-input-text-color-focus: var(--nc-black-600);
+    --nc-input-text-size: 0.9rem;
+    --nc-input-text-weight: 500;
+    --nc-input-text-indent: 0.5rem;
+
+    --nc-input-placeholder-color: var(--nc-black-200);
+    --nc-input-placeholder-color-hover: var(--nc-black-300);
+    --nc-input-placeholder-color-focus: var(--nc-black-400);
+    --nc-input-placeholder-font-style: italic;
+    --nc-input-placeholder-font-weight: 200;
+    --nc-input-placeholder-font-size: 0.9rem;
+
+    --nc-input-width: 260px;
+    --nc-input-height: 2.5rem;
+
+    --nc-input-display: inline-block;
+
+    --nc-select-width: 200px;
+    --nc-select-bg: transparent;
+    --nc-select-options-padding: 0.25rem;
+    --nc-select-options-bg: var(--nc-white-950);
+    --nc-select-options-shadow: 0px 4px 6px var(--nc-white-100);
+
+
+  
+
+}
+
+
+

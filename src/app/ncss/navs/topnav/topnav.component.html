@@ -1,0 +1,27 @@
+<nav class="nc-topnav">
+
+    <!-- Left Side (logo) -->
+    <span class="nc-topnav-logo">
+        <ng-content select="[slot=logo]"></ng-content>
+    </span>
+
+    <!-- Right Side (links & custom content) -->
+    <span class="nc-topnav-right-side">
+
+        <!-- Links for big screens -->
+        <ul class="nc-topnav-links">
+            <li *ngFor="let link of links" class="nc-topnav-link">
+                <a [routerLink]="link.link">{{ link.label }}</a>
+            </li>
+        </ul>
+
+        <!-- Hamburger Icon for Mobile -->
+        <nc-hamburger-icon class="nc-topnav-hamburger"></nc-hamburger-icon>
+
+        <!-- Custom Content -->
+        <span class="nc-topnav-custom-content">
+            <ng-content select="[slot=custom]"></ng-content>
+        </span>
+    </span>
+
+</nav>

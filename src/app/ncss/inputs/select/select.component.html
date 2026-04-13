@@ -1,0 +1,46 @@
+<span class="nc-select">
+  <!-- custom trigger-->
+  @if (trigger) {
+    <ng-content select="[slot='trigger']"></ng-content>
+  } 
+  <!-- default trigger -->
+  @else {
+    <span 
+      class="nc-select-default-trigger" 
+      tabindex="0" 
+      role="button" 
+      aria-haspopup="listbox"
+      [style.width]="width"
+      (click)="toggleDropdown()"
+    >
+      <span class="nc-select-default-trigger-text">
+        <!-- display selected option(s) or placeholder -->
+        @if (getTriggerText()) {
+          {{ getTriggerText() }}
+        } @else {
+          <ng-content></ng-content>
+        }
+      </span>
+      <nc-chevron-down-icon [size]="16" class="nc-select-chevron"></nc-chevron-down-icon>
+    </span>
+  }
+
+  @if (options?.length && isOpen) {
+    <ul class="nc-select-options" role="listbox" [style.width]="optionsWidth">
+      @for (option of options; track option.value) {
+        <li 
+          class="nc-select-option" 
+          role="option" 
+          [attr.data-value]="option.value"
+          (click)="handleOptionClick(option)"
+        >
+          <span class="nc-select-option-text">{{ option.label }}</span>
+          @if (isSelected(option)) {
+            <nc-check-icon [size]="16" class="nc-select-check"></nc-check-icon>
+          }
+        </li>
+      }
+    </ul>
+  }
+</span>
+

@@ -1,0 +1,82 @@
+.nc-select {
+    display: inline-block;
+    position: relative;
+}
+
+.nc-select-default-trigger {
+    min-width: var(--nc-select-width);
+    height: var(--nc-input-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--nc-select-bg);
+    border: 1px solid var(--nc-input-border-color);
+    border-radius: var(--nc-border-radius);
+    color: var(--nc-input-text-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    padding: var(--nc-input-padding);
+    cursor: pointer;    
+}
+
+.nc-select-default-trigger:hover {
+    color: var(--nc-input-text-color-hover);
+}
+
+.nc-select-default-trigger:focus {
+    box-shadow: var(--nc-input-shadow-focus);
+    outline: var(--nc-input-outline-focus);
+    color: var(--nc-input-text-color-focus);
+}
+
+.nc-select-default-trigger-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nc-select-chevron {
+    flex-shrink: 0;
+    fill: var(--nc-input-text-color);
+    margin-left: 0.5rem;
+}
+
+.nc-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: var(--nc-select-width);
+    background-color: var(--nc-select-options-bg);
+    border: 1px solid var(--nc-input-border-color);
+    box-shadow: var(--nc-select-options-shadow);
+    border-radius: var(--nc-border-radius);
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    padding: var(--nc-select-options-padding);
+}
+
+.nc-select-option {
+    width: 100%;
+    height: var(--nc-input-height);
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--nc-border-radius);
+    cursor: pointer;
+}
+
+.nc-select-option:hover {
+    background-color: var(--nc-input-bg-hover);
+    color: var(--nc-input-text-color-hover);
+}
+
+.nc-select-option-text {
+    color: var(--nc-input-text-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { TopNav } from './ncss/navs/topnav/topnav.component';
+
+
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, TopNav],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
+
+
+
 export class App {
-  protected readonly title = signal('ncss-angular');
+
 }
