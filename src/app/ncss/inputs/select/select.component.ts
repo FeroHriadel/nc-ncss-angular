@@ -41,6 +41,7 @@ export class Select implements OnInit {
   public value: string | string[] = '';
   public triggerText: string = '';
   public isOpen: boolean = false;
+  public direction: 'up' | 'down' = 'down';
 
 
 
@@ -66,20 +67,21 @@ export class Select implements OnInit {
 
   toggleDropdown() {
     if (this.disabled) return;
+    if (!this.isOpen) this.direction = this.getOptionsDirection();
     this.isOpen = !this.isOpen;
   }
 
   handleOptionClick(option: SelectOption) {
     if (this.disabled) return;
+    // for multiselect toggle selected option & keep dropdown open
     if (this.multiple) {
       const index = (this.value as string[]).indexOf(option.value);
-      if (index > -1) {
-        (this.value as string[]).splice(index, 1);
-      } else {
-        (this.value as string[]).push(option.value);
-      }
+      if (index > -1) (this.value as string[]).splice(index, 1)
+      else (this.value as string[]).push(option.value);
+    // for single select set value & close dropdown
     } else {
       this.value = option.value;
+      this.toggleDropdown();
     }
     this.onChange?.(this.value);
   }

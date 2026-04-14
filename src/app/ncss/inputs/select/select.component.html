@@ -27,7 +27,12 @@
   }
 
   @if (options?.length && isOpen) {
-    <ul class="nc-select-options" role="listbox" [style.width]="optionsWidth">
+    <ul 
+      class="nc-select-options" 
+      [class.nc-select-options-up]="direction === 'up'" 
+      role="listbox" 
+      [style.width]="optionsWidth"
+    >
       @for (option of options; track option.value) {
         <li 
           class="nc-select-option" 

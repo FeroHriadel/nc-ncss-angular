@@ -58,6 +58,13 @@
     padding: var(--nc-select-options-padding);
 }
 
+.nc-select-options-up {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+}
+
 .nc-select-option {
     width: 100%;
     height: var(--nc-input-height); /* 2.5rem */
