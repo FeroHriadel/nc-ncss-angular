@@ -3,6 +3,11 @@
     position: relative;
 }
 
+.nc-select-disabled {
+    opacity: var(--nc-input-disabled-opacity);
+    cursor: not-allowed;
+}
+
 .nc-select-default-trigger {
     min-width: var(--nc-select-width);
     height: var(--nc-input-height);

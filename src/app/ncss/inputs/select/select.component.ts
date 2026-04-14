@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ContentChild, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChevronDownIcon, CheckIcon } from '../../icons';
 
 
@@ -33,10 +33,10 @@ export class Select implements OnInit {
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
   @Input() name?: string = '';
-  @Input() required?: boolean = false;
   @Input() id?: string = '';
   @Input() ariaLabel?: string = this.name || 'Select an option';
-  @Input() toggleOpen? = () => {};
+
+
 
   public value: string | string[] = '';
   public triggerText: string = '';
@@ -45,11 +45,33 @@ export class Select implements OnInit {
 
 
 
-  ngOnInit(): void {
-    console.log('isOpen on init:', this.isOpen);
-      this.populateDefaultValue();
-      this.checkMultipleValue();
+  constructor(private elementRef: ElementRef) {}
+
+
+
+  // close dropdown on outside click
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside && this.isOpen) this.closeDropdown();
   }
+
+  // close dropdown on escape key
+  @HostListener('document:keydown', ['$event'])
+  onDocumentKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape' && this.isOpen) this.closeDropdown();
+  }
+
+
+
+  // populate default value on init & ensure multiple value is always an array
+  ngOnInit(): void {
+    this.populateDefaultValue();
+    this.checkMultipleValue();
+  }
+
+
+
 
   checkMultipleValue() {
     if (this.multiple && !Array.isArray(this.value)) {
@@ -69,6 +91,10 @@ export class Select implements OnInit {
     if (this.disabled) return;
     if (!this.isOpen) this.direction = this.getOptionsDirection();
     this.isOpen = !this.isOpen;
+  }
+
+  closeDropdown() {
+    this.isOpen = false;
   }
 
   handleOptionClick(option: SelectOption) {
@@ -119,6 +145,40 @@ export class Select implements OnInit {
     if (hasSpaceBelow) return 'down'
     else if (hasSpaceAbove) return 'up';
     else return 'down'; // default to down if no space above or below
+  }
+
+  public getValue() {
+    return this.value;
+  }
+
+  public setValue(value: string | string[]) {
+    this.value = value;
+    this.onChange?.(this.value);
+  }
+
+  public clear() {
+    this.value = this.multiple ? [] : '';
+    this.onChange?.(this.value);
+  }
+
+  public getOpen() {
+    return this.isOpen;
+  }
+
+  public open() {
+    if (!this.isOpen) {
+      this.direction = this.getOptionsDirection();
+      this.isOpen = true;
+    }
+  }
+  
+  public close() {
+    if (this.isOpen) this.isOpen = false;
+  }
+
+  public toggle() {
+    if (this.isOpen) this.close();
+    else this.open();
   }
 
 }

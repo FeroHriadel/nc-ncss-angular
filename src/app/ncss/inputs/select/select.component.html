@@ -1,4 +1,11 @@
-<span class="nc-select">
+<span 
+  [style]="style"  
+  [class]="`nc-select ${class}`"
+  [class.nc-select-disabled]="disabled" 
+  [attr.name]="name"
+  [attr.id]="id"
+  [attr.aria-label]="ariaLabel"
+>
   <!-- custom trigger-->
   @if (trigger) {
     <ng-content select="[slot='trigger']"></ng-content>
@@ -39,6 +46,7 @@
           role="option" 
           [attr.data-value]="option.value"
           (click)="handleOptionClick(option)"
+          [attr.title]="option.label"
         >
           <span class="nc-select-option-text">{{ option.label }}</span>
           @if (isSelected(option)) {
