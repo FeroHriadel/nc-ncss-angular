@@ -47,7 +47,7 @@
     top: 100%;
     left: 0;
     min-width: var(--nc-select-width);
-    max-height: calc(5 * var(--nc-input-height)); /* Show up to 6 options, then scroll */
+    max-height: calc(6 * var(--nc-input-height)); /* Show up to 6 options, then scroll */
     overflow-y: auto;
     background-color: var(--nc-select-options-bg);
     border: 1px solid var(--nc-input-border-color);

@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ChevronDownIcon, CheckIcon } from '../../icons';
 
 
@@ -22,6 +22,7 @@ export interface SelectOption {
 
 export class Select implements OnInit {
   @ContentChild('[slot="trigger"]') trigger?: ElementRef;
+  @ViewChild('defaultTrigger') defaultTrigger?: ElementRef;
   @Input() options?: SelectOption[] = [];
   @Input() width?: string = 'var(--nc-select-width)';
   @Input() optionsWidth?: string = 'var(--nc-select-width)';
@@ -100,6 +101,22 @@ export class Select implements OnInit {
     } else {
       return '';
     }
+  }
+
+  getOptionsDirection() {
+    const triggerElement = this.trigger?.nativeElement || this.defaultTrigger?.nativeElement;
+    if (!triggerElement) throw new Error('Trigger element not found, cannot open select options');
+    const triggerBottom = triggerElement.getBoundingClientRect().bottom;
+    const optionsCount = this.options?.length || 0;
+    const optionHeight = 40; // from CSS => 2.5rem
+    const maxOptionsShown = 6; // maxHeight from CSS => calc(6 * 2.5rem)
+    const margin = 8 // 0.5rem => ensure dropdown doesn't touch the edge of the viewport
+    const optionsHeight = Math.min(optionsCount, maxOptionsShown) * optionHeight;
+    const hasSpaceBelow = triggerBottom + optionsHeight + margin < window.innerHeight;
+    const hasSpaceAbove = triggerElement.getBoundingClientRect().top - optionsHeight - margin > 0;
+    if (hasSpaceBelow) return 'down'
+    else if (hasSpaceAbove) return 'up';
+    else return 'down'; // default to down if no space above or below
   }
 
 }
