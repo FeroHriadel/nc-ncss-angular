@@ -1,5 +1,5 @@
 import { Component, ContentChild, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { ChevronDownIcon, CheckIcon } from '../../icons';
+import { ChevronDownIcon, CheckIcon, TimesIcon } from '../../icons';
 
 
 
@@ -13,7 +13,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-select',
-  imports: [ChevronDownIcon, CheckIcon],
+  imports: [ChevronDownIcon, CheckIcon, TimesIcon],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
 })
@@ -35,6 +35,7 @@ export class Select implements OnInit {
   @Input() name?: string = '';
   @Input() id?: string = '';
   @Input() ariaLabel?: string = this.name || 'Select an option';
+  @Input() searchable?: boolean = false;
 
 
 
@@ -42,6 +43,9 @@ export class Select implements OnInit {
   public triggerText: string = '';
   public isOpen: boolean = false;
   public direction: 'up' | 'down' = 'down';
+  public searchTerm: string = '';
+  public shownOptions: SelectOption[] | undefined = [];
+  public highlightedIndex: number = -1;
 
 
 
@@ -59,7 +63,35 @@ export class Select implements OnInit {
   // close dropdown on escape key
   @HostListener('document:keydown', ['$event'])
   onDocumentKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape' && this.isOpen) this.closeDropdown();
+    //close on escape key
+    
+    //toggle on enter or space key when trigger is focused
+    const triggerElement = this.trigger?.nativeElement || this.defaultTrigger?.nativeElement;
+    if ((event.key === 'Enter' || event.key === ' ') && document.activeElement === triggerElement) {
+      event.preventDefault(); // prevent scrolling when space is pressed
+      this.toggleDropdown();
+      return;
+    }
+    
+    // navigate options with arrow keys when dropdown is open
+    if (this.isOpen && this.shownOptions && this.shownOptions.length > 0) {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        this.highlightedIndex = (this.highlightedIndex + 1) % this.shownOptions.length;
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.highlightedIndex = this.highlightedIndex <= 0 
+          ? this.shownOptions.length - 1 
+          : this.highlightedIndex - 1;
+      } else if ((event.key === 'Enter' || event.key === ' ') && this.highlightedIndex >= 0) {
+        event.preventDefault();
+        const highlightedOption = this.shownOptions[this.highlightedIndex];
+        if (highlightedOption) {
+          this.handleOptionClick(highlightedOption);
+        }
+      }
+    }// navigate options with arrow keys when dropdown is open
+    
   }
 
 
@@ -68,8 +100,8 @@ export class Select implements OnInit {
   ngOnInit(): void {
     this.populateDefaultValue();
     this.checkMultipleValue();
+    this.populateShownOptions();
   }
-
 
 
 
@@ -77,6 +109,10 @@ export class Select implements OnInit {
     if (this.multiple && !Array.isArray(this.value)) {
       this.value = [];
     }
+  }
+
+  populateShownOptions() {
+    this.shownOptions = this.options;
   }
 
   populateDefaultValue() {
@@ -87,14 +123,50 @@ export class Select implements OnInit {
     }
   }
 
+  onSearchTermChange(term: string) {
+    this.searchTerm = term;
+    this.filterShownOptions();
+  }
+
+  canShowClearSearch() {
+    return this.searchable && this.searchTerm.length > 0;
+  }
+
+  clearSearchTerm() {
+    this.searchTerm = '';
+    this.filterShownOptions();
+  }
+
+  filterShownOptions() {
+    if (!this.options) return;
+    if (!this.searchTerm) {
+      this.shownOptions = this.options;
+      this.highlightedIndex = -1;
+      return;
+    }
+    const term = this.searchTerm.toLowerCase();
+    this.shownOptions = this.options.filter(opt => opt.label.toLowerCase().includes(term));
+    this.highlightedIndex = -1;
+  }
+
   toggleDropdown() {
     if (this.disabled) return;
-    if (!this.isOpen) this.direction = this.getOptionsDirection();
+    if (!this.isOpen) {
+      this.direction = this.getOptionsDirection();
+      this.highlightedIndex = -1;
+    }
     this.isOpen = !this.isOpen;
+    this.clearSearchTerm();
   }
 
   closeDropdown() {
     this.isOpen = false;
+    this.highlightedIndex = -1;
+    this.clearSearchTerm();
+  }
+
+  isHighlighted(index: number): boolean {
+    return this.highlightedIndex === index;
   }
 
   handleOptionClick(option: SelectOption) {
@@ -174,10 +246,13 @@ export class Select implements OnInit {
   
   public close() {
     if (this.isOpen) this.isOpen = false;
+    this.clearSearchTerm();
   }
 
   public toggle() {
-    if (this.isOpen) this.close();
+    if (this.isOpen) { 
+      this.close(); this.clearSearchTerm();
+    }
     else this.open();
   }
 

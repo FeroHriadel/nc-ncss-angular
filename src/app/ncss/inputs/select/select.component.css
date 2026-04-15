@@ -86,6 +86,59 @@
     color: var(--nc-input-text-color-hover);
 }
 
+.nc-select-option-highlighted {
+    background-color: var(--nc-input-bg-hover);
+    color: var(--nc-input-text-color-hover);
+}
+
+.nc-select-search-input-wrap {
+    position: relative;
+}
+
+.nc-select-search-option-input {
+    width: 100%;
+    height: var(--nc-input-height);
+    text-indent: 0.5rem;
+    padding: 0;
+    color: var(--nc-input-placeholder-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    border-radius: var(--nc-border-radius);
+}
+
+.nc-select-search-option-input::placeholder {
+    color: var(--nc-input-placeholder-color);
+    font-style: var(--nc-input-placeholder-font-style);
+    font-weight: var(--nc-input-placeholder-font-weight);
+    font-size: var(--nc-input-placeholder-font-size);
+}
+
+.nc-select-search-option-input:focus {
+    outline: var(--nc-input-outline-focus);
+    box-shadow: var(--nc-input-shadow-focus);
+    color: var(--nc-input-placeholder-color-focus);
+}
+
+.nc-select-clear-search-btn {
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--nc-border-radius);
+}
+
+.nc-select-clear-search-btn:focus {
+    outline: 0;
+    box-shadow: var(--nc-input-shadow-focus);
+}
+
 .nc-select-option-text {
     color: var(--nc-input-text-color);
     font-size: var(--nc-input-text-size);
@@ -93,4 +146,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+.nc-select-no-options-info {
+    color: var(--nc-input-placeholder-color);
+    font-size: var(--nc-input-placeholder-font-size);
+    text-align: center;
+    padding: 0.5rem;
 }

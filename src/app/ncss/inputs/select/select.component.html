@@ -40,9 +40,29 @@
       role="listbox" 
       [style.width]="optionsWidth"
     >
-      @for (option of options; track option.value) {
+      @if (searchable) {
+        <li class="nc-select-search-input-wrap">
+          <input 
+            type="text" 
+            class="nc-select-search-option-input" 
+            placeholder="Search..."
+            [value]="searchTerm"
+            (input)="onSearchTermChange($event.target.value)"
+          />
+          @if (canShowClearSearch()) {
+            <button 
+              class="nc-select-clear-search-btn" 
+              (click)="clearSearchTerm()"
+            >
+              <nc-times-icon [size]="12"></nc-times-icon>
+            </button>
+          }
+        </li>
+      }
+      @for (option of shownOptions; track option.value; let i = $index) {
         <li 
           class="nc-select-option" 
+          [class.nc-select-option-highlighted]="isHighlighted(i)"
           role="option" 
           [attr.data-value]="option.value"
           (click)="handleOptionClick(option)"
@@ -53,6 +73,9 @@
             <nc-check-icon [size]="16" class="nc-select-check"></nc-check-icon>
           }
         </li>
+      }
+      @if (shownOptions?.length === 0) {
+        <li class="nc-select-no-options-info">No options found</li>
       }
     </ul>
   }
