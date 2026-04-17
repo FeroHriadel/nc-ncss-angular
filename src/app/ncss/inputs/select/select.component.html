@@ -35,6 +35,7 @@
 
   @if (options?.length && isOpen) {
     <ul 
+      #optionsContainer
       class="nc-select-options" 
       [class.nc-select-options-up]="direction === 'up'" 
       role="listbox" 

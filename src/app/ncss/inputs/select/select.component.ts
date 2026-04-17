@@ -23,6 +23,7 @@ export interface SelectOption {
 export class Select implements OnInit {
   @ContentChild('[slot="trigger"]') trigger?: ElementRef;
   @ViewChild('defaultTrigger') defaultTrigger?: ElementRef;
+  @ViewChild('optionsContainer') optionsContainer?: ElementRef;
   @Input() options?: SelectOption[] = [];
   @Input() width?: string = 'var(--nc-select-width)';
   @Input() optionsWidth?: string = 'var(--nc-select-width)';
@@ -60,38 +61,73 @@ export class Select implements OnInit {
     if (!clickedInside && this.isOpen) this.closeDropdown();
   }
 
-  // close dropdown on escape key
   @HostListener('document:keydown', ['$event'])
   onDocumentKeydown(event: KeyboardEvent) {
-    //close on escape key
-    
-    //toggle on enter or space key when trigger is focused
+    if (this.handleEscapeKey(event)) return;
+    if (this.handleTriggerToggle(event)) return;
+    if (this.isOpen && this.shownOptions && this.shownOptions.length > 0) {
+      this.handleArrowDownNavigation(event);
+      this.handleArrowUpNavigation(event);
+      this.handleHighlightedOptionSelection(event);
+    }
+  }
+
+  private handleEscapeKey(event: KeyboardEvent): boolean {
+    if (event.key === 'Escape' && this.isOpen) {
+      this.closeDropdown();
+      return true;
+    }
+    return false;
+  }
+
+  private handleTriggerToggle(event: KeyboardEvent): boolean {
     const triggerElement = this.trigger?.nativeElement || this.defaultTrigger?.nativeElement;
-    if ((event.key === 'Enter' || event.key === ' ') && document.activeElement === triggerElement) {
+    if ((event.key === 'Enter' || event.key === ' ') && document.activeElement === triggerElement && !this.isOpen) {
       event.preventDefault(); // prevent scrolling when space is pressed
       this.toggleDropdown();
-      return;
+      return true;
     }
+    return false;
+  }
+
+  private handleArrowDownNavigation(event: KeyboardEvent): void {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      this.highlightedIndex = (this.highlightedIndex + 1) % this.shownOptions!.length;
+      this.scrollToHighlightedOption();
+    }
+  }
+
+  private handleArrowUpNavigation(event: KeyboardEvent): void {
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      this.highlightedIndex = this.highlightedIndex <= 0 
+        ? this.shownOptions!.length - 1 
+        : this.highlightedIndex - 1;
+      this.scrollToHighlightedOption();
+    }
+  }
+
+  private scrollToHighlightedOption(): void {
+    if (!this.optionsContainer || this.highlightedIndex < 0) return;
     
-    // navigate options with arrow keys when dropdown is open
-    if (this.isOpen && this.shownOptions && this.shownOptions.length > 0) {
-      if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        this.highlightedIndex = (this.highlightedIndex + 1) % this.shownOptions.length;
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        this.highlightedIndex = this.highlightedIndex <= 0 
-          ? this.shownOptions.length - 1 
-          : this.highlightedIndex - 1;
-      } else if ((event.key === 'Enter' || event.key === ' ') && this.highlightedIndex >= 0) {
-        event.preventDefault();
-        const highlightedOption = this.shownOptions[this.highlightedIndex];
-        if (highlightedOption) {
-          this.handleOptionClick(highlightedOption);
-        }
+    const container = this.optionsContainer.nativeElement;
+    const options = container.querySelectorAll('.nc-select-option');
+    const highlightedOption = options[this.highlightedIndex] as HTMLElement;
+    
+    if (highlightedOption) {
+      highlightedOption.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  private handleHighlightedOptionSelection(event: KeyboardEvent): void {
+    if ((event.key === 'Enter' || event.key === ' ') && this.highlightedIndex >= 0) {
+      event.preventDefault();
+      const highlightedOption = this.shownOptions![this.highlightedIndex];
+      if (highlightedOption) {
+        this.handleOptionClick(highlightedOption);
       }
-    }// navigate options with arrow keys when dropdown is open
-    
+    }
   }
 
 
