@@ -79,6 +79,11 @@
     margin-bottom: 0.25rem;
 }
 
+.nc-select-options-right {
+    left: auto;
+    right: 0;
+}
+
 .nc-select-option {
     width: 100%;
     height: var(--nc-input-height); /* 2.5rem */

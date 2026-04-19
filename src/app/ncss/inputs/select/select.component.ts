@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChevronDownIcon, CheckIcon, TimesIcon } from '../../icons';
 
 
@@ -46,13 +46,14 @@ export class Select implements OnInit {
   public triggerText: string = '';
   public isOpen: boolean = false;
   public direction: 'up' | 'down' = 'down';
+  public xAlignment: 'left' | 'right' = 'left';
   public searchTerm: string = '';
   public shownOptions: SelectOption[] | undefined = [];
   public highlightedIndex: number = -1;
 
 
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private cdr: ChangeDetectorRef) {}
 
 
 
@@ -190,11 +191,16 @@ export class Select implements OnInit {
   toggleDropdown() {
     if (this.disabled) return;
     if (!this.isOpen) {
-      this.direction = this.getOptionsDirection();
+      this.getOptionsDirection();
+      this.xAlignment = 'left';
       this.highlightedIndex = -1;
     }
     this.isOpen = !this.isOpen;
     this.clearSearchTerm();
+    if (this.isOpen) {
+      this.cdr.detectChanges();
+      this.fixHorizontalOverflow();
+    }
   }
 
   closeDropdown() {
@@ -241,20 +247,30 @@ export class Select implements OnInit {
     }
   }
 
-  getOptionsDirection() {
+  getOptionsDirection(): void {
     const triggerElement = this.customTriggerWrap?.nativeElement || this.defaultTrigger?.nativeElement;
     if (!triggerElement) throw new Error('Trigger element not found, cannot open select options');
-    const triggerBottom = triggerElement.getBoundingClientRect().bottom;
+    const triggerRect = triggerElement.getBoundingClientRect();
+    const margin = 8; // ensure dropdown doesn't touch the edge of the viewport
     const optionsCount = this.options?.length || 0;
     const optionHeight = 40; // from CSS => 2.5rem
     const maxOptionsShown = 6; // maxHeight from CSS => calc(6 * 2.5rem)
-    const margin = 8 // 0.5rem => ensure dropdown doesn't touch the edge of the viewport
     const optionsHeight = Math.min(optionsCount, maxOptionsShown) * optionHeight;
-    const hasSpaceBelow = triggerBottom + optionsHeight + margin < window.innerHeight;
-    const hasSpaceAbove = triggerElement.getBoundingClientRect().top - optionsHeight - margin > 0;
-    if (hasSpaceBelow) return 'down'
-    else if (hasSpaceAbove) return 'up';
-    else return 'down'; // default to down if no space above or below
+    const hasSpaceBelow = triggerRect.bottom + optionsHeight + margin < window.innerHeight;
+    const hasSpaceAbove = triggerRect.top - optionsHeight - margin > 0;
+    this.direction = hasSpaceBelow ? 'down' : hasSpaceAbove ? 'up' : 'down';
+  }
+
+  private fixHorizontalOverflow(): void {
+    if (!this.optionsContainer) return;
+    const rect = this.optionsContainer.nativeElement.getBoundingClientRect();
+    const margin = 8;
+    if (rect.right + margin <= window.innerWidth) return; // fits, nothing to do
+    const triggerEl = this.customTriggerWrap?.nativeElement || this.defaultTrigger?.nativeElement;
+    const triggerRight = triggerEl?.getBoundingClientRect().right ?? 0;
+    const wouldOverflowLeft = triggerRight - rect.width - margin < 0;
+    if (!wouldOverflowLeft) this.xAlignment = 'right';
+    // else: options wider than viewport — do nothing
   }
 
   public getValue() {
@@ -277,8 +293,11 @@ export class Select implements OnInit {
 
   public open() {
     if (!this.isOpen) {
-      this.direction = this.getOptionsDirection();
+      this.getOptionsDirection();
+      this.xAlignment = 'left';
       this.isOpen = true;
+      this.cdr.detectChanges();
+      this.fixHorizontalOverflow();
     }
   }
   

@@ -63,7 +63,7 @@
   [searchable]="true"
   [onChange]="onSelectChange.bind(this)"
   class="custom-class-added-to-select"
-  [style]="{transform: 'translateX(50px)'}"
+  [style]="{transform: 'translateX(10px)'}"
   name="my-select"
   id="my-select"
   placeholder="Select an option => this should not overflow"
@@ -90,8 +90,11 @@
 <br>
 
 
-<nc-select [options]="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" [customTrigger]="true">
-  <div style="width: 300px; height: 100px; background-color: antiquewhite;"><span>My custom trigger</span></div>
+<nc-select 
+  [options]="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" 
+  [customTrigger]="true" 
+  [style]="{marginLeft: '200px'}">
+  <div style="height: 100px; background-color: antiquewhite;"><span>My custom trigger</span></div>
 </nc-select>
 
 
