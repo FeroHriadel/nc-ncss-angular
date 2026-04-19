@@ -8,8 +8,10 @@
     justify-content: space-between;
     align-items: center;
     border-radius: var(--nc-border-radius);
-    box-shadow: 0px 4px 6px var(--nc-white-100);
+    box-shadow: var(--nc-card-shadow);
     color: var(--nc-input-text-color);
+    z-index: var(--nc-nav-z-index);
+    background-color: var(--nc-white-950);
 }
 
 .nc-topnav-logo {

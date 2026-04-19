@@ -1,12 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { Select } from '../../ncss/inputs/select/select.component';
+import { Card } from '../../ncss/cards/card.component';
 
 
 
 
 @Component({
   selector: 'inputs-page',
-  imports: [Select],
+  imports: [Select, Card],
   templateUrl: './inputs.page.html',
   styleUrl: './inputs.page.css',
 })

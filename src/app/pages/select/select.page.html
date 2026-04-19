@@ -1,0 +1,53 @@
+<nc-container>
+    <h1 class="page-title">SELECT</h1>
+    <p class="page-subtitle">Select input elements and their usage.</p>
+    <br><br><br>
+
+    <nc-card class="p-4">
+          <h2 class="section-title">Available features</h2>
+          <p class="section-subtitle">Features available with the select component and how to use them</p>
+          <br>
+          <nc-select
+            placeholder="Default Trigger"
+            [options]="[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3' },
+                { value: 'option4', label: 'Option 4' },
+                { value: 'option5', label: 'Option 5' },
+                { value: 'option6', label: 'Option 6' },
+                { value: 'option7', label: 'Option 7' },
+                { value: 'option8', label: 'Option 8' },
+                { value: 'option9', label: 'Option 9' },
+                { value: 'option10', label: 'Option 10' }
+            ]"
+            [multiple]="true"
+            [defaultValue]="['option3', 'option5']"
+            [searchable]="true"
+            class="custom-class-added-to-select"
+            id="multiple-select-example"
+            [width]="'260px'"
+            [optionsWidth]="'260px'"
+            name="multiple-select-example"
+            [style]="{transform: 'translateX(10px)'}"
+            [onChange]="onMultiselectChange.bind(this)"
+        >
+        </nc-select>
+        <span class="ml-5 text">Selected values: 
+            @for (value of multipleSelectExampleValue; track value; let i = $index) {
+                {{ value }}
+                @if (i < multipleSelectExampleValue.length - 1) {
+                    , 
+                }
+            }
+        </span>
+        <br><br>
+<h1>ADD EXPOSED METHODS & CUSTOM TRIGGER</h1>
+
+        <h3>HTML</h3>
+        <pre><code [highlight]="htmlCode" language="xml"></code></pre>
+        <br>
+        <h3>TypeScript</h3>
+        <pre><code [highlight]="tsCode" language="typescript"></code></pre>
+    </nc-card>
+</nc-container>

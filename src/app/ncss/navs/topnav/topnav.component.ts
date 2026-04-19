@@ -27,6 +27,10 @@ interface NavLink {
 
 export class TopNav {
   @Input() links: NavLink[] = [];
+  @Input() class: string = '';
+  @Input() style: { [key: string]: string } = {};
+  @Input() id: string = '';
+
   private router = inject(Router);
 
   getHamburgerOptions(): SelectOption[] {

@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: var(--nc-select-bg);
-    border: 1px solid var(--nc-input-border-color);
+    border: 1px solid var(--nc-border-color);
     border-radius: var(--nc-border-radius);
     color: var(--nc-input-text-color);
     font-size: var(--nc-input-text-size);
@@ -67,12 +67,13 @@
     max-height: calc(6 * var(--nc-input-height)); /* Show up to 6 options, then scroll */
     overflow-y: auto;
     background-color: var(--nc-select-options-bg);
-    border: 1px solid var(--nc-input-border-color);
+    border: 1px solid var(--nc-border-color);
     box-shadow: var(--nc-select-options-shadow);
     border-radius: var(--nc-border-radius);
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
     padding: var(--nc-select-options-padding);
+    z-index: var(--nc-options-z-index);
 }
 
 .nc-select-options-up {

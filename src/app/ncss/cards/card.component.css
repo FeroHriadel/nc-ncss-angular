@@ -1,0 +1,5 @@
+.nc-card {
+    border-radius: var(--nc-border-radius);
+    box-shadow: var(--nc-card-shadow);
+    border: 1px solid var(--nc-border-color);
+}
