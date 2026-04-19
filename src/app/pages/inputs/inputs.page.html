@@ -66,9 +66,8 @@
   [style]="{transform: 'translateX(50px)'}"
   name="my-select"
   id="my-select"
->
-  Select an option => this should not overflow
-</nc-select>
+  placeholder="Select an option => this should not overflow"
+></nc-select>
 
 
 <br>
@@ -89,6 +88,13 @@
 
 <br>
 <br>
+
+
+<nc-select [options]="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" [customTrigger]="true">
+  <div style="width: 300px; height: 100px; background-color: antiquewhite;"><span>My custom trigger</span></div>
+</nc-select>
+
+
 <br>
 <br><br>
 <br>

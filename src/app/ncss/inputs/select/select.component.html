@@ -7,9 +7,18 @@
   [attr.aria-label]="ariaLabel"
 >
   <!-- custom trigger-->
-  @if (trigger) {
-    <ng-content select="[slot='trigger']"></ng-content>
-  } 
+  @if (customTrigger) {
+    <span
+      #customTriggerWrap
+      class="nc-select-custom-trigger-wrap"
+      tabindex="0"
+      role="button"
+      aria-haspopup="listbox"
+      (click)="toggleDropdown()"
+    >
+      <ng-content select="*"></ng-content>
+    </span>
+  }
   <!-- default trigger -->
   @else {
     <span 
@@ -26,7 +35,7 @@
         @if (getTriggerText()) {
           {{ getTriggerText() }}
         } @else {
-          <ng-content></ng-content>
+          {{ placeholder }}
         }
       </span>
       <nc-chevron-down-icon [size]="16" class="nc-select-chevron"></nc-chevron-down-icon>

@@ -8,6 +8,15 @@
     cursor: not-allowed;
 }
 
+.nc-select-custom-trigger-wrap {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.nc-select-custom-trigger-wrap:focus {
+    outline: var(--nc-input-outline-focus);
+}
+
 .nc-select-default-trigger {
     min-width: var(--nc-select-width);
     height: var(--nc-input-height);

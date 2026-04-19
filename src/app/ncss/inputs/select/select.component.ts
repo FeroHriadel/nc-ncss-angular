@@ -1,4 +1,4 @@
-import { Component, ContentChild, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { ChevronDownIcon, CheckIcon, TimesIcon } from '../../icons';
 
 
@@ -21,9 +21,11 @@ export interface SelectOption {
 
 
 export class Select implements OnInit {
-  @ContentChild('[slot="trigger"]') trigger?: ElementRef;
+  @ViewChild('customTriggerWrap') customTriggerWrap?: ElementRef;
   @ViewChild('defaultTrigger') defaultTrigger?: ElementRef;
   @ViewChild('optionsContainer') optionsContainer?: ElementRef;
+  @Input() customTrigger?: boolean = false;
+  @Input() placeholder?: string = '';
   @Input() options?: SelectOption[] = [];
   @Input() width?: string = 'var(--nc-select-width)';
   @Input() optionsWidth?: string = 'var(--nc-select-width)';
@@ -81,7 +83,7 @@ export class Select implements OnInit {
   }
 
   private handleTriggerToggle(event: KeyboardEvent): boolean {
-    const triggerElement = this.trigger?.nativeElement || this.defaultTrigger?.nativeElement;
+    const triggerElement = this.customTriggerWrap?.nativeElement || this.defaultTrigger?.nativeElement;
     if ((event.key === 'Enter' || event.key === ' ') && document.activeElement === triggerElement && !this.isOpen) {
       event.preventDefault(); // prevent scrolling when space is pressed
       this.toggleDropdown();
@@ -240,7 +242,7 @@ export class Select implements OnInit {
   }
 
   getOptionsDirection() {
-    const triggerElement = this.trigger?.nativeElement || this.defaultTrigger?.nativeElement;
+    const triggerElement = this.customTriggerWrap?.nativeElement || this.defaultTrigger?.nativeElement;
     if (!triggerElement) throw new Error('Trigger element not found, cannot open select options');
     const triggerBottom = triggerElement.getBoundingClientRect().bottom;
     const optionsCount = this.options?.length || 0;
