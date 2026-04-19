@@ -14,7 +14,6 @@
 }
 
 
-
 /* Variables */
 :root {
     /* Colors scales */
@@ -85,7 +84,6 @@
     --nc-select-options-padding: 0.25rem;
     --nc-select-options-bg: var(--nc-white-950);
     --nc-select-options-shadow: 0px 4px 6px var(--nc-white-100);
-
 }
 
 
@@ -105,7 +103,7 @@ body {
 
 
 
-/* Tag styles */
+/* HTML elements customization */
 a {
     color: inherit;
     text-decoration: none;
