@@ -10,13 +10,39 @@
 
         <!-- Links for big screens -->
         <ul class="nc-topnav-links">
-            <li *ngFor="let link of links" class="nc-topnav-link">
-                <a [routerLink]="link.link">{{ link.label }}</a>
-            </li>
+            @for (link of links; track link.label; let i = $index) {
+                @if (!link.hasOptions) {
+                    <!-- Regular link -->
+                    <li class="nc-topnav-link">
+                        <a [routerLink]="link.link" tabindex="0">{{ link.label }}</a>
+                    </li> 
+                } 
+                @else {
+                    <!-- Link with options -->
+                    <li class="nc-topnav-link nc-topnav-link-with-options">
+                        <nc-select
+                            [options]="link.options"
+                            [customTrigger]="true"
+                            class="nc-topnav-select"
+                            [onChange]="navigateToLink.bind(this)"
+                        >
+                            <span class="nc-topnav-select-trigger">{{ link.label }}</span>
+                        </nc-select>
+                    </li>
+                }
+            }
         </ul>
 
         <!-- Hamburger Icon for Mobile -->
-        <nc-hamburger-icon class="nc-topnav-hamburger"></nc-hamburger-icon>
+        <span class="nc-topnav-hamburger">
+            <nc-select
+                [customTrigger]="true"
+                [options]="getHamburgerOptions()"
+                [onChange]="navigateToLink.bind(this)"
+            >
+                <nc-hamburger-icon></nc-hamburger-icon>
+            </nc-select>
+        </span>
 
         <!-- Custom Content -->
         <span class="nc-topnav-custom-content">

@@ -9,29 +9,29 @@
     align-items: center;
 }
 
-    .nc-topnav-logo {
-        margin-left: 1rem;
-    }
+.nc-topnav-logo {
+    margin-left: 1rem;
+}
 
-    .nc-topnav-right-side {
-        display: flex;
-        align-items: center;
-    }
+.nc-topnav-right-side {
+    display: flex;
+    align-items: center;
+}
 
-        .nc-topnav-links {
-            display: flex;
-            align-items: center;
-            list-style-type: none;
-        }
+.nc-topnav-links {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
 
-        .nc-topnav-hamburger {
-            display: none;
-        }
+.nc-topnav-hamburger {
+    display: none;
+}
 
-            .nc-topnav-link {
-                margin-right: 1rem;
-                text-decoration: none;
-            }
+.nc-topnav-link {
+    margin-right: 1rem;
+    text-decoration: none;
+}
 
 
 
