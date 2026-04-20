@@ -1,14 +1,19 @@
 <nc-container>
+    <!-- Page header -->
     <h1 class="page-title">SELECT</h1>
     <p class="page-subtitle">Select input elements and their usage.</p>
     <br><br><br>
 
+
+
+    <!-- Typical Usage -->
     <nc-card class="p-4">
-          <h2 class="section-title">Available features</h2>
-          <p class="section-subtitle">Features available with the select component and how to use them</p>
+          <h2 class="section-title mb-2">Typical Usage</h2>
+          <p class="section-subtitle">Commonly used features and how to use them</p>
           <br>
+          <h4 class="section-subtitle-light mb-2">Result</h4>
           <nc-select
-            placeholder="Default Trigger"
+            placeholder="Choose options"
             [options]="[
                 { value: 'option1', label: 'Option 1' },
                 { value: 'option2', label: 'Option 2' },
@@ -41,13 +46,93 @@
                 }
             }
         </span>
-        <br><br>
-<h1>ADD EXPOSED METHODS & CUSTOM TRIGGER</h1>
+        <br><br><br>
 
-        <h3>HTML</h3>
-        <pre><code [highlight]="htmlCode" language="xml"></code></pre>
-        <br>
-        <h3>TypeScript</h3>
-        <pre><code [highlight]="tsCode" language="typescript"></code></pre>
+
+        <h4 class="section-subtitle-light">HTML</h4>
+        <nc-card>
+            <pre><code [highlight]="htmlCode" language="xml" style="background-color: var(--nc-white-100); border-radius: var(--nc-border-radius);"></code></pre>
+        </nc-card>
+        <br><br>
+        <h4 class="section-subtitle-light">TypeScript</h4>
+        <pre><code [highlight]="tsCode" language="typescript" style="background-color: var(--nc-white-100); border-radius: var(--nc-border-radius);"></code></pre>
     </nc-card>
+    <br>
+
+
+
+    <!-- Custom Trigger -->
+    <nc-card class="p-4">
+        <h2 class="section-title mb-2">Custom Trigger</h2>
+        <p class="section-subtitle">Use any custom content as the trigger for the select dropdown</p>
+        <br>
+        <h4 class="section-subtitle-light mb-2">Result</h4>
+        <nc-select
+            [options]="[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3' }
+            ]"
+            [customTrigger]="true"
+        >
+            <nc-hamburger-icon></nc-hamburger-icon>
+        </nc-select>
+
+        <br><br>
+        <h4 class="section-subtitle-light">HTML</h4>
+        <nc-card>
+            <pre><code [highlight]="customTriggerHtmlCode" language="xml" style="background-color: var(--nc-white-100); border-radius: var(--nc-border-radius);"></code></pre>
+        </nc-card>
+    </nc-card>
+    <br>
+
+
+
+    <!-- Programmatic Control -->
+    <nc-card class="p-4">
+        <h2 class="section-title mb-2">Programmatic Control</h2>
+        <p class="section-subtitle">Control the component from TypeScript code - get/set value, open/close dropdown, etc.</p>
+        <br>
+        <h4 class="section-subtitle-light mb-2">Result</h4>
+        <nc-select
+            #mySelect
+            [options]="[
+                { value: 'option1', label: 'Option 1' },
+                { value: 'option2', label: 'Option 2' },
+                { value: 'option3', label: 'Option 3' },
+                { value: 'option4', label: 'Option 4' },
+                { value: 'option5', label: 'Option 5' }
+            ]"
+            placeholder="Choose an option"
+            [onChange]="onSelectChange.bind(this)"
+            class="mr-2"
+        ></nc-select>
+        <button (click)="setSelectedValue('option3')">Set Selected Value to Option 3</button>
+        <button (click)="getSelectedValue()">Get Selected Value</button>
+        <button (click)="clearSelectedValue()">Clear Value</button>
+        <br><br>
+        <h4 class="section-subtitle-light">HTML</h4>
+        <nc-card>
+            <pre><code [highlight]="programmaticControlHtmlCode" language="xml" style="background-color: var(--nc-white-100); border-radius: var(--nc-border-radius);"></code></pre>
+        </nc-card>
+        <br><br>
+        <h4 class="section-subtitle-light">TypeScript</h4>
+        <nc-card>
+            <pre><code [highlight]="programmaticControlTsCode" language="typescript" style="background-color: var(--nc-white-100); border-radius: var(--nc-border-radius);"></code></pre> 
+        </nc-card>
+        <br><br>
+
+        <h4 class="section-title-light">Exposed methods:</h4>
+        <ul class="text">
+            <li class="ml-7 my-1">setValue(value: string | string[]) - Set the value of the select component</li>
+            <li class="ml-7 mb-1">getValue() - Gets the selected value (string or string[] for multiselect)</li>
+            <li class="ml-7 mb-1">clear() - Clears any selected value(s)</li>
+            <li class="ml-7 mb-1">getOpen() - Returns whether the dropdown is currently open</li>
+            <li class="ml-7 mb-1">open() - Open the dropdown programmatically</li>
+            <li class="ml-7 mb-1">close() - Close the dropdown programmatically</li>
+            <li class="ml-7 mb-1">toggle() - Toggle the dropdown open/closed programmatically</li>
+        </ul>
+    </nc-card>
+    <br>
+
 </nc-container>

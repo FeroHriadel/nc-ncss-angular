@@ -137,27 +137,42 @@ a:focus {
     font-weight: 400;
     color: var(--nc-black-100);
     text-align: center;
-    margin-top: 0.5rem;
 }
 
 .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--nc-black-600);
-    margin-bottom: 0.75rem;
 }
 
 .section-subtitle {
     font-size: 1.125rem;
     font-weight: 400;
     color: var(--nc-black-100);
-    margin-bottom: 1rem;
 }
 
 .text {
     font-size: 1rem;
     font-weight: 400;
     color: var(--nc-black-400);
+}
+
+.section-title-light {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--nc-black-600);
+}
+
+.section-subtitle-light {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--nc-black-100);
+}
+
+.text-light {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--nc-black-200);
 }
 
 
