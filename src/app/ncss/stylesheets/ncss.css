@@ -115,12 +115,12 @@ a {
     text-decoration: none;
     position: relative;
     border-radius: var(--nc-border-radius);
+    padding: 2px;
 }
 
 a:focus {
     outline: var(--nc-input-outline-focus);
     box-shadow: var(--nc-input-shadow-focus);
-    padding: 2px;
 }
 
 

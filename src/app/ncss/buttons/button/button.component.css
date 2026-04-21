@@ -1,0 +1,10 @@
+.nc-button {
+    appearance: none;
+    color: var(--nc-input-text-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    border: 1px solid var(--nc-border-color);
+    border-radius: var(--nc-border-radius);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+}
