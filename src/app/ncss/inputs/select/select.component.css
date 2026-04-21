@@ -4,7 +4,7 @@
 }
 
 .nc-select-disabled {
-    opacity: var(--nc-input-disabled-opacity);
+    opacity: var(--nc-disabled-opacity);
     cursor: not-allowed;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .nc-select-custom-trigger-wrap:focus {
-    outline: var(--nc-input-outline-focus);
+    outline: var(0-focus);
     box-shadow: var(--nc-input-shadow-focus);
     border-radius: var(--nc-border-radius);
 }
@@ -40,8 +40,8 @@
 }
 
 .nc-select-default-trigger:focus {
-    box-shadow: var(--nc-input-shadow-focus);
-    outline: var(--nc-input-outline-focus);
+    box-shadow: var(--nc-outline-shadow);
+    outline: 0;                 
     color: var(--nc-input-text-color-focus);
 }
 
@@ -67,7 +67,7 @@
     overflow-y: auto;
     background-color: var(--nc-select-options-bg);
     border: 1px solid var(--nc-border-color);
-    box-shadow: var(--nc-select-options-shadow);
+    box-shadow: var(--nc-box-shadow);
     border-radius: var(--nc-border-radius);
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
@@ -131,7 +131,7 @@
 }
 
 .nc-select-search-option-input:focus {
-    outline: var(--nc-input-outline-focus);
+    outline: 0;
     box-shadow: var(--nc-input-shadow-focus);
     color: var(--nc-input-placeholder-color-focus);
 }

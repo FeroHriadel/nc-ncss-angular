@@ -1,3 +1,11 @@
-<button class="nc-button">
+<button 
+    [class]="'nc-button ' + class + ' ' + 'nc-button-' + variant"
+    [style]="style"
+    [style.width]="width"
+    [id]="id"
+    [disabled]="disabled"
+    [type]="type"
+    (click)="onClick && onClick()"
+>
     <ng-content></ng-content>
 </button>

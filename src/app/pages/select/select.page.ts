@@ -4,12 +4,13 @@ import { Card } from '../../ncss/cards/card.component';
 import { Container } from '../../ncss/wrappers/container/container.component';
 import { Highlight } from 'ngx-highlightjs';
 import { HamburgerIcon } from '../../ncss/icons';
+import { Button } from '../../ncss/buttons/button/button.component';
 
 
 
 @Component({
   selector: 'select-page',
-  imports: [Select, Card, Container, Highlight, HamburgerIcon],
+  imports: [Select, Card, Container, Highlight, HamburgerIcon, Button],
   templateUrl: './select.page.html',
   styleUrl: './select.page.css',
 })

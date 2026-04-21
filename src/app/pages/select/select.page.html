@@ -108,12 +108,12 @@
         ]"
         placeholder="Choose an option"
         [onChange]="onSelectChange.bind(this)"
-        class="mr-2"
+        class="mr-1 mb-1"
     ></nc-select>
 
-    <button (click)="setSelectedValue('option3')">Set Selected Value to Option 3</button>
-    <button (click)="getSelectedValue()">Get Selected Value</button>
-    <button (click)="clearSelectedValue()">Clear Value</button>
+    <nc-button [onClick]="setSelectedValue.bind(this, 'option3')" class="mr-1 mb-1" variant="dark">Set Selected Value to Option 3</nc-button>
+    <nc-button [onClick]="getSelectedValue.bind(this)" class="mr-1 mb-1" variant="outline">Get Selected Value</nc-button>
+    <nc-button [onClick]="clearSelectedValue.bind(this)" class="mr-1 mb-1" variant="red">Clear Value</nc-button>
     <br><br>
 
     <h4 class="section-subtitle-light">HTML</h4>
