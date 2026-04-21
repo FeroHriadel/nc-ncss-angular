@@ -1,2 +1,6 @@
 @import "./app/ncss/stylesheets/ncss.css";
 @import 'highlight.js/styles/github.css';
+
+body {
+    background-color: #fafafa;
+}
