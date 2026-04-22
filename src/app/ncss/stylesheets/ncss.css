@@ -68,50 +68,40 @@
     /* Shadows */
     --nc-box-shadow: 0px 4px 6px var(--nc-white-100);
 
-    /* Buttons (share some text settings with inputs */
+    /* Buttons & inputs */
     --nc-button-dark-bg: var(--nc-black-600);
     --nc-button-dark-bg-hover: var(--nc-black-700);
     --nc-button-dark-bg-focus: var(--nc-black-800);
     --nc-button-dark-text-color: var(--nc-white-900);
-
     --nc-button-outline-bg-focus: var(--nc-white-200);
-
     --nc-button-red-bg: var(--nc-red-900);
     --nc-button-red-bg-hover: var(--nc-red-800);
     --nc-button-red-bg-focus: var(--nc-red-700);
     --nc-button-red-text-color: var(--nc-white-950);
-
-
-
-    /* Inputs */
     --nc-input-bg: var(--nc-white-600);
     --nc-input-bg-hover: var(--nc-white-800);
     --nc-input-bg-focus: var(--nc-white-700);
-
     --nc-input-width: 260px;
     --nc-input-height: 2.5rem;
     --nc-input-padding: 0.5rem;
-
     --nc-input-text-color: var(--nc-black-500);
     --nc-input-text-color-hover: var(--nc-black-700);
     --nc-input-text-color-focus: var(--nc-black-600);
     --nc-input-text-size: 0.9rem;
     --nc-input-text-weight: 500;
     --nc-input-text-indent: 0.5rem;
-
     --nc-input-placeholder-color: var(--nc-black-200);
     --nc-input-placeholder-color-hover: var(--nc-black-300);
     --nc-input-placeholder-color-focus: var(--nc-black-400);
     --nc-input-placeholder-font-style: italic;
     --nc-input-placeholder-font-weight: 200;
     --nc-input-placeholder-font-size: 0.9rem;
-
     --nc-input-display: inline-block;
-
     --nc-select-width: 200px;
     --nc-select-bg: transparent;
     --nc-select-options-padding: 0.25rem;
     --nc-select-options-bg: var(--nc-white-950);
+    --nc-label-text-color: var(--nc-black-100);
 }
 
 
@@ -206,6 +196,7 @@ a:focus {
 .p-5 { padding: 1.5rem; }
 .p-6 { padding: 1.75rem; }
 .p-7 { padding: 2rem; }
+.p-8 { padding: 2.5rem; }
 
 .pt-0 { padding-top: 0; }
 .pt-1 { padding-top: 0.25rem; }
@@ -215,6 +206,7 @@ a:focus {
 .pt-5 { padding-top: 1.5rem; }
 .pt-6 { padding-top: 1.75rem; }
 .pt-7 { padding-top: 2rem; }
+.pt-8 { padding-top: 2.5rem; }
 
 .pb-0 { padding-bottom: 0; }
 .pb-1 { padding-bottom: 0.25rem; }
@@ -224,6 +216,7 @@ a:focus {
 .pb-5 { padding-bottom: 1.5rem; }
 .pb-6 { padding-bottom: 1.75rem; }
 .pb-7 { padding-bottom: 2rem; }
+.pb-8 { padding-bottom: 2.5rem; }
 
 .pl-0 { padding-left: 0; }
 .pl-1 { padding-left: 0.25rem; }
@@ -242,6 +235,7 @@ a:focus {
 .pr-5 { padding-right: 1.5rem; }
 .pr-6 { padding-right: 1.75rem; }
 .pr-7 { padding-right: 2rem; }
+.pr-8 { padding-right: 2.5rem; }
 
 .py-0 { padding-top: 0; padding-bottom: 0; }
 .py-1 { padding-top: 0.25rem; padding-bottom: 0.25rem; }
@@ -251,6 +245,7 @@ a:focus {
 .py-5 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
 .py-6 { padding-top: 1.75rem; padding-bottom: 1.75rem; }
 .py-7 { padding-top: 2rem; padding-bottom: 2rem; }
+.py-8 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 
 .px-0 { padding-left: 0; padding-right: 0; }
 .px-1 { padding-left: 0.25rem; padding-right: 0.25rem; }
@@ -260,6 +255,7 @@ a:focus {
 .px-5 { padding-left: 1.5rem; padding-right: 1.5rem; }
 .px-6 { padding-left: 1.75rem; padding-right: 1.75rem; }
 .px-7 { padding-left: 2rem; padding-right: 2rem; }
+.px-8 { padding-left: 2.5rem; padding-right: 2.5rem; }
 
 /* Utility classes - margin */
 .m-0 { margin: 0; }
@@ -270,6 +266,7 @@ a:focus {
 .m-5 { margin: 1.5rem; }
 .m-6 { margin: 1.75rem; }
 .m-7 { margin: 2rem; }
+.m-8 { margin: 2.5rem; }
 
 .mt-0 { margin-top: 0; }
 .mt-1 { margin-top: 0.25rem; }
@@ -279,6 +276,7 @@ a:focus {
 .mt-5 { margin-top: 1.5rem; }
 .mt-6 { margin-top: 1.75rem; }
 .mt-7 { margin-top: 2rem; }
+.mt-8 { margin-top: 2.5rem; }
 
 .mb-0 { margin-bottom: 0; }
 .mb-1 { margin-bottom: 0.25rem; }
@@ -288,6 +286,7 @@ a:focus {
 .mb-5 { margin-bottom: 1.5rem; }
 .mb-6 { margin-bottom: 1.75rem; }
 .mb-7 { margin-bottom: 2rem; }
+.mb-8 { margin-bottom: 2.5rem; }
 
 .ml-0 { margin-left: 0; }
 .ml-1 { margin-left: 0.25rem; }
@@ -297,6 +296,7 @@ a:focus {
 .ml-5 { margin-left: 1.5rem; }
 .ml-6 { margin-left: 1.75rem; }
 .ml-7 { margin-left: 2rem; }
+.ml-8 { margin-left: 2.5rem; }
 
 .mr-0 { margin-right: 0; }
 .mr-1 { margin-right: 0.25rem; }
@@ -306,6 +306,7 @@ a:focus {
 .mr-5 { margin-right: 1.5rem; }
 .mr-6 { margin-right: 1.75rem; }
 .mr-7 { margin-right: 2rem; }
+.mr-8 { margin-right: 2.5rem; }
 
 .my-0 { margin-top: 0; margin-bottom: 0; }
 .my-1 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
@@ -315,6 +316,7 @@ a:focus {
 .my-5 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
 .my-6 { margin-top: 1.75rem; margin-bottom: 1.75rem; }
 .my-7 { margin-top: 2rem; margin-bottom: 2rem; }
+.my-8 { margin-top: 2.5rem; margin-bottom: 2.5rem; }
 
 .mx-0 { margin-left: 0; margin-right: 0; }
 .mx-1 { margin-left: 0.25rem; margin-right: 0.25rem; }
@@ -324,6 +326,57 @@ a:focus {
 .mx-5 { margin-left: 1.5rem; margin-right: 1.5rem; }
 .mx-6 { margin-left: 1.75rem; margin-right: 1.75rem; }
 .mx-7 { margin-left: 2rem; margin-right: 2rem; }
+.mx-8 { margin-left: 2.5rem; margin-right: 2.5rem; }
+
+.m-auto { margin: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+
+
+/* Utility classes - flex */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+.flex-center { justify-content: center; align-items: center; }
+.justify-center { justify-content: center; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.align-center { align-items: center; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.gap-0 { gap: 0; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; } 
+.gap-4 { gap: 1rem; }
+.gap-5 { gap: 1.5rem; }
+.gap-6 { gap: 1.75rem; }
+.gap-7 { gap: 2rem; }
+.gap-8 { gap: 2.5rem; }
+
+/* Utility classes - grid */
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+.grid-cols-7 { grid-template-columns: repeat(7, 1fr); }
+.grid-cols-8 { grid-template-columns: repeat(8, 1fr); }
+.grid-gap-0 { grid-gap: 0; }
+.grid-gap-1 { grid-gap: 0.25rem; }
+.grid-gap-2 { grid-gap: 0.5rem; }
+.grid-gap-3 { grid-gap: 0.75rem; }
+.grid-gap-4 { grid-gap: 1rem; }
+.grid-gap-5 { grid-gap: 1.5rem; }
+.grid-gap-6 { grid-gap: 1.75rem; }
+.grid-gap-7 { grid-gap: 2rem; }
+.grid-gap-8 { grid-gap: 2.5rem; }
+
 
 
 /* Utility classes - mouse */

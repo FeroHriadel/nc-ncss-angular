@@ -1,4 +1,4 @@
-/* Variant: "dark" ==> default variant */
+/* Variant: "dark" & a few global styles */
 .nc-square-button {
     appearance: none;
     font-size: var(--nc-input-text-size);
@@ -67,7 +67,7 @@
 }
 
 
-/* Variant: "ghost" */
+/* Variant: "ghost" ==> default variant */
 .nc-square-button-ghost {
     background-color: transparent;
     color: var(--nc-input-text-color);

@@ -15,7 +15,7 @@ export class Button {
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
   @Input() id?: string = '';
-  @Input() width?: string = 'auto';
+  @Input() width?: string = '';
   @Input() disabled?: boolean = false;
   @Input() type?: 'button' | 'submit' = 'button';
   @Input() onClick?: () => void;

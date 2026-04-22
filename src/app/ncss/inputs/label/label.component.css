@@ -1,0 +1,6 @@
+.nc-label {
+    font-size: calc(var(--nc-input-text-size) * 0.9);
+    color: var(--nc-label-text-color);
+    display: block;
+    margin-bottom: 0.25rem;
+}

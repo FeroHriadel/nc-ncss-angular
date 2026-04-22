@@ -1,122 +1,43 @@
-<h1 class="page-title">INPUTS</h1>
-<p class="page-subtitle">Text inputs, select inputs, and other form elements.</p>
-<br><br><br>
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">INPUTS & BUTTONS</h1>
+  <p class="page-subtitle mt-4 mb-8">Elements used for user interaction: text input, select, buttons...</p>
 
+  <!-- elements demo -->
+  <nc-card class="p-4">
+    <h3 class="section-title-light">Elements Demo</h3>
+    <p class="section-subtitle-light mb-8">See what's available</p>
 
+    <!-- flexbox -->
+    <div class="flexbox flex flex-wrap">
+      <!-- flexbox-item01 - select -->
+      <div class="flexbox-item mr-8 mb-8">
+        <nc-label for="select">Select multiple values</nc-label>
+        <nc-select 
+          id="select" 
+          [multiple]="true"
+          [options]="[
+            { value: 'option1', label: 'Option 1' },
+            { value: 'option2', label: 'Option 2' },
+            { value: 'option3', label: 'Option 3' },
+            { value: 'option4', label: 'Option 4' },
+            { value: 'option5', label: 'Option 5' },
+            { value: 'option6', label: 'Option 6' },
+            { value: 'option7', label: 'Option 7' },
+            { value: 'option8', label: 'Option 8' },
+            { value: 'option9', label: 'Option 9' },
+            { value: 'option10', label: 'Option 10' }
+          ]"
+          [defaultValue]="['option2', 'option4']"
+          placeholder="Please choose..."
+          width="260px"
+          optionsWidth="260px"
+          [searchable]="true"
+        ></nc-select>
+      </div>
+    </div>
+  </nc-card>
 
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<nc-select
-  #mySelect
-  [options]="[
-    { value: 'option1', label: 'Option 111111111112ekfnejfnhru3h3riu3griu32griu32iuri3dwjendkje' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' },
-    { value: 'option4', label: 'Option 4' },
-    { value: 'option5', label: 'Option 5' },
-    { value: 'option6', label: 'Option 6' },
-    { value: 'option7', label: 'Option 7' },
-    { value: 'option8', label: 'Option 8' },
-    { value: 'option9', label: 'Option 9' },
-    { value: 'option10', label: 'Option 10' }
-  ]"
-  width="260px"
-  optionsWidth="260px"
-  [multiple]="true"
-  [defaultValue]="['option1', 'option3']"
-  [searchable]="true"
-  [onChange]="onSelectChange.bind(this)"
-  class="custom-class-added-to-select"
-  [style]="{transform: 'translateX(10px)'}"
-  name="my-select"
-  id="my-select"
-  placeholder="Select an option => this should not overflow"
-></nc-select>
-
-
-<br>
-
-<h3>From html</h3>
-<button (click)="mySelect.setValue(['option4', 'option5'])">Set Value to Option 4 & 5</button><br>
-<button (click)="mySelect.clear()">Clear Value</button><br>
-
-<h3>from ts</h3>
-<button (click)="getSelectedValue()">Get Selected Value</button><br>
-<button (click)="setSelectedValue(['option1', 'option2'])">Set Value to Option 1 & 2</button><br>
-<button (click)="clearSelectedValue()">Clear Value</button><br>
-<button (click)="clearSelectedValue()">Clear Value</button><br>
-
-
-
-
-
-<br>
-<br>
-
-
-<nc-select 
-  [options]="[{ label: 'Option 1', value: 'option1' }, { label: 'Option 2', value: 'option2' }]" 
-  [customTrigger]="true" 
-  [style]="{marginLeft: '200px'}">
-  <div style="height: 100px; background-color: antiquewhite;"><span>My custom trigger</span></div>
-</nc-select>
-
-
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br><br>
-<br>
-<br>
-<br>
-<br>
+  <!-- links to elements -->
+   
+</nc-container>
