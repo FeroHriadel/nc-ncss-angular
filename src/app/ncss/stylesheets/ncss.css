@@ -145,6 +145,29 @@ li {
     margin: 0;
 }
 
+select {
+    min-width: var(--nc-select-width);
+    height: var(--nc-input-height);
+    background-color: var(--nc-select-bg);
+    border: 1px solid var(--nc-border-color);
+    border-radius: var(--nc-border-radius);
+    color: var(--nc-input-text-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    padding: var(--nc-input-padding);
+    cursor: pointer;
+}
+
+select:hover {
+    color: var(--nc-input-text-color-hover);
+}
+
+select:focus {
+    box-shadow: var(--nc-outline-shadow);
+    outline: 0;
+    color: var(--nc-input-text-color-focus);
+}
+
 
 /* Utility classes - text */
 .page-title {
