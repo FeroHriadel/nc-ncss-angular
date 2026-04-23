@@ -1,3 +1,7 @@
+:host {
+    display: contents;
+}
+
 .nc-card {
     border-radius: var(--nc-border-radius);
     box-shadow: var(--nc-box-shadow);

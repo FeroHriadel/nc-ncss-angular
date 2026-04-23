@@ -2,9 +2,10 @@
   <!-- title -->
   <h1 class="page-title">INPUTS & BUTTONS</h1>
   <p class="page-subtitle mt-4 mb-8">Elements used for user interaction: text input, select, buttons...</p>
+  <br><br>
 
   <!-- elements demo -->
-  <nc-card class="p-4">
+  <nc-card class="p-4 mb-8">
     <h3 class="section-title-light">Elements Demo</h3>
     <p class="section-subtitle-light mb-8">See what's available</p>
 
@@ -37,7 +38,34 @@
       </div>
     </div>
   </nc-card>
+  <br><br>
 
-  <!-- links to elements -->
+  <!-- links list -->
+  <h2 class="section-title">Using the elements</h2>
+  <p class="section-subtitle mb-2">Click a card to learn how to use the elements</p>
+  <ul class="list mb-8 mt-6 mx-8">
+    <li class="w-100 mb-4">
+      <nc-card [class]="'p-4 flex pointer w-100 hover'" routerLink="/inputs/buttons">
+        <span class="circle border h-12 min-w-12 mr-5 flex flex-center">
+          <nc-button-icon [size]="30" color="var(--nc-black-200)"></nc-button-icon>
+        </span>
+        <span>
+          <h3 class="section-title-light mb-1">Buttons</h3>
+          <p class="section-subtitle-light">variant, size, disabled, SquareButton</p>
+        </span>
+      </nc-card>
+    </li>
+    <li class="w-100 mb-4">
+      <nc-card [class]="'p-4 flex pointer w-100 hover'" routerLink="/inputs/select">
+        <span class="circle border h-12 min-w-12 mr-5 flex flex-center">
+          <nc-list-icon [size]="30" color="var(--nc-black-200)"></nc-list-icon>
+        </span>
+        <span>
+          <h3 class="section-title-light mb-1">Select</h3>
+          <p class="section-subtitle-light">multiple, defaultValue, searchable, customTrigger, getValue(), setValue(), open(), close()...</p>
+        </span>
+      </nc-card>
+    </li>
+  </ul>
    
 </nc-container>

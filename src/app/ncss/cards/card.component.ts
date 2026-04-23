@@ -16,4 +16,5 @@ export class Card {
   @Input() style?: { [key: string]: string } = {};
   @Input() id?: string = '';
   @Input() width?: string = '100%';
+  @Input() onClick?: () => void = () => {};
 }
