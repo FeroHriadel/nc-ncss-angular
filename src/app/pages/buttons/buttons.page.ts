@@ -34,7 +34,7 @@ export class ButtonsPage {
       [width]="'260px'" 
       [style]="{backgroundColor: 'red', height: '60px', transform: 'skew(-5deg)'}"
     >
-      [style]-ed
+      Styled Button
     </nc-button>
     <nc-button class="mb-1 mr-1" [width]="'260px'" title="TITLE" size="large">With Title (hover)</nc-button>
   `;
