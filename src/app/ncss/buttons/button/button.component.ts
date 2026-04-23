@@ -22,4 +22,5 @@ export class Button {
   @Input() variant?: 'dark' | 'outline' | 'ghost' | 'red' = 'dark';
   @Input() ariaLabel?: string = 'button';
   @Input() title?: string = '';
+  @Input() size?: 'small' | 'medium' | 'large' = 'medium';
 }

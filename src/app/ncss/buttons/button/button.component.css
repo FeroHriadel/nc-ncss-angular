@@ -11,6 +11,20 @@
     color: var(--nc-button-dark-text-color);
 }
 
+.nc-button-medium {
+    min-height: 2.5rem;
+}
+
+.nc-button-small {
+    min-height: 2rem;
+    padding: calc(0.25rem + 1.25px) 0.75rem;
+}
+
+.nc-button-large {
+    min-height: 3rem;
+    padding: calc(0.75rem + 1.25px) 1.5rem;
+}
+
 .nc-button:hover {
     background-color: var(--nc-button-dark-bg-hover);
 }

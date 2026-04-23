@@ -20,18 +20,23 @@ import { Highlight } from 'ngx-highlightjs';
 
 export class ButtonsPage {
   public htmlCode: string = `
-    <h4 class="section-subtitle-light mb-2">Result</h4>
     <nc-button class="mb-1 mr-1" [width]="'260px'">Dark (default)</nc-button>
     <nc-button variant="outline" class="mb-1 mr-1" [width]="'260px'">Outline</nc-button>
     <nc-button variant="ghost" class="mb-1 mr-1" [width]="'260px'">Ghost</nc-button>
     <nc-button variant="red" class="mb-1 mr-1" [width]="'260px'">Red</nc-button>
-    <nc-button class="mb-1 mr-1" [width]="'260px'" title="TITLE">With Title (hover)</nc-button>
-    <nc-button 
-        class="mb-1 mr-1" 
-        [width]="'260px'" 
-        [style]="{backgroundColor: 'red', height: '60px', transform: 'skew(-5deg)'}"
-    >[style]-ed</nc-button>
     <nc-button>Unmodified</nc-button>
+    <br><br><br>
+    <nc-button size="small" class="mb-1 mr-1">Small</nc-button>
+    <nc-button size="medium" class="mb-1 mr-1">Medium</nc-button>
+    <nc-button size="large" class="mb-1 mr-1">Large</nc-button>
+    <nc-button 
+      class="mb-1 mr-1" 
+      [width]="'260px'" 
+      [style]="{backgroundColor: 'red', height: '60px', transform: 'skew(-5deg)'}"
+    >
+      [style]-ed
+    </nc-button>
+    <nc-button class="mb-1 mr-1" [width]="'260px'" title="TITLE" size="large">With Title (hover)</nc-button>
   `;
 
   public squareBtnCode = `
