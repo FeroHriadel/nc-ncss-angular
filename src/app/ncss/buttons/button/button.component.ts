@@ -21,4 +21,5 @@ export class Button {
   @Input() onClick?: () => void;
   @Input() variant?: 'dark' | 'outline' | 'ghost' | 'red' = 'dark';
   @Input() ariaLabel?: string = 'button';
+  @Input() title?: string = '';
 }
