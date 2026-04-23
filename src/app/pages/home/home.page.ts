@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { Select } from '../../ncss/inputs/select/select.component';
+import { Container } from '../../ncss/wrappers/container/container.component';
+import { Card } from '../../ncss/cards/card.component';
 
 
 
 
 @Component({
   selector: 'home-page',
-  imports: [Select],
+  imports: [Select, Container, Card],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
