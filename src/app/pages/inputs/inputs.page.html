@@ -1,19 +1,35 @@
 <nc-container>
   <!-- title -->
-  <h1 class="page-title">INPUTS & BUTTONS</h1>
-  <p class="page-subtitle mt-4 mb-8">Elements used for user interaction: text input, select, buttons...</p>
+  <h1 class="page-title">INPUTS, BUTTONS & FORMS</h1>
+  <p class="page-subtitle mt-4 mb-8">Components used for user interaction: text input, select, buttons...</p>
   <br><br>
 
   <!-- elements demo -->
   <nc-card class="p-4 mb-8">
-    <h3 class="section-title-light">Elements Demo</h3>
+    <h3 class="section-title-light">Components Demo</h3>
     <p class="section-subtitle-light mb-8">See what's available</p>
 
     <!-- flexbox -->
-    <div class="flexbox flex flex-wrap">
-      <!-- flexbox-item01 - select -->
-      <div class="flexbox-item mr-8 mb-8">
-        <nc-label for="select">Select multiple values</nc-label>
+    <div class="flexbox flex flex-col">
+
+      <!-- flexbox-item -->
+      <div class="flexbox-item mr-8 mb-4">
+        <label for="text-input-demo" >Text Input</label>
+        <input type="text" id="text-input-demo" placeholder="Type something...">
+      </div>
+
+      <!-- flexbox-item -->
+      <div class="flexbox-item mr-8 mb-4">
+        <label for="textarea-input-demo" >Textarea</label>
+        <textarea 
+          id="textarea-input-demo" 
+          placeholder="Type something..."
+        ></textarea>
+      </div>
+
+      <!-- flexbox-item -->
+      <div class="flexbox-item mr-8 mb-4">
+        <label for="select">Select multiple values</label>
         <nc-select 
           id="select" 
           [multiple]="true"
@@ -35,6 +51,11 @@
           optionsWidth="260px"
           [searchable]="true"
         ></nc-select>
+      </div>
+
+      <!-- flexbox-item -->
+      <div class="flexbox-item mr-8 mb-4">
+        <nc-button width="260px">Button</nc-button>
       </div>
     </div>
   </nc-card>
@@ -63,6 +84,17 @@
         <span>
           <h3 class="section-title-light mb-1">Select</h3>
           <p class="section-subtitle-light">multiple, defaultValue, searchable, customTrigger, getValue(), setValue(), open(), close()...</p>
+        </span>
+      </nc-card>
+    </li>
+    <li class="w-100 mb-4">
+      <nc-card [class]="'p-4 flex pointer w-100 hover'" routerLink="/inputs/text-inputs">
+        <span class="circle border h-12 min-w-12 mr-5 flex flex-center">
+          <nc-text-icon [size]="30" color="var(--nc-black-200)"></nc-text-icon>
+        </span>
+        <span>
+          <h3 class="section-title-light mb-1">Text Inputs (and Label)</h3>
+          <p class="section-subtitle-light">text, textarea, password, email...</p>
         </span>
       </nc-card>
     </li>

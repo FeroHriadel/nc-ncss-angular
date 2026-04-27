@@ -4,3 +4,6 @@ export { CheckIcon } from './check.icon';
 export { TimesIcon } from './times.icon';
 export { ListIcon } from './list.icon';
 export { ButtonIcon } from './button.icon';
+export { TextIcon } from './text.icon';
+export { EyeIcon } from './eye.icon';
+export { EyeCrossedIcon } from './eye-crossed.icon';

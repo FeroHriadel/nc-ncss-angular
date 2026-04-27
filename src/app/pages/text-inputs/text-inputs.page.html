@@ -1,0 +1,54 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">TEXT INPUTS</h1>
+  <p class="page-subtitle mt-4 mb-8">text input, textarea, password input, email input...</p>
+  <br><br>
+
+
+  <!-- text inputs & label & textarea -->
+  <h2 class="section-title">Text Inputs</h2>
+  <p class="section-subtitle mb-2">Common use and modification</p>
+  <p class="text">Common Inputs as well as Label and Textarea are css styled and there're no special ncss components for them.</p>
+  <br><br>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <label for="text-input">Label</label>
+  <input type="text" id="text-input" placeholder="Type something..." class="mb-4">
+  <label for="textarea">Label</label>
+  <textarea id="textarea" placeholder="Type something..." class="mb-4"></textarea>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="inputsHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br><br>
+
+
+  <!-- password -->
+  <h2 class="section-title">Password Input</h2>
+  <p class="section-subtitle mb-2">Common use and modification</p>
+  <br><br>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <label for="password-input">Enter Password</label>
+  <nc-password #passwordInput id="password-input" placeholder="Enter your password" class="mb-4 mr-1"></nc-password>
+  <nc-button class="mr-1" (click)="setPasswordValue()">Set Value to "abc"</nc-button>
+  <nc-button class="mr-1" (click)="getPasswordValue()" variant="outline">Get Value</nc-button>
+  <nc-button class="mr-1" (click)="clearPasswordValue()" variant="red">Clear</nc-button>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="passwordHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="passwordTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+
+</nc-container>

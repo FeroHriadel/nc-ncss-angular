@@ -78,9 +78,9 @@
     --nc-button-red-bg-hover: var(--nc-red-800);
     --nc-button-red-bg-focus: var(--nc-red-700);
     --nc-button-red-text-color: var(--nc-white-950);
-    --nc-input-bg: var(--nc-white-600);
-    --nc-input-bg-hover: var(--nc-white-800);
-    --nc-input-bg-focus: var(--nc-white-700);
+    --nc-input-bg: var(--nc-white-700);
+    --nc-input-bg-hover: var(--nc-white-500);
+    --nc-input-bg-focus: var(--nc-white-400);
     --nc-input-width: 260px;
     --nc-input-height: 2.5rem;
     --nc-input-padding: 0.5rem;
@@ -143,6 +143,52 @@ ul, ol {
 li {
     list-style: none;
     margin: 0;
+}
+
+label {
+    font-size: calc(var(--nc-input-text-size) * 0.9);
+    color: var(--nc-label-text-color);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+input, textarea {
+    width: var(--nc-input-width);
+    background-color: var(--nc-input-bg);
+    border: 1px solid var(--nc-border-color);
+    border-radius: var(--nc-border-radius);
+    color: var(--nc-input-text-color);
+    font-size: var(--nc-input-text-size);
+    font-weight: var(--nc-input-text-weight);
+    padding: var(--nc-input-padding);
+}
+
+input {
+    height: var(--nc-input-height);
+}
+
+textarea {
+    min-height: calc(var(--nc-input-height) * 3);
+    resize: vertical;
+}
+
+
+
+input:hover, textarea:hover {
+    color: var(--nc-input-text-color-hover);
+}
+
+input:focus, textarea:focus {
+    box-shadow: var(--nc-outline-shadow);
+    outline: 0;
+    color: var(--nc-input-text-color-focus);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--nc-input-placeholder-color);
+    font-style: var(--nc-input-placeholder-font-style);
+    font-weight: var(--nc-input-placeholder-font-weight);
+    font-size: var(--nc-input-placeholder-font-size);
 }
 
 select {
@@ -408,7 +454,7 @@ select:focus {
 .flex { display: flex; }
 .inline-flex { display: inline-flex; }
 .flex-row { flex-direction: row; }
-.flex-column { flex-direction: column; }
+.flex-col { flex-direction: column; }
 .flex-wrap { flex-wrap: wrap; }
 .flex-nowrap { flex-wrap: nowrap; }
 .flex-center { justify-content: center; align-items: center; }
