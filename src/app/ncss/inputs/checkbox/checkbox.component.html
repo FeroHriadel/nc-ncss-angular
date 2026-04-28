@@ -1,0 +1,15 @@
+<span class="nc-checkbox-wrap">
+    <input 
+        type="checkbox" 
+        [name]="name" 
+        [id]="id"
+        [disabled]="disabled"
+        (click)="toggleChecked()"
+        [checked]="checked"
+        [class]="'nc-checkbox ' + class"
+        [style]="style"
+    >
+    <div class="nc-fake-checkbox">
+        @if (isChecked) { <span class="nc-checkbox-check-symbol">✔</span> }
+    </div>
+</span>
