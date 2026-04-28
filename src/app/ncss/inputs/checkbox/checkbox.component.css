@@ -33,6 +33,10 @@
     background-color: var(--nc-button-dark-bg);
 }
 
+.nc-checkbox:focus + .nc-fake-checkbox {
+    box-shadow: var(--nc-outline-shadow);
+}
+
 .nc-checkbox-check-symbol {
     color: var(--nc-button-dark-text-color);
     font-size: 1rem;

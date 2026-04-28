@@ -6,8 +6,8 @@
 
   <!-- elements demo -->
   <nc-card class="p-4 mb-8">
-    <h3 class="section-title-light">Components Demo</h3>
-    <p class="section-subtitle-light mb-8">See what's available</p>
+    <h3 class="section-title">Components Demo</h3>
+    <p class="section-subtitle mb-8">See what's available</p>
 
     <!-- flexbox -->
     <div class="flexbox flex flex-col">
@@ -29,7 +29,7 @@
 
       <!-- flexbox-item -->
       <div class="flexbox-item mr-8 mb-4">
-        <label for="select">Select multiple values</label>
+        <label for="select">Select</label>
         <nc-select 
           id="select" 
           [multiple]="true"
@@ -51,6 +51,12 @@
           optionsWidth="260px"
           [searchable]="true"
         ></nc-select>
+      </div>
+
+      <!-- flexbox-item -->
+      <div class="flexbox-item flex items-center mr-8 mb-4">
+        <nc-checkbox class="mr-2"></nc-checkbox>
+        <label for="text-input-demo" [style]="{'transform': 'translateY(1.5px)'}">Checkbox</label>
       </div>
 
       <!-- flexbox-item -->
