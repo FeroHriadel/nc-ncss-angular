@@ -1,31 +1,27 @@
+// ng component
 import { Component, Input } from '@angular/core';
-import { CheckIcon } from '../../icons';
-import { SquareButton } from '../../buttons/square-button/square-button.component';
 
 
 
-
-@Component({
-  selector: 'nc-checkbox',
-  imports: [CheckIcon, SquareButton],
-  templateUrl: './checkbox.component.html',
-  styleUrl: './checkbox.component.css',
+@Component({  selector: 'nc-switch',
+  templateUrl: './switch.component.html',
+  styleUrl: './switch.component.css',
 })
 
 
 
-export class Checkbox {
+export class Switch {
     @Input() class?: string = '';
     @Input() style?: { [key: string]: string } = {};
     @Input() id?: string = ''
-    @Input() onChange?: () => void;
+    @Input() onChange?: () => void = () => {};
     @Input() disabled: boolean = false;
     @Input() name?: string = '';
     @Input() checked?: boolean = false;
-    @Input() label?: string = '';
 
     public isChecked: boolean = this.checked ?? false;
 
+    
     toggleChecked() {
         this.isChecked = !this.isChecked;
         if (this.onChange) { this.onChange(); }
@@ -38,4 +34,5 @@ export class Checkbox {
     public setValue(value: boolean) {
         this.isChecked = value;
     }
+
 }

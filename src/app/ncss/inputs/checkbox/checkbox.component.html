@@ -1,15 +1,18 @@
-<span class="nc-checkbox-wrap">
-    <input 
-        type="checkbox" 
-        [name]="name" 
-        [id]="id"
-        [disabled]="disabled"
-        (click)="toggleChecked()"
-        [checked]="checked"
-        [class]="'nc-checkbox ' + class"
-        [style]="style"
-    >
-    <div class="nc-fake-checkbox">
-        @if (isChecked) { <span class="nc-checkbox-check-symbol">✔</span> }
-    </div>
+<span [class]="'nc-checkbox-an-label-wrap ' + class" [style]="style" >
+    <span class="nc-checkbox-wrap">
+        <input 
+            type="checkbox" 
+            [name]="name" 
+            [id]="id"
+            [disabled]="disabled"
+            (click)="toggleChecked()"
+            [checked]="isChecked"
+            class="nc-checkbox"
+        >
+        <div class="nc-fake-checkbox">
+            <span class="nc-checkbox-check-symbol" [class.nc-checkbox-check-symbol-visible]="isChecked">✔</span>
+        </div>
+    </span>
+    
+    @if (label) { <label class="nc-checkbox-label" (click)="toggleChecked()">{{ label }}</label> }
 </span>

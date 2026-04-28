@@ -1,0 +1,15 @@
+<span [class]="'nc-switch ' + class">
+    <div class="nc-switch-slider">
+        <div class="nc-switch-knob"></div>
+    </div>
+    <input 
+        type="checkbox" 
+        [name]="name" 
+        [id]="id"
+        [disabled]="disabled"
+        (click)="toggleChecked()"
+        [checked]="checked"
+        class="nc-switch-checkbox"
+        [style]="style"
+    >
+</span>
