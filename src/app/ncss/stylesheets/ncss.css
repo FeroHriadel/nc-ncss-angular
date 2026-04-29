@@ -539,6 +539,12 @@ select:focus {
 
 
 
+/* Utility classes - text */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+
 
 /* Utility classes - shapes */
 .circle { border-radius: 50%; }

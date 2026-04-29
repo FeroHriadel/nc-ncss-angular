@@ -25,6 +25,7 @@
                             [customTrigger]="true"
                             class="nc-topnav-select"
                             [onChange]="navigateToLink.bind(this)"
+                            [width]="'fit-content'"
                         >
                             <span class="nc-topnav-select-trigger">{{ link.label }}</span>
                         </nc-select>
@@ -39,6 +40,8 @@
                 [customTrigger]="true"
                 [options]="getHamburgerOptions()"
                 [onChange]="navigateToLink.bind(this)"
+                [width]="'fit-content'"
+                [style]="{transform: 'translateY(0.2rem)'}"
             >
                 <nc-hamburger-icon></nc-hamburger-icon>
             </nc-select>

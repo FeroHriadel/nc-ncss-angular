@@ -1,3 +1,13 @@
+@if (label) {
+  <label 
+    [attr.for]="id" 
+    class="nc-select-label mb-1"
+    (click)="toggleDropdown()"
+  >
+    {{ label }}
+  </label>
+}
+
 <span 
   [style]="style"  
   [class]="`nc-select ${class}`"
@@ -5,6 +15,7 @@
   [attr.name]="name"
   [attr.id]="id"
   [attr.aria-label]="ariaLabel"
+  [style.width]="width ? width : 'fit-content'"
 >
   <!-- custom trigger-->
   @if (customTrigger) {

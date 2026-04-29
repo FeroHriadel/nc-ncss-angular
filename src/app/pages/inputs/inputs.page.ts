@@ -7,13 +7,14 @@ import { Button } from '../../ncss/buttons/button/button.component';
 import { ListIcon, ButtonIcon, TextIcon, CheckboxIcon } from '../../ncss/icons';
 import { Checkbox } from '../../ncss/inputs/checkbox/checkbox.component';
 import { Switch } from '../../ncss/inputs/switch/switch.component';
+import { SquareButton } from '../../ncss/buttons/square-button/square-button.component';
 
 
 
 
 @Component({
   selector: 'inputs-page',
-  imports: [Select, Card, Container, RouterLink, Button, ListIcon, ButtonIcon, TextIcon, CheckboxIcon, Checkbox, Switch],
+  imports: [Select, Card, Container, RouterLink, Button, ListIcon, ButtonIcon, TextIcon, CheckboxIcon, Checkbox, Switch, SquareButton],
   templateUrl: './inputs.page.html',
   styleUrl: './inputs.page.css',
 })

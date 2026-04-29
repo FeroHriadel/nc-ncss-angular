@@ -39,6 +39,7 @@ export class Select implements OnInit {
   @Input() id?: string = '';
   @Input() ariaLabel?: string = this.name || 'Select an option';
   @Input() searchable?: boolean = false;
+  @Input() label?: string = '';
 
 
 

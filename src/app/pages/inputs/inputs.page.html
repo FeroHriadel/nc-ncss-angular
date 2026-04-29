@@ -1,73 +1,92 @@
 <nc-container>
   <!-- title -->
-  <h1 class="page-title">INPUTS, BUTTONS & FORMS</h1>
+  <h1 class="page-title">FORMS & FORM ELEMENTS</h1>
   <p class="page-subtitle mt-4 mb-8">Components used for user interaction: text input, select, buttons...</p>
   <br><br>
 
-  <!-- elements demo -->
-  <nc-card class="p-4 mb-8">
-    <h3 class="section-title">Components Demo</h3>
-    <p class="section-subtitle mb-8">See what's available</p>
-
-    <!-- flexbox -->
-    <div class="flexbox flex flex-col">
-      <!-- flexbox-item -->
-      <div class="flexbox-item mr-8 mb-4">
-        <label for="text-input-demo" >Text Input</label>
-        <input type="text" id="text-input-demo" placeholder="Type something...">
+  <!-- components demo section -->
+  <div class="components-demo-wrap">
+    <!-- Inputs card -->
+    <div class="demo-card demo-card-large">
+      <div class="demo-card-header">
+        <h4 class="section-title-light">Form Inputs</h4>
+        <p class="section-subtitle-light">Common form elements</p>
       </div>
-
-      <!-- flexbox-item -->
-      <div class="flexbox-item mr-8 mb-4">
-        <label for="textarea-input-demo" >Textarea</label>
-        <textarea 
-          id="textarea-input-demo" 
-          placeholder="Type something..."
-        ></textarea>
-      </div>
-
-      <!-- flexbox-item -->
-      <div class="flexbox-item mr-8 mb-4">
-        <label for="select">Select</label>
-        <nc-select 
-          id="select" 
-          [multiple]="true"
-          [options]="[
-            { value: 'option1', label: 'Option 1' },
-            { value: 'option2', label: 'Option 2' },
-            { value: 'option3', label: 'Option 3' },
-            { value: 'option4', label: 'Option 4' },
-            { value: 'option5', label: 'Option 5' },
-            { value: 'option6', label: 'Option 6' },
-            { value: 'option7', label: 'Option 7' },
-            { value: 'option8', label: 'Option 8' },
-            { value: 'option9', label: 'Option 9' },
-            { value: 'option10', label: 'Option 10' }
-          ]"
-          [defaultValue]="['option2', 'option4']"
-          placeholder="Please choose..."
-          width="260px"
-          optionsWidth="260px"
-          [searchable]="true"
-        ></nc-select>
-      </div>
-
-      <!-- flexbox-item -->
-      <div class="flexbox-item flex align-center mr-8 mb-4">
-        <!-- <nc-checkbox class="mr-2" id="checkbox-demo"></nc-checkbox>
-        <label for="checkbox-demo" [style]="{'transform': 'translateY(1.5px)'}" class="mr-4">Checkbox</label> -->
-
-        <nc-switch class="mr-1" id="switch-demo"></nc-switch>
-        <label for="switch-demo" class="mr-4">Switch</label>
-      </div>
-
-      <!-- flexbox-item -->
-      <div class="flexbox-item mr-8 mb-4">
-        <nc-button width="260px">Button</nc-button>
+      <div class="demo-card-content">
+        <div class="mb-3">
+          <label for="text-input-demo">Email</label>
+          <input type="text" id="text-input-demo" placeholder="name@example.com" class="w-100">
+        </div>
+        <div class="mb-3">
+          <nc-select 
+            id="select" 
+            [options]="[
+              { value: 'option1', label: 'Option 1' },
+              { value: 'option2', label: 'Option 2' },
+              { value: 'option3', label: 'Option 3' }
+            ]"
+            placeholder="Select an option"
+            width="100%"
+            label="Select"
+          ></nc-select>
+        </div>
+        <div class="mb-3">
+          <nc-checkbox id="checkbox-demo" label="I agree to the terms and conditions"></nc-checkbox>
+        </div>
       </div>
     </div>
-  </nc-card>
-  <br><br>
+
+    <!-- Buttons card -->
+    <div class="demo-card">
+      <div class="demo-card-header">
+        <h4 class="section-title-light">Buttons</h4>
+        <p class="section-subtitle-light">Different button variants</p>
+      </div>
+      <div class="demo-card-content">
+        <nc-button width="100%" class="mb-2">Primary</nc-button>
+        <nc-button width="100%" variant="outline" class="mb-2">Outline</nc-button>
+        <nc-button width="100%" [style]="{backgroundColor: '#eee', color: '#111', fontSize: '1rem', fontWeight: '700'}" class="mb-2">Custom</nc-button>
+        <nc-button width="100%" variant="ghost">Ghost</nc-button>
+      </div>
+    </div>
+
+    <!-- Square Buttons card -->
+    <div class="demo-card">
+      <div class="demo-card-header">
+        <h4 class="section-title-light">Icon Buttons</h4>
+        <p class="section-subtitle-light">Square button variants</p>
+      </div>
+      <div class="demo-card-content">
+        <div class="flex gap-2 mb-2">
+          <nc-square-button variant="dark">
+            <nc-button-icon [size]="20"></nc-button-icon>
+          </nc-square-button>
+          <nc-square-button variant="outline">
+            <nc-button-icon [size]="20"></nc-button-icon>
+          </nc-square-button>
+        </div>
+        <nc-square-button variant="red">
+            <nc-button-icon [size]="20"></nc-button-icon>
+        </nc-square-button>
+      </div>
+    </div>
+
+    <!-- Switch card -->
+    <div class="demo-card">
+      <div class="demo-card-header">
+        <h4 class="section-title-light">Switches</h4>
+        <p class="section-subtitle-light">Toggle switches</p>
+      </div>
+      <div class="demo-card-content">
+        <div class="flex flex-col gap-3">
+          <nc-switch label="Enable notifications"></nc-switch>
+          <nc-switch label="Marketing emails" [checked]="true"></nc-switch>
+          <nc-switch label="Disabled" [disabled]="true"></nc-switch>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br>
 
   <!-- links list -->
   <h2 class="section-title">Using the components</h2>
