@@ -3,6 +3,11 @@
     align-items: center;
 }
 
+.nc-checkbox-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .nc-checkbox-wrap {
     display: inline-block;
     width: calc(var(--nc-input-height)/2);

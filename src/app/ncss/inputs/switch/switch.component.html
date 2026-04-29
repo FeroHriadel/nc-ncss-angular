@@ -1,15 +1,18 @@
-<span [class]="'nc-switch ' + class">
-    <div class="nc-switch-slider">
-        <div class="nc-switch-knob"></div>
-    </div>
-    <input 
-        type="checkbox" 
-        [name]="name" 
-        [id]="id"
-        [disabled]="disabled"
-        (click)="toggleChecked()"
-        [checked]="checked"
-        class="nc-switch-checkbox"
-        [style]="style"
-    >
+<span [class]="'nc-switch-and-label-wrapper ' + class + ' ' + (disabled ? 'nc-switch-disabled' : '')"  [style]="style">
+    <span class="nc-switch">
+        <div class="nc-switch-slider">
+            <div class="nc-switch-knob"></div>
+        </div>
+        <input 
+            type="checkbox" 
+            [name]="name" 
+            [id]="id"
+            [disabled]="disabled"
+            (click)="toggleChecked()"
+            [checked]="isChecked"
+            class="nc-switch-checkbox"
+        >
+    </span>
+
+    @if (label) { <label class="nc-switch-label" (click)="toggleChecked()">{{ label }}</label> }
 </span>

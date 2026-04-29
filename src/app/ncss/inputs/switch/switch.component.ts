@@ -18,6 +18,7 @@ export class Switch {
     @Input() disabled: boolean = false;
     @Input() name?: string = '';
     @Input() checked?: boolean = false;
+    @Input() label?: string = '';
 
     public isChecked: boolean = this.checked ?? false;
 

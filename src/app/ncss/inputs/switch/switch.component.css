@@ -8,6 +8,11 @@
     border: 1px solid var(--nc-border-color);
 }
 
+.nc-switch-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .nc-switch-checkbox {
     opacity: 0;
     width: 100%;
@@ -52,4 +57,14 @@
     box-shadow: 2px 2px 6px var(--nc-border-color);
 }
 
+.nc-switch-label {
+    display: inline;
+    margin: 0;
+    margin-left: 1rem;
+}
+
+.nc-switch-and-label-wrapper {
+    display: inline-flex;
+    align-items: center;
+}
 
