@@ -1,5 +1,5 @@
 // ng component
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 
@@ -10,7 +10,7 @@ import { Component, Input } from '@angular/core';
 
 
 
-export class Switch {
+export class Switch implements OnInit {
     @Input() class?: string = '';
     @Input() style?: { [key: string]: string } = {};
     @Input() id?: string = ''
@@ -20,7 +20,11 @@ export class Switch {
     @Input() checked?: boolean = false;
     @Input() label?: string = '';
 
-    public isChecked: boolean = this.checked ?? false;
+    public isChecked: boolean = false;
+
+    ngOnInit() {
+        this.isChecked = this.checked ?? false;
+    }
 
     
     toggleChecked() {

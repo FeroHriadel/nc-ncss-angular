@@ -18,7 +18,9 @@
     [style]="{transform: 'translateX(1rem)'}"
     name="checkbox-example"
     [onChange]="onCheckboxChange"
+    [checked]="true"
   ></nc-checkbox>
+  <nc-checkbox [disabled]="true" class="ml-4 mb-4" label="disabled"></nc-checkbox>
   <br>
   <nc-button class="mb-1 mr-1" variant="dark" (click)="setCheckboxValue(true)">Set Checkbox Value to True</nc-button>
   <nc-button class="mb-1 mr-1" (click)="checkboxExample.toggleChecked()">Toggle Checkbox</nc-button>
@@ -51,7 +53,25 @@
     label="Optional inbuilt label"
     [style]="{transform: 'translateX(1rem)'}"
     name="switch-example"
+    [checked]="true"
   ></nc-switch>
+  <nc-switch [disabled]="true" class="ml-4 mb-4" label="disabled"></nc-switch>
+  <br>
+    <nc-button class="mb-1 mr-1" variant="dark" (click)="setSwitchValue(true)">Set Switch Value to True</nc-button>
+    <nc-button class="mb-1 mr-1" (click)="switchExample.toggleChecked()">Toggle Switch</nc-button>
+    <nc-button class="mb-1 mr-1" variant="outline" (click)="getSwitchValue()">Get Switch Value</nc-button>
+  <br><br>
 
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+      <pre><code [highlight]="switchHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+      <pre><code [highlight]="switchTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br> 
 
 </nc-container>

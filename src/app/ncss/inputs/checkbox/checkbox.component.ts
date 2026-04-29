@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CheckIcon } from '../../icons';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
 
@@ -14,7 +14,7 @@ import { SquareButton } from '../../buttons/square-button/square-button.componen
 
 
 
-export class Checkbox {
+export class Checkbox implements OnInit {
     @Input() class?: string = '';
     @Input() style?: { [key: string]: string } = {};
     @Input() id?: string = ''
@@ -24,7 +24,11 @@ export class Checkbox {
     @Input() checked?: boolean = false;
     @Input() label?: string = '';
 
-    public isChecked: boolean = this.checked ?? false;
+    public isChecked: boolean = false;
+
+    ngOnInit() {
+        this.isChecked = this.checked ?? false;
+    }
 
     toggleChecked() {
         this.isChecked = !this.isChecked;
