@@ -32,7 +32,7 @@ export class ButtonsPage {
     <nc-button 
       class="mb-1 mr-1" 
       [width]="'260px'" 
-      [style]="{backgroundColor: 'red', height: '60px', transform: 'skew(-5deg)'}"
+      [style]="{backgroundColor: 'red', borderRadius: '999px', height: '55px', fontSize: '18px'}"
     >
       Styled Button
     </nc-button>
