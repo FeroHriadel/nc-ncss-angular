@@ -5,7 +5,7 @@
   <br><br>
 
   <!-- examples -->
-  <section class="flex gap-4">
+  <section class="flex gap-6">
     <nc-card class="form-example p-4">
       <h3 class="section-title text-center">SIGN UP</h3>
       <p class="section-subtitle text-center mb-8">Register and unlock all the features</p>
@@ -36,7 +36,7 @@
       <nc-button class="w-100 mb-4" variant="dark">Register</nc-button>
     </nc-card>
 
-    <div class="w-100 flex flex-col gap-4">
+    <div class="w-100 flex flex-col gap-6">
       <nc-card class="top-menu-example flex space-between p-4">
         <span class="flex gap-1">
           <nc-square-button><nc-user-add-icon [size]="30" color="var(--nc-black-200)"></nc-user-add-icon></nc-square-button>
@@ -60,12 +60,13 @@
         </nc-select>
       </nc-card>
 
-      <nc-card class="form-example p-4">
-        <h3 class="section-title">Extract Data</h3>
-        <p class="section-subtitle mb-8">Analyze and extract data from a document</p>
-
-        <label class="mb-1">Upload a document</label>
-        <input type="file" class="w-100 mb-4">
+      <nc-card class="form-example-2 p-4" [style]="{borderRadius: '15px'}">
+        <label class="mb-1 mt-2">Upload a document</label>
+        <nc-file-upload 
+          class="w-100 mb-4" 
+          [style]="{borderRadius: '999px', textIndent: '1rem', height: '3rem'}" 
+          [accept]="'.pdf,.doc,.docx'"
+        ></nc-file-upload>
 
         <label class="mb-1">Sections to extract</label>
         <nc-select 
@@ -79,11 +80,12 @@
           placeholder="Select sections" 
           [multiple]="true"
           class="w-100 mb-4"
+          [inputStyle]="{borderRadius: '999px', textIndent: '1rem', height: '3rem'}"
         ></nc-select>
 
         <nc-switch class="mb-4" label="Include sub-sections" [checked]="true"></nc-switch><br>
         <nc-switch class="mb-4" label="Prioritize recent information"></nc-switch><br>
-        <nc-switch class="mb-12" label="Include skills section" [disabled]="true"></nc-switch><br>
+        <nc-switch class="mb-6" label="Include skills section" [disabled]="true"></nc-switch><br>
 
         <div class="w-100 flex justify-end">
           <nc-button width="100px" variant="red" class="mr-1" [style]="{borderRadius: '999px'}">Cancel</nc-button>

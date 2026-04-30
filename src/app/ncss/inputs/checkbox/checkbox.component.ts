@@ -17,6 +17,8 @@ import { SquareButton } from '../../buttons/square-button/square-button.componen
 export class Checkbox implements OnInit {
     @Input() class?: string = '';
     @Input() style?: { [key: string]: string } = {};
+    @Input() inputClass?: string = '';
+    @Input() inputStyle?: { [key: string]: string } = {};
     @Input() id?: string = ''
     @Input() onChange?: () => void;
     @Input() disabled: boolean = false;

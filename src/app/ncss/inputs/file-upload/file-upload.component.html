@@ -1,0 +1,27 @@
+<span 
+    [class]="'nc-file-upload ' + class" 
+    [style]="style" 
+    [style.width]="width || null" 
+    (click)="clickFileInput()"
+>
+    <input 
+        #fileInputRef
+        type="file" 
+        [attr.name]="name" 
+        [disabled]="disabled"
+        [class]="'nc-file-upload-input ' + inputClass"
+        [style]="inputStyle"
+        [attr.multiple]="multiple ? true : null"
+        [attr.accept]="accept"
+        [id]="id"
+        (change)="onFileUpload($event)"
+    >
+
+    <span class="nc-file-upload-placeholder">
+        {{ getFileInputText() || placeholder }}
+    </span>
+
+    <button class="nc-file-upload-clear-button" (click)="clearFileInput($event)">
+        <nc-times-icon [size]="16" class="nc-file-upload-icon" color="var(--nc-input-text-color)"></nc-times-icon>
+    </button>
+</span>

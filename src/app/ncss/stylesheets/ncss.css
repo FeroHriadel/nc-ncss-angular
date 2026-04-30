@@ -484,6 +484,7 @@ select:focus {
 /* Utility classes - border */
 .border { border: 1px solid var(--nc-border-color); }
 .border-none { border: none; }
+.rounded { border-radius: 9999px; }
 
 
 /* Utility classes - flex */

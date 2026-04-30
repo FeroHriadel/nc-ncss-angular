@@ -9,13 +9,14 @@ import { Checkbox } from '../../ncss/inputs/checkbox/checkbox.component';
 import { Switch } from '../../ncss/inputs/switch/switch.component';
 import { SquareButton } from '../../ncss/buttons/square-button/square-button.component';
 import { Password } from '../../ncss/inputs/password/password.component';
+import { FileUpload } from '../../ncss/inputs/file-upload/file-upload.component';
 
 
 
 
 @Component({
   selector: 'inputs-page',
-  imports: [Select, Card, Container, RouterLink, Button, ListIcon, ButtonIcon, TextIcon, CheckboxIcon, Checkbox, Switch, SquareButton, Password, UserAddIcon, UserEditIcon, UserIcon, UserDeleteIcon, HamburgerIcon],
+  imports: [Select, Card, Container, RouterLink, Button, ListIcon, ButtonIcon, TextIcon, CheckboxIcon, Checkbox, Switch, SquareButton, Password, FileUpload, UserAddIcon, UserEditIcon, UserIcon, UserDeleteIcon, HamburgerIcon],
   templateUrl: './inputs.page.html',
   styleUrl: './inputs.page.css',
 })

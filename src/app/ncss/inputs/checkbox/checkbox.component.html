@@ -7,7 +7,8 @@
             [disabled]="disabled"
             (click)="toggleChecked()"
             [checked]="isChecked"
-            class="nc-checkbox"
+            [class]="'nc-checkbox ' + inputClass"
+            [style]="inputStyle"
         >
         <div class="nc-fake-checkbox">
             <span class="nc-checkbox-check-symbol" [class.nc-checkbox-check-symbol-visible]="isChecked">✔</span>

@@ -34,7 +34,8 @@
   @else {
     <span 
       #defaultTrigger
-      class="nc-select-default-trigger" 
+      [class]="'nc-select-default-trigger ' + inputClass"
+      [style]="inputStyle"
       tabindex="0" 
       role="button" 
       aria-haspopup="listbox"
@@ -58,7 +59,8 @@
       class="nc-select-options" 
       [class.nc-select-options-up]="direction === 'up'"
       [class.nc-select-options-right]="xAlignment === 'right'"
-      role="listbox" 
+      role="listbox"
+      [style]="optionsStyle"
       [style.width]="optionsWidth || null"
     >
       @if (searchable) {

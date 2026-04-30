@@ -25,6 +25,8 @@ export interface SelectOption {
 export class Password {
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
+  @Input() inputClass?: string = '';
+  @Input() inputStyle?: { [key: string]: string } = {};
   @Input() id?: string = '';
   @Input() width?: string = '';
   @Input() onClick?: () => void = () => {};

@@ -35,6 +35,9 @@ export class Select implements OnInit {
   @Input() onChange?: (value: string | string[]) => void = () => {};
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
+  @Input() inputClass?: string = '';
+  @Input() inputStyle?: { [key: string]: string } = {};
+  @Input() optionsStyle?: { [key: string]: string } = {};
   @Input() name?: string = '';
   @Input() id?: string = '';
   @Input() ariaLabel?: string = this.name || 'Select an option';
