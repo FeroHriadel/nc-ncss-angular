@@ -1,0 +1,86 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">FILE UPLOAD</h1>
+  <p class="page-subtitle mt-4 mb-8">File upload input component</p>
+  <br><br>
+
+  <!-- file upload -->
+  <h2 class="section-title">File Upload</h2>
+  <p class="section-subtitle mb-2">Common use and modification</p>
+  <br><br>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <nc-file-upload
+    #fileUploadExample
+    class="mb-4 mr-2"
+    id="file-upload-example"
+    placeholder="Choose a file to upload"
+    [onChange]="onFileChange"
+    accept="image/*"
+  ></nc-file-upload>
+  <nc-file-upload [disabled]="true" class="mb-4" placeholder="Disabled file upload"></nc-file-upload>
+  <br>
+  <nc-button class="mb-1 mr-1" variant="outline" (click)="getFiles()">Get Files</nc-button>
+  <nc-button class="mb-1 mr-1" variant="red" (click)="clearFiles()">Clear Files</nc-button>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="fileUploadHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="fileUploadTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+  <h4 class="section-title-light">Exposed methods:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>getFiles()</strong> - Returns the selected file(s): File, File[], or null</li>
+    <li class="ml-7 mb-1"><strong>clearFileInput(event: Event)</strong> - Clears the selected file(s)</li>
+    <li class="ml-7 mb-1"><strong>clickFileInput()</strong> - Programmatically opens the file picker dialog</li>
+  </ul>
+  <br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS classes to apply to the wrapper</li>
+    <li class="ml-7 mb-1"><strong>style</strong> (object, default: &#123;&#125;) - Inline styles object for the wrapper</li>
+    <li class="ml-7 mb-1"><strong>inputClass</strong> (string, default: '') - CSS classes to apply to the input element</li>
+    <li class="ml-7 mb-1"><strong>inputStyle</strong> (object, default: &#123;&#125;) - Inline styles object for the input element</li>
+    <li class="ml-7 mb-1"><strong>id</strong> (string, default: '') - HTML id attribute</li>
+    <li class="ml-7 mb-1"><strong>width</strong> (string, default: '') - Width of the component</li>
+    <li class="ml-7 mb-1"><strong>placeholder</strong> (string, default: '') - Placeholder text displayed when no file is selected</li>
+    <li class="ml-7 mb-1"><strong>disabled</strong> (boolean, default: false) - Disables the file input</li>
+    <li class="ml-7 mb-1"><strong>onChange</strong> (function, default: () => &#123;&#125;) - Callback function triggered when file selection changes</li>
+    <li class="ml-7 mb-1"><strong>name</strong> (string, default: '') - HTML name attribute</li>
+    <li class="ml-7 mb-1"><strong>accept</strong> (string, default: '*') - File types to accept (e.g., 'image/*', '.pdf', etc.)</li>
+    <li class="ml-7 mb-1"><strong>multiple</strong> (boolean, default: false) - Allow multiple file selection</li>
+  </ul>
+  <br><br><br>
+
+
+  <!-- multiple file upload -->
+  <h2 class="section-title">Multiple File Upload</h2>
+  <p class="section-subtitle mb-2">Allowing multiple file selection</p>
+  <br><br>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <nc-file-upload
+    class="mb-4"
+    id="multiple-file-upload-example"
+    placeholder="Choose files to upload"
+    [multiple]="true"
+    accept="*"
+  ></nc-file-upload>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="multipleFileUploadHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+</nc-container>

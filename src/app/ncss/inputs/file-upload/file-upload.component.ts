@@ -53,18 +53,18 @@ export class FileUpload {
         }
     }
 
-    clearFileInput(event: Event) {
+    public clearFileInput(event: Event) {
         event.stopPropagation();
         this.fileInputRef.nativeElement.value = '';
         this.selectedFiles = null;
         this.onChange(null);
     }
 
-    clickFileInput() {
+    public clickFileInput() {
         this.fileInputRef.nativeElement.click();
     }
 
-    getFiles = () => {
+    public getFiles = () => {
         const files = this.fileInputRef.nativeElement.files;
         if (files) {
             return files.length === 1 ? files[0] : Array.from(files);

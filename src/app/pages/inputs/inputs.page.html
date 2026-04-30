@@ -129,6 +129,17 @@
       </nc-card>
     </li>
     <li class="w-100 mb-4">
+      <nc-card [class]="'p-4 flex pointer w-100 hover'" routerLink="/inputs/file-upload">
+        <span class="circle border h-12 min-w-12 mr-5 flex flex-center">
+          <nc-upload-icon [size]="30" color="var(--nc-black-200)"></nc-upload-icon>
+        </span>
+        <span>
+          <h3 class="section-title-light mb-1">File Upload</h3>
+          <p class="section-subtitle-light">FileUpload component, getValue(), setValue(), clear()</p>
+        </span>
+      </nc-card>
+    </li>
+    <li class="w-100 mb-4">
       <nc-card [class]="'p-4 flex pointer w-100 hover'" routerLink="/inputs/select">
         <span class="circle border h-12 min-w-12 mr-5 flex flex-center">
           <nc-list-icon [size]="30" color="var(--nc-black-200)"></nc-list-icon>

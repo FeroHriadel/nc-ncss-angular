@@ -54,6 +54,11 @@
 .nc-file-upload-clear-button:focus {
     outline: 0;
     box-shadow: var(--nc-outline-shadow);
+    background-color: var(--nc-input-bg-hover);
+}
+
+.nc-file-upload-clear-button:hover {
+    background-color: var(--nc-input-bg-hover);
 }
 
 .nc-file-upload:has(.nc-file-upload-input:focus) {
