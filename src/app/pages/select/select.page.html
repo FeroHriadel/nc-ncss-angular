@@ -132,13 +132,36 @@
 
     <h4 class="section-title-light">Exposed methods:</h4>
     <ul class="text">
-        <li class="ml-7 my-1">setValue(value: string | string[]) - Set the value of the select component</li>
-        <li class="ml-7 mb-1">getValue() - Gets the selected value (string or string[] for multiselect)</li>
-        <li class="ml-7 mb-1">clear() - Clears any selected value(s)</li>
-        <li class="ml-7 mb-1">getOpen() - Returns whether the dropdown is currently open</li>
-        <li class="ml-7 mb-1">open() - Open the dropdown programmatically</li>
-        <li class="ml-7 mb-1">close() - Close the dropdown programmatically</li>
-        <li class="ml-7 mb-1">toggle() - Toggle the dropdown open/closed programmatically</li>
+        <li class="ml-7 my-1"><strong>setValue(value: string | string[])</strong> - Set the value of the select component</li>
+        <li class="ml-7 mb-1"><strong>getValue()</strong> - Gets the selected value (string or string[] for multiselect)</li>
+        <li class="ml-7 mb-1"><strong>clear()</strong> - Clears any selected value(s)</li>
+        <li class="ml-7 mb-1"><strong>getOpen()</strong> - Returns whether the dropdown is currently open</li>
+        <li class="ml-7 mb-1"><strong>open()</strong> - Open the dropdown programmatically</li>
+        <li class="ml-7 mb-1"><strong>close()</strong> - Close the dropdown programmatically</li>
+        <li class="ml-7 mb-1"><strong>toggle()</strong> - Toggle the dropdown open/closed programmatically</li>
+    </ul>
+    <br><br>
+    <h4 class="section-title-light">Attributes list:</h4>
+    <ul class="text">
+        <li class="ml-7 my-1"><strong>customTrigger</strong> (boolean, default: false) - When true, allows you to provide custom HTML content as the trigger instead of the default button</li>
+        <li class="ml-7 mb-1"><strong>placeholder</strong> (string, default: '') - Text shown when no option is selected</li>
+        <li class="ml-7 mb-1"><strong>options</strong> (SelectOption[], default: []) - Array of options with &#123; value: string, label: string &#125; format</li>
+        <li class="ml-7 mb-1"><strong>width</strong> (string, default: '') - Sets the width of the select component (e.g., '200px', '100%')</li>
+        <li class="ml-7 mb-1"><strong>optionsWidth</strong> (string, default: '') - Sets the width of the dropdown options container</li>
+        <li class="ml-7 mb-1"><strong>multiple</strong> (boolean, default: false) - Enables multi-select mode allowing multiple options to be selected</li>
+        <li class="ml-7 mb-1"><strong>disabled</strong> (boolean, default: false) - Disables the select component</li>
+        <li class="ml-7 mb-1"><strong>defaultValue</strong> (string | string[], default: '') - Initial value(s) - single string or array of strings for multi-select</li>
+        <li class="ml-7 mb-1"><strong>onChange</strong> (function, default: () => &#123;&#125;) - Callback function triggered when selection changes, receives the new value(s) as parameter</li>
+        <li class="ml-7 mb-1"><strong>class</strong> (string, default: '') - CSS classes to apply to the select wrapper</li>
+        <li class="ml-7 mb-1"><strong>style</strong> (object, default: &#123;&#125;) - Inline styles object to apply to the select wrapper</li>
+        <li class="ml-7 mb-1"><strong>inputClass</strong> (string, default: '') - CSS classes to apply to the input element</li>
+        <li class="ml-7 mb-1"><strong>inputStyle</strong> (object, default: &#123;&#125;) - Inline styles object to apply to the input element</li>
+        <li class="ml-7 mb-1"><strong>optionsStyle</strong> (object, default: &#123;&#125;) - Inline styles object to apply to the options dropdown container</li>
+        <li class="ml-7 mb-1"><strong>name</strong> (string, default: '') - HTML name attribute for the select</li>
+        <li class="ml-7 mb-1"><strong>id</strong> (string, default: '') - HTML id attribute for the select</li>
+        <li class="ml-7 mb-1"><strong>ariaLabel</strong> (string, default: name or 'Select an option') - ARIA label for accessibility</li>
+        <li class="ml-7 mb-1"><strong>searchable</strong> (boolean, default: false) - When true, adds a search input inside the dropdown to filter options</li>
+        <li class="ml-7 mb-1"><strong>label</strong> (string, default: '') - Optional label text displayed above the select component</li>
     </ul>
     <br>
     <br>

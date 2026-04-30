@@ -25,6 +25,9 @@
       tabindex="0"
       role="button"
       aria-haspopup="listbox"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-disabled]="disabled || null"
+      [attr.aria-activedescendant]="highlightedIndex >= 0 && isOpen ? 'option-' + highlightedIndex : null"
       (click)="toggleDropdown()"
     >
       <ng-content select="*"></ng-content>
@@ -39,6 +42,9 @@
       tabindex="0" 
       role="button" 
       aria-haspopup="listbox"
+      [attr.aria-expanded]="isOpen"
+      [attr.aria-disabled]="disabled || null"
+      [attr.aria-activedescendant]="highlightedIndex >= 0 && isOpen ? 'option-' + highlightedIndex : null"
       (click)="toggleDropdown()"
     >
       <span class="nc-select-default-trigger-text">
@@ -60,6 +66,7 @@
       [class.nc-select-options-up]="direction === 'up'"
       [class.nc-select-options-right]="xAlignment === 'right'"
       role="listbox"
+      [attr.aria-multiselectable]="multiple || null"
       [style]="optionsStyle"
       [style.width]="optionsWidth || null"
     >
@@ -69,12 +76,14 @@
             type="text" 
             class="nc-select-search-option-input" 
             placeholder="Search..."
+            aria-label="Search options"
             [value]="searchTerm"
             (input)="onSearchTermChange($event.target.value)"
           />
           @if (canShowClearSearch()) {
             <button 
-              class="nc-select-clear-search-btn" 
+              class="nc-select-clear-search-btn"
+              aria-label="Clear search"
               (click)="clearSearchTerm()"
             >
               <nc-times-icon [size]="12"></nc-times-icon>
@@ -86,7 +95,9 @@
         <li 
           class="nc-select-option" 
           [class.nc-select-option-highlighted]="isHighlighted(i)"
-          role="option" 
+          role="option"
+          [attr.id]="'option-' + i"
+          [attr.aria-selected]="isSelected(option)"
           [attr.data-value]="option.value"
           (click)="handleOptionClick(option)"
           [attr.title]="option.label"

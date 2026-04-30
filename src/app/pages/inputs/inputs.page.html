@@ -5,19 +5,23 @@
   <br><br>
 
   <!-- examples -->
-  <section class="flex gap-6">
-    <nc-card class="form-example p-4">
+  <section class="examples-wrap flex gap-6">
+    <nc-card class="form-example p-4 pt-8">
       <h3 class="section-title text-center">SIGN UP</h3>
       <p class="section-subtitle text-center mb-8">Register and unlock all the features</p>
 
       <label class="mb-1">Email</label>
-      <input class="w-100 mb-4" placeholder="Email" type="email">
+      <input class="w-100 mb-4" placeholder="Email" type="email" style="height: 3rem;">
 
       <label class="mb-1">Password</label>
-      <nc-password class="w-100 mb-4" placeholder="Password"></nc-password>
+      <nc-password class="w-100 mb-4" placeholder="Password" [inputStyle]="{height: '3rem'}"></nc-password>
 
       <label class="mb-1">Country</label>
-      <nc-select class="w-100 mb-4" placeholder="Select your country" [options]="[
+      <nc-select 
+        class="w-100 mb-4" 
+        placeholder="Select your country" 
+        [inputStyle]="{height: '3rem'}"
+        [options]="[
         { label: 'United States', value: 'us' },
         { label: 'Canada', value: 'ca' },
         { label: 'United Kingdom', value: 'uk' },
@@ -26,9 +30,9 @@
       ]"></nc-select>
 
       <label class="mb-1">Photo</label>
-      <input class="w-100 mb-4" type="file">
+      <nc-file-upload class="w-100 mb-4" [style]="{height: '3rem'}" placeholder="Your photo"></nc-file-upload> 
 
-      <nc-checkbox class="mb-4" label="I agree to the terms and conditions"></nc-checkbox>
+      <nc-checkbox class="mb-4" label="I agree to the terms and conditions" [checked]="true"></nc-checkbox>
       <br>
       <nc-checkbox class="mb-6" label="Subscribe to the newsletter"></nc-checkbox>
 
@@ -60,15 +64,8 @@
         </nc-select>
       </nc-card>
 
-      <nc-card class="form-example-2 p-4" [style]="{borderRadius: '15px'}">
-        <label class="mb-1 mt-2">Upload a document</label>
-        <nc-file-upload 
-          class="w-100 mb-4" 
-          [style]="{borderRadius: '999px', textIndent: '1rem', height: '3rem'}" 
-          [accept]="'.pdf,.doc,.docx'"
-        ></nc-file-upload>
-
-        <label class="mb-1">Sections to extract</label>
+      <nc-card class="form-example-2 p-4 pt-6" [style]="{borderRadius: '15px'}">
+        <label class="ml-4 mb-1">Sections to extract</label>
         <nc-select 
           [options]="[
             { label: 'Education', value: 'education' },
@@ -83,12 +80,19 @@
           [inputStyle]="{borderRadius: '999px', textIndent: '1rem', height: '3rem'}"
         ></nc-select>
 
+        <label class="ml-4 mb-1">Extraction instructions</label>
+        <textarea
+          class="w-100 mb-6 p-4"
+          style="height: 300px; border-radius: 20px;"
+        ></textarea>
+        <br>
+
         <nc-switch class="mb-4" label="Include sub-sections" [checked]="true"></nc-switch><br>
         <nc-switch class="mb-4" label="Prioritize recent information"></nc-switch><br>
         <nc-switch class="mb-6" label="Include skills section" [disabled]="true"></nc-switch><br>
 
         <div class="w-100 flex justify-end">
-          <nc-button width="100px" variant="red" class="mr-1" [style]="{borderRadius: '999px'}">Cancel</nc-button>
+          <nc-button width="100px" variant="outline" class="mr-1" [style]="{borderRadius: '999px'}">Cancel</nc-button>
           <nc-button width="100px" variant="dark" [style]="{borderRadius: '999px'}">Ok</nc-button>
         </div>
       </nc-card>

@@ -21,7 +21,7 @@
 }
 
 .nc-file-upload-placeholder {
-    color: var(--nc-input-text-color);
+    color: inherit;
     font-size: var(--nc-input-text-size);
     font-weight: var(--nc-input-text-weight);
     position: absolute;
@@ -48,6 +48,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    color: inherit;
 }
 
 .nc-file-upload-clear-button:focus {
