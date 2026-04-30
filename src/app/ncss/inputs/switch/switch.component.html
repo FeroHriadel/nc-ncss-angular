@@ -5,14 +5,18 @@
         </div>
         <input 
             type="checkbox" 
+            role="switch"
             [name]="name" 
             [id]="id"
             [disabled]="disabled"
+            [attr.aria-disabled]="disabled"
+            [attr.aria-checked]="isChecked"
+            [attr.aria-label]="label || 'switch'"
             (click)="toggleChecked()"
             [checked]="isChecked"
             class="nc-switch-checkbox"
         >
     </span>
 
-    @if (label) { <label class="nc-switch-label" (click)="toggleChecked()">{{ label }}</label> }
+    @if (label) { <label class="nc-switch-label" [for]="id" (click)="toggleChecked()">{{ label }}</label> }
 </span>

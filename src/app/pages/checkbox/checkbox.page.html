@@ -37,6 +37,29 @@
   <nc-card>
     <pre><code [highlight]="checkboxTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
   </nc-card>
+  <br><br>
+
+  <h4 class="section-title-light">Exposed methods:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>getValue()</strong> - Returns the current checked state (boolean)</li>
+    <li class="ml-7 mb-1"><strong>setValue(value: boolean)</strong> - Sets the checked state</li>
+    <li class="ml-7 mb-1"><strong>toggleChecked()</strong> - Toggles the checked state</li>
+  </ul>
+  <br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS classes to apply to the checkbox wrapper</li>
+    <li class="ml-7 mb-1"><strong>style</strong> (object, default: &#123;&#125;) - Inline styles object for the wrapper</li>
+    <li class="ml-7 mb-1"><strong>inputClass</strong> (string, default: '') - CSS classes to apply to the input element</li>
+    <li class="ml-7 mb-1"><strong>inputStyle</strong> (object, default: &#123;&#125;) - Inline styles object for the input element</li>
+    <li class="ml-7 mb-1"><strong>id</strong> (string, default: '') - HTML id attribute</li>
+    <li class="ml-7 mb-1"><strong>onChange</strong> (function, default: undefined) - Callback function triggered when checkbox state changes</li>
+    <li class="ml-7 mb-1"><strong>disabled</strong> (boolean, default: false) - Disables the checkbox</li>
+    <li class="ml-7 mb-1"><strong>name</strong> (string, default: '') - HTML name attribute</li>
+    <li class="ml-7 mb-1"><strong>checked</strong> (boolean, default: false) - Initial checked state</li>
+    <li class="ml-7 mb-1"><strong>label</strong> (string, default: '') - Optional label text displayed next to checkbox</li>
+  </ul>
   <br><br><br>
 
 
@@ -57,21 +80,42 @@
   ></nc-switch>
   <nc-switch [disabled]="true" class="ml-4 mb-4" label="disabled"></nc-switch>
   <br>
-    <nc-button class="mb-1 mr-1" variant="dark" (click)="setSwitchValue(true)">Set Switch Value to True</nc-button>
-    <nc-button class="mb-1 mr-1" (click)="switchExample.toggleChecked()">Toggle Switch</nc-button>
-    <nc-button class="mb-1 mr-1" variant="outline" (click)="getSwitchValue()">Get Switch Value</nc-button>
+  <nc-button class="mb-1 mr-1" variant="dark" (click)="setSwitchValue(true)">Set Switch Value to True</nc-button>
+  <nc-button class="mb-1 mr-1" (click)="switchExample.toggleChecked()">Toggle Switch</nc-button>
+  <nc-button class="mb-1 mr-1" variant="outline" (click)="getSwitchValue()">Get Switch Value</nc-button>
   <br><br>
 
-    <h4 class="section-subtitle-light">HTML</h4>
-    <nc-card>
-      <pre><code [highlight]="switchHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
-    </nc-card>
-    <br><br>
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="switchHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
 
-    <h4 class="section-subtitle-light">TypeScript</h4>
-    <nc-card>
-      <pre><code [highlight]="switchTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
-    </nc-card>
-    <br><br> 
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="switchTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+  <h4 class="section-title-light">Exposed methods:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>getValue()</strong> - Returns the current checked state (boolean)</li>
+    <li class="ml-7 mb-1"><strong>setValue(value: boolean)</strong> - Sets the checked state</li>
+    <li class="ml-7 mb-1"><strong>toggleChecked()</strong> - Toggles the checked state</li>
+  </ul>
+  <br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+    <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS classes to apply to the switch wrapper</li>
+    <li class="ml-7 mb-1"><strong>style</strong> (object, default: &#123;&#125;) - Inline styles object for the wrapper</li>
+    <li class="ml-7 mb-1"><strong>id</strong> (string, default: '') - HTML id attribute</li>
+    <li class="ml-7 mb-1"><strong>onChange</strong> (function, default: () => &#123;&#125;) - Callback function triggered when switch state changes</li>
+    <li class="ml-7 mb-1"><strong>disabled</strong> (boolean, default: false) - Disables the switch</li>
+    <li class="ml-7 mb-1"><strong>name</strong> (string, default: '') - HTML name attribute</li>
+    <li class="ml-7 mb-1"><strong>checked</strong> (boolean, default: false) - Initial checked state</li>
+    <li class="ml-7 mb-1"><strong>label</strong> (string, default: '') - Optional label text displayed next to switch</li>
+  </ul>
+  <br><br>
 
 </nc-container>
