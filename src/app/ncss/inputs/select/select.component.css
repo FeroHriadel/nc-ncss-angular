@@ -21,6 +21,7 @@
 
 .nc-select-default-trigger {
     min-width: var(--nc-select-width);
+    width: 100%;
     height: var(--nc-input-height);
     display: flex;
     align-items: center;
@@ -62,7 +63,8 @@
     position: absolute;
     top: 100%;
     left: 0;
-    min-width: var(--nc-select-width);
+    min-width: 200px;
+    width: 100%;
     max-height: calc(6 * var(--nc-input-height)); /* Show up to 6 options, then scroll */
     overflow-y: auto;
     background-color: var(--nc-select-options-bg);

@@ -8,3 +8,8 @@ export { ButtonIcon } from './button.icon';
 export { TextIcon } from './text.icon';
 export { EyeIcon } from './eye.icon';
 export { EyeCrossedIcon } from './eye-crossed.icon';
+export { UserIcon } from './user.icon';
+export { UserEditIcon } from './user-edit.icon';
+export { UserAddIcon } from './user-add.icon';
+export { UserDeleteIcon } from './user-delete.icon';
+export { UsersIcon } from './users.icon';

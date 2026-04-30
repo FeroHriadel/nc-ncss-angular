@@ -15,7 +15,7 @@
   [attr.name]="name"
   [attr.id]="id"
   [attr.aria-label]="ariaLabel"
-  [style.width]="width ? width : 'fit-content'"
+  [style.width]="width || null"
 >
   <!-- custom trigger-->
   @if (customTrigger) {
@@ -38,7 +38,6 @@
       tabindex="0" 
       role="button" 
       aria-haspopup="listbox"
-      [style.width]="width"
       (click)="toggleDropdown()"
     >
       <span class="nc-select-default-trigger-text">
@@ -60,7 +59,7 @@
       [class.nc-select-options-up]="direction === 'up'"
       [class.nc-select-options-right]="xAlignment === 'right'"
       role="listbox" 
-      [style.width]="optionsWidth"
+      [style.width]="optionsWidth || null"
     >
       @if (searchable) {
         <li class="nc-select-search-input-wrap">

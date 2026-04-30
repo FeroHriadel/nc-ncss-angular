@@ -4,88 +4,96 @@
   <p class="page-subtitle mt-4 mb-8">Components used for user interaction: text input, select, buttons...</p>
   <br><br>
 
-  <!-- components demo section -->
-  <div class="components-demo-wrap">
-    <!-- Inputs card -->
-    <div class="demo-card demo-card-large">
-      <div class="demo-card-header">
-        <h4 class="section-title-light">Form Inputs</h4>
-        <p class="section-subtitle-light">Common form elements</p>
-      </div>
-      <div class="demo-card-content">
-        <div class="mb-3">
-          <label for="text-input-demo">Email</label>
-          <input type="text" id="text-input-demo" placeholder="name@example.com" class="w-100">
-        </div>
-        <div class="mb-3">
-          <nc-select 
-            id="select" 
-            [options]="[
-              { value: 'option1', label: 'Option 1' },
-              { value: 'option2', label: 'Option 2' },
-              { value: 'option3', label: 'Option 3' }
-            ]"
-            placeholder="Select an option"
-            width="100%"
-            label="Select"
-          ></nc-select>
-        </div>
-        <div class="mb-3">
-          <nc-checkbox id="checkbox-demo" label="I agree to the terms and conditions"></nc-checkbox>
-        </div>
-      </div>
-    </div>
+  <!-- examples -->
+  <section class="flex gap-4">
+    <nc-card class="form-example p-4">
+      <h3 class="section-title text-center">SIGN UP</h3>
+      <p class="section-subtitle text-center mb-8">Register and unlock all the features</p>
 
-    <!-- Buttons card -->
-    <div class="demo-card">
-      <div class="demo-card-header">
-        <h4 class="section-title-light">Buttons</h4>
-        <p class="section-subtitle-light">Different button variants</p>
-      </div>
-      <div class="demo-card-content">
-        <nc-button width="100%" class="mb-2">Primary</nc-button>
-        <nc-button width="100%" variant="outline" class="mb-2">Outline</nc-button>
-        <nc-button width="100%" [style]="{backgroundColor: '#eee', color: '#111', fontSize: '1rem', fontWeight: '700'}" class="mb-2">Custom</nc-button>
-        <nc-button width="100%" variant="ghost">Ghost</nc-button>
-      </div>
-    </div>
+      <label class="mb-1">Email</label>
+      <input class="w-100 mb-4" placeholder="Email" type="email">
 
-    <!-- Square Buttons card -->
-    <div class="demo-card">
-      <div class="demo-card-header">
-        <h4 class="section-title-light">Icon Buttons</h4>
-        <p class="section-subtitle-light">Square button variants</p>
-      </div>
-      <div class="demo-card-content">
-        <div class="flex gap-2 mb-2">
-          <nc-square-button variant="dark">
-            <nc-button-icon [size]="20"></nc-button-icon>
+      <label class="mb-1">Password</label>
+      <nc-password class="w-100 mb-4" placeholder="Password"></nc-password>
+
+      <label class="mb-1">Country</label>
+      <nc-select class="w-100 mb-4" placeholder="Select your country" [options]="[
+        { label: 'United States', value: 'us' },
+        { label: 'Canada', value: 'ca' },
+        { label: 'United Kingdom', value: 'uk' },
+        { label: 'Australia', value: 'au' },
+        { label: 'Germany', value: 'de' }
+      ]"></nc-select>
+
+      <label class="mb-1">Photo</label>
+      <input class="w-100 mb-4" type="file">
+
+      <nc-checkbox class="mb-4" label="I agree to the terms and conditions"></nc-checkbox>
+      <br>
+      <nc-checkbox class="mb-6" label="Subscribe to the newsletter"></nc-checkbox>
+
+      <nc-button class="w-100 mb-2" variant="outline">Forgot Password</nc-button>
+      <nc-button class="w-100 mb-4" variant="dark">Register</nc-button>
+    </nc-card>
+
+    <div class="w-100 flex flex-col gap-4">
+      <nc-card class="top-menu-example flex space-between p-4">
+        <span class="flex gap-1">
+          <nc-square-button><nc-user-add-icon [size]="30" color="var(--nc-black-200)"></nc-user-add-icon></nc-square-button>
+          <nc-square-button><nc-user-icon [size]="24" color="var(--nc-black-200)"></nc-user-icon></nc-square-button>
+          <nc-square-button><nc-user-edit-icon [size]="30" color="var(--nc-black-200)"></nc-user-edit-icon></nc-square-button>
+          <nc-square-button><nc-user-delete-icon [size]="29" color="var(--nc-black-200)"></nc-user-delete-icon></nc-square-button>
+        </span>
+
+        <nc-select 
+          [options]="[
+            { label: 'Profile', value: 'profile' },
+            { label: 'Settings', value: 'settings' },
+            { label: 'Logout', value: 'logout' }
+          ]" 
+          placeholder="Menu" 
+          [customTrigger]="true"
+        >
+          <nc-square-button>
+              <nc-hamburger-icon [size]="20" color="var(--nc-black-200)"></nc-hamburger-icon>
           </nc-square-button>
-          <nc-square-button variant="outline">
-            <nc-button-icon [size]="20"></nc-button-icon>
-          </nc-square-button>
-        </div>
-        <nc-square-button variant="red">
-            <nc-button-icon [size]="20"></nc-button-icon>
-        </nc-square-button>
-      </div>
-    </div>
+        </nc-select>
+      </nc-card>
 
-    <!-- Switch card -->
-    <div class="demo-card">
-      <div class="demo-card-header">
-        <h4 class="section-title-light">Switches</h4>
-        <p class="section-subtitle-light">Toggle switches</p>
-      </div>
-      <div class="demo-card-content">
-        <div class="flex flex-col gap-3">
-          <nc-switch label="Enable notifications"></nc-switch>
-          <nc-switch label="Marketing emails" [checked]="true"></nc-switch>
-          <nc-switch label="Disabled" [disabled]="true"></nc-switch>
+      <nc-card class="form-example p-4">
+        <h3 class="section-title">Extract Data</h3>
+        <p class="section-subtitle mb-8">Analyze and extract data from a document</p>
+
+        <label class="mb-1">Upload a document</label>
+        <input type="file" class="w-100 mb-4">
+
+        <label class="mb-1">Sections to extract</label>
+        <nc-select 
+          [options]="[
+            { label: 'Education', value: 'education' },
+            { label: 'Experience', value: 'experience' },
+            { label: 'Skills', value: 'skills' },
+            { label: 'Projects', value: 'projects' },
+            { label: 'Certifications', value: 'certifications' }
+          ]" 
+          placeholder="Select sections" 
+          [multiple]="true"
+          class="w-100 mb-4"
+        ></nc-select>
+
+        <nc-switch class="mb-4" label="Include sub-sections" [checked]="true"></nc-switch><br>
+        <nc-switch class="mb-4" label="Prioritize recent information"></nc-switch><br>
+        <nc-switch class="mb-12" label="Include skills section" [disabled]="true"></nc-switch><br>
+
+        <div class="w-100 flex justify-end">
+          <nc-button width="100px" variant="red" class="mr-1" [style]="{borderRadius: '999px'}">Cancel</nc-button>
+          <nc-button width="100px" variant="dark" [style]="{borderRadius: '999px'}">Ok</nc-button>
         </div>
-      </div>
+      </nc-card>
     </div>
-  </div>
+  </section>
+
+
   <br><br><br><br><br>
 
   <!-- links list -->

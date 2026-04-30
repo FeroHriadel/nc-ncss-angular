@@ -27,8 +27,8 @@ export class Select implements OnInit {
   @Input() customTrigger?: boolean = false;
   @Input() placeholder?: string = '';
   @Input() options?: SelectOption[] = [];
-  @Input() width?: string = 'var(--nc-select-width)';
-  @Input() optionsWidth?: string = 'var(--nc-select-width)';
+  @Input() width?: string = '';
+  @Input() optionsWidth?: string = '';
   @Input() multiple?: boolean = false;
   @Input() disabled?: boolean = false;
   @Input() defaultValue?: string | string[] = '';

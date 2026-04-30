@@ -67,6 +67,7 @@
 
     /* Shadows */
     --nc-box-shadow: 0px 4px 6px var(--nc-white-100);
+    --nc-box-shadow-strong: 0px 4px 6px var(--nc-white-100), 0px 0px 3px 1px var(--nc-white-300);
 
     /* Buttons & inputs */
     --nc-button-dark-bg: var(--nc-black-600);
@@ -77,7 +78,7 @@
     --nc-button-red-bg: var(--nc-red-900);
     --nc-button-red-bg-hover: var(--nc-red-800);
     --nc-button-red-bg-focus: var(--nc-red-700);
-    --nc-button-red-text-color: var(--nc-white-950);
+    --nc-button-red-text-color: var(--nc-white-900);
     --nc-input-bg: var(--nc-white-700);
     --nc-input-bg-hover: var(--nc-white-500);
     --nc-input-bg-focus: var(--nc-white-400);
@@ -102,6 +103,9 @@
     --nc-select-options-padding: 0.25rem;
     --nc-select-options-bg: var(--nc-white-950);
     --nc-label-text-color: var(--nc-black-100);
+
+    /* Cards */
+    --nc-card-bg: var(--nc-white-950);
 }
 
 
@@ -374,6 +378,10 @@ select:focus {
 .mb-6 { margin-bottom: 1.75rem; }
 .mb-7 { margin-bottom: 2rem; }
 .mb-8 { margin-bottom: 2.5rem; }
+.mb-9 { margin-bottom: 2.75rem; }
+.mb-10 { margin-bottom: 3rem; }
+.mb-11 { margin-bottom: 3.25rem; }
+.mb-12 { margin-bottom: 3.5rem; }
 .-mb-1 { margin-bottom: -0.25rem; }
 .-mb-2 { margin-bottom: -0.5rem; }
 .-mb-3 { margin-bottom: -0.75rem; }
@@ -382,6 +390,10 @@ select:focus {
 .-mb-6 { margin-bottom: -1.75rem; }
 .-mb-7 { margin-bottom: -2rem; }
 .-mb-8 { margin-bottom: -2.5rem; }
+.-mb-9 { margin-bottom: -2.75rem; }
+.-mb-10 { margin-bottom: -3rem; }
+.-mb-11 { margin-bottom: -3.25rem; }
+.-mb-12 { margin-bottom: -3.5rem; }
 
 .ml-0 { margin-left: 0; }
 .ml-1 { margin-left: 0.25rem; }
@@ -392,6 +404,10 @@ select:focus {
 .ml-6 { margin-left: 1.75rem; }
 .ml-7 { margin-left: 2rem; }
 .ml-8 { margin-left: 2.5rem; }
+.ml-9 { margin-left: 2.75rem; }
+.ml-10 { margin-left: 3rem; }
+.ml-11 { margin-left: 3.25rem; }
+.ml-12 { margin-left: 3.5rem; }
 .-ml-1 { margin-left: -0.25rem; }
 .-ml-2 { margin-left: -0.5rem; }
 .-ml-3 { margin-left: -0.75rem; }
@@ -400,6 +416,10 @@ select:focus {
 .-ml-6 { margin-left: -1.75rem; }
 .-ml-7 { margin-left: -2rem; } 
 .-ml-8 { margin-left: -2.5rem; }
+.-ml-9 { margin-left: -2.75rem; }
+.-ml-10 { margin-left: -3rem; }
+.-ml-11 { margin-left: -3.25rem; }
+.-ml-12 { margin-left: -3.5rem; }
 
 .mr-0 { margin-right: 0; }
 .mr-1 { margin-right: 0.25rem; }
@@ -410,6 +430,10 @@ select:focus {
 .mr-6 { margin-right: 1.75rem; }
 .mr-7 { margin-right: 2rem; }
 .mr-8 { margin-right: 2.5rem; }
+.mr-9 { margin-right: 2.75rem; }
+.mr-10 { margin-right: 3rem; }
+.mr-11 { margin-right: 3.25rem; }
+.mr-12 { margin-right: 3.5rem; }
 .-mr-1 { margin-right: -0.25rem; }
 .-mr-2 { margin-right: -0.5rem; }
 .-mr-3 { margin-right: -0.75rem; }
@@ -418,6 +442,10 @@ select:focus {
 .-mr-6 { margin-right: -1.75rem; }
 .-mr-7 { margin-right: -2rem; }
 .-mr-8 { margin-right: -2.5rem; }
+.-mr-9 { margin-right: -2.75rem; }
+.-mr-10 { margin-right: -3rem; }
+.-mr-11 { margin-right: -3.25rem; }
+.-mr-12 { margin-right: -3.5rem; }
 
 .my-0 { margin-top: 0; margin-bottom: 0; }
 .my-1 { margin-top: 0.25rem; margin-bottom: 0.25rem; }
@@ -428,6 +456,11 @@ select:focus {
 .my-6 { margin-top: 1.75rem; margin-bottom: 1.75rem; }
 .my-7 { margin-top: 2rem; margin-bottom: 2rem; }
 .my-8 { margin-top: 2.5rem; margin-bottom: 2.5rem; }
+.my-9 { margin-top: 2.75rem; margin-bottom: 2.75rem; }
+.my-10 { margin-top: 3rem; margin-bottom: 3rem; }
+.my-11 { margin-top: 3.25rem; margin-bottom: 3.25rem; }
+.my-12 { margin-top: 3.5rem; margin-bottom: 3.5rem; }
+
 
 .mx-0 { margin-left: 0; margin-right: 0; }
 .mx-1 { margin-left: 0.25rem; margin-right: 0.25rem; }
@@ -438,6 +471,10 @@ select:focus {
 .mx-6 { margin-left: 1.75rem; margin-right: 1.75rem; }
 .mx-7 { margin-left: 2rem; margin-right: 2rem; }
 .mx-8 { margin-left: 2.5rem; margin-right: 2.5rem; }
+.mx-9 { margin-left: 2.75rem; margin-right: 2.75rem; }
+.mx-10 { margin-left: 3rem; margin-right: 3rem; }
+.mx-11 { margin-left: 3.25rem; margin-right: 3.25rem; }
+.mx-12 { margin-left: 3.5rem; margin-right: 3.5rem; }
 
 .m-auto { margin: auto; }
 .mx-auto { margin-left: auto; margin-right: auto; }
@@ -463,6 +500,9 @@ select:focus {
 .align-center { align-items: center; }
 .align-start { align-items: flex-start; }
 .align-end { align-items: flex-end; }
+.space-between { justify-content: space-between; }
+.space-around { justify-content: space-around; }
+.space-evenly { justify-content: space-evenly; }
 .gap-0 { gap: 0; }
 .gap-1 { gap: 0.25rem; }
 .gap-2 { gap: 0.5rem; }

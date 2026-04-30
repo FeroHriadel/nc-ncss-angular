@@ -26,7 +26,7 @@ export class Password {
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
   @Input() id?: string = '';
-  @Input() width?: string = '260px';
+  @Input() width?: string = '';
   @Input() onClick?: () => void = () => {};
   @Input() placeholder: string = '';
   @Input() disabled: boolean = false;
