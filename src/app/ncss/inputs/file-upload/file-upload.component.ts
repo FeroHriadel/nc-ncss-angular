@@ -1,6 +1,4 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
-import { EyeIcon, EyeCrossedIcon } from '../../icons';
-import { SquareButton } from '../../buttons/square-button/square-button.component';
 import { TimesIcon } from '../../icons';
 
 
@@ -16,7 +14,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-file-upload',
-  imports: [EyeIcon, EyeCrossedIcon, SquareButton, TimesIcon],
+  imports: [TimesIcon],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css',
 })

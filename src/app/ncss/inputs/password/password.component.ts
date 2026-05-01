@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { EyeIcon, EyeCrossedIcon } from '../../icons';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
 
@@ -22,7 +22,7 @@ export interface SelectOption {
 
 
 
-export class Password {
+export class Password implements OnInit {
   @Input() class?: string = '';
   @Input() style?: { [key: string]: string } = {};
   @Input() inputClass?: string = '';
@@ -43,21 +43,31 @@ export class Password {
   @ViewChild('passwordInputRef') passwordInputRef!: ElementRef<HTMLInputElement>;
   public isPasswordVisible: boolean = false;
 
+  ngOnInit() {
+    if (this.defaultValue && !this.value) {
+      this.value = this.defaultValue;
+    }
+  }
+
   togglePasswordVisibility() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
+  onInputChange(event: any) {
+    this.value = event.target.value;
+    this.onChange(this.value);
+  }
+
   public getValue() {
-    return this.passwordInputRef.nativeElement.value;
+    return this.value;
   }
 
   public setValue(value: string) {
+    this.value = value;
     this.passwordInputRef.nativeElement.value = value;
   }
 
   public clear() {
     this.setValue('');
   }
-
-  
 }

@@ -14,3 +14,4 @@ export { UserAddIcon } from './user-add.icon';
 export { UserDeleteIcon } from './user-delete.icon';
 export { UsersIcon } from './users.icon';
 export { UploadIcon } from './upload.icon';
+export { ToolsIcon } from './tools.icon';

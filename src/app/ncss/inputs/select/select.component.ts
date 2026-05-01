@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { JsonPipe } from '@angular/common';
 import { ChevronDownIcon, CheckIcon, TimesIcon } from '../../icons';
 
 
@@ -13,7 +14,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-select',
-  imports: [ChevronDownIcon, CheckIcon, TimesIcon],
+  imports: [ChevronDownIcon, CheckIcon, TimesIcon, JsonPipe],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',
 })

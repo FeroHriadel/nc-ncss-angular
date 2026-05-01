@@ -1,8 +1,7 @@
-<span [class]="'nc-checkbox-an-label-wrap ' + class + ' ' + (disabled ? 'nc-checkbox-disabled' : '')" [style]="style" >
+<span [class]="'nc-checkbox-an-label-wrap ' + class + ' ' + (disabled ? 'nc-checkbox-disabled' : '')" [style]="style" [attr.data-value]="isChecked" [attr.name]="name">
     <span class="nc-checkbox-wrap">
         <input 
             type="checkbox" 
-            [name]="name" 
             [id]="id"
             [disabled]="disabled"
             [attr.aria-disabled]="disabled"

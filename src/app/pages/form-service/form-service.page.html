@@ -1,0 +1,118 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">FORM SERVICE</h1>
+  <p class="page-subtitle mt-4 mb-8">ngForm and FormControl are nice but FormService is simpler</p>
+  <br><br>
+
+  <h3 class="section-title">Demo Usage</h3>
+  <p class="section-subtitle mb-4">No need to create FormGroup or FormControl instances. Just add "name" attributes and call formService.getValues()</p>
+  <nc-card></nc-card><br><br>
+
+  <section class="w-100 flex gap-6">
+    <nc-card class="p-4 mb-4 flex-1 min-w-0">
+        <form id="my-form" class="mb-2">
+            <label for="text-input" class="mb-1">Text Input</label>
+            <input 
+                type="text" 
+                id="text-input" 
+                name="text-input" 
+                placeholder="Type something..." 
+                class="w-100 mb-4"
+                [defaultValue]="'There is a lady...'"
+            >
+            <label for="password" class="mb-1">Password</label>
+            <nc-password 
+                id="password" 
+                name="password" 
+                placeholder="Enter your password" 
+                class="w-100 mb-4"
+                [defaultValue]="'...who is sure...'"
+            ></nc-password>
+            <label for="textarea" class="mb-1">Text Area</label>
+            <textarea 
+                id="textarea" 
+                name="textarea" 
+                placeholder="Type something..." 
+                class="w-100 mb-4"
+                [defaultValue]="'...all that glitters is gold.'"
+            ></textarea>
+            <nc-checkbox 
+                id="checkbox" 
+                name="checkbox" 
+                label="Optional inbuilt label" 
+                [checked]="true" 
+                class="mb-4 mr-2"
+            ></nc-checkbox>
+
+            <nc-checkbox 
+                id="checkbox-2" 
+                name="checkbox-2" 
+                label="Optional inbuilt label" 
+                [checked]="false" 
+                class="mb-4 mr-2"
+                [disabled]="true"
+            ></nc-checkbox><br>
+            <nc-switch 
+                id="switch" 
+                name="switch" 
+                label="Optional inbuilt label" 
+                [checked]="true" 
+                class="mb-4 mr-2"
+            ></nc-switch>
+            <nc-select 
+                id="select" 
+                name="select" 
+                label="Select" 
+                [options]="[
+                    { value: 'And...', label: 'And...' },
+                    { value: 'Or...', label: 'Or...' },
+                    { value: 'Because...', label: 'Because...' }
+                ]"
+                class="w-100 mb-4 mr-2"
+            ></nc-select>
+            <nc-select 
+                id="multiselect" 
+                name="multiselect" 
+                label="Multiselect" 
+                [options]="[
+                    { value: '...she is buying...', label: '...she is buying...' },
+                    { value: '...a stairway to heaven...', label: '...a stairway to heaven...' },
+                    { value: '...and a whole lot more...', label: '...and a whole lot more...' }
+                ]"
+                [multiple]="true"
+                [defaultValue]="['...she is buying...', '...a stairway to heaven.']"
+                class="w-100 mb-4 mr-2"
+            ></nc-select>
+            <label for="native-select" class="mb-1">Native Select</label>
+            <select id="native-select" name="native-select" class="w-100 mb-4">
+                <option value="">Select an option</option>
+                <option value="When she get's there">When she get's there</option>
+                <option value="Or">Or</option>
+                <option value="Because">Because</option>
+            </select>
+            <label for="file-input" class="mb-1">File Input</label>
+            <nc-file-upload name="file-upload" class="w-100 mb-8"></nc-file-upload>
+            <nc-button (click)="submitForm($event)" class="w-100">Submit Form</nc-button>
+        </form>
+    </nc-card>
+
+    <nc-card class="p-4 flex-1 min-w-0">
+        <h4 class="section-subtitle-light mb-2">HTML</h4>
+        <p class="text mb-4">Pass an "id" to the form and a "name" attribute to each form element to work with the form service.</p>
+        <nc-card>
+            <pre><code [highlight]="getFormValuesHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+        </nc-card> 
+        <br><br>
+
+        <h4 class="section-subtitle-light mb-2">TypeScript</h4>
+        <p class="text mb-4">The following TypeScript code demonstrates how to use the FormService to get form values.</p>
+        <nc-card>
+            <pre><code [highlight]="getFormValuesTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+        </nc-card>
+    </nc-card>
+</section>
+
+
+
+
+</nc-container>
