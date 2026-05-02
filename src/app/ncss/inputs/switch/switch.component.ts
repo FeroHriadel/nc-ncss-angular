@@ -1,5 +1,5 @@
 // ng component
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 
 
@@ -30,6 +30,19 @@ export class Switch implements OnInit {
     toggleChecked() {
         this.isChecked = !this.isChecked;
         if (this.onChange) { this.onChange(); }
+    }
+
+    @HostListener('nc-clear')
+    onClear() {
+        this.isChecked = false;
+    }
+
+    @HostListener('nc-set-value', ['$event'])
+    onSetValue(event: Event) {
+        const customEvent = event as CustomEvent;
+        if (customEvent.detail && 'value' in customEvent.detail) {
+            this.setValue(customEvent.detail.value);
+        }
     }
 
     public getValue() {

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, HostListener, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { EyeIcon, EyeCrossedIcon } from '../../icons';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
 
@@ -56,6 +56,19 @@ export class Password implements OnInit {
   onInputChange(event: any) {
     this.value = event.target.value;
     this.onChange(this.value);
+  }
+
+  @HostListener('nc-clear')
+  onClear() {
+    this.clear();
+  }
+
+  @HostListener('nc-set-value', ['$event'])
+  onSetValue(event: Event) {
+    const customEvent = event as CustomEvent;
+    if (customEvent.detail && 'value' in customEvent.detail) {
+      this.setValue(customEvent.detail.value);
+    }
   }
 
   public getValue() {

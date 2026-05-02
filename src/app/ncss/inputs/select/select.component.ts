@@ -80,6 +80,19 @@ export class Select implements OnInit {
     }
   }
 
+  @HostListener('nc-clear')
+  onClear() {
+    this.clear();
+  }
+
+  @HostListener('nc-set-value', ['$event'])
+  onSetValue(event: Event) {
+    const customEvent = event as CustomEvent;
+    if (customEvent.detail && 'value' in customEvent.detail) {
+      this.setValue(customEvent.detail.value);
+    }
+  }
+
   private handleEscapeKey(event: KeyboardEvent): boolean {
     if (event.key === 'Escape' && this.isOpen) {
       this.closeDropdown();

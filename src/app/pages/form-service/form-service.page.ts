@@ -33,6 +33,23 @@ export class FormServicePage {
         alert('Form Values:\n' + JSON.stringify(formValues, null, 2));
     }
 
+    clearForm() {
+        this.formService.clearFormValues('my-form');
+    }
+
+    setValues() {
+        this.formService.setFormValues('my-form', {
+            'text-input': 'This value was set programmatically!',
+            'password': 'This value was set programmatically!',
+            'textarea': 'This value was set programmatically!',
+            'select': 'Option 3',
+            'multiselect': ['Option 2', 'Option 3'],
+            'native-select': 'Option C',
+            'checkbox': true,
+            'switch': false,
+        });
+    }
+
     getFormValuesHTML = `
         <form id="my-form" class="mb-2">
             <label for="text-input" class="mb-1">
@@ -48,10 +65,13 @@ export class FormServicePage {
             >
             ... other form elements with "name" attributes ...
 
-            <button 
-                type="submit" 
-                (click)="submitForm($event)"
-            >
+            <nc-button (click)="setValues()" type="button" variant="outline" class="w-100 mb-2">
+                Set Values
+            </nc-button>
+            <nc-button (click)="clearForm()" type="button" variant="outline" class="w-100 mb-2">
+                Clear Form
+            </nc-button>
+            <button type="submit" (click)="submitForm($event)">
                 Submit
             </button>
         </form>
@@ -71,11 +91,28 @@ export class FormServicePage {
         export class FormServicePage {
             private formService = inject(FormService);
 
-            submitForm(event: Event) {
-                event.preventDefault();
-                const formValues = this.formService.getFormValues('my-form');
-                alert('Form Values:\\n' + JSON.stringify(formValues, null, 2));
-            }
+                submitForm(event: Event) {
+                    event.preventDefault();
+                    const formValues = this.formService.getFormValues('my-form');
+                    alert('Form Values:\n' + JSON.stringify(formValues, null, 2));
+                }
+
+                clearForm() {
+                    this.formService.clearFormValues('my-form');
+                }
+
+                setValues() {
+                    this.formService.setFormValues('my-form', {
+                        'text-input': 'This value was set programmatically!',
+                        'password': 'This value was set programmatically!',
+                        'textarea': 'This value was set programmatically!',
+                        'select': 'Option 3',
+                        'multiselect': ['Option 2', 'Option 3'],
+                        'native-select': 'Option C',
+                        'checkbox': true,
+                        'switch': false,
+                    });
+                }
         }
     `;
 }
