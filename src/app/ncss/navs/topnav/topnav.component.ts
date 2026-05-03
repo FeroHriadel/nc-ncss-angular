@@ -3,6 +3,7 @@ import { RouterLink, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HamburgerIcon } from '../../icons';
 import { Select, SelectOption } from '../../inputs/select/select.component';
+import { SquareButton } from '../../buttons/square-button/square-button.component';
 
 
 
@@ -18,7 +19,7 @@ interface NavLink {
 @Component({
   selector: 'top-nav',
   standalone: true,
-  imports: [CommonModule, RouterLink, HamburgerIcon, Select],
+  imports: [CommonModule, RouterLink, HamburgerIcon, Select, SquareButton],
   templateUrl: './topnav.component.html',
   styleUrl: './topnav.component.css',
 })

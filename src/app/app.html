@@ -24,7 +24,22 @@
   ]"
 >
   <span slot="logo">NCSS Angular</span>
-  <p slot="custom" style="margin-right: 0.5rem;">Custom</p>
+  <nc-select 
+    slot="custom" 
+    class="mr-2"
+    [options]="[
+      { label: 'Light', value: 'light' },
+      { label: 'Dark', value: 'dark' },
+    ]"
+    defaultValue="light"
+    [customTrigger]="true"
+    [width]="'fit-content'"
+    [onChange]="changeTheme"
+  >
+    <nc-square-button>
+      <nc-pallete-icon [size]="20"></nc-pallete-icon>
+    </nc-square-button>
+  </nc-select>
 </top-nav>
 
 <br><br><br><br><br>
