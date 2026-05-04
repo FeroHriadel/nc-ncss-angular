@@ -2,5 +2,5 @@
 @import 'highlight.js/styles/github.css';
 
 body {
-    background-color: #fafafa;
+    background-color: var(--nc-bg-color);
 }

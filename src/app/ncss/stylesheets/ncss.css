@@ -22,16 +22,29 @@
 
 
     /* Colors scales */
-    --nc-black-950: rgba(0, 0, 0, 1);
-    --nc-black-900: rgba(0, 0, 0, 0.95);
-    --nc-black-800: rgba(0, 0, 0, 0.9);
-    --nc-black-700: rgba(0, 0, 0, 0.85);
-    --nc-black-600: rgba(0, 0, 0, 0.8);
-    --nc-black-500: rgba(0, 0, 0, 0.75);
-    --nc-black-400: rgba(0, 0, 0, 0.7);
-    --nc-black-300: rgba(0, 0, 0, 0.65);
-    --nc-black-200: rgba(0, 0, 0, 0.6);
-    --nc-black-100: rgba(0, 0, 0, 0.5);
+    --nc-black-950: #000000;
+    --nc-black-900: #0a0a0a;
+    --nc-black-800: #101010;
+    --nc-black-700: #1a1a1a;
+    --nc-black-600: #2a2a2a;
+    --nc-black-500: #222222;
+    --nc-black-400: #303030;
+    --nc-black-300: #3a3a3a;
+    --nc-black-200: #4a4a4a;
+    --nc-black-100: #404040;
+    --nc-black-50: #505050;
+
+    --nc-gray-950: #606060;
+    --nc-gray-900: #6a6a6a;
+    --nc-gray-800: #707070;
+    --nc-gray-700: #7a7a7a;
+    --nc-gray-600: #707070;
+    --nc-gray-500: #808080;
+    --nc-gray-400: #8a8a8a;
+    --nc-gray-300: #909090;
+    --nc-gray-200: #9a9a9a;
+    --nc-gray-100: #a0a0a0;
+    --nc-gray-50: #aaaaaa;
 
     --nc-white-950: #ffffff;
     --nc-white-900: #fafafa;
@@ -43,6 +56,7 @@
     --nc-white-300: #dbdbdb;
     --nc-white-200: #d6d6d6;
     --nc-white-100: #d1d1d1;
+    --nc-white-50: #cccccc;
 
     --nc-red-950: rgb(80, 4, 4);
     --nc-red-900: rgb(100, 6, 6);
@@ -54,6 +68,11 @@
     --nc-red-300: rgb(220, 100, 100);
     --nc-red-200: rgb(240, 150, 150);
     --nc-red-100: rgb(255, 200, 200);
+
+
+
+    /* Document bg */
+    --nc-bg-color: var(--nc-white-900);
 
     /* Border */
     --nc-border-radius: 5px;
@@ -106,6 +125,12 @@
 
     /* Cards */
     --nc-card-bg: var(--nc-white-950);
+
+    /* Text */
+    --nc-text-color-strong: var(--nc-black-600);
+    --nc-text-color-light: var(--nc-gray-500);
+    --nc-text-color-stronger: var(--nc-black-300);
+    --nc-text-color-lighter: var(--nc-gray-200);
 }
 
 
@@ -121,6 +146,7 @@
 
 body {
     font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background-color: var(--nc-bg-color);
 }
 
 
@@ -222,51 +248,51 @@ select:focus {
 .page-title {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--nc-black-600);
+    color: var(--nc-text-color-strong);
     text-align: center;
 }
 
 .page-subtitle {
     font-size: 1.25rem;
     font-weight: 400;
-    color: var(--nc-black-100);
+    color: var(--nc-text-color-light);
     text-align: center;
 }
 
 .section-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--nc-black-600);
+    color: var(--nc-text-color-strong);
 }
 
 .section-subtitle {
     font-size: 1.125rem;
     font-weight: 400;
-    color: var(--nc-black-100);
+    color: var(--nc-text-color-light);
 }
 
 .text {
     font-size: 1rem;
     font-weight: 400;
-    color: var(--nc-black-400);
+    color: var(--nc-text-color-lighter);
 }
 
 .section-title-light {
     font-size: 1.125rem;
     font-weight: 600;
-    color: var(--nc-black-600);
+    color: var(--nc-text-color-strong);
 }
 
 .section-subtitle-light {
     font-size: 1rem;
     font-weight: 400;
-    color: var(--nc-black-100);
+    color: var(--nc-text-color-light);
 }
 
 .text-light {
     font-size: 0.875rem;
     font-weight: 300;
-    color: var(--nc-black-200);
+    color: var(--nc-text-color-stronger);
 }
 
 

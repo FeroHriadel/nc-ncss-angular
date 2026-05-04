@@ -22,8 +22,11 @@ export class App {
   private themeService = inject(ThemeService);
 
   changeTheme = (theme: string | string[]) => {
-    if (theme !== 'light' && theme !== 'dark') return console.warn('Invalid theme. Please choose "light" or "dark".');
     const themeValue = Array.isArray(theme) ? theme[0] : theme;
+    if (themeValue !== 'light' && themeValue !== 'dark') {
+      return console.warn('Invalid theme. Please choose "light" or "dark".');
+    }
+    console.log('Applying theme:', themeValue);
     this.themeService.setTheme(themeValue as 'light' | 'dark');
   }
 
