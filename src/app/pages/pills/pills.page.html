@@ -1,0 +1,35 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">PILLS</h1>
+  <p class="page-subtitle mt-4 mb-8">Pills and tags</p>
+  <br><br><br>
+
+  <!-- Pill -->
+  <h2 class="section-title mb-2">Pill</h2>
+  <p class="section-subtitle mb-4">Common use and modifications</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <div class="flex flex-wrap align-center">
+    <nc-pill class="mr-2" size="small">Small</nc-pill> 
+    <nc-pill class="mr-2" [closable]="true" [onClose]="onPillClose">Medium with close btn</nc-pill> 
+    <nc-pill [style]="{backgroundColor: 'black', color: 'white'}" class="mr-2">Styled</nc-pill>
+    <nc-pill size="large">Large</nc-pill>
+  </div>
+  <br><br>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="pillsHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="pillsTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br>
+
+
+</nc-container>
