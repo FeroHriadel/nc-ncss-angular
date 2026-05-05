@@ -10,6 +10,9 @@ import { CheckboxPage } from './pages/checkbox/checkbox.page';
 import { FileUploadPage } from './pages/file-upload/file-upload.page';
 import { FormServicePage } from './pages/form-service/form-service.page';
 
+// navs
+import { NavsPage } from './pages/navs/navs.page';
+
 // pills and tags
 import { PillsPage } from './pages/pills/pills.page';
 
@@ -24,6 +27,7 @@ export const routes: Routes = [
   { path: 'inputs/checkbox', component: CheckboxPage },
   { path: 'inputs/file-upload', component: FileUploadPage },
   { path: 'inputs/form-service', component: FormServicePage },
+  { path: 'navs', component: NavsPage },
   { path: 'pills', component: PillsPage },
   { path: '**', redirectTo: '' }  // fallback route for undefined paths
 ];

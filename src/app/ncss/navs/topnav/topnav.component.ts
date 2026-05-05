@@ -17,7 +17,7 @@ interface NavLink {
 
 
 @Component({
-  selector: 'top-nav',
+  selector: 'nc-topnav',
   standalone: true,
   imports: [CommonModule, RouterLink, HamburgerIcon, Select, SquareButton],
   templateUrl: './topnav.component.html',

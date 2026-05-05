@@ -1,0 +1,91 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">NAVIGATIONS</h1>
+  <p class="page-subtitle mt-4 mb-8">Navigation components and examples</p>
+  <br><br><br>
+
+  <!-- TopNav -->
+  <h2 class="section-title mb-2">Top Navigation</h2>
+  <p class="section-subtitle mb-4">Common use and modifications</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    TopNav is intended to be on the top of the page, providing easy navigation for users. <br>
+    It shows logo (if provided) on the left. There's links on the right side, which can be simple links or dropdowns with options (nested links). <br><br>
+    You can also add custom content to the right side using the "custom" slot, which is perfect for things like theme switchers, user profile menus, or any other custom elements you want to include in the navigation bar. <br><br>
+    The component is responsive but is not inteded to show a billion links. It is developer's responsibility to use a reasonable amount of links on the right. From 768px and below a hamburger menu replaces the links. <br>
+  </p>
+
+  <h4 class="section-subtitle-light mb-2">Result</h4>
+  <nc-card [style]="{height: '200px', position: 'relative'}">
+
+    <nc-topnav 
+        [links]="[
+            { 
+            label: 'Home', 
+            link: '/' 
+            },
+            { 
+            label: 'Forms', 
+            hasOptions: true, 
+            options: [
+                { label: 'Form Elements', value: 'inputs' },
+                { label: 'Buttons', value: 'inputs/buttons' },
+                { label: 'Checkbox', value: 'inputs/checkbox' },
+                { label: 'File Upload', value: 'inputs/file-upload' },
+                { label: 'Select', value: 'inputs/select' },
+                { label: 'Text Inputs', value: 'inputs/text-inputs' },
+            ] 
+            },
+            { 
+            label: 'Navs', 
+            link: '/navs' 
+            },
+            { 
+            label: 'Pills', 
+            link: '/pills' 
+            },
+        ]"
+        [style]="{position: 'absolute', top: '0', left: '0', right: '0'}"
+    >
+        <span slot="logo">NCSS Angular</span>
+        <nc-select 
+            slot="custom" 
+            class="mr-2"
+            [options]="[
+            { label: 'Light', value: 'light' },
+            { label: 'Dark', value: 'dark' },
+            ]"
+            defaultValue="light"
+            [customTrigger]="true"
+            [width]="'fit-content'"
+            [onChange]="changeTheme"
+        >
+            <nc-square-button>
+            <nc-pallete-icon [size]="20"></nc-pallete-icon>
+            </nc-square-button>
+        </nc-select>
+    </nc-topnav>
+    <br><br><br><br><br>
+    <p class="text-center text">Your Page Content Here</p>
+  </nc-card>
+
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="topnavHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="topnavTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+
+</nc-container>
