@@ -7,8 +7,8 @@
     justify-content: center;
     font-size: 0.9rem;
     line-height: 1;
-    color: var(--nc-text-color);
-    background-color: var(--nc-input-bg-focus);
+    color: var(--nc-pill-text-color);
+    background-color: var(--nc-pill-bg);
     padding: 0.4rem 0.75rem;
     border-radius: 9999px;
 }

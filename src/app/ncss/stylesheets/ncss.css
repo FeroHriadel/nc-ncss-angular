@@ -132,6 +132,10 @@
     --nc-text-color-stronger: var(--nc-black-300);
     --nc-text-color-lighter: var(--nc-gray-200);
 
+    /* Pill */
+    --nc-pill-bg: var(--nc-white-400);
+    --nc-pill-text-color: var(--nc-black-500);
+
 }
 
 
@@ -160,8 +164,8 @@ a {
     padding: 2px;
 }
 
-a:focus {
-    outline: var(0-focus);
+a:focus, button:focus {
+    outline: 0;
     box-shadow: var(--nc-input-shadow-focus);
 }
 
