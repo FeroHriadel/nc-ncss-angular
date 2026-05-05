@@ -6,6 +6,7 @@ import { SquareButton } from '../../ncss/buttons/square-button/square-button.com
 import { ButtonIcon } from '../../ncss/icons';
 import { Card } from '../../ncss/cards/card.component';
 import { Highlight } from 'ngx-highlightjs';
+import { CloseButton } from '../../ncss/buttons/close-button/close-button.component';
 
 
 
@@ -14,7 +15,7 @@ import { Highlight } from 'ngx-highlightjs';
   templateUrl: './buttons.page.html',
   styleUrls: ['./buttons.page.css'],
   standalone: true,
-  imports: [Container, Button, SquareButton, ButtonIcon, Card, Highlight],
+  imports: [Container, Button, SquareButton, ButtonIcon, Card, Highlight, CloseButton],
 })
 
 
@@ -70,4 +71,24 @@ export class ButtonsPage {
 
     export class ButtonsPage {...}
   `;
+
+  public closeBtnCode = `
+    <nc-close-button></nc-close-button>
+    <nc-close-button [disabled]="true"></nc-close-button>
+    <nc-close-button color="var(--nc-gray-500)" [size]="15"></nc-close-button>
+  `;
+
+  public closeBtnTS = `
+    import { Component } from '@angular/core';
+    import { CloseButton } from '../../ncss/buttons/close-button/close-button.component';
+
+    @Component({
+        selector: 'close-button-demo',
+        templateUrl: './close-button-demo.component.html',
+        styleUrl: './close-button-demo.component.css',
+        imports: [CloseButton]
+    })
+
+    export class CloseButtonDemo {}
+  `;  
 }
