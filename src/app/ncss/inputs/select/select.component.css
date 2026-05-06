@@ -14,8 +14,8 @@
 }
 
 .nc-select-custom-trigger-wrap:focus {
-    outline: var(0-focus);
-    box-shadow: var(--nc-input-shadow-focus);
+    outline: 0;
+    box-shadow: var(--nc-outline-shadow);
     border-radius: var(--nc-border-radius);
 }
 

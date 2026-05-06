@@ -166,7 +166,7 @@ a {
 
 a:focus, button:focus {
     outline: 0;
-    box-shadow: var(--nc-input-shadow-focus);
+    box-shadow: var(--nc-outline-shadow);
 }
 
 ul, ol {

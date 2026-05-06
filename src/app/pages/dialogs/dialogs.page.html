@@ -49,6 +49,36 @@
   <nc-card>
     <pre><code [highlight]="modalTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
   </nc-card>
+  <br><br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles as key-value pairs</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply to the modal</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute for the modal dialog element</li>
+      <li class="ml-7 my-1"><strong>width</strong> (string, default: '') - Custom width for the modal (e.g., '500px', '50%')</li>
+      <li class="ml-7 my-1"><strong>height</strong> (string, default: '') - Custom height for the modal (e.g., '400px', '80vh')</li>
+      <li class="ml-7 my-1"><strong>closeButton</strong> (boolean, default: true) - When true, displays a close button in the top-right corner</li>
+      <li class="ml-7 my-1"><strong>actionButtons</strong> (boolean, default: true) - When true, displays action buttons (Close and Ok) at the bottom</li>
+      <li class="ml-7 my-1"><strong>onConfirm</strong> (function, default: () => {{ '{' }}{{ '}' }}) - Callback function executed when the Ok button is clicked</li>
+      <li class="ml-7 mb-1"><strong>onClose</strong> (function, default: () => {{ '{' }}{{ '}' }}) - Callback function executed when the modal is closed</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Content Slots:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>slot="modal-trigger"</strong> - Element(s) that will trigger the modal to open when clicked (e.g., button, link, icon)</li>
+      <li class="ml-7 mb-1"><strong>slot="modal-content"</strong> - Content to be displayed inside the modal body (scrollable area)</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Public Methods:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>openModal()</strong> - Opens the modal programmatically</li>
+      <li class="ml-7 my-1"><strong>closeModal()</strong> - Closes the modal programmatically</li>
+      <li class="ml-7 my-1"><strong>isOpen()</strong> - Returns boolean indicating if the modal is currently open</li>
+      <li class="ml-7 mb-1"><strong>confirm()</strong> - Triggers the onConfirm callback and closes the modal</li>
+  </ul>
   <br><br>
 
 </nc-container>
