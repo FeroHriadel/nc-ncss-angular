@@ -16,6 +16,9 @@ import { NavsPage } from './pages/navs/navs.page';
 // pills and tags
 import { PillsPage } from './pages/pills/pills.page';
 
+// dialogs
+import { DialogsPage } from './pages/dialogs/dialogs.page';
+
 
 
 export const routes: Routes = [
@@ -29,5 +32,6 @@ export const routes: Routes = [
   { path: 'inputs/form-service', component: FormServicePage },
   { path: 'navs', component: NavsPage },
   { path: 'pills', component: PillsPage },
+  { path: 'dialogs', component: DialogsPage },
   { path: '**', redirectTo: '' }  // fallback route for undefined paths
 ];

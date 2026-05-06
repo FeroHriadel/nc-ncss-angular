@@ -1,0 +1,54 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">DIALOGS</h1>
+  <p class="page-subtitle mt-4 mb-8">Dialogs & Modals</p>
+  <br><br><br>
+
+  <!-- Modal -->
+  <h2 class="section-title mb-2">Modal</h2>
+  <p class="section-subtitle mb-4">Common use and modifications</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    Modal uses native &lt;dialog&gt; element with min-width: 260px, max-width: 90vw & min-height: 150px, max-height: 90vh. <br>
+    It can be triggered by any element with the "modal-trigger" slot. <br>
+    By default it has a close button and action buttons (close and ok), but you can remove them by setting closeButton and actionButtons to false. <br>
+
+  </p>
+
+  <div class="flex w-100 justify-center flex-wrap">
+    <nc-modal
+      #modal
+      [onClose]="onClose"
+      [onConfirm]="onConfirm"
+    >
+      <nc-button slot="modal-trigger" class="mr-1 mb-2" width="230px">This is an HTML modal trigger</nc-button>
+        <div slot="modal-content">
+          <h2 class="section-title">Modal Title</h2>
+          <p class="section-subtitle mb-4">This is the content of the modal.</p>
+          <p class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, eos sunt quis reiciendis quia eaque culpa tempora velit quod labore nesciunt nobis sequi, odit consequuntur placeat. Voluptatem nesciunt minima odit blanditiis quam soluta exercitationem porro, qui temporibus dignissimos ratione sit voluptatibus error fugit eligendi. Officia ex modi laborum, sequi aspernatur corporis voluptatem non ea provident amet. Delectus, a veritatis! Enim quos perspiciatis repellat debitis quae accusamus facere asperiores laudantium nemo, ullam nihil quo saepe. Suscipit deleniti nisi alias repellendus pariatur itaque eos tenetur ratione sed velit eum laborum obcaecati facilis cum eaque sint aspernatur, mollitia harum dignissimos molestiae ex veritatis?</p>
+        </div>
+    </nc-modal>
+
+    <nc-button (click)="openDialog()" variant="outline" class="mr-1 mb-2" width="230px">Open Modal Programatically</nc-button>
+    <nc-button (click)="getOpenState()" variant="outline" class="mr-1 mb-2" width="230px">Get Modal State</nc-button>
+    <nc-button (click)="closeDialog()" variant="red" class="mr-1">Close Modal Programatically</nc-button>
+  </div>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="modalHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="modalTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br>
+
+</nc-container>
