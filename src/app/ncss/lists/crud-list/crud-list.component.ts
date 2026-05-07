@@ -1,8 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
-import { Button } from '../../buttons/button/button.component';
 import { Card } from '../../cards/card.component';
-import { Modal } from '../../dialogs/modal/modal.component';
 import { PlusIcon } from '../../icons/plus.icon';
 import { EditIcon } from '../../icons/edit.icon';
 import { DeleteIcon } from '../../icons/delete.icon';
@@ -11,6 +10,7 @@ import { DeleteIcon } from '../../icons/delete.icon';
 
 export interface CrudListItem {
     text: string;
+    template?: TemplateRef<any>;  // Optional custom template for this item
     data?: any;
     onClick?: () => void;
 }
@@ -21,7 +21,7 @@ export interface CrudListItem {
   selector: 'nc-crud-list',
   templateUrl: './crud-list.component.html',
   styleUrls: ['./crud-list.component.css'],
-  imports: [SquareButton, Button, Card, Modal, PlusIcon, EditIcon, DeleteIcon]
+  imports: [SquareButton, Card, PlusIcon, EditIcon, DeleteIcon, CommonModule]
 })
 
 
