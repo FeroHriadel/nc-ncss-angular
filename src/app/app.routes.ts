@@ -19,6 +19,9 @@ import { PillsPage } from './pages/pills/pills.page';
 // dialogs
 import { DialogsPage } from './pages/dialogs/dialogs.page';
 
+// lists
+import { ListsPage } from './pages/lists/lists.page';
+
 
 
 export const routes: Routes = [
@@ -33,5 +36,6 @@ export const routes: Routes = [
   { path: 'navs', component: NavsPage },
   { path: 'pills', component: PillsPage },
   { path: 'dialogs', component: DialogsPage },
+  { path: 'lists', component: ListsPage },
   { path: '**', redirectTo: '' }  // fallback route for undefined paths
 ];

@@ -1,0 +1,42 @@
+<nc-card [class]="class" [style]="style" [id]="id">
+    <ul class="nc-crud-list">
+        <!-- header -->
+        <li class="nc-crud-list-header">
+            <span class="nc-crud-list-title section-title-light">{{title}}</span>
+            @if (createButton) {
+                <nc-square-button (click)="onCreate()">
+                    <nc-plus-icon></nc-plus-icon>
+                </nc-square-button>
+            }
+        </li>
+
+        <!-- no items text -->
+        @if (items.length === 0) {
+            <li 
+                [class]="'nc-crud-list-item nc-crude-list-item-no-items-text section-subtitle-light ' + itemClass"
+                [style]="itemStyle"
+            >
+                {{ noItemsText }}
+            </li>
+        }
+
+        <!-- items -->
+        @for (item of items; track $index) {
+            <li [class]="'nc-crud-list-item ' + (striped && $index % 2 !== 0 ? 'nc-crud-list-item-striped' : '')">
+                <span class="nc-crud-list-item-text section-subtitle-light" (click)="onClick(item)">{{ item.text }}</span>
+                <span class="nc-crud-list-item-actions">
+                    @if (updateButton) {
+                        <nc-square-button (click)="onUpdate(item)">
+                            <nc-edit-icon></nc-edit-icon>
+                        </nc-square-button>
+                    }
+                    @if (deleteButton) {
+                        <nc-square-button (click)="onDelete(item)">
+                            <nc-delete-icon [size]="20"></nc-delete-icon>
+                        </nc-square-button>
+                    }
+                </span>
+            </li>
+        }
+    </ul>
+</nc-card>

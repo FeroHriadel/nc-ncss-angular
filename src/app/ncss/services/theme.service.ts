@@ -36,6 +36,7 @@ export class ThemeService {
             root.style.setProperty('--nc-outline-shadow', '0px 0px 1px 1px var(--nc-white-100)');
             root.style.setProperty('--nc-box-shadow', '0px 4px 6px var(--nc-white-100)');
             root.style.setProperty('--nc-box-shadow-strong', '0px 4px 6px var(--nc-white-100), 0px 0px 3px 1px var(--nc-white-300)');
+            root.style.setProperty('--nc-hover-bg-light', 'var(--nc-white-800)');
             root.style.setProperty('--nc-button-dark-bg', 'var(--nc-black-600)');
             root.style.setProperty('--nc-button-dark-bg-hover', 'var(--nc-black-700)');
             root.style.setProperty('--nc-button-dark-bg-focus', 'var(--nc-black-800)');
@@ -85,6 +86,7 @@ export class ThemeService {
             root.style.setProperty('--nc-outline-shadow', '0px 0px 1px 1px var(--nc-black-100)');
             root.style.setProperty('--nc-box-shadow', '0px 4px 6px var(--nc-black-300)');
             root.style.setProperty('--nc-box-shadow-strong', '0px 4px 6px var(--nc-black-300), 0px 0px 3px 1px var(--nc-black-100)');
+            root.style.setProperty('--nc-hover-bg-light', 'var(--nc-black-400)');
             root.style.setProperty('--nc-button-dark-bg', 'var(--nc-black-950)');
             root.style.setProperty('--nc-button-dark-bg-hover', 'var(--nc-black-700)');
             root.style.setProperty('--nc-button-dark-bg-focus', 'var(--nc-black-800)');

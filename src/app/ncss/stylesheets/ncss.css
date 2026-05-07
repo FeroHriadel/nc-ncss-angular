@@ -88,6 +88,9 @@
     --nc-box-shadow: 0px 4px 6px var(--nc-white-100);
     --nc-box-shadow-strong: 0px 4px 6px var(--nc-white-100), 0px 0px 3px 1px var(--nc-white-300);
 
+    /* Hover */
+    --nc-hover-bg-light: var(--nc-white-800);
+
     /* Buttons & inputs */
     --nc-button-dark-bg: var(--nc-black-600);
     --nc-button-dark-bg-hover: var(--nc-black-700);
