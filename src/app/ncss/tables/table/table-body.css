@@ -114,7 +114,7 @@
 /* Copy Notification */
 .copy-notification {
   background-color: var(--nc-black-900);
-  color: var(--nc-white);
+  color: var(--nc-white-950);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-size: 0.875rem;

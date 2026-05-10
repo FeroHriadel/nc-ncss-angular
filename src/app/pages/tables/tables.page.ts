@@ -1,11 +1,12 @@
 // ng component
-import { Component } from '@angular/core';
+import { Component, ViewChild, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Container } from '../../ncss/layout/container/container.component';
 import { VirtualizedTable, FilterPreset, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
 import { Table } from '../../ncss/tables/table/table';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
+import { Button } from '../../ncss/buttons/button/button.component';
 
 
 
@@ -13,12 +14,14 @@ import { Highlight } from 'ngx-highlightjs';
   selector: 'app-tables',
   templateUrl: './tables.page.html',
   styleUrls: ['./tables.page.css'],
-  imports: [CommonModule, Container, VirtualizedTable, Table, Card, Highlight]
+  imports: [CommonModule, Container, VirtualizedTable, Table, Card, Highlight, Button]
 })
 
 
 
 export class TablesPage {
+  @ViewChild('statusTemplate', { static: true }) statusTemplate!: TemplateRef<any>;
+  @ViewChild('actionsTemplate', { static: true }) actionsTemplate!: TemplateRef<any>;
   // Sample data for the table
   public tableData = [
     { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true },
@@ -430,5 +433,223 @@ export class TablesPage {
        - Click the "Show/Hide Columns" button in the controls
        - Toggle checkboxes to show or hide specific columns
        - Hidden columns are excluded from display and filtering
+  `;
+
+  // Data with HTML content and templates
+  public customHtmlTableData = [
+    { id: 1, name: 'John Doe', email: 'john@example.com', status: 'active', role: 'Developer' },
+    { id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'inactive', role: 'Designer' },
+    { id: 3, name: 'Bob Johnson', email: 'bob@example.com', status: 'active', role: 'Manager' },
+    { id: 4, name: 'Alice Williams', email: 'alice@example.com', status: 'pending', role: 'Developer' },
+    { id: 5, name: 'Charlie Brown', email: 'charlie@example.com', status: 'active', role: 'Director' }
+  ];
+
+  // HTML strings data example
+  public htmlStringsTableData = [
+    { 
+      id: 1, 
+      name: 'John Doe', 
+      status: '<span style="color: green; font-weight: bold;">✓ Active</span>', 
+      priority: '<span style="background: #22c55e; color: white; padding: 4px 8px; border-radius: 4px;">High</span>'
+    },
+    { 
+      id: 2, 
+      name: 'Jane Smith', 
+      status: '<span style="color: red; font-weight: bold;">✗ Inactive</span>', 
+      priority: '<span style="background: #64748b; color: white; padding: 4px 8px; border-radius: 4px;">Low</span>'
+    },
+    { 
+      id: 3, 
+      name: 'Bob Johnson', 
+      status: '<span style="color: orange; font-weight: bold;">⏸ Pending</span>', 
+      priority: '<span style="background: #f59e0b; color: white; padding: 4px 8px; border-radius: 4px;">Medium</span>'
+    }
+  ];
+
+  // Column config with templates (initialized in ngAfterViewInit)
+  public customHtmlColumnsConfig: Column[] = [];
+
+  ngAfterViewInit() {
+    // Create a new array reference with templates to trigger change detection
+    this.customHtmlColumnsConfig = [
+      { column: 'id', displayValue: 'ID' },
+      { column: 'name', displayValue: 'Name' },
+      { column: 'email', displayValue: 'Email' },
+      { column: 'status', displayValue: 'Status', template: this.statusTemplate },
+      { column: 'role', displayValue: 'Actions', template: this.actionsTemplate }
+    ];
+  }
+
+  handleEdit(row: any) {
+    console.log('Edit clicked for:', row);
+    alert(`Edit: ${row.name}`);
+  }
+
+  handleDelete(row: any) {
+    console.log('Delete clicked for:', row);
+    alert(`Delete: ${row.name}`);
+  }
+
+  // Code examples for custom HTML
+  public customHtmlMethodOneHTML = `
+    <!-- Method 1: HTML Strings (Auto-detected) -->
+    <nc-virtualized-table
+        [data]="htmlStringsTableData"
+        [controls]="true"
+        ariaLabel="Table with HTML string content"
+    />
+  `;
+
+  public customHtmlMethodOneTS = `
+    import { Component } from '@angular/core';
+    import { VirtualizedTable } from '../../ncss/tables/virtualized-table/virtualized-table';
+
+    export class TablesPage {{
+        // HTML is automatically detected and rendered
+        public htmlStringsTableData = [
+          {{ '{' }}
+            id: 1,
+            name: 'John Doe',
+            status: '<span style="color: green; font-weight: bold;">✓ Active</span>',
+            priority: '<span style="background: #22c55e; color: white; padding: 4px 8px;">High</span>'
+          {{ '}' }},
+          {{ '{' }}
+            id: 2,
+            name: 'Jane Smith',
+            status: '<span style="color: red; font-weight: bold;">✗ Inactive</span>',
+            priority: '<span style="background: #64748b; color: white; padding: 4px 8px;">Low</span>'
+          {{ '}' }}
+        ];
+    }}
+  `;
+
+  public customHtmlMethodTwoHTML = `
+    <!-- Method 2: Angular Templates (Full Component Access) -->
+    
+    <!-- Define templates -->
+    <ng-template #statusTemplate let-row>
+      <span [style.color]="row.status === 'active' ? 'green' : row.status === 'inactive' ? 'red' : 'orange'"
+            [style.font-weight]="'bold'">
+        {{ '{{' }} row.status === 'active' ? '✓' : row.status === 'inactive' ? '✗' : '⏸' {{ '}}' }}
+        {{ '{{' }} row.status | titlecase {{ '}}' }}
+      </span>
+    </ng-template>
+
+    <ng-template #actionsTemplate let-row>
+      <div style="display: flex; gap: 0.5rem;">
+        <nc-button size="small" (click)="handleEdit(row)">Edit</nc-button>
+        <nc-button size="small" variant="red" (click)="handleDelete(row)">Delete</nc-button>
+      </div>
+    </ng-template>
+
+    <!-- Use table with templates -->
+    <nc-virtualized-table
+        [data]="customHtmlTableData"
+        [columnsConfig]="customHtmlColumnsConfig"
+        [controls]="true"
+        ariaLabel="Table with custom templates"
+    />
+  `;
+
+  public customHtmlMethodTwoTS = `
+    import {{ '{' }} Component, ViewChild, TemplateRef, AfterViewInit {{ '}' }} from '@angular/core';
+    import {{ '{' }} VirtualizedTable, Column {{ '}' }} from '../../ncss/tables/virtualized-table/virtualized-table';
+    import {{ '{' }} Button {{ '}' }} from '../../ncss/buttons/button/button.component';
+
+    @Component({{
+      selector: 'app-tables',
+      templateUrl: './tables.page.html',
+      imports: [VirtualizedTable, Button]
+    }})
+    export class TablesPage implements AfterViewInit {{
+      // ViewChild references to templates (must use static: true)
+      @ViewChild('statusTemplate', {{ '{' }} static: true {{ '}' }}) statusTemplate!: TemplateRef<any>;
+      @ViewChild('actionsTemplate', {{ '{' }} static: true {{ '}' }}) actionsTemplate!: TemplateRef<any>;
+
+      public customHtmlTableData = [
+        {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', status: 'active', role: 'Developer' {{ '}' }},
+        {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'inactive', role: 'Designer' {{ '}' }}
+      ];
+
+      // Initialize as empty array - will be populated in ngAfterViewInit
+      public customHtmlColumnsConfig: Column[] = [];
+
+      ngAfterViewInit() {{
+        // IMPORTANT: Create a new array reference with templates after view initialization
+        // This ensures templates are available and triggers change detection
+        this.customHtmlColumnsConfig = [
+          {{ '{' }} column: 'id', displayValue: 'ID' {{ '}' }},
+          {{ '{' }} column: 'name', displayValue: 'Name' {{ '}' }},
+          {{ '{' }} column: 'email', displayValue: 'Email' {{ '}' }},
+          {{ '{' }} column: 'status', displayValue: 'Status', template: this.statusTemplate {{ '}' }},
+          {{ '{' }} column: 'role', displayValue: 'Actions', template: this.actionsTemplate {{ '}' }}
+        ];
+      }}
+
+      handleEdit(row: any) {{
+        console.log('Edit:', row);
+      }}
+
+      handleDelete(row: any) {{
+        console.log('Delete:', row);
+      }}
+    }}
+  `;
+
+  public customHtmlTemplateContext = `
+    Template Context Variables:
+    
+    The template receives the following context:
+    
+    • $implicit - The entire row object (default variable)
+    • row - The entire row object (named variable)
+    • column - The column name (string)
+    
+    Usage examples:
+    
+    <ng-template #myTemplate let-row>
+      <!-- Access using 'let-row' -->
+      {{ '{{' }} row.name {{ '}}' }}
+    </ng-template>
+    
+    <ng-template #myTemplate let-data let-col="column">
+      <!-- Access using custom names -->
+      {{ '{{' }} data[col] {{ '}}' }}
+    </ng-template>
+    
+    <ng-template #myTemplate let-row="row" let-column="column">
+      <!-- Access both explicitly -->
+      Column: {{ '{{' }} column {{ '}}' }}, Value: {{ '{{' }} row[column] {{ '}}' }}
+    </ng-template>
+    
+    
+    IMPORTANT - Using ngAfterViewInit:
+    
+    When using templates with @ViewChild, you MUST:
+    
+    1. Use static: true in @ViewChild decorator
+       @ViewChild('myTemplate', { static: true }) myTemplate!: TemplateRef<any>;
+    
+    2. Implement AfterViewInit lifecycle hook
+       export class MyComponent implements AfterViewInit
+    
+    3. Create a NEW array reference in ngAfterViewInit() 
+       This is required to trigger Angular's change detection!
+       
+       ✗ WRONG - Modifying existing array elements:
+       ngAfterViewInit() {
+         this.columnsConfig[3].template = this.myTemplate; // Won't trigger change detection
+       }
+       
+       ✓ CORRECT - Creating new array reference:
+       ngAfterViewInit() {
+         this.columnsConfig = [
+           { column: 'name', displayValue: 'Name' },
+           { column: 'status', displayValue: 'Status', template: this.myTemplate }
+         ];
+       }
+    
+    4. Initialize columnsConfig as empty array
+       public columnsConfig: Column[] = []; // Not with template: undefined
   `;
 }

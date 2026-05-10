@@ -1,4 +1,20 @@
 <nc-container>
+    <!-- Templates for custom cell rendering -->
+    <ng-template #statusTemplate let-row>
+        <span [style.color]="row.status === 'active' ? 'green' : row.status === 'inactive' ? 'red' : 'orange'"
+              [style.font-weight]="'bold'">
+            {{ row.status === 'active' ? '✓' : row.status === 'inactive' ? '✗' : '⏸' }}
+            {{ row.status | titlecase }}
+        </span>
+    </ng-template>
+
+    <ng-template #actionsTemplate let-row>
+        <div style="display: flex; gap: 0.5rem;">
+            <nc-button size="small" (click)="handleEdit(row)">Edit</nc-button>
+            <nc-button size="small" variant="red" (click)="handleDelete(row)">Delete</nc-button>
+        </div>
+    </ng-template>
+
     <!-- Page header -->
     <h1 class="page-title">TABLES</h1>
     <p class="page-subtitle mt-4 mb-8">Table virtualization, advanced data filtering, sorting, column reordering</p>
@@ -49,6 +65,7 @@
         <li><strong>Drag & Drop:</strong> Reorder columns</li>
         <li><strong>Striped Rows:</strong> Alternating row colors</li>
         <li><strong>Hover Effects:</strong> Highlight rows on hover</li>
+        <li><strong>Copy to Clipboard:</strong> Double-click any cell to copy its content to clipboard (shows a confirmation notification)</li>
     </ul>
 
     <h4 class="section-subtitle-light">HTML</h4>
@@ -69,6 +86,33 @@
         <br>
         <strong>Use <code>&lt;nc-virtualized-table&gt;</code></strong> when you have large datasets (200+ rows) and need 
         optimal performance through virtual scrolling.
+    </p>
+    <br><br><br>
+
+    <!-- Copy to Clipboard Feature -->
+    <h2 class="section-title mb-2">Copy to Clipboard</h2>
+    <p class="section-subtitle mb-4">Quickly copy cell content with a double-click</p>
+    
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        Both <code>&lt;nc-table&gt;</code> and <code>&lt;nc-virtualized-table&gt;</code> include a built-in copy-to-clipboard 
+        feature. Simply <strong>double-click any cell</strong> to copy its content to your clipboard. A confirmation notification 
+        will briefly appear near your cursor showing "Copied!" to confirm the action.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">How It Works</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Double-Click Action:</strong> Double-click on any table cell to trigger the copy</li>
+        <li><strong>Content Extraction:</strong> The feature intelligently extracts text from HTML content, including custom templates</li>
+        <li><strong>Visual Feedback:</strong> A dark notification with white text appears at your cursor position</li>
+        <li><strong>Auto-Dismiss:</strong> The notification fades out automatically after 1 second</li>
+        <li><strong>All Cell Types:</strong> Works with plain text, HTML strings, and Angular template content</li>
+    </ul>
+
+    <h4 class="section-subtitle-light mb-2">Try It</h4>
+    <p class="text mb-4" style="font-style: italic;">
+        Double-click any cell in the tables above to see the copy-to-clipboard feature in action. The copied content 
+        will be available in your system clipboard and can be pasted anywhere.
     </p>
     <br><br><br>
 
@@ -107,6 +151,7 @@
         <li><strong>Drag & Drop:</strong> Reorder columns by dragging headers</li>
         <li><strong>Striped Rows:</strong> Alternating row colors for better readability</li>
         <li><strong>Hover Effects:</strong> Highlight rows on hover</li>
+        <li><strong>Copy to Clipboard:</strong> Double-click any cell to copy its content to clipboard (shows a confirmation notification)</li>
     </ul>
 
     <h4 class="section-subtitle-light">HTML</h4>
@@ -267,6 +312,115 @@
     <nc-card>
         <pre><code [highlight]="columnsConfigNotes" language="plaintext" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
     </nc-card>
+    <br><br><br>
+
+    <!-- Example 4: Custom HTML in Table Cells -->
+    <h2 class="section-title mb-2">Custom HTML in Table Cells</h2>
+    <p class="section-subtitle mb-4">Render custom HTML, components, and interactive elements in table cells</p>
+    
+    <h4 class="section-subtitle-light mb-2">Overview</h4>
+    <p class="text mb-4">
+        Both <code>&lt;nc-table&gt;</code> and <code>&lt;nc-virtualized-table&gt;</code> support rendering custom HTML 
+        content in table cells using two methods: <strong>HTML strings</strong> (auto-detected) and 
+        <strong>Angular templates</strong> (full component access).
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Method 1: HTML Strings (Auto-Detected)</h4>
+    <p class="text mb-4">
+        The simplest approach is to include HTML markup directly in your data as strings. The table automatically 
+        detects HTML content using the pattern <code>/<[a-z][\s\S]*>/i</code> and renders it safely using Angular's 
+        <code>DomSanitizer</code>.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result - HTML Strings</h4>
+    <nc-virtualized-table
+        [data]="htmlStringsTableData"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        ariaLabel="Table with HTML string content"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML - HTML Strings Method</h4>
+    <nc-card>
+        <pre><code [highlight]="customHtmlMethodOneHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript - HTML Strings Method</h4>
+    <nc-card>
+        <pre><code [highlight]="customHtmlMethodOneTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Method 2: Angular Templates (Full Component Access)</h4>
+    <p class="text mb-4">
+        For more complex scenarios requiring Angular components, event binding, or dynamic logic, use Angular templates 
+        via the <code>template</code> property in <code>columnsConfig</code>. This provides full access to the Angular 
+        component ecosystem including buttons, icons, directives, pipes, and event handlers.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result - Angular Templates</h4>
+    <p class="text mb-2" style="font-style: italic">
+        Click the Edit or Delete buttons to see interactive events. The Status column uses conditional styling 
+        based on the row data.
+    </p>
+    <nc-virtualized-table
+        [data]="customHtmlTableData"
+        [columnsConfig]="customHtmlColumnsConfig"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        ariaLabel="Table with custom Angular templates"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML - Angular Templates Method</h4>
+    <nc-card>
+        <pre><code [highlight]="customHtmlMethodTwoHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript - Angular Templates Method</h4>
+    <nc-card>
+        <pre><code [highlight]="customHtmlMethodTwoTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">Template Context</h4>
+    <nc-card>
+        <pre><code [highlight]="customHtmlTemplateContext" language="plaintext" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">When to Use Each Method</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>HTML Strings:</strong> Simple styling, icons, badges, or static formatted content</li>
+        <li><strong>Angular Templates:</strong> Interactive buttons, complex components, event handlers, or dynamic logic</li>
+        <li><strong>Mix Both:</strong> You can combine both methods in the same table for different columns</li>
+    </ul>
+
+    <h4 class="section-subtitle-light mb-2">Key Benefits</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Auto-Detection:</strong> HTML strings are detected and rendered automatically without configuration</li>
+        <li><strong>Security:</strong> All HTML is sanitized using Angular's DomSanitizer for XSS protection</li>
+        <li><strong>Flexibility:</strong> Templates support any Angular component, directive, or pipe</li>
+        <li><strong>Event Binding:</strong> Full access to click events, form inputs, and component outputs</li>
+        <li><strong>Type Safety:</strong> TypeScript support for template context variables</li>
+        <li><strong>Reusability:</strong> Templates can be shared across multiple columns or tables</li>
+    </ul>
+
+    <h4 class="section-subtitle-light mb-2">Common Use Cases</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Status Badges:</strong> Color-coded status indicators with icons</li>
+        <li><strong>Action Buttons:</strong> Edit, delete, view, or custom action buttons per row</li>
+        <li><strong>Progress Bars:</strong> Visual progress indicators or completion status</li>
+        <li><strong>Avatar Images:</strong> User profile pictures or icons</li>
+        <li><strong>Links:</strong> Navigation links to detail pages</li>
+        <li><strong>Formatted Data:</strong> Currency, dates, percentages with custom formatting</li>
+        <li><strong>Conditional Rendering:</strong> Show/hide content based on row data</li>
+    </ul>
     <br><br><br>
 
 </nc-container>
