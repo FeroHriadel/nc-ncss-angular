@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, Output, EventEmitter } from '@angular/core';
+import { Component, Input as NgInput, Output, EventEmitter, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
 import { Select, SelectOption } from '../../inputs/select/select.component';
@@ -35,6 +35,8 @@ export class VirtualizedTableControlBar {
   @NgInput() controlBarClassName?: string;
   @NgInput() controlBarStyle?: { [key: string]: string };
   @NgInput() isSorting: boolean = false;
+
+  @ViewChild(Modal) filterModal?: Modal;
 
   modalOpen = false;
 
@@ -101,10 +103,12 @@ export class VirtualizedTableControlBar {
   }
 
   closeModal(): void {
+    this.filterModal?.closeModal();
     this.modalOpen = false;
   }
 
   openModal(): void {
+    this.filterModal?.openModal();
     this.modalOpen = true;
   }
 

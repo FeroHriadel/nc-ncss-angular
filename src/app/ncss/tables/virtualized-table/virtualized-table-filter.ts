@@ -88,6 +88,14 @@ export class VirtualizedTableFilter implements OnChanges {
       : 'No presets available';
   }
 
+  get hasValidFilters(): boolean {
+    return this.filterRows.some(row =>
+      row.column !== null &&
+      row.condition !== null &&
+      row.value.trim() !== ''
+    );
+  }
+
   inferColumnType(columnName: string): 'number' | 'string' | 'boolean' | 'array' | 'object' | 'html' | 'unknown' {
     if (!this.data || this.data.length === 0) return 'unknown';
     

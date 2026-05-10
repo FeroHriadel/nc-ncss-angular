@@ -44,6 +44,7 @@ export class Select implements OnInit {
   @Input() ariaLabel?: string = this.name || 'Select an option';
   @Input() searchable?: boolean = false;
   @Input() label?: string = '';
+  @Input() forceDirection?: 'up' | 'down';
 
 
 
@@ -266,6 +267,12 @@ export class Select implements OnInit {
   }
 
   getOptionsDirection(): void {
+    // If forceDirection is set, use it instead of calculating
+    if (this.forceDirection) {
+      this.direction = this.forceDirection;
+      return;
+    }
+    
     const triggerElement = this.customTriggerWrap?.nativeElement || this.defaultTrigger?.nativeElement;
     if (!triggerElement) throw new Error('Trigger element not found, cannot open select options');
     const triggerRect = triggerElement.getBoundingClientRect();

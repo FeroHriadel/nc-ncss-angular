@@ -35,7 +35,7 @@
             width="200px"
             [defaultValue]="row.column || undefined"
             [onChange]="updateRowCallback.bind(this, row.id, 'column')"
-            openY="up"
+            [forceDirection]="'up'"
           />
           <nc-select
             [options]="getConditionsForColumn(row.column)"
@@ -43,7 +43,7 @@
             width="200px"
             [defaultValue]="row.condition || undefined"
             [onChange]="updateRowCallback.bind(this, row.id, 'condition')"
-            openY="up"
+            [forceDirection]="'up'"
             [disabled]="!row.column"
           />
           <input
@@ -60,7 +60,7 @@
               width="200px"
               [defaultValue]="row.operator || undefined"
               [onChange]="updateRowCallback.bind(this, row.id, 'operator')"
-              openY="up"
+              [forceDirection]="'up'"
             />
           }
           <nc-close-button
@@ -84,6 +84,6 @@
   <!-- Close & Apply -->
   <section class="virtualized-table-filter-actions">
     <nc-button variant="red" (click)="closeModal()">Cancel</nc-button>
-    <nc-button (click)="handleApplyFilters()">Apply Filters</nc-button>
+    <nc-button (click)="handleApplyFilters()" [disabled]="!hasValidFilters">Apply Filters</nc-button>
   </section>
 </div>
