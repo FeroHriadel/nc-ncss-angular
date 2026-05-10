@@ -1,7 +1,7 @@
 <nc-container>
     <!-- Page header -->
     <h1 class="page-title">TABLES</h1>
-    <p class="page-subtitle mt-4 mb-8">Regular Table, Virtualized Table, advanced data filtering & sorting</p>
+    <p class="page-subtitle mt-4 mb-8">Table virtualization, advanced data filtering, sorting, column reordering</p>
     <br><br><br>
 
     <!-- Example 1: Virtualized Table - basic use -->
@@ -50,6 +50,154 @@
     <h4 class="section-subtitle-light">TypeScript</h4>
     <nc-card>
         <pre><code [highlight]="vtTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br>
+
+    <!-- Example 2: Column Widths & Row Heights -->
+    <h2 class="section-title mb-2">Virtualized Table - Column Widths & Row Heights</h2>
+    <p class="section-subtitle mb-4">Customize column widths and understand adaptive row heights</p>
+    
+    <h4 class="section-subtitle-light mb-2">Column Width Behavior</h4>
+    <p class="text mb-4">
+        <strong>Default Behavior:</strong> By default, the virtualized table automatically distributes its width equally 
+        among all columns. This ensures a balanced layout without any configuration.
+    </p>
+    <p class="text mb-4">
+        <strong>Custom Column Widths:</strong> If you want to set custom column widths, you must define the width for 
+        <strong>ALL columns</strong> using the <code>columnsConfig</code> prop. You cannot mix custom and auto-width columns. 
+        Define widths in any CSS unit (px, %, rem, etc.).
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Row Height Behavior</h4>
+    <p class="text mb-4">
+        Row heights are <strong>automatically adaptive</strong> and adjust dynamically based on the content within each cell. 
+        If a cell contains text that wraps to multiple lines, the entire row expands to accommodate the tallest cell. 
+        This ensures all content is visible without truncation.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Table Height Customization</h4>
+    <p class="text mb-4">
+        The default maximum table height is 600px. You can customize this by overriding the CSS or using inline styles 
+        to adjust the <code>max-height</code> property of the table body. See examples below.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <nc-virtualized-table
+        [data]="customTableData"
+        [columnsConfig]="customColumnsConfig"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        ariaLabel="Custom column widths and adaptive row heights demonstration"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Key Features</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Equal Distribution:</strong> By default, columns share width equally across the table</li>
+        <li><strong>Custom Widths:</strong> Set specific widths by defining ALL columns in <code>columnsConfig</code></li>
+        <li><strong>Adaptive Heights:</strong> Rows automatically expand to fit multi-line content</li>
+        <li><strong>Configurable Table Height:</strong> Override max-height via CSS or inline styles</li>
+        <li><strong>Text Wrapping:</strong> Long text wraps naturally within cells without truncation</li>
+    </ul>
+
+    <h4 class="section-subtitle-light">HTML - Custom Column Widths</h4>
+    <nc-card>
+        <pre><code [highlight]="customWidthHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript - Column Configuration</h4>
+    <nc-card>
+        <pre><code [highlight]="customWidthTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML - Table Height Adjustment</h4>
+    <nc-card>
+        <pre><code [highlight]="heightAdjustmentHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">CSS - Table Height Customization</h4>
+    <nc-card>
+        <pre><code [highlight]="heightAdjustmentCSS" language="css" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br>
+
+    <!-- Example 3: Columns Config - Reordering and Renaming -->
+    <h2 class="section-title mb-2">Virtualized Table - Columns Config</h2>
+    <p class="section-subtitle mb-4">Reorder and rename columns programmatically or interactively</p>
+    
+    <h4 class="section-subtitle-light mb-2">Column Reordering</h4>
+    <p class="text mb-4">
+        You can control the display order of columns by specifying them in your desired sequence within 
+        <code>columnsConfig</code>. The order in which you define columns in the configuration array determines 
+        how they appear in the table, <strong>regardless of the order of fields in your data objects</strong>.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Column Renaming</h4>
+    <p class="text mb-4">
+        Use the <code>displayValue</code> property to provide user-friendly column headers that differ from your 
+        data field names. For example, you can display "User ID" as the header while the data field is named 
+        <code>id</code>, or rename <code>email</code> to "Email Address" for better readability.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Interactive Features</h4>
+    <p class="text mb-4">
+        <strong>Drag & Drop Reordering:</strong> Users can click and drag column headers to reposition them 
+        dynamically. The new order persists throughout the user's session, allowing for personalized table layouts.
+    </p>
+    <p class="text mb-4">
+        <strong>Show/Hide Columns:</strong> When <code>controls</code> is enabled, users can click the column 
+        visibility button (list icon) in the control bar to toggle individual columns on or off. Hidden columns 
+        are completely removed from the display and filtering operations.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <p class="text mb-2" style="font-style: italic">
+        Notice how the columns are reordered (Name first, ID last) and renamed with more descriptive labels. 
+        Try dragging column headers to reorder them or use the column visibility control!
+    </p>
+    <nc-virtualized-table
+        [data]="tableData"
+        [columnsConfig]="reorderedColumnsConfig"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        ariaLabel="Reordered and renamed columns demonstration"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Key Features</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Programmatic Reordering:</strong> Define column order via <code>columnsConfig</code> array sequence</li>
+        <li><strong>Column Renaming:</strong> Use <code>displayValue</code> to show user-friendly headers</li>
+        <li><strong>Data Independence:</strong> Column order is independent of data object field order</li>
+        <li><strong>Interactive Drag & Drop:</strong> Users can reorder columns by dragging headers</li>
+        <li><strong>Column Visibility Control:</strong> Show/hide columns via the controls bar button</li>
+        <li><strong>Persistent Changes:</strong> User modifications persist during the session</li>
+    </ul>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="columnsConfigHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="columnsConfigTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">Important Notes</h4>
+    <nc-card>
+        <pre><code [highlight]="columnsConfigNotes" language="plaintext" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
     </nc-card>
     <br><br><br>
 

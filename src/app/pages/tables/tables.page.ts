@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Container } from '../../ncss/layout/container/container.component';
-import { VirtualizedTable, FilterPreset } from '../../ncss/tables/virtualized-table/virtualized-table';
+import { VirtualizedTable, FilterPreset, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
 
@@ -139,6 +139,52 @@ export class TablesPage {
     }
   ];
 
+  // Data for column width and row height demonstration
+  public customTableData = [
+    { id: 1, name: 'Sarah Johnson', department: 'Engineering', description: 'Senior Full-Stack Developer specializing in Angular and Node.js. Lead architect for microservices platform.', status: 'Active', priority: 'High' },
+    { id: 2, name: 'Michael Chen', department: 'Product', description: 'Product Manager', status: 'Active', priority: 'Medium' },
+    { id: 3, name: 'Emily Rodriguez', department: 'Design', description: 'UX/UI Designer with expertise in user research, wireframing, prototyping, and design systems. Currently leading the redesign of our mobile application.', status: 'On Leave', priority: 'Low' },
+    { id: 4, name: 'David Thompson', department: 'Engineering', description: 'DevOps Engineer responsible for CI/CD pipelines, infrastructure automation, and cloud architecture on AWS and Azure.', status: 'Active', priority: 'High' },
+    { id: 5, name: 'Lisa Wang', department: 'Marketing', description: 'Content Marketing Specialist focusing on technical blog posts, case studies, and social media strategy for developer audience.', status: 'Active', priority: 'Medium' },
+    { id: 6, name: 'James Anderson', department: 'Sales', description: 'Account Executive', status: 'Active', priority: 'Medium' },
+    { id: 7, name: 'Maria Garcia', department: 'Engineering', description: 'Machine Learning Engineer working on recommendation systems and natural language processing models using TensorFlow and PyTorch.', status: 'Active', priority: 'High' },
+    { id: 8, name: 'Robert Taylor', department: 'HR', description: 'HR Business Partner managing recruitment, onboarding, employee relations, and performance management for the engineering organization.', status: 'Active', priority: 'Low' },
+    { id: 9, name: 'Jennifer Lee', department: 'Engineering', description: 'QA Engineer', status: 'Active', priority: 'Medium' },
+    { id: 10, name: 'William Brown', department: 'Finance', description: 'Financial Analyst providing insights on revenue forecasting, budget planning, and financial modeling for strategic initiatives.', status: 'Active', priority: 'High' },
+    { id: 11, name: 'Jessica Martinez', department: 'Product', description: 'Product Designer collaborating with engineering and product management to create intuitive user interfaces and seamless user experiences.', status: 'On Leave', priority: 'Medium' },
+    { id: 12, name: 'Christopher Davis', department: 'Engineering', description: 'Frontend Developer', status: 'Active', priority: 'Medium' },
+    { id: 13, name: 'Amanda Wilson', department: 'Customer Success', description: 'Customer Success Manager dedicated to ensuring client satisfaction, managing escalations, and driving product adoption and retention.', status: 'Active', priority: 'High' },
+    { id: 14, name: 'Daniel Moore', department: 'Engineering', description: 'Security Engineer implementing security best practices, conducting vulnerability assessments, and managing incident response procedures.', status: 'Active', priority: 'High' },
+    { id: 15, name: 'Michelle Thomas', department: 'Design', description: 'Design Lead', status: 'Active', priority: 'Medium' },
+    { id: 16, name: 'Matthew Jackson', department: 'Engineering', description: 'Backend Developer specializing in API design, database optimization, and system architecture for high-traffic applications.', status: 'Active', priority: 'High' },
+    { id: 17, name: 'Ashley White', department: 'Marketing', description: 'Digital Marketing Manager overseeing SEO, SEM, email campaigns, and marketing automation to drive lead generation and customer acquisition.', status: 'Active', priority: 'Medium' },
+    { id: 18, name: 'Joshua Harris', department: 'Engineering', description: 'Mobile Developer', status: 'Active', priority: 'Medium' },
+    { id: 19, name: 'Stephanie Martin', department: 'Operations', description: 'Operations Manager streamlining processes, coordinating cross-functional teams, and implementing operational efficiency improvements.', status: 'On Leave', priority: 'Low' },
+    { id: 20, name: 'Andrew Thompson', department: 'Engineering', description: 'Data Engineer building and maintaining data pipelines, ETL processes, and data warehousing solutions for analytics and reporting.', status: 'Active', priority: 'High' },
+    { id: 21, name: 'Nicole Garcia', department: 'Legal', description: 'Legal Counsel advising on contracts, compliance, intellectual property, and regulatory matters affecting business operations.', status: 'Active', priority: 'Medium' },
+    { id: 22, name: 'Kevin Martinez', department: 'Engineering', description: 'Site Reliability Engineer', status: 'Active', priority: 'High' },
+    { id: 23, name: 'Rachel Robinson', department: 'Product', description: 'Technical Product Manager with deep understanding of system architecture, translating complex technical requirements into user stories.', status: 'Active', priority: 'High' },
+    { id: 24, name: 'Brandon Clark', department: 'Engineering', description: 'iOS Developer creating native mobile applications with Swift, integrating with backend services and implementing complex UI components.', status: 'Active', priority: 'Medium' },
+    { id: 25, name: 'Lauren Rodriguez', department: 'Sales', description: 'Sales Engineer providing technical expertise during sales process, conducting product demonstrations and proof of concept implementations.', status: 'Active', priority: 'Medium' },
+    { id: 26, name: 'Justin Lewis', department: 'Engineering', description: 'Tech Lead', status: 'Active', priority: 'High' },
+    { id: 27, name: 'Megan Walker', department: 'Design', description: 'Motion Designer creating animations, micro-interactions, and video content to enhance user engagement and brand identity.', status: 'Active', priority: 'Low' },
+    { id: 28, name: 'Ryan Hall', department: 'Engineering', description: 'Platform Engineer designing and implementing internal tools, developer platforms, and infrastructure services to improve developer productivity.', status: 'Active', priority: 'High' },
+    { id: 29, name: 'Rebecca Allen', department: 'Research', description: 'UX Researcher conducting user interviews, usability testing, surveys, and data analysis to inform product decisions and design direction.', status: 'Active', priority: 'Medium' },
+    { id: 30, name: 'Eric Young', department: 'Engineering', description: 'Android Developer building mobile applications with Kotlin, implementing material design patterns and optimizing app performance.', status: 'On Leave', priority: 'Medium' },
+    { id: 31, name: 'Samantha King', department: 'Customer Success', description: 'Technical Support Lead', status: 'Active', priority: 'High' },
+    { id: 32, name: 'Tyler Wright', department: 'Engineering', description: 'Cloud Architect designing scalable cloud infrastructure, evaluating cloud technologies, and establishing cloud governance and cost optimization strategies.', status: 'Active', priority: 'High' }
+  ];
+
+  // Column configuration with custom widths
+  public customColumnsConfig = [
+    { column: 'id', displayValue: 'ID', width: '60px' },
+    { column: 'name', displayValue: 'Name', width: '180px' },
+    { column: 'department', displayValue: 'Department', width: '140px' },
+    { column: 'description', displayValue: 'Description', width: '400px' },
+    { column: 'status', displayValue: 'Status', width: '100px' },
+    { column: 'priority', displayValue: 'Priority', width: '100px' }
+  ];
+
 
 
   public vtHTML = `
@@ -185,5 +231,160 @@ export class TablesPage {
           {{ '}' }}
         ];
     }
+  `;
+
+  public customWidthHTML = `
+    <nc-virtualized-table
+        [data]="customTableData"
+        [columnsConfig]="customColumnsConfig"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        ariaLabel="Custom width table"
+    />
+  `;
+
+  public customWidthTS = `
+    import { Component } from '@angular/core';
+    import { VirtualizedTable, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
+
+    export class TablesPage {
+        // Define ALL columns with custom widths
+        public customColumnsConfig: Column[] = [
+          {{ '{' }} column: 'id', displayValue: 'ID', width: '60px' {{ '}' }},
+          {{ '{' }} column: 'name', displayValue: 'Name', width: '180px' {{ '}' }},
+          {{ '{' }} column: 'department', displayValue: 'Department', width: '140px' {{ '}' }},
+          {{ '{' }} column: 'description', displayValue: 'Description', width: '400px' {{ '}' }},
+          {{ '{' }} column: 'status', displayValue: 'Status', width: '100px' {{ '}' }},
+          {{ '{' }} column: 'priority', displayValue: 'Priority', width: '100px' {{ '}' }}
+        ];
+
+        public customTableData = [
+          {{ '{' }} 
+            id: 1, 
+            name: 'Sarah Johnson', 
+            department: 'Engineering',
+            description: 'Senior Full-Stack Developer specializing in Angular and Node.js.',
+            status: 'Active',
+            priority: 'High'
+          {{ '}' }},
+          // ... more data
+        ];
+    }
+  `;
+
+  public heightAdjustmentHTML = `
+    <!-- Adjust table height using CSS custom properties or inline styles -->
+    <nc-virtualized-table
+        [data]="tableData"
+        [controls]="true"
+        [style]="{{ '{' }} '--table-max-height': '400px' {{ '}' }}"
+        ariaLabel="Custom height table"
+    />
+
+    <!-- Or use a CSS class -->
+    <nc-virtualized-table
+        [data]="tableData"
+        [controls]="true"
+        className="custom-height-table"
+        ariaLabel="Custom height table"
+    />
+  `;
+
+  public heightAdjustmentCSS = `
+    /* In your component CSS file */
+    .custom-height-table ::ng-deep .virtualized-table-body {
+      max-height: 400px;
+    }
+
+    /* Or for a taller table */
+    .tall-table ::ng-deep .virtualized-table-body {
+      max-height: 800px;
+    }
+
+    /* Or remove height limit entirely */
+    .no-height-limit ::ng-deep .virtualized-table-body {
+      max-height: none;
+    }
+  `;
+
+  // Reordered and renamed columns configuration
+  public reorderedColumnsConfig: Column[] = [
+    { column: 'name', displayValue: 'Full Name', width: '180px' },
+    { column: 'role', displayValue: 'Job Title', width: '140px' },
+    { column: 'email', displayValue: 'Email Address', width: '220px' },
+    { column: 'age', displayValue: 'Age (Years)', width: '100px' },
+    { column: 'active', displayValue: 'Status', width: '100px' },
+    { column: 'id', displayValue: 'User ID', width: '80px' }
+  ];
+
+  public columnsConfigHTML = `
+    <nc-virtualized-table
+        [data]="tableData"
+        [columnsConfig]="reorderedColumnsConfig"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        ariaLabel="Reordered and renamed columns table"
+    />
+  `;
+
+  public columnsConfigTS = `
+    import { Component } from '@angular/core';
+    import { VirtualizedTable, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
+
+    export class TablesPage {
+        // Your data - fields in any order
+        public tableData = [
+          {{ '{' }} 
+            id: 1, 
+            name: 'John Doe', 
+            email: 'john@example.com', 
+            age: 28, 
+            role: 'Developer', 
+            active: true 
+          {{ '}' }},
+          // ... more data
+        ];
+
+        // Configure columns: reorder AND rename fields
+        public reorderedColumnsConfig: Column[] = [
+          // Put 'name' first instead of 'id'
+          {{ '{' }} column: 'name', displayValue: 'Full Name', width: '180px' {{ '}' }},
+          // Rename 'role' to 'Job Title'
+          {{ '{' }} column: 'role', displayValue: 'Job Title', width: '140px' {{ '}' }},
+          // Rename 'email' to 'Email Address'
+          {{ '{' }} column: 'email', displayValue: 'Email Address', width: '220px' {{ '}' }},
+          // Rename 'age' to 'Age (Years)'
+          {{ '{' }} column: 'age', displayValue: 'Age (Years)', width: '100px' {{ '}' }},
+          // Rename 'active' to 'Status'
+          {{ '{' }} column: 'active', displayValue: 'Status', width: '100px' {{ '}' }},
+          // Put 'id' last and rename to 'User ID'
+          {{ '{' }} column: 'id', displayValue: 'User ID', width: '80px' {{ '}' }}
+        ];
+    }
+  `;
+
+  public columnsConfigNotes = `
+    Key Points:
+    
+    1. REORDERING: The order of items in columnsConfig determines column display order
+       - Data field order doesn't matter
+       - columnsConfig order controls the visual order
+    
+    2. RENAMING: Use 'displayValue' to change column headers
+       - 'column': references the data field name (must match exactly)
+       - 'displayValue': the label shown in the table header
+    
+    3. DRAG & DROP: Users can reorder columns interactively
+       - Click and drag any column header to reposition it
+       - The new order persists during the session
+    
+    4. SHOW/HIDE: Control column visibility via the controls bar
+       - Click the "Show/Hide Columns" button in the controls
+       - Toggle checkboxes to show or hide specific columns
+       - Hidden columns are excluded from display and filtering
   `;
 }

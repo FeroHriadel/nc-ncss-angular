@@ -28,7 +28,7 @@
         <!-- Render only visible rows -->
         @for (item of virtualItems; track trackRow($index, item)) {
           <div
-            [class]="'virtualized-table-row ' + getRowClass(item.index)"
+            [class]="'virtualized-table-row ' + getRowClass(item.index) + (horizontalSeparators ? ' virtualized-table-row-separator' : '')"
             [style.position]="'absolute'"
             [style.top]="item.start + 'px'"
             [style.left]="'0'"

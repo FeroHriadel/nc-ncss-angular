@@ -214,10 +214,8 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
       style['flexBasis'] = '0';
     }
     
-    // Apply horizontal separators to all cells
-    if (this.horizontalSeparators) {
-      style['borderBottom'] = '1px solid var(--nc-border-color)';
-    }
+    // Horizontal separators are now applied to the row container instead of cells
+    // This ensures they extend the full width of the table
     
     if (this.verticalSeparators && !isLastColumn) {
       style['borderRight'] = '1px solid var(--nc-border-color)';

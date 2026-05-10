@@ -64,6 +64,11 @@
   box-sizing: border-box;
 }
 
+/* Row with horizontal separator */
+.virtualized-table-row-separator {
+  border-bottom: 1px solid var(--nc-border-color);
+}
+
 .virtualized-table-body-row {
   position: relative;
 }
