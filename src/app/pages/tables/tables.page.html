@@ -1,0 +1,79 @@
+<nc-container>
+    <!-- Page header -->
+    <h1 class="page-title">VIRTUALIZED TABLES</h1>
+    <p class="page-subtitle mt-4 mb-8">High-performance, feature-rich data tables with filtering, sorting, and zoom</p>
+    <br><br><br>
+
+    <!-- Example 1: Basic Table -->
+    <h2 class="section-title mb-2">Basic Virtualized Table</h2>
+    <p class="section-subtitle mb-4">A performant table with built-in controls, filtering, and sorting</p>
+    
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        The Virtualized Table component provides a complete solution for displaying large datasets with filtering, 
+        sorting, column visibility controls, and zoom functionality. It uses virtual scrolling for optimal performance 
+        with large data sets.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <nc-virtualized-table
+        [data]="tableData"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        [filterPresets]="filterPresets"
+        ariaLabel="Employee data table"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Features</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Filtering:</strong> Advanced filtering with multiple conditions (equals, contains, greater than, etc.)</li>
+        <li><strong>Sorting:</strong> Click column headers to sort ascending/descending</li>
+        <li><strong>Column Visibility:</strong> Show/hide columns dynamically</li>
+        <li><strong>Zoom:</strong> Adjust table content size from 50% to 150%</li>
+        <li><strong>Virtual Scrolling:</strong> Efficient rendering of large datasets</li>
+        <li><strong>Filter Presets:</strong> Save and apply common filter combinations</li>
+        <li><strong>Drag & Drop:</strong> Reorder columns by dragging headers</li>
+        <li><strong>Striped Rows:</strong> Alternating row colors for better readability</li>
+        <li><strong>Hover Effects:</strong> Highlight rows on hover</li>
+    </ul>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius); padding: 1rem; overflow-x: auto;"><code>&lt;nc-virtualized-table
+  [data]="tableData"
+  [controls]="true"
+  [horizontalSeparators]="true"
+  [verticalSeparators]="true"
+  [striped]="true"
+  [hover]="true"
+  [filterPresets]="filterPresets"
+  ariaLabel="Employee data table"
+/&gt;</code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius); padding: 1rem; overflow-x: auto;"><code>public tableData = [
+  {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
+  {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+  // ... more data
+];
+
+public filterPresets: FilterPreset[] = [
+  {{ '{' }}
+    name: 'Active Developers',
+    filters: [
+      {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
+      {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+    ]
+  {{ '}' }},
+];</code></pre>
+    </nc-card>
+    <br><br><br>
+
+</nc-container>

@@ -1,8 +1,8 @@
 // ng component for pills page
 import { Component } from '@angular/core';
 import { Pill } from '../../ncss/pills/pill/pill.component';
-import { Container } from '../../ncss/wrappers/container/container.component';
-import { Card } from '../../ncss/cards/card.component';
+import { Container } from '../../ncss/layout/container/container.component';
+import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
 
 

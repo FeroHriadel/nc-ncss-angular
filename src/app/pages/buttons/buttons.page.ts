@@ -1,10 +1,10 @@
 
 import { Component } from '@angular/core';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { Button } from '../../ncss//buttons/button/button.component';
 import { SquareButton } from '../../ncss/buttons/square-button/square-button.component';
 import { ButtonIcon } from '../../ncss/icons';
-import { Card } from '../../ncss/cards/card.component';
+import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
 import { CloseButton } from '../../ncss/buttons/close-button/close-button.component';
 

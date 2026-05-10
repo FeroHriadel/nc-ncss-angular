@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Select } from '../../ncss/inputs/select/select.component';
-import { Card } from '../../ncss/cards/card.component';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Card } from '../../ncss/cards/card/card.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { Highlight } from 'ngx-highlightjs';
 import { HamburgerIcon } from '../../ncss/icons';
 import { Button } from '../../ncss/buttons/button/button.component';

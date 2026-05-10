@@ -22,6 +22,12 @@ import { DialogsPage } from './pages/dialogs/dialogs.page';
 // lists
 import { ListsPage } from './pages/lists/lists.page';
 
+// tables
+import { TablesPage } from './pages/tables/tables.page';
+
+// layout
+import { CardsPage } from './pages/cards/cards.page';
+
 
 
 export const routes: Routes = [
@@ -37,5 +43,7 @@ export const routes: Routes = [
   { path: 'pills', component: PillsPage },
   { path: 'dialogs', component: DialogsPage },
   { path: 'lists', component: ListsPage },
+  { path: 'tables', component: TablesPage },
+  { path: 'layouts/cards', component: CardsPage },
   { path: '**', redirectTo: '' }  // fallback route for undefined paths
 ];

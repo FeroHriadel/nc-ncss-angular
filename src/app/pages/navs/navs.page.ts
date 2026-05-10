@@ -2,8 +2,8 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { TopNav } from '../../ncss/navs/topnav/topnav.component';
-import { Card } from '../../ncss/cards/card.component';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Card } from '../../ncss/cards/card/card.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { Select } from '../../ncss/inputs/select/select.component';
 import { SquareButton } from '../../ncss/buttons/square-button/square-button.component';
 import { PalleteIcon } from '../../ncss/icons/pallete.icon';

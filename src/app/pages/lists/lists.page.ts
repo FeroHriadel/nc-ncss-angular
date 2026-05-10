@@ -1,9 +1,9 @@
 // ng component
 import { Component, ViewChild, TemplateRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { CrudList, CrudListItem } from '../../ncss/lists/crud-list/crud-list.component';
-import { Card } from '../../ncss/cards/card.component';
+import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
 
 

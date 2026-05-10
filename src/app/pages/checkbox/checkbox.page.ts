@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Card } from '../../ncss/cards/card.component';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Card } from '../../ncss/cards/card/card.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { Button } from '../../ncss/buttons/button/button.component';
 import { Checkbox } from '../../ncss/inputs/checkbox/checkbox.component';
 import { Switch } from '../../ncss/inputs/switch/switch.component';

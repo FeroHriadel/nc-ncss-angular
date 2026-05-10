@@ -1,6 +1,6 @@
 // ng component
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
-import { Card } from '../../cards/card.component';
+import { Card } from '../../cards/card/card.component';
 import { CloseButton } from '../../buttons/close-button/close-button.component';
 import { Button } from '../../buttons/button/button.component';
 

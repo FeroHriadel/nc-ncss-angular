@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { Card } from '../../ncss/cards/card.component';
-import { Container } from '../../ncss/wrappers/container/container.component';
+import { Card } from '../../ncss/cards/card/card.component';
+import { Container } from '../../ncss/layout/container/container.component';
 import { RouterLink } from '@angular/router';
 import { Button } from '../../ncss/buttons/button/button.component';
 import { Select } from '../../ncss/inputs/select/select.component';

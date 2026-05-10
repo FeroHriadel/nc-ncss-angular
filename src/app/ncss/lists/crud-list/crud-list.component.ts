@@ -1,7 +1,7 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
-import { Card } from '../../cards/card.component';
+import { Card } from '../../cards/card/card.component';
 import { PlusIcon } from '../../icons/plus.icon';
 import { EditIcon } from '../../icons/edit.icon';
 import { DeleteIcon } from '../../icons/delete.icon';
