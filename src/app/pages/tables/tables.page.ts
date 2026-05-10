@@ -145,8 +145,8 @@ export class TablesPage {
     <nc-virtualized-table
         [data]="tableData"
         [controls]="true"
-        [horizontalSeparators]="true"
-        [verticalSeparators]="true"
+        [horizontalSeparators]="true" //true is default - set to false to disable horizontal lines between rows
+        [verticalSeparators]="true" // true is default - set to false to disable vertical lines between columns
         [striped]="true"
         [hover]="true"
         [filterPresets]="filterPresets"
@@ -170,19 +170,19 @@ export class TablesPage {
 
     export class TablesPage {
         public tableData = [
-        {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
-        {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
-        // ... more data
+          {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
+          {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+          // ... more data
         ];
 
         public filterPresets: FilterPreset[] = [
-        {{ '{' }}
-            name: 'Active Developers',
-            filters: [
-            {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
-            {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
-            ]
-        {{ '}' }}
+          {{ '{' }}
+              name: 'Active Developers',
+              filters: [
+              {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
+              {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+              ]
+          {{ '}' }}
         ];
     }
   `;

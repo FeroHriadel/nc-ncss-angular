@@ -216,11 +216,11 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
     
     // Apply horizontal separators to all cells
     if (this.horizontalSeparators) {
-      style['borderBottom'] = '1px solid var(--nc-table-header-border)';
+      style['borderBottom'] = '1px solid var(--nc-border-color)';
     }
     
     if (this.verticalSeparators && !isLastColumn) {
-      style['borderRight'] = '1px solid var(--nc-table-header-border)';
+      style['borderRight'] = '1px solid var(--nc-border-color)';
     }
     return style;
   }

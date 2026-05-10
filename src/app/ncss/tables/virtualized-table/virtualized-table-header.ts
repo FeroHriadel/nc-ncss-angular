@@ -210,12 +210,12 @@ export class VirtualizedTableHeader implements OnInit, OnDestroy {
           transform: translate(10px, 10px);
           pointer-events: none;
           z-index: 9999;
-          background-color: var(--nc-table-header-bg);
-          border: 1px solid var(--nc-table-header-border);
+          background-color: var(--nc-input-bg);
+          border: 1px solid var(--nc-border-color);
           border-radius: 0.25rem;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
           font-weight: 600;
-          color: var(--nc-table-text);
+          color: var(--nc-text-color-strong);
           cursor: grabbing;
           opacity: 0.9;
         ">
