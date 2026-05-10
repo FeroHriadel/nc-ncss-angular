@@ -4,6 +4,74 @@
     <p class="page-subtitle mt-4 mb-8">Table virtualization, advanced data filtering, sorting, column reordering</p>
     <br><br><br>
 
+    <!-- Example 0: Regular Table - basic use -->
+    <h2 class="section-title mb-2">Basic Table (Non-Virtualized)</h2>
+    <p class="section-subtitle mb-4">A full-featured table for smaller datasets</p>
+    
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        The Table component (<code>&lt;nc-table&gt;</code>) provides the same features and appearance as the Virtualized Table,
+        but renders <strong>all data rows at once</strong> without virtualization. Use this component when you have smaller datasets 
+        (typically under 100-200 rows) where virtualization isn't necessary.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">When to Use</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Smaller Datasets:</strong> Best for datasets with fewer than 200 rows</li>
+        <li><strong>Simpler Implementation:</strong> All rows rendered at once, no virtual scrolling complexity</li>
+        <li><strong>Full Compatibility:</strong> Same props, features, and styling as the virtualized table</li>
+        <li><strong>Easier Debugging:</strong> All rows in DOM, easier to inspect with browser dev tools</li>
+    </ul>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <nc-table
+        [data]="tableData.slice(0, 30)"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        [filterPresets]="filterPresets"
+        ariaLabel="Employee data table (non-virtualized)"
+    />
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Features</h4>
+    <p class="text mb-4">
+        The <code>&lt;nc-table&gt;</code> component includes all the same features as <code>&lt;nc-virtualized-table&gt;</code>:
+    </p>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Filtering:</strong> Advanced filtering with multiple conditions</li>
+        <li><strong>Sorting:</strong> Click column headers to sort</li>
+        <li><strong>Column Visibility:</strong> Show/hide columns dynamically</li>
+        <li><strong>Zoom:</strong> Adjust table content size</li>
+        <li><strong>Filter Presets:</strong> Save and apply common filters</li>
+        <li><strong>Drag & Drop:</strong> Reorder columns</li>
+        <li><strong>Striped Rows:</strong> Alternating row colors</li>
+        <li><strong>Hover Effects:</strong> Highlight rows on hover</li>
+    </ul>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="regularTableHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="regularTableTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Virtualized vs Regular Table</h4>
+    <p class="text mb-4">
+        <strong>Use <code>&lt;nc-table&gt;</code></strong> when you have smaller datasets and want simpler rendering.
+        <br>
+        <strong>Use <code>&lt;nc-virtualized-table&gt;</code></strong> when you have large datasets (200+ rows) and need 
+        optimal performance through virtual scrolling.
+    </p>
+    <br><br><br>
+
     <!-- Example 1: Virtualized Table - basic use -->
     <h2 class="section-title mb-2">Basic Virtualized Table</h2>
     <p class="section-subtitle mb-4">A performant table with built-in controls, filtering, and sorting</p>

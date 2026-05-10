@@ -1,13 +1,12 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { CheckIcon } from '../../icons';
-import { SquareButton } from '../../buttons/square-button/square-button.component';
+
 
 
 
 
 @Component({
   selector: 'nc-checkbox',
-  imports: [CheckIcon, SquareButton],
+  imports: [],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.css',
 })

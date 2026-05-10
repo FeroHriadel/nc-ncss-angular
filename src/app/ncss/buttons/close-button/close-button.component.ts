@@ -1,14 +1,13 @@
 // ng component
 
 import { Component, Input } from '@angular/core';
-import { SquareButton } from '../square-button/square-button.component';
 import { TimesIcon } from '../../icons';
 
 
 @Component({  selector: 'nc-close-button',
   templateUrl: './close-button.component.html',
   styleUrl: './close-button.component.css',
-  imports: [SquareButton, TimesIcon]
+  imports: [TimesIcon]
 })
 
 

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Container } from '../../ncss/layout/container/container.component';
 import { VirtualizedTable, FilterPreset, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
+import { Table } from '../../ncss/tables/table/table';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Highlight } from 'ngx-highlightjs';
 
@@ -12,7 +13,7 @@ import { Highlight } from 'ngx-highlightjs';
   selector: 'app-tables',
   templateUrl: './tables.page.html',
   styleUrls: ['./tables.page.css'],
-  imports: [CommonModule, Container, VirtualizedTable, Card, Highlight]
+  imports: [CommonModule, Container, VirtualizedTable, Table, Card, Highlight]
 })
 
 
@@ -185,7 +186,50 @@ export class TablesPage {
     { column: 'priority', displayValue: 'Priority', width: '100px' }
   ];
 
+  // Regular Table (non-virtualized) code examples
+  public regularTableHTML = `
+    <nc-table
+        [data]="tableData"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        [filterPresets]="filterPresets"
+        ariaLabel="Employee data table"
+    />
+  `;
 
+  public regularTableTS = `
+    import { Component } from '@angular/core';
+    import { CommonModule } from '@angular/common';
+    import { Table, FilterPreset } from '../../ncss/tables/table/table';
+
+    @Component({
+        selector: 'app-tables',
+        templateUrl: './tables.page.html',
+        styleUrls: ['./tables.page.css'],
+        imports: [CommonModule, Container, Table, Card]
+    })
+
+    export class TablesPage {
+        public tableData = [
+          {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
+          {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+          // ... more data
+        ];
+
+        public filterPresets: FilterPreset[] = [
+          {{ '{' }}
+              name: 'Active Developers',
+              filters: [
+              {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
+              {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+              ]
+          {{ '}' }}
+        ];
+    }
+  `;
 
   public vtHTML = `
     <nc-virtualized-table

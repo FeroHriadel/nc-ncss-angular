@@ -1,6 +1,5 @@
 //ng component
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { TopNav } from '../../ncss/navs/topnav/topnav.component';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Container } from '../../ncss/layout/container/container.component';
@@ -16,7 +15,7 @@ import { Highlight } from 'ngx-highlightjs';
   selector: 'app-navs',
   templateUrl: './navs.page.html',
   styleUrl: './navs.page.css',
-  imports: [RouterLink, TopNav, Card, Container, Select, SquareButton, PalleteIcon, Highlight]
+  imports: [TopNav, Card, Container, Select, SquareButton, PalleteIcon, Highlight]
 })
 
 

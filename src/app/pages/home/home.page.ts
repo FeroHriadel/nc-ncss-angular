@@ -8,7 +8,7 @@ import { Card } from '../../ncss/cards/card/card.component';
 
 @Component({
   selector: 'home-page',
-  imports: [Select, Container, Card],
+  imports: [Container, Card],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
