@@ -1,10 +1,10 @@
 <nc-container>
     <!-- Page header -->
-    <h1 class="page-title">VIRTUALIZED TABLES</h1>
-    <p class="page-subtitle mt-4 mb-8">High-performance, feature-rich data tables with filtering, sorting, and zoom</p>
+    <h1 class="page-title">TABLES</h1>
+    <p class="page-subtitle mt-4 mb-8">Regular Table, Virtualized Table, advanced data filtering & sorting</p>
     <br><br><br>
 
-    <!-- Example 1: Basic Table -->
+    <!-- Example 1: Virtualized Table - basic use -->
     <h2 class="section-title mb-2">Basic Virtualized Table</h2>
     <p class="section-subtitle mb-4">A performant table with built-in controls, filtering, and sorting</p>
     
@@ -43,36 +43,13 @@
 
     <h4 class="section-subtitle-light">HTML</h4>
     <nc-card>
-        <pre style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius); padding: 1rem; overflow-x: auto;"><code>&lt;nc-virtualized-table
-  [data]="tableData"
-  [controls]="true"
-  [horizontalSeparators]="true"
-  [verticalSeparators]="true"
-  [striped]="true"
-  [hover]="true"
-  [filterPresets]="filterPresets"
-  ariaLabel="Employee data table"
-/&gt;</code></pre>
+        <pre><code [highlight]="vtHTML" language="html" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
     </nc-card>
     <br><br>
 
     <h4 class="section-subtitle-light">TypeScript</h4>
     <nc-card>
-        <pre style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius); padding: 1rem; overflow-x: auto;"><code>public tableData = [
-  {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
-  {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
-  // ... more data
-];
-
-public filterPresets: FilterPreset[] = [
-  {{ '{' }}
-    name: 'Active Developers',
-    filters: [
-      {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
-      {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
-    ]
-  {{ '}' }},
-];</code></pre>
+        <pre><code [highlight]="vtTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
     </nc-card>
     <br><br><br>
 

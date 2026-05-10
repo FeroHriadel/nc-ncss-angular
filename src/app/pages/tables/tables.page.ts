@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { Container } from '../../ncss/layout/container/container.component';
 import { VirtualizedTable, FilterPreset } from '../../ncss/tables/virtualized-table/virtualized-table';
 import { Card } from '../../ncss/cards/card/card.component';
+import { Highlight } from 'ngx-highlightjs';
 
 
 
@@ -11,7 +12,7 @@ import { Card } from '../../ncss/cards/card/card.component';
   selector: 'app-tables',
   templateUrl: './tables.page.html',
   styleUrls: ['./tables.page.css'],
-  imports: [CommonModule, Container, VirtualizedTable, Card]
+  imports: [CommonModule, Container, VirtualizedTable, Card, Highlight]
 })
 
 
@@ -138,5 +139,51 @@ export class TablesPage {
     }
   ];
 
-  public title: string = 'Virtualized Table Demo';
+
+
+  public vtHTML = `
+    <nc-virtualized-table
+        [data]="tableData"
+        [controls]="true"
+        [horizontalSeparators]="true"
+        [verticalSeparators]="true"
+        [striped]="true"
+        [hover]="true"
+        [filterPresets]="filterPresets"
+        ariaLabel="Employee data table"
+    />
+  `;
+
+  public vtTS = `
+    import { Component } from '@angular/core';
+    import { CommonModule } from '@angular/common';
+    import { VirtualizedTable, FilterPreset } from '../../ncss/tables/virtualized-table/virtualized-table';
+
+    @Component({
+        selector: 'app-tables',
+        templateUrl: './tables.page.html',
+        styleUrls: ['./tables.page.css'],
+        imports: [CommonModule, Container, VirtualizedTable, Card]
+    })
+
+
+
+    export class TablesPage {
+        public tableData = [
+        {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
+        {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+        // ... more data
+        ];
+
+        public filterPresets: FilterPreset[] = [
+        {{ '{' }}
+            name: 'Active Developers',
+            filters: [
+            {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
+            {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+            ]
+        {{ '}' }}
+        ];
+    }
+  `;
 }
