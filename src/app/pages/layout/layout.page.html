@@ -1,0 +1,25 @@
+<nc-container>
+  <!-- title -->
+  <h1 class="page-title">LAYOUT</h1>
+  <p class="page-subtitle mt-4 mb-8">Application layout: containers, cards...</p>
+
+  <!-- Container -->
+  <h2 class="section-title mb-2">Container</h2>
+  <p class="section-subtitle mb-4">Horizontal alignment and width control</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    Container is a simple wrapper component that centers its content and provides horizontal padding. <br>
+    It has a max-width of 1000px by default.
+  </p>
+
+  <nc-container [style]="{ backgroundColor: 'var(--nc-gray-500)' }" class="mb-8 py-4">
+    <nc-card width="260px" [style]="{height: '300px', margin: 'auto'}" class="flex flex-center">
+      <p class="text text-center">This is a centered card inside a container.</p>
+    </nc-card>
+  </nc-container>
+
+</nc-container>

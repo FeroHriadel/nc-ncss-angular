@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 
 
@@ -12,5 +12,7 @@ import { Component } from '@angular/core';
 
 
 export class Container {
-  
+  @Input() id?: string;
+  @Input() class: string = '';
+  @Input() style: { [key: string]: string } = {};
 }

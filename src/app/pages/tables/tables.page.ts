@@ -217,8 +217,8 @@ export class TablesPage {
 
     export class TablesPage {
         public tableData = [
-          {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
-          {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+          {id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true },
+          {id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true },
           // ... more data
         ];
 
@@ -226,10 +226,10 @@ export class TablesPage {
           {{ '{' }}
               name: 'Active Developers',
               filters: [
-              {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
-              {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+              {column: 'role', condition: 'equals', value: 'Developer', operator: 'and' },
+              {column: 'active', condition: 'equals', value: 'true', operator: null }
               ]
-          {{ '}' }}
+          }
         ];
     }
   `;
@@ -263,8 +263,8 @@ export class TablesPage {
 
     export class TablesPage {
         public tableData = [
-          {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true {{ '}' }},
-          {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true {{ '}' }},
+          {id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true },
+          {id: 2, name: 'Jane Smith', email: 'jane@example.com', age: 34, role: 'Designer', active: true },
           // ... more data
         ];
 
@@ -272,10 +272,10 @@ export class TablesPage {
           {{ '{' }}
               name: 'Active Developers',
               filters: [
-              {{ '{' }} column: 'role', condition: 'equals', value: 'Developer', operator: 'and' {{ '}' }},
-              {{ '{' }} column: 'active', condition: 'equals', value: 'true', operator: null {{ '}' }}
+              {column: 'role', condition: 'equals', value: 'Developer', operator: 'and' },
+              {column: 'active', condition: 'equals', value: 'true', operator: null }
               ]
-          {{ '}' }}
+          }
         ];
     }
   `;
@@ -300,23 +300,23 @@ export class TablesPage {
     export class TablesPage {
         // Define ALL columns with custom widths
         public customColumnsConfig: Column[] = [
-          {{ '{' }} column: 'id', displayValue: 'ID', width: '60px' {{ '}' }},
-          {{ '{' }} column: 'name', displayValue: 'Name', width: '180px' {{ '}' }},
-          {{ '{' }} column: 'department', displayValue: 'Department', width: '140px' {{ '}' }},
-          {{ '{' }} column: 'description', displayValue: 'Description', width: '400px' {{ '}' }},
-          {{ '{' }} column: 'status', displayValue: 'Status', width: '100px' {{ '}' }},
-          {{ '{' }} column: 'priority', displayValue: 'Priority', width: '100px' {{ '}' }}
+          {column: 'id', displayValue: 'ID', width: '60px' },
+          {column: 'name', displayValue: 'Name', width: '180px' },
+          {column: 'department', displayValue: 'Department', width: '140px' },
+          {column: 'description', displayValue: 'Description', width: '400px' },
+          {column: 'status', displayValue: 'Status', width: '100px' },
+          {column: 'priority', displayValue: 'Priority', width: '100px' }
         ];
 
         public customTableData = [
-          {{ '{' }} 
+          {
             id: 1, 
             name: 'Sarah Johnson', 
             department: 'Engineering',
             description: 'Senior Full-Stack Developer specializing in Angular and Node.js.',
             status: 'Active',
             priority: 'High'
-          {{ '}' }},
+          },
           // ... more data
         ];
     }
@@ -327,7 +327,7 @@ export class TablesPage {
     <nc-virtualized-table
         [data]="tableData"
         [controls]="true"
-        [style]="{{ '{' }} '--table-max-height': '400px' {{ '}' }}"
+        [style]="{'--table-max-height': '400px' }"
         ariaLabel="Custom height table"
     />
 
@@ -385,31 +385,31 @@ export class TablesPage {
     export class TablesPage {
         // Your data - fields in any order
         public tableData = [
-          {{ '{' }} 
+          {
             id: 1, 
             name: 'John Doe', 
             email: 'john@example.com', 
             age: 28, 
             role: 'Developer', 
             active: true 
-          {{ '}' }},
+          },
           // ... more data
         ];
 
         // Configure columns: reorder AND rename fields
         public reorderedColumnsConfig: Column[] = [
           // Put 'name' first instead of 'id'
-          {{ '{' }} column: 'name', displayValue: 'Full Name', width: '180px' {{ '}' }},
+          {column: 'name', displayValue: 'Full Name', width: '180px'},
           // Rename 'role' to 'Job Title'
-          {{ '{' }} column: 'role', displayValue: 'Job Title', width: '140px' {{ '}' }},
+          {column: 'role', displayValue: 'Job Title', width: '140px'},
           // Rename 'email' to 'Email Address'
-          {{ '{' }} column: 'email', displayValue: 'Email Address', width: '220px' {{ '}' }},
+          {column: 'email', displayValue: 'Email Address', width: '220px'},
           // Rename 'age' to 'Age (Years)'
-          {{ '{' }} column: 'age', displayValue: 'Age (Years)', width: '100px' {{ '}' }},
+          {column: 'age', displayValue: 'Age (Years)', width: '100px'},
           // Rename 'active' to 'Status'
-          {{ '{' }} column: 'active', displayValue: 'Status', width: '100px' {{ '}' }},
+          {column: 'active', displayValue: 'Status', width: '100px'},
           // Put 'id' last and rename to 'User ID'
-          {{ '{' }} column: 'id', displayValue: 'User ID', width: '80px' {{ '}' }}
+          {column: 'id', displayValue: 'User ID', width: '80px'}
         ];
     }
   `;
@@ -507,18 +507,18 @@ export class TablesPage {
     export class TablesPage {{
         // HTML is automatically detected and rendered
         public htmlStringsTableData = [
-          {{ '{' }}
+          {
             id: 1,
             name: 'John Doe',
             status: '<span style="color: green; font-weight: bold;">✓ Active</span>',
             priority: '<span style="background: #22c55e; color: white; padding: 4px 8px;">High</span>'
-          {{ '}' }},
-          {{ '{' }}
+          },
+          {
             id: 2,
             name: 'Jane Smith',
             status: '<span style="color: red; font-weight: bold;">✗ Inactive</span>',
             priority: '<span style="background: #64748b; color: white; padding: 4px 8px;">Low</span>'
-          {{ '}' }}
+          }
         ];
     }}
   `;
@@ -552,9 +552,9 @@ export class TablesPage {
   `;
 
   public customHtmlMethodTwoTS = `
-    import {{ '{' }} Component, ViewChild, TemplateRef, AfterViewInit {{ '}' }} from '@angular/core';
-    import {{ '{' }} VirtualizedTable, Column {{ '}' }} from '../../ncss/tables/virtualized-table/virtualized-table';
-    import {{ '{' }} Button {{ '}' }} from '../../ncss/buttons/button/button.component';
+    import { Component, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
+    import { VirtualizedTable, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
+    import { Button } from '../../ncss/buttons/button/button.component';
 
     @Component({{
       selector: 'app-tables',
@@ -563,12 +563,12 @@ export class TablesPage {
     }})
     export class TablesPage implements AfterViewInit {{
       // ViewChild references to templates (must use static: true)
-      @ViewChild('statusTemplate', {{ '{' }} static: true {{ '}' }}) statusTemplate!: TemplateRef<any>;
-      @ViewChild('actionsTemplate', {{ '{' }} static: true {{ '}' }}) actionsTemplate!: TemplateRef<any>;
+      @ViewChild('statusTemplate', {static: true }) statusTemplate!: TemplateRef<any>;
+      @ViewChild('actionsTemplate', {static: true }) actionsTemplate!: TemplateRef<any>;
 
       public customHtmlTableData = [
-        {{ '{' }} id: 1, name: 'John Doe', email: 'john@example.com', status: 'active', role: 'Developer' {{ '}' }},
-        {{ '{' }} id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'inactive', role: 'Designer' {{ '}' }}
+        {id: 1, name: 'John Doe', email: 'john@example.com', status: 'active', role: 'Developer' },
+        {id: 2, name: 'Jane Smith', email: 'jane@example.com', status: 'inactive', role: 'Designer' }
       ];
 
       // Initialize as empty array - will be populated in ngAfterViewInit
@@ -578,11 +578,11 @@ export class TablesPage {
         // IMPORTANT: Create a new array reference with templates after view initialization
         // This ensures templates are available and triggers change detection
         this.customHtmlColumnsConfig = [
-          {{ '{' }} column: 'id', displayValue: 'ID' {{ '}' }},
-          {{ '{' }} column: 'name', displayValue: 'Name' {{ '}' }},
-          {{ '{' }} column: 'email', displayValue: 'Email' {{ '}' }},
-          {{ '{' }} column: 'status', displayValue: 'Status', template: this.statusTemplate {{ '}' }},
-          {{ '{' }} column: 'role', displayValue: 'Actions', template: this.actionsTemplate {{ '}' }}
+          {column: 'id', displayValue: 'ID' },
+          {column: 'name', displayValue: 'Name' },
+          {column: 'email', displayValue: 'Email' },
+          {column: 'status', displayValue: 'Status', template: this.statusTemplate },
+          {column: 'role', displayValue: 'Actions', template: this.actionsTemplate }
         ];
       }}
 
