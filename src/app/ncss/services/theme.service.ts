@@ -123,7 +123,7 @@ export class ThemeService {
             root.style.setProperty('--nc-card-bg', 'var(--nc-black-700)');
             root.style.setProperty('--nc-text-color-strong', 'var(--nc-white-700)');
             root.style.setProperty('--nc-text-color-light', 'var(--nc-gray-500)');
-            root.style.setProperty('--nc-text-color-stronger', 'var(--nc-black-300)');
+            root.style.setProperty('--nc-text-color-stronger', 'var(--nc-gray-700)');
             root.style.setProperty('--nc-text-color-lighter', 'var(--nc-gray-200)');
             root.style.setProperty('--nc-pill-bg', 'var(--nc-black-100)');
             root.style.setProperty('--nc-pill-text-color', 'var(--nc-white-300)');

@@ -16,10 +16,74 @@
     It has a max-width of 1000px by default.
   </p>
 
-  <nc-container [style]="{ backgroundColor: 'var(--nc-gray-500)' }" class="mb-8 py-4">
-    <nc-card width="260px" [style]="{height: '300px', margin: 'auto'}" class="flex flex-center">
-      <p class="text text-center">This is a centered card inside a container.</p>
+  <nc-container [style]="{ backgroundColor: 'var(--nc-gray-500)' }" class="py-4">
+    <nc-card width="260px" [style]="{height: '300px', margin: 'auto'}" class="flex flex-center p-2">
+      <p class="text text-center">This is inside a container. The container is the dark gray box around this card.</p>
     </nc-card>
   </nc-container>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="containerHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="containerTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles as key-value pairs</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute element</li>
+      <li class="ml-7 my-1"><strong>width</strong> (string, default: '') - Custom width (e.g., '500px', '50%')</li>
+  </ul>
+  <br><br><br>
+
+
+  <!-- Card -->
+  <h2 class="section-title mb-2">Card</h2>
+  <p class="section-subtitle mb-4">Card component for displaying content in a structured format</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    Card is a versatile container component that provides a clean, bordered box for displaying grouped content. <br>
+    It includes built-in styling with background color, border, border-radius, and padding, making it perfect for organizing and presenting information in a structured way.
+  </p>
+
+  <nc-card width="400px" class="p-4">
+    <h3 class="section-title-light">Card Title</h3>
+    <p class="text mt-2">This is a card component that provides a clean, bordered container for your content. Cards are perfect for grouping related information such as user profiles, product details, or summary sections.</p>
+    <p class="text mt-2">You can customize the card's width, add custom styles, and apply CSS classes for padding, margins, and other styling needs.</p>
+  </nc-card>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="cardHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="cardTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>width</strong> (string, default: '100%') - Custom width (e.g., '500px', '50%', 'auto')</li>
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles as key-value pairs</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply (e.g., 'p-4' for padding)</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute for the element</li>
+      <li class="ml-7 my-1"><strong>onClick</strong> (function, default: () => {{ '{' }}{{ '}' }}) - Click event handler for making cards interactive</li>
+  </ul>
+  <br><br><br>
 
 </nc-container>

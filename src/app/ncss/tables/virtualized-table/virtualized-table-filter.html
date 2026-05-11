@@ -1,8 +1,8 @@
 <div class="virtualized-table-filter-wrapper" role="form" aria-label="Table filters">
   <!-- Clear and Presets -->
-  <h2 class="virtualized-table-filter-title">DATA FILTER</h2>
-  <h3 class="virtualized-table-filter-section-title">Filter Options</h3>
-  <p class="virtualized-table-filter-description">Add filter conditions to refine your data. Clear Filters or use Filter Presets (if available) below.</p>
+  <h2 class="virtualized-table-filter-title section-title">DATA FILTER</h2>
+  <h3 class="virtualized-table-filter-section-title section-subtitle">Filter Options</h3>
+  <p class="virtualized-table-filter-description text-light">Add filter conditions to refine your data. Clear Filters or use Filter Presets (if available) below.</p>
   <section class="virtualized-table-filter-buttons-section">
     <nc-button
       width="160px"
@@ -23,8 +23,8 @@
   </section>
 
   <!-- Filters -->
-  <h3 class="virtualized-table-filter-section-title">Filters to Apply</h3>
-  <p class="virtualized-table-filter-description">Review and adjust your active filters. Click 'Apply Filters' to save changes.</p>
+  <h3 class="virtualized-table-filter-section-title section-subtitle">Filters to Apply</h3>
+  <p class="virtualized-table-filter-description text-light">Review and adjust your active filters. Click 'Apply Filters' to save changes.</p>
   <section>
     @for (row of filterRows; track row.id; let index = $index) {
       <div>
