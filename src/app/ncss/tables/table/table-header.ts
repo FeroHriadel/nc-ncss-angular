@@ -61,13 +61,6 @@ export class TableHeader implements OnInit, OnDestroy {
     }
   }
 
-  // Inline SVG icon
-  get sortIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle;">
-      <path d="M12 4l-8 8h16z" fill="#dc2626" stroke="#dc2626" stroke-width="1"/>
-    </svg>`;
-  }
-
   getSortIconClass(col: Column): string {
     const baseClass = 'header-sort-icon';
     if (this.sortColumn === col.column && this.sortDirection === 'desc') {

@@ -60,43 +60,6 @@ export class TableControlBar {
     return Math.round(this.zoomLevel * 100) + '%';
   }
 
-  // Inline SVG icons
-  get zoomInIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"></circle>
-      <path d="m21 21-4.35-4.35"></path>
-      <line x1="11" y1="8" x2="11" y2="14"></line>
-      <line x1="8" y1="11" x2="14" y2="11"></line>
-    </svg>`;
-  }
-
-  get zoomOutIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <circle cx="11" cy="11" r="8"></circle>
-      <path d="m21 21-4.35-4.35"></path>
-      <line x1="8" y1="11" x2="14" y2="11"></line>
-    </svg>`;
-  }
-
-  get viewColumnIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="3" width="7" height="18"></rect>
-      <rect x="14" y="3" width="7" height="18"></rect>
-    </svg>`;
-  }
-
-  get filterIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-    </svg>`;
-  }
-
-  get refreshIcon(): string {
-    return `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
-    </svg>`;
-  }
-
   handleColumnsChange(selectedColumns: string | string[]): void {
     const columns = Array.isArray(selectedColumns) ? selectedColumns : [selectedColumns];
     this.setColumnsFilter(columns);

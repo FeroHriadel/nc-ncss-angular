@@ -73,6 +73,26 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
     public filterService: TableFilterService,
     public zoomService: TableZoomService
   ) {
+    // Watch for zoom level changes
+    effect(() => {
+      const currentZoom = this.zoomService.zoomLevel();
+      if (this.previousZoom !== currentZoom) {
+        if (this.bodyElementRef?.bodyRef) {
+          const scrollTop = this.bodyElementRef.bodyRef.nativeElement.scrollTop;
+          const scrollLeft = this.bodyElementRef.bodyRef.nativeElement.scrollLeft;
+
+          setTimeout(() => {
+            if (this.bodyElementRef?.bodyRef) {
+              this.bodyElementRef.bodyRef.nativeElement.scrollTop = scrollTop;
+              this.bodyElementRef.bodyRef.nativeElement.scrollLeft = scrollLeft;
+            }
+          }, 300);
+        }
+
+        this.previousZoom = currentZoom;
+      }
+    });
+
     // Watch for filtered columns changes
     effect(() => {
       const filteredCols = this.filterService.filteredColumns();
@@ -99,12 +119,18 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   }
 
   ngAfterViewInit(): void {
-    // Setup drag scrolling handlers
-    this.setupDragScrolling();
+    // Setup rendering handlers for drag scrolling
+    this.renderingHandlers = this.setupDragScrolling(
+      this.bodyElementRef.bodyRef,
+      this.headerElementRef.headerRef
+    );
   }
 
   ngOnDestroy(): void {
-    // Cleanup if needed
+    // Cleanup
+    if (this.renderingHandlers.cleanup) {
+      this.renderingHandlers.cleanup();
+    }
   }
 
   ngOnChanges(): void {
@@ -125,107 +151,6 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
     return [];
   }
 
-  private setupDragScrolling(): void {
-    const bodyElement = this.bodyElementRef?.bodyRef;
-    const headerElement = this.headerElementRef?.headerRef;
-
-    if (!bodyElement || !headerElement) return;
-
-    const body = bodyElement.nativeElement;
-    const header = headerElement.nativeElement;
-
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-    let scrollLeft = 0;
-    let scrollTop = 0;
-
-    const handleMouseDown = (e: MouseEvent) => {
-      if (e.button !== 0) return;
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'BUTTON' || target.tagName === 'A' || target.tagName === 'INPUT') {
-        return;
-      }
-
-      isDragging = true;
-      startX = e.pageX - body.offsetLeft;
-      startY = e.pageY - body.offsetTop;
-      scrollLeft = body.scrollLeft;
-      scrollTop = body.scrollTop;
-      body.style.cursor = 'grabbing';
-    };
-
-    const handleMouseLeave = () => {
-      isDragging = false;
-      body.style.cursor = 'grab';
-    };
-
-    const handleMouseUp = () => {
-      isDragging = false;
-      body.style.cursor = 'grab';
-    };
-
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - body.offsetLeft;
-      const y = e.pageY - body.offsetTop;
-      const walkX = (x - startX) * 1.5;
-      const walkY = (y - startY) * 1.5;
-      body.scrollLeft = scrollLeft - walkX;
-      body.scrollTop = scrollTop - walkY;
-    };
-
-    const handleBodyScroll = () => {
-      header.scrollLeft = body.scrollLeft;
-    };
-
-    const handleHeaderScroll = () => {
-      body.scrollLeft = header.scrollLeft;
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
-        if (e.deltaY < 0) {
-          this.zoomService.handleZoomIn();
-        } else {
-          this.zoomService.handleZoomOut();
-        }
-      }
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && (e.key === '=' || e.key === '+')) {
-        e.preventDefault();
-        this.zoomService.handleZoomIn();
-      } else if ((e.ctrlKey || e.metaKey) && e.key === '-') {
-        e.preventDefault();
-        this.zoomService.handleZoomOut();
-      } else if ((e.ctrlKey || e.metaKey) && e.key === '0') {
-        e.preventDefault();
-        this.zoomService.setZoomLevel(1);
-      }
-    };
-
-    body.addEventListener('mousedown', handleMouseDown);
-    body.addEventListener('mouseleave', handleMouseLeave);
-    body.addEventListener('mouseup', handleMouseUp);
-    body.addEventListener('mousemove', handleMouseMove);
-    body.addEventListener('scroll', handleBodyScroll);
-    header.addEventListener('scroll', handleHeaderScroll);
-    body.addEventListener('wheel', handleWheel);
-
-    this.renderingHandlers = {
-      handleTableMouseDown: handleMouseDown,
-      handleTableMouseLeave: handleMouseLeave,
-      handleBodyScroll: handleBodyScroll,
-      handleHeaderScroll: handleHeaderScroll,
-      handleWheelEvent: handleWheel,
-      handleKeyDown: handleKeyDown
-    };
-  }
-
   getColumnStyle(columnObj: Column): { [key: string]: string } {
     if (columnObj.width) {
       return { 
@@ -235,6 +160,107 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
       };
     }
     return {};
+  }
+
+  private setupDragScrolling(
+    bodyRef: ElementRef<HTMLDivElement>,
+    headerRef: ElementRef<HTMLDivElement>
+  ) {
+    let isDragging = false;
+    let lastMousePosition = { x: 0, y: 0 };
+    let mouseMoveListener: ((e: MouseEvent) => void) | null = null;
+    let mouseUpListener: (() => void) | null = null;
+
+    const handleBodyScroll = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      if (headerRef?.nativeElement) {
+        headerRef.nativeElement.scrollLeft = target.scrollLeft;
+      }
+    };
+
+    const handleHeaderScroll = (e: Event) => {
+      const target = e.currentTarget as HTMLElement;
+      if (bodyRef?.nativeElement) {
+        bodyRef.nativeElement.scrollLeft = target.scrollLeft;
+      }
+    };
+
+    const handleWheelEvent = (e: WheelEvent) => {
+      if (e.ctrlKey) {
+        e.preventDefault();
+        if (e.deltaY < 0) {
+          this.zoomService.handleZoomIn();
+        } else {
+          this.zoomService.handleZoomOut();
+        }
+      }
+    };
+
+    const handleTableMouseDown = (e: MouseEvent) => {
+      isDragging = true;
+      lastMousePosition = { x: e.clientX, y: e.clientY };
+      e.preventDefault();
+
+      mouseMoveListener = (moveEvent: MouseEvent) => {
+        if (isDragging && bodyRef.nativeElement) {
+          const container = bodyRef.nativeElement;
+          const deltaX = moveEvent.clientX - lastMousePosition.x;
+          const deltaY = moveEvent.clientY - lastMousePosition.y;
+          
+          container.scrollLeft -= deltaX;
+          container.scrollTop -= deltaY;
+          
+          if (headerRef?.nativeElement) {
+            headerRef.nativeElement.scrollLeft = container.scrollLeft;
+          }
+          
+          lastMousePosition = { x: moveEvent.clientX, y: moveEvent.clientY };
+        }
+      };
+
+      mouseUpListener = () => {
+        isDragging = false;
+        cleanup();
+      };
+
+      document.addEventListener('mousemove', mouseMoveListener);
+      document.addEventListener('mouseup', mouseUpListener);
+    };
+
+    const handleTableMouseLeave = () => {
+      // Optional: could stop dragging on leave
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey) {
+        if (e.key === '+' || e.key === '=') {
+          e.preventDefault();
+          this.zoomService.handleZoomIn();
+        } else if (e.key === '-' || e.key === '_') {
+          e.preventDefault();
+          this.zoomService.handleZoomOut();
+        }
+      }
+    };
+
+    const cleanup = () => {
+      if (mouseMoveListener) {
+        document.removeEventListener('mousemove', mouseMoveListener);
+      }
+      if (mouseUpListener) {
+        document.removeEventListener('mouseup', mouseUpListener);
+      }
+    };
+
+    return {
+      handleBodyScroll,
+      handleHeaderScroll,
+      handleWheelEvent,
+      handleTableMouseDown,
+      handleTableMouseLeave,
+      handleKeyDown,
+      cleanup
+    };
   }
 
   handleKeyDown(e: KeyboardEvent): void {

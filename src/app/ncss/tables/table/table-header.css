@@ -1,5 +1,4 @@
 
-
 .table-header {
   overflow-x: auto;
   overflow-y: clip;
@@ -98,18 +97,4 @@
 
 .table-header-sort-icon.table-header-sort-desc {
   transform: rotate(180deg);
-}
-
-.table-header-ghost {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  background-color: var(--nc-input-bg);
-  border: 1px solid var(--nc-border-color);
-  border-radius: 0.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  font-weight: 600;
-  color: var(--nc-text-color-strong);
-  cursor: grabbing;
-  opacity: 0.9;
 }

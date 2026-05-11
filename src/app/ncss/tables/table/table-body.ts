@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, ElementRef, ViewChild, OnDestroy, AfterViewChecked, TemplateRef } from '@angular/core';
+import { Component, Input as NgInput, ElementRef, ViewChild, OnInit, OnDestroy, AfterViewInit, TemplateRef } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Column } from './table-filter.service';
@@ -17,7 +17,7 @@ interface CopyNotification {
   imports: [CommonModule, NgTemplateOutlet],
   standalone: true
 })
-export class TableBody implements OnDestroy, AfterViewChecked {
+export class TableBody implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('bodyElement') bodyRef!: ElementRef<HTMLDivElement>;
   @ViewChild('tableElement') tableRef!: ElementRef<HTMLDivElement>;
 
@@ -34,6 +34,7 @@ export class TableBody implements OnDestroy, AfterViewChecked {
   @NgInput() striped: boolean | { enabled: boolean; color?: string } = true;
   @NgInput() hover: boolean | { enabled: boolean; color?: string } = true;
 
+  tableScrollWidth = 0;
   hoveredRowIndex: number | null = null;
   copyNotification: CopyNotification | null = null;
 
@@ -41,8 +42,17 @@ export class TableBody implements OnDestroy, AfterViewChecked {
     private sanitizer: DomSanitizer
   ) {}
 
-  ngAfterViewChecked(): void {
+  ngOnInit(): void {
+    // No initialization needed for non-virtualized table
+  }
+
+  ngAfterViewInit(): void {
+    this.measureTable();
     this.attachEventHandlers();
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup if needed
   }
 
   private attachEventHandlers(): void {
@@ -59,6 +69,7 @@ export class TableBody implements OnDestroy, AfterViewChecked {
         htmlButton.addEventListener('click', (e) => {
           e.stopPropagation();
           try {
+            // Execute the onclick code
             const func = new Function(onclickAttr);
             func.call(htmlButton);
           } catch (error) {
@@ -67,10 +78,6 @@ export class TableBody implements OnDestroy, AfterViewChecked {
         });
       }
     });
-  }
-
-  ngOnDestroy(): void {
-    // Cleanup if needed
   }
 
   getRowBackgroundClass(rowIndex: number): string {
@@ -129,6 +136,7 @@ export class TableBody implements OnDestroy, AfterViewChecked {
   getCellStyle(col: Column, isLastColumn: boolean): { [key: string]: string } {
     const style = { ...this.getColumnStyle(col) };
     
+    // For flexbox, we need to use flex-basis and prevent shrinking
     if (col.width) {
       style['flexBasis'] = col.width;
       style['flexGrow'] = '0';
@@ -219,7 +227,9 @@ export class TableBody implements OnDestroy, AfterViewChecked {
     this.hoveredRowIndex = null;
   }
 
-  trackRow(index: number, row: any): number {
-    return index;
+  private measureTable(): void {
+    if (this.tableRef?.nativeElement) {
+      this.tableScrollWidth = this.tableRef.nativeElement.scrollWidth;
+    }
   }
 }

@@ -126,6 +126,9 @@ export class TablesPage {
     { id: 100, name: 'Wanda Maximoff', email: 'wanda@example.com', age: 30, role: 'Designer', active: true },
   ];
 
+  // Sliced data for the non-virtualized table (stable reference)
+  public tableDataSliced = this.tableData.slice(0, 30);
+
   // Filter presets for quick filtering
   public filterPresets: FilterPreset[] = [
     {

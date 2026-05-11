@@ -4,11 +4,10 @@
   flex: 1;
 }
 
-/* Table Body Container */
+/* Table Body Container - NO MAX-HEIGHT, grows with content */
 .table-body {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 600px;
   border-left: 1px solid var(--nc-border-color);
   border-right: 1px solid var(--nc-border-color);
   border-bottom: 1px solid var(--nc-border-color);
@@ -46,12 +45,6 @@
 
 /* Table */
 .table-body-table {
-  width: 100%;
-  display: block;
-}
-
-/* Virtual Container */
-.table-virtual-container {
   width: 100%;
   display: block;
 }
@@ -99,16 +92,6 @@
 /* Hover Effect */
 .table-body-row.table-row-hovered {
   background-color: var(--nc-hover-bg-light);
-}
-
-/* Vertical Separator Lines */
-.table-vertical-separator-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: var(--nc-border-color);
-  z-index: 4;
 }
 
 /* Copy Notification */

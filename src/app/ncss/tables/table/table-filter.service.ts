@@ -96,18 +96,48 @@ export class TableFilterService {
   }
 
   updateData(data: any[]): void {
-    this.dataSignal.set(data);
-    this.isSortingSignal.set(true);
-    setTimeout(() => this.isSortingSignal.set(false), 100);
+    const currentData = this.dataSignal();
+    // Only set sorting state if data reference actually changed
+    if (currentData !== data) {
+      this.dataSignal.set(data);
+      this.isSortingSignal.set(true);
+      setTimeout(() => this.isSortingSignal.set(false), 100);
+    }
   }
 
   updateColumns(columns: Column[]): void {
+    const currentColumns = this.columnsSignal();
+    const newColumnKeys = columns.map(col => col.column);
+    const currentColumnKeys = currentColumns.map(col => col.column);
+    
+    // Check if columns actually changed
+    const columnsChanged = 
+      newColumnKeys.length !== currentColumnKeys.length ||
+      newColumnKeys.some((key, idx) => key !== currentColumnKeys[idx]);
+    
     this.columnsSignal.set(columns);
-    this.filterStateSignal.update(prev => ({
-      ...prev,
-      columnsFilter: columns.map(col => col.column),
-      columnOrder: columns.map(col => col.column),
-    }));
+    
+    if (columnsChanged) {
+      // Only update columnsFilter if columns actually changed
+      this.filterStateSignal.update(prev => {
+        // Preserve existing columnsFilter, only add new columns and remove deleted ones
+        const updatedColumnsFilter = prev.columnsFilter
+          .filter(col => newColumnKeys.includes(col))  // Remove deleted columns
+          .concat(newColumnKeys.filter(col => !prev.columnsFilter.includes(col)));  // Add new columns
+        
+        return {
+          ...prev,
+          columnsFilter: updatedColumnsFilter,
+          columnOrder: newColumnKeys,
+        };
+      });
+    } else {
+      // Columns didn't change, only update columnOrder if needed
+      this.filterStateSignal.update(prev => ({
+        ...prev,
+        columnOrder: newColumnKeys,
+      }));
+    }
   }
 
   setColumnsFilter(selectedColumns: string[]): void {

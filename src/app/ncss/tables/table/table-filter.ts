@@ -4,7 +4,7 @@ import { Button } from '../../buttons/button/button.component';
 import { Select, SelectOption } from '../../inputs/select/select.component';
 import { Pill } from '../../pills/pill/pill.component';
 import { CloseButton } from '../../buttons/close-button/close-button.component';
-import { TableFilterService, FilterRow, Column } from './table-filter.service';
+import { FilterRow, Column } from './table-filter.service';
 import './table-filter.css';
 
 export interface FilterPreset {
@@ -47,8 +47,6 @@ export class TableFilter implements OnChanges {
     {value: 'and', label: 'AND'},
     {value: 'or', label: 'OR'},
   ];
-
-  constructor(private filterService: TableFilterService) {}
 
   ngOnInit(): void {
     this.columnsSelectOptions = this.columns.map(col => ({

@@ -3,6 +3,8 @@
   <div
     #bodyElement
     class="table-body"
+    [style.scrollbar-width]="'none'"
+    [style.-ms-overflow-style]="'none'"
     (mousedown)="onMouseDown($event)"
     (mouseleave)="onMouseLeave()"
     (wheel)="onWheel($event)"
@@ -17,15 +19,15 @@
       [style.width]="'100%'"
     >
       <!-- Render all rows -->
-      @for (row of data; track trackRow($index, row); let rowIndex = $index) {
+      @for (row of data; track $index) {
         <div
-          [class]="'table-row ' + getRowClass(rowIndex) + (horizontalSeparators ? ' table-row-separator' : '')"
-          [style.min-width]="'100%'"
+          [class]="'table-row ' + getRowClass($index) + (horizontalSeparators ? ' table-row-separator' : '')"
           [style.display]="'flex'"
-          (mouseenter)="onRowMouseEnter(rowIndex)"
+          [style.min-width]="'100%'"
+          (mouseenter)="onRowMouseEnter($index)"
           (mouseleave)="onRowMouseLeave()"
           role="row"
-          [attr.aria-rowindex]="rowIndex + 1"
+          [attr.aria-rowindex]="$index + 1"
         >
           <!-- Table cells -->
           @for (col of columns; track col.column; let colIndex = $index) {
