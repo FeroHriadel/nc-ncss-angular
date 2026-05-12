@@ -2,7 +2,7 @@ import { Component, Input as NgInput, Output, EventEmitter, ViewChild } from '@a
 import { CommonModule } from '@angular/common';
 import { SquareButton } from '../../buttons/square-button/square-button.component';
 import { Select, SelectOption } from '../../inputs/select/select.component';
-import { Modal } from '../../dialogs/modal/modal.component';
+import { Modal } from '../../popups/modal/modal.component';
 import { Button } from '../../buttons/button/button.component';
 import { Pill } from '../../pills/pill/pill.component';
 import { FilterIcon, ZoominIcon, ZoomoutIcon } from '../../icons';

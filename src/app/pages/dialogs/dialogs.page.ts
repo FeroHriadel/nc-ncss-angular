@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Container } from '../../ncss/layout/container/container.component';
 import { Card } from '../../ncss/cards/card/card.component';
-import { Modal } from '../../ncss/dialogs/modal/modal.component';
+import { Modal } from '../../ncss/popups/modal/modal.component';
+import { Collapsible } from '../../ncss/popups/collapsible/collapsible.component';
 import { Button } from '../../ncss/buttons/button/button.component';
 import {Highlight } from 'ngx-highlightjs';
 import { ToastService } from '../../ncss/services/toast.service';
@@ -12,13 +13,14 @@ import { ToastService } from '../../ncss/services/toast.service';
   selector: 'app-dialogs',
   templateUrl: './dialogs.page.html',
   styleUrls: ['./dialogs.page.css'],
-  imports: [Container, Card, Modal, Button, Highlight]
+  imports: [Container, Card, Modal, Collapsible, Button, Highlight]
 })
 
 
 
 export class DialogsPage {
   @ViewChild('modal') modal!: Modal;
+  @ViewChild('collapsible') collapsible!: Collapsible;
 
   constructor(private toastService: ToastService) {}
 
@@ -39,6 +41,28 @@ export class DialogsPage {
     this.toastService.toast({ text: 'First toast' });
     setTimeout(() => this.toastService.error({ text: 'Second toast (error)' }), 200);
     setTimeout(() => this.toastService.toast({ text: 'Third toast' }), 400);
+  }
+
+  // Collapsible methods
+  openCollapsible() {
+    this.collapsible.open();
+  }
+
+  closeCollapsible() {
+    this.collapsible.close();
+  }
+
+  getCollapsibleState() {
+    const state = this.collapsible.getOpen();
+    alert(`Collapsible is ${state.open ? 'open' : 'closed'}`);
+  }
+
+  onCollapsibleOpen = () => {
+    console.log('Collapsible opened!');
+  }
+
+  onCollapsibleClose = () => {
+    console.log('Collapsible closed!');
   }
 
   getOpenState() {
@@ -159,6 +183,66 @@ export class DialogsPage {
         this.toastService.toast({ text: 'First toast' });
         setTimeout(() => this.toastService.error({ text: 'Second toast (error)' }), 200);
         setTimeout(() => this.toastService.toast({ text: 'Third toast' }), 400);
+      }
+    }
+  `;
+
+  collapsibleHTML = `
+    <nc-collapsible
+      #collapsible
+      [onOpen]="onCollapsibleOpen"
+      [onClose]="onCollapsibleClose"
+      class="mb-4"
+    >
+      <nc-button slot="collapsible-trigger" width="230px">Click to Toggle</nc-button>
+      <div slot="collapsible-content" class="mt-4">
+        <nc-card>
+          <p class="text">This is collapsible content that expands and collapses smoothly.</p>
+          <p class="text">You can put any content here - text, images, forms, or other components.</p>
+        </nc-card>
+      </div>
+    </nc-collapsible>
+
+    <div class="flex w-100 justify-center flex-wrap">
+      <nc-button (click)="openCollapsible()" class="mr-1 mb-2" width="230px">Open Programmatically</nc-button>
+      <nc-button (click)="closeCollapsible()" variant="red" class="mr-1 mb-2" width="230px">Close Programmatically</nc-button>
+      <nc-button (click)="getCollapsibleState()" variant="outline" class="mr-1 mb-2" width="230px">Get State</nc-button>
+    </div>
+  `;
+
+  collapsibleTS = `
+    import { Component, ViewChild } from '@angular/core';
+    import { Collapsible } from '../../ncss/popups/collapsible/collapsible.component';
+
+    @Component({
+      selector: 'app-dialogs',
+      templateUrl: './dialogs.page.html',
+      styleUrls: ['./dialogs.page.css'],
+      imports: [Collapsible]
+    })
+
+    export class DialogsPage {
+      @ViewChild('collapsible') collapsible!: Collapsible;
+
+      openCollapsible() {
+        this.collapsible.open();
+      }
+
+      closeCollapsible() {
+        this.collapsible.close();
+      }
+
+      getCollapsibleState() {
+        const state = this.collapsible.getOpen();
+        alert(\`Collapsible is \${state.open ? 'open' : 'closed'}\`);
+      }
+
+      onCollapsibleOpen = () => {
+        console.log('Collapsible opened!');
+      }
+
+      onCollapsibleClose = () => {
+        console.log('Collapsible closed!');
       }
     }
   `;

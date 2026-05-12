@@ -1,7 +1,7 @@
 <nc-container>
   <!-- title -->
-  <h1 class="page-title">DIALOGS</h1>
-  <p class="page-subtitle mt-4 mb-8">Dialogs, Modals, Toasts...</p>
+  <h1 class="page-title">POP UPS</h1>
+  <p class="page-subtitle mt-4 mb-8">Dialog, Modal, Toast, Collapsible... if it pops out it's here</p>
   <br><br><br>
 
   <!-- Modal -->
@@ -141,4 +141,92 @@
       <li class="ml-7 mb-1">✓ Injectable service - use anywhere in your application</li>
   </ul>
   <br><br>
+
+  <!-- Collapsible -->
+  <h2 class="section-title mb-2">Collapsible</h2>
+  <p class="section-subtitle mb-4">Expandable content component</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    Collapsible component allows you to show/hide content with smooth animations. <br>
+    It requires a trigger element (slot="collapsible-trigger") that toggles the visibility when clicked. <br>
+    The component is 100% wide and expands/collapses with a 0.3s transition. <br>
+    Can be controlled programmatically via public methods or through callbacks. <br>
+  </p>
+
+  <nc-collapsible
+    #collapsible
+    [onOpen]="onCollapsibleOpen"
+    [onClose]="onCollapsibleClose"
+    class="mb-12"
+  >
+    <nc-button slot="collapsible-trigger" width="230px" variant="ghost">Click to Toggle</nc-button>
+
+    <div slot="collapsible-content" class="mt-4">
+      <nc-card class="p-4">
+        <p class="text">This is collapsible content that expands and collapses smoothly.</p>
+        <p class="text">You can put any content here - text, images, forms, or other components.</p>
+      </nc-card>
+    </div>
+  </nc-collapsible>
+
+  <div class="flex w-100 justify-center flex-wrap">
+    <nc-button (click)="openCollapsible()" class="mr-1 mb-2" width="230px">Open Programmatically</nc-button>
+    <nc-button (click)="closeCollapsible()" variant="red" class="mr-1 mb-2" width="230px">Close Programmatically</nc-button>
+    <nc-button (click)="getCollapsibleState()" variant="outline" class="mr-1 mb-2" width="230px">Get State</nc-button>
+  </div>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="collapsibleHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="collapsibleTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles as key-value pairs</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply to the collapsible</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute for the collapsible element</li>
+      <li class="ml-7 my-1"><strong>onOpen</strong> (function, default: () => {{ '{' }}{{ '}' }}) - Callback function executed when the collapsible opens</li>
+      <li class="ml-7 mb-1"><strong>onClose</strong> (function, default: () => {{ '{' }}{{ '}' }}) - Callback function executed when the collapsible closes</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Content Slots:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>slot="collapsible-trigger"</strong> - Element that will trigger the collapsible to toggle when clicked (required)</li>
+      <li class="ml-7 mb-1"><strong>slot="collapsible-content"</strong> - Content to be shown/hidden inside the collapsible area</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Public Methods:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>open()</strong> - Opens the collapsible programmatically and triggers onOpen callback</li>
+      <li class="ml-7 my-1"><strong>close()</strong> - Closes the collapsible programmatically and triggers onClose callback</li>
+      <li class="ml-7 my-1"><strong>getOpen()</strong> - Returns {{ '{' }} open: boolean {{ '}' }} indicating if the collapsible is currently open</li>
+      <li class="ml-7 mb-1"><strong>toggle()</strong> - Toggles the collapsible state (called automatically when trigger is clicked)</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Features:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1">✓ 100% width - fits the parent container</li>
+      <li class="ml-7 my-1">✓ Smooth 0.3s transition animation</li>
+      <li class="ml-7 my-1">✓ Click trigger to toggle open/close</li>
+      <li class="ml-7 my-1">✓ Programmatic control via public methods</li>
+      <li class="ml-7 my-1">✓ Callbacks for open and close events</li>
+      <li class="ml-7 mb-1">✓ Customizable styling via class, style, and id inputs</li>
+  </ul>
+  <br><br>
+
 </nc-container>

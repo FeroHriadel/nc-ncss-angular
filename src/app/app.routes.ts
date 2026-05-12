@@ -41,7 +41,7 @@ export const routes: Routes = [
   { path: 'inputs/form-service', component: FormServicePage },
   { path: 'navs', component: NavsPage },
   { path: 'pills', component: PillsPage },
-  { path: 'dialogs', component: DialogsPage },
+  { path: 'popups', component: DialogsPage },
   { path: 'lists', component: ListsPage },
   { path: 'tables', component: TablesPage },
   { path: 'layout', component: LayoutPage },
