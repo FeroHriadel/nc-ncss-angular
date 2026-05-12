@@ -77,6 +77,10 @@ export class ThemeService {
             root.style.setProperty('--nc-text-color-lighter', 'var(--nc-gray-200)');
             root.style.setProperty('--nc-pill-bg', 'var(--nc-white-400)');
             root.style.setProperty('--nc-pill-text-color', 'var(--nc-black-500)');
+            root.style.setProperty('--nc-toast-bg', 'var(--nc-black-400)');
+            root.style.setProperty('--nc-toast-border', '1px solid var(--nc-black-100)');
+            root.style.setProperty('--nc-error-toast-bg', 'var(--nc-red-950)');
+            root.style.setProperty('--nc-error-toast-border', '1px solid var(--nc-red-300)');
         } 
         else if (theme === 'dark') {
             root.style.setProperty('--nc-bg-color', 'var(--nc-black-600)');
@@ -127,6 +131,10 @@ export class ThemeService {
             root.style.setProperty('--nc-text-color-lighter', 'var(--nc-gray-200)');
             root.style.setProperty('--nc-pill-bg', 'var(--nc-black-100)');
             root.style.setProperty('--nc-pill-text-color', 'var(--nc-white-300)');
+            root.style.setProperty('--nc-toast-bg', 'var(--nc-black-400)');
+            root.style.setProperty('--nc-toast-border', '1px solid var(--nc-black-100)');
+            root.style.setProperty('--nc-error-toast-bg', 'var(--nc-red-950)');
+            root.style.setProperty('--nc-error-toast-border', '1px solid var(--nc-red-300)');
         }
     }
 

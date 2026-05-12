@@ -139,6 +139,12 @@
     --nc-pill-bg: var(--nc-white-400);
     --nc-pill-text-color: var(--nc-black-500);
 
+    /* Toast */
+    --nc-toast-bg: var(--nc-black-400);
+    --nc-toast-border: 1px solid var(--nc-black-100);
+    --nc-error-toast-bg: var(--nc-red-950);
+    --nc-error-toast-border: 1px solid var(--nc-red-300);
+
 }
 
 

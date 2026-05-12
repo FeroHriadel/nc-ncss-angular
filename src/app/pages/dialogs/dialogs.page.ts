@@ -4,6 +4,7 @@ import { Card } from '../../ncss/cards/card/card.component';
 import { Modal } from '../../ncss/dialogs/modal/modal.component';
 import { Button } from '../../ncss/buttons/button/button.component';
 import {Highlight } from 'ngx-highlightjs';
+import { ToastService } from '../../ncss/services/toast.service';
 
 
 
@@ -18,6 +19,27 @@ import {Highlight } from 'ngx-highlightjs';
 
 export class DialogsPage {
   @ViewChild('modal') modal!: Modal;
+
+  constructor(private toastService: ToastService) {}
+
+  // Toast methods
+  showToast() {
+    this.toastService.toast({ text: 'This is a success toast notification!' });
+  }
+
+  showError() {
+    this.toastService.error({ text: 'This is an error toast notification!' });
+  }
+
+  showCustomDuration() {
+    this.toastService.toast({ text: 'This toast will stay for 5 seconds', duration: 5000 });
+  }
+
+  showMultipleToasts() {
+    this.toastService.toast({ text: 'First toast' });
+    setTimeout(() => this.toastService.error({ text: 'Second toast (error)' }), 200);
+    setTimeout(() => this.toastService.toast({ text: 'Third toast' }), 400);
+  }
 
   getOpenState() {
     alert(this.modal.isOpen() ? 'Modal is open' : 'Modal is closed');
@@ -92,6 +114,51 @@ export class DialogsPage {
 
       onConfirm = () => {
         alert('Confirmed!');
+      }
+    }
+  `;
+
+  toastHTML = `
+    <div class="flex w-100 justify-center flex-wrap">
+      <nc-button (click)="showToast()" class="mr-1 mb-2" width="230px">Show Toast</nc-button>
+      <nc-button (click)="showError()" variant="red" class="mr-1 mb-2" width="230px">Show Error Toast</nc-button>
+      <nc-button (click)="showCustomDuration()" variant="outline" class="mr-1 mb-2" width="230px">Custom Duration (5s)</nc-button>
+      <nc-button (click)="showMultipleToasts()" variant="outline" class="mr-1 mb-2" width="230px">Show Multiple Toasts</nc-button>
+    </div>
+  `;
+
+  toastTS = `
+    import { Component } from '@angular/core';
+    import { ToastService } from '../../ncss/services/toast.service';
+
+    @Component({
+      selector: 'app-dialogs',
+      templateUrl: './dialogs.page.html',
+      styleUrls: ['./dialogs.page.css']
+    })
+
+    export class DialogsPage {
+      constructor(private toastService: ToastService) {}
+
+      showToast() {
+        this.toastService.toast({ text: 'This is a success toast notification!' });
+      }
+
+      showError() {
+        this.toastService.error({ text: 'This is an error toast notification!' });
+      }
+
+      showCustomDuration() {
+        this.toastService.toast({ 
+          text: 'This toast will stay for 5 seconds', 
+          duration: 5000 
+        });
+      }
+
+      showMultipleToasts() {
+        this.toastService.toast({ text: 'First toast' });
+        setTimeout(() => this.toastService.error({ text: 'Second toast (error)' }), 200);
+        setTimeout(() => this.toastService.toast({ text: 'Third toast' }), 400);
       }
     }
   `;

@@ -1,7 +1,7 @@
 <nc-container>
   <!-- title -->
   <h1 class="page-title">DIALOGS</h1>
-  <p class="page-subtitle mt-4 mb-8">Dialogs & Modals</p>
+  <p class="page-subtitle mt-4 mb-8">Dialogs, Modals, Toasts...</p>
   <br><br><br>
 
   <!-- Modal -->
@@ -80,5 +80,65 @@
       <li class="ml-7 mb-1"><strong>confirm()</strong> - Triggers the onConfirm callback and closes the modal</li>
   </ul>
   <br><br>
+  <!-- Toast -->
+  <h2 class="section-title mb-2">Toast</h2>
+  <p class="section-subtitle mb-4">Injectable service for toast notifications</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
 
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    ToastService is an injectable service that displays temporary notification messages. <br>
+    Toasts appear from the bottom-right corner with smooth animations and auto-dismiss after a specified duration. <br>
+    Multiple toasts stack vertically with 16px spacing between them. <br>
+    Toasts have max-width: 260px, min-height: 150px and expand based on content. <br>
+    Click any toast to dismiss it early. <br>
+  </p>
+
+  <div class="flex w-100 justify-center flex-wrap">
+    <nc-button (click)="showToast()" class="mr-1 mb-2" width="230px">Show Toast</nc-button>
+    <nc-button (click)="showError()" variant="red" class="mr-1 mb-2" width="230px">Show Error Toast</nc-button>
+    <nc-button (click)="showCustomDuration()" variant="outline" class="mr-1 mb-2" width="230px">Custom Duration (5s)</nc-button>
+    <nc-button (click)="showMultipleToasts()" variant="outline" class="mr-1 mb-2" width="230px">Show Multiple Toasts</nc-button>
+  </div>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="toastHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="toastTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br><br>
+
+  <h4 class="section-title-light">Methods:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>toast(options: ToastOptions)</strong> - Displays a success/info toast with default styling (border: var(--nc-toast-border), background: var(--nc-toast-bg))</li>
+      <li class="ml-7 mb-1"><strong>error(options: ToastOptions)</strong> - Displays an error toast with error styling (border: var(--nc-error-toast-border), background: var(--nc-error-toast-bg))</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">ToastOptions Interface:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>text</strong> (string, required) - The message to display in the toast</li>
+      <li class="ml-7 mb-1"><strong>duration</strong> (number, optional, default: 2500) - Duration in milliseconds before the toast auto-dismisses</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Features:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1">✓ Fixed position at bottom-right corner (right: 20px, bottom: 20px)</li>
+      <li class="ml-7 my-1">✓ Smooth slide-in/slide-out animations (300ms transition)</li>
+      <li class="ml-7 my-1">✓ Multiple toasts stack vertically with automatic repositioning</li>
+      <li class="ml-7 my-1">✓ Click to dismiss any toast early</li>
+      <li class="ml-7 my-1">✓ Dynamic DOM creation - no template elements needed</li>
+      <li class="ml-7 my-1">✓ Max width: 260px, Min height: 150px (expands with content)</li>
+      <li class="ml-7 mb-1">✓ Injectable service - use anywhere in your application</li>
+  </ul>
+  <br><br>
 </nc-container>
