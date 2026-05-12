@@ -11,6 +11,7 @@ export { EyeIcon } from './eye.icon';
 export { EyeCrossedIcon } from './eye-crossed.icon';
 export { EditIcon } from './edit.icon';
 export { DeleteIcon } from './delete.icon';
+export { DownloadIcon } from './download.icon';
 export { PlusIcon } from './plus.icon';
 export { UserIcon } from './user.icon';
 export { UserEditIcon } from './user-edit.icon';

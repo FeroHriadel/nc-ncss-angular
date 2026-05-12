@@ -1,14 +1,32 @@
 <nc-container>
+
   <!-- title -->
-  <h1 class="page-title">NCSS ANGULAR</h1>
-  <p class="page-subtitle mt-4 mb-8">Simple components. Just work.</p>
+   <section class="title-section mb-12">
+    <img 
+      [src]="logoPath" 
+      alt="Logo" 
+      class="title-image"
+    >
+    <span class="page-title">
+      <h1 class="page-title orbitron">NCSS ANGULAR</h1>
+      <p class="page-subtitle mt-4 orbitron">Simple components. Just work.</p>
+    </span>
+  </section>
   <br><br>
 
-  <!-- examples -->
-  <div class="examples-container">
+  <!-- features -->
+  <section class="features-section flex gap-6">
     <nc-card class="p-4">
-      <h3 class="section-title">Example Card</h3>
-      <p class="section-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+      <h4 class="section-title-light text-center mb-2">No Installation</h4>
+      <p class="section-subtitle-light text-center">Download and use without any installation.</p>
     </nc-card>
-  </div>
+    <nc-card class="p-4">
+      <h4 class="section-title-light text-center mb-2">No Dependencies</h4>
+      <p class="section-subtitle-light text-center">No external dependencies that break over time.</p>
+    </nc-card>
+    <nc-card class="p-4">
+      <h4 class="section-title-light text-center mb-2">No License</h4>
+      <p class="section-subtitle-light text-center">Completely free to use. You are the owner</p>
+    </nc-card>
+  </section>
 </nc-container>

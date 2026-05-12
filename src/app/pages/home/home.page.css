@@ -1,0 +1,26 @@
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.page-title {
+    z-index: 2;
+}
+
+.title-image {
+    width: 260px;
+    filter: brightness(2);
+    position: absolute;
+    left: 125px;
+    top: -90px;
+}
+
+@media (max-width: 1000px) {
+    .title-image {
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.4;
+    }
+}

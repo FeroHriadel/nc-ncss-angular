@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { TopNav } from './ncss/navs/topnav/topnav.component';
 import { Select } from './ncss/inputs/select/select.component';
 import { PalleteIcon } from './ncss/icons';
@@ -20,6 +20,8 @@ import { ThemeService } from './ncss/services/theme.service';
 
 export class App {
   private themeService = inject(ThemeService);
+  private router = inject(Router);
+  public logoPath = 'images/logo.png';
 
   changeTheme = (theme: string | string[]) => {
     const themeValue = Array.isArray(theme) ? theme[0] : theme;
@@ -28,6 +30,10 @@ export class App {
     }
     console.log('Applying theme:', themeValue);
     this.themeService.setTheme(themeValue as 'light' | 'dark');
+  }
+
+  redirectHome() {
+    this.router.navigate(['/']);
   }
 
 }

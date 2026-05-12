@@ -40,7 +40,9 @@
     }
   ]"
 >
-  <span slot="logo">NCSS Angular</span>
+  <span slot="logo" (click)="redirectHome()" class="pointer">
+    <img [src]="logoPath" alt="Logo" [width]="50" [style]="{transform: 'translate(-5px, 3px)'}">
+  </span>
   <nc-select 
     slot="custom" 
     class="mr-2"
