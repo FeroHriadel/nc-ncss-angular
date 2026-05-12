@@ -1,9 +1,6 @@
 /* Dialog centers automatically when using showModal() */
 .nc-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   border: none;
   padding: 0;
   max-width: 90vw;
