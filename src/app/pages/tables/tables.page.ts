@@ -1,5 +1,5 @@
 // ng component
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Container } from '../../ncss/layout/container/container.component';
 import { VirtualizedTable, FilterPreset, Column } from '../../ncss/tables/virtualized-table/virtualized-table';
@@ -22,6 +22,8 @@ import { Button } from '../../ncss/buttons/button/button.component';
 export class TablesPage {
   @ViewChild('statusTemplate', { static: true }) statusTemplate!: TemplateRef<any>;
   @ViewChild('actionsTemplate', { static: true }) actionsTemplate!: TemplateRef<any>;
+
+  constructor(private cdr: ChangeDetectorRef) {}
   // Sample data for the table
   public tableData = [
     { id: 1, name: 'John Doe', email: 'john@example.com', age: 28, role: 'Developer', active: true },
@@ -481,6 +483,8 @@ export class TablesPage {
       { column: 'status', displayValue: 'Status', template: this.statusTemplate },
       { column: 'role', displayValue: 'Actions', template: this.actionsTemplate }
     ];
+    // Manually trigger change detection to prevent ExpressionChangedAfterItHasBeenCheckedError
+    this.cdr.detectChanges();
   }
 
   handleEdit(row: any) {

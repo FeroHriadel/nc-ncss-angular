@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, ElementRef, ViewChild, OnInit, OnDestroy, AfterViewInit, AfterViewChecked, OnChanges, TemplateRef, ChangeDetectorRef } from '@angular/core';
+import { Component, Input as NgInput, ElementRef, ViewChild, OnInit, OnDestroy, AfterViewInit, AfterViewChecked, OnChanges, TemplateRef, ChangeDetectorRef, signal } from '@angular/core';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Column } from './virtualized-table-filter.service';
@@ -40,8 +40,8 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
   tableScrollWidth = 0;
   hoveredRowIndex: number | null = null;
   copyNotification: CopyNotification | null = null;
-  virtualItems: VirtualItem[] = [];
-  totalSize: number = 0;
+  virtualItems = signal<VirtualItem[]>([]);
+  totalSize = signal(0);
 
   private resizeObserver?: ResizeObserver;
 
@@ -51,17 +51,20 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
   ) {}
 
   ngOnInit(): void {
-    this.updateVirtualItems();
+    // Defer to avoid change detection errors during initialization
+    setTimeout(() => this.updateVirtualItems(), 0);
   }
 
   ngAfterViewInit(): void {
     this.measureTable();
-    this.updateVirtualItems();
+    // Defer to avoid change detection errors
+    setTimeout(() => this.updateVirtualItems(), 0);
     
     if (typeof ResizeObserver !== 'undefined') {
       this.resizeObserver = new ResizeObserver(() => {
         this.measureTable();
-        this.updateVirtualItems();
+        // Defer to avoid change detection errors
+        setTimeout(() => this.updateVirtualItems(), 0);
       });
       if (this.tableRef?.nativeElement) {
         this.resizeObserver.observe(this.tableRef.nativeElement);
@@ -79,21 +82,22 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
 
   ngOnChanges(changes: any): void {
     if (changes.data || changes.updateCounter) {
-      this.updateVirtualItems();
+      // Defer to next change detection cycle
+      setTimeout(() => this.updateVirtualItems(), 0);
     }
   }
 
   private updateVirtualItems(): void {
     if (!this.renderingService || !this.bodyRef?.nativeElement) {
-      this.virtualItems = [];
-      this.totalSize = 0;
+      this.virtualItems.set([]);
+      this.totalSize.set(0);
       return;
     }
 
     const containerHeight = this.bodyRef.nativeElement.clientHeight || 500;
-    this.virtualItems = this.renderingService.getVirtualItems(containerHeight);
-    this.totalSize = this.renderingService.getTotalSize();
-    this.cdr.detectChanges();
+    this.virtualItems.set(this.renderingService.getVirtualItems(containerHeight));
+    this.totalSize.set(this.renderingService.getTotalSize());
+    // Removed cdr.detectChanges() as it's no longer needed
   }
 
   private measureVisibleRows(): void {

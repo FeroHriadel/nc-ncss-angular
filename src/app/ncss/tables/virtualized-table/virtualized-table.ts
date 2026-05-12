@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, effect } from '@angular/core';
+import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VirtualizedTableControlBar } from './virtualized-table-control-bar';
 import { VirtualizedTableHeader } from './virtualized-table-header';
@@ -69,7 +69,7 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
   renderingHandlers: any = {};
   previousZoom: number = 1;
   prevFilteredColumnsLength: number = 0;
-  updateCounter: number = 0;
+  updateCounter = signal(0);
 
   constructor(
     public filterService: VirtualizedTableFilterService,
@@ -117,7 +117,10 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
     // Watch for filtered data changes to update virtualization
     effect(() => {
       const filteredData = this.filterService.filteredData();
-      this.renderingService.updateDataLength(filteredData.length);
+      // Defer the update to avoid change detection errors
+      setTimeout(() => {
+        this.renderingService.updateDataLength(filteredData.length);
+      }, 0);
     });
   }
 
@@ -133,7 +136,7 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
     this.renderingService.initialize(
       this.filteredData.length,
       () => {
-        this.updateCounter++;
+        this.updateCounter.update(val => val + 1);
       }
     );
   }
@@ -155,11 +158,14 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
   ngOnChanges(): void {
     if (this.data || this.columnsConfig) {
       this.columns = this.getColumns();
-      this.filterService.updateData(this.data);
-      this.filterService.updateColumns(this.columns);
-      
-      // Update rendering service with new data length
-      this.renderingService.updateDataLength(this.filteredData.length);
+      // Defer service updates to avoid change detection errors
+      setTimeout(() => {
+        this.filterService.updateData(this.data);
+        this.filterService.updateColumns(this.columns);
+        
+        // Update rendering service with new data length
+        this.renderingService.updateDataLength(this.filteredData.length);
+      }, 0);
     }
   }
 

@@ -99,9 +99,12 @@ export class TableFilterService {
     const currentData = this.dataSignal();
     // Only set sorting state if data reference actually changed
     if (currentData !== data) {
-      this.dataSignal.set(data);
-      this.isSortingSignal.set(true);
-      setTimeout(() => this.isSortingSignal.set(false), 100);
+      // Defer the signal updates to avoid change detection errors
+      setTimeout(() => {
+        this.dataSignal.set(data);
+        this.isSortingSignal.set(true);
+        setTimeout(() => this.isSortingSignal.set(false), 100);
+      }, 0);
     }
   }
 

@@ -96,9 +96,16 @@ export class VirtualizedTableFilterService {
   }
 
   updateData(data: any[]): void {
-    this.dataSignal.set(data);
-    this.isSortingSignal.set(true);
-    setTimeout(() => this.isSortingSignal.set(false), 100);
+    const currentData = this.dataSignal();
+    // Only set sorting state if data reference actually changed
+    if (currentData !== data) {
+      // Defer the signal updates to avoid change detection errors
+      setTimeout(() => {
+        this.dataSignal.set(data);
+        this.isSortingSignal.set(true);
+        setTimeout(() => this.isSortingSignal.set(false), 100);
+      }, 0);
+    }
   }
 
   updateColumns(columns: Column[]): void {

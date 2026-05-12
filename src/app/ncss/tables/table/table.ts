@@ -136,8 +136,11 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   ngOnChanges(): void {
     if (this.data || this.columnsConfig) {
       this.columns = this.getColumns();
-      this.filterService.updateData(this.data);
-      this.filterService.updateColumns(this.columns);
+      // Defer filter service updates to avoid change detection errors
+      setTimeout(() => {
+        this.filterService.updateData(this.data);
+        this.filterService.updateColumns(this.columns);
+      }, 0);
     }
   }
 

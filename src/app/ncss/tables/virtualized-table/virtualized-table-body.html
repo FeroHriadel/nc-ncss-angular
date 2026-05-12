@@ -21,12 +21,12 @@
       <!-- Virtual container -->
       <div 
         class="virtualized-table-virtual-container"
-        [style.height]="totalSize + 'px'" 
+        [style.height]="totalSize() + 'px'" 
         [style.position]="'relative'"
         [style.width]="'100%'"
       >
         <!-- Render only visible rows -->
-        @for (item of virtualItems; track trackRow($index, item)) {
+        @for (item of virtualItems(); track trackRow($index, item)) {
           <div
             [class]="'virtualized-table-row ' + getRowClass(item.index) + (horizontalSeparators ? ' virtualized-table-row-separator' : '')"
             [style.position]="'absolute'"
