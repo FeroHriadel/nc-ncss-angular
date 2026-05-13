@@ -1,3 +1,4 @@
+/* HERO */
 .title-section {
     display: flex;
     align-items: center;
@@ -42,13 +43,31 @@
 
     ::ng-deep .feature-card {
         justify-content: flex-start;
-        max-width: 75%;
+        padding-left: 3rem;
     }
 }
 
 @media (max-width: 425px) {
     ::ng-deep .feature-card {
         justify-content: flex-start;
-        max-width: 100%;
+        padding-left: 1rem;
     }
+}
+
+
+
+/* VIRTUALIZED TABLE */
+::ng-deep .vt-html-example-text {
+    display: inline-block;
+    color: var(--nc-red-600);
+    font-weight: bold;
+}
+
+::ng-deep .vt-html-example-button {
+    padding: 0.25rem 0.5rem;
+    background-color: var(--nc-button-dark-bg);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }

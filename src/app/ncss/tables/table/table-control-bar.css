@@ -11,6 +11,10 @@
   margin-bottom: 0.25rem;
 }
 
+.table-control-bar::-webkit-scrollbar {
+  display: none;
+}
+
 .table-control-bar-left {
   display: flex;
   align-items: center;
@@ -75,4 +79,15 @@
 .table-applied-filter-operator {
   margin-left: 0.5rem;
   font-weight: 700;
+}
+
+@media (max-width: 450px) {
+  .table-control-bar-zoom-level {
+    display: none;
+  }
+  
+  .table-control-bar-right nc-square-button[title="Zoom Out"],
+  .table-control-bar-right nc-square-button[title="Zoom In"] {
+    display: none;
+  }
 }

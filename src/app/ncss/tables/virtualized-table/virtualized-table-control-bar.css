@@ -10,6 +10,13 @@
   background-color: var(--nc-input-bg);
   border-radius: 0.375rem;
   margin-bottom: 0.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.virtualized-table-control-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .virtualized-table-control-bar-left {
@@ -76,4 +83,15 @@
 .virtualized-table-applied-filter-operator {
   margin-left: 0.5rem;
   font-weight: 700;
+}
+
+@media (max-width: 450px) {
+  .vt-control-bar-zoom-level {
+    display: none;
+  }
+  
+  .virtualized-table-control-bar-right nc-square-button[title="Zoom Out"],
+  .virtualized-table-control-bar-right nc-square-button[title="Zoom In"] {
+    display: none;
+  }
 }

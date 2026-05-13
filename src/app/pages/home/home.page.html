@@ -15,7 +15,7 @@
   <br><br>
 
   <!-- features -->
-  <section class="features-section flex flex-wrap gap-6">
+  <section class="features-section flex flex-wrap gap-5 mb-5">
     <nc-card class="feature-card">
       <span class="relative flex flex-center circle border w-12 min-w-12 h-12">
         <nc-settings-icon color="var(--nc-input-placeholder-color-hover)"></nc-settings-icon>
@@ -29,6 +29,7 @@
             height: '2px',
             width: '1.75rem',
             backgroundColor: 'var(--nc-input-placeholder-color-hover)',
+            borderRadius: '1px',
           }"
         ></div>
       </span>
@@ -39,7 +40,7 @@
     </nc-card>
     <nc-card class="feature-card">
       <span class="relative flex flex-center circle border w-12 min-w-12 h-12">
-        <nc-npm-icon color="var(--nc-input-placeholder-color-hover)"></nc-npm-icon>
+        <nc-npm-icon color="var(--nc-input-placeholder-color-hover)" [size]="34"></nc-npm-icon>
         <div 
           class="crossed-out-line"
           [style]="{
@@ -50,6 +51,7 @@
             height: '2px',
             width: '1.75rem',
             backgroundColor: 'var(--nc-input-placeholder-color-hover)',
+            borderRadius: '1px'
           }"
         ></div>
       </span>
@@ -68,4 +70,17 @@
       </span>
     </nc-card>
   </section>
+
+  <!-- virtualized table -->
+  <section>
+    <nc-card class="p-4">
+      <h3 class="section-title-light mb-2">Hard components made simple</h3>
+      <p class="section-subtitle-light mb-4">Like tables that have to do a lot</p>
+      <nc-table 
+        [data]="vtData"
+      ></nc-table>
+    </nc-card>
+  </section>
+
+  <br><br>
 </nc-container>
