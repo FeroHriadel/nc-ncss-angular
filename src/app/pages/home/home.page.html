@@ -17,8 +17,20 @@
   <!-- features -->
   <section class="features-section flex flex-wrap gap-6">
     <nc-card class="feature-card">
-      <span class="flex flex-center circle border w-12 min-w-12 h-12">
+      <span class="relative flex flex-center circle border w-12 min-w-12 h-12">
         <nc-settings-icon color="var(--nc-input-placeholder-color-hover)"></nc-settings-icon>
+        <div 
+          class="crossed-out-line"
+          [style]="{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            height: '2px',
+            width: '1.75rem',
+            backgroundColor: 'var(--nc-input-placeholder-color-hover)',
+          }"
+        ></div>
       </span>
       <span>
         <h4 class="section-title-light mb-2">No Installation</h4>
@@ -26,8 +38,20 @@
       </span>
     </nc-card>
     <nc-card class="feature-card">
-      <span class="flex flex-center circle border w-12 min-w-12 h-12">
+      <span class="relative flex flex-center circle border w-12 min-w-12 h-12">
         <nc-npm-icon color="var(--nc-input-placeholder-color-hover)"></nc-npm-icon>
+        <div 
+          class="crossed-out-line"
+          [style]="{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%) rotate(45deg)',
+            height: '2px',
+            width: '1.75rem',
+            backgroundColor: 'var(--nc-input-placeholder-color-hover)',
+          }"
+        ></div>
       </span>
       <span>
         <h4 class="section-title-light mb-2">No Dependencies</h4>
