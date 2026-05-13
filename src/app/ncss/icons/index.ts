@@ -20,8 +20,12 @@ export { UserDeleteIcon } from './user-delete.icon';
 export { UsersIcon } from './users.icon';
 export { UploadIcon } from './upload.icon';
 export { ToolsIcon } from './tools.icon';
+export { SettingsIcon } from './settings.icon';
 export { NotesIcon } from './notes.icon';
+export { NpmIcon } from './npm.icon';
+export { NoLicenceIcon } from './no-licence.icon';
 export { PalleteIcon } from './pallete.icon';
 export { FilterIcon } from './filter.icon';
 export { ZoomoutIcon } from './zoomout.icon';
 export { ZoominIcon } from './zoomin.icon';
+

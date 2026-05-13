@@ -1,7 +1,7 @@
 <nc-container>
 
   <!-- title -->
-   <section class="title-section mb-12 mt-8">
+   <section class="title-section mb-6 mt-8">
     <img 
       [src]="logoPath" 
       alt="Logo" 
@@ -16,17 +16,32 @@
 
   <!-- features -->
   <section class="features-section flex flex-wrap gap-6">
-    <nc-card class="p-4">
-      <h4 class="section-title-light text-center mb-2 orbitron">No Installation</h4>
-      <p class="section-subtitle-light text-center">Download and use without any installation.</p>
+    <nc-card class="feature-card">
+      <span class="flex flex-center circle border w-12 min-w-12 h-12">
+        <nc-settings-icon color="var(--nc-input-placeholder-color-hover)"></nc-settings-icon>
+      </span>
+      <span>
+        <h4 class="section-title-light mb-2">No Installation</h4>
+        <p class="section-subtitle-light">Download and use without any installation.</p>
+      </span>
     </nc-card>
-    <nc-card class="p-4">
-      <h4 class="section-title-light text-center mb-2 orbitron">No Dependencies</h4>
-      <p class="section-subtitle-light text-center">No external dependencies that break over time.</p>
+    <nc-card class="feature-card">
+      <span class="flex flex-center circle border w-12 min-w-12 h-12">
+        <nc-npm-icon color="var(--nc-input-placeholder-color-hover)"></nc-npm-icon>
+      </span>
+      <span>
+        <h4 class="section-title-light mb-2">No Dependencies</h4>
+        <p class="section-subtitle-light">No external dependencies that break over time.</p>
+      </span>
     </nc-card>
-    <nc-card class="p-4">
-      <h4 class="section-title-light text-center mb-2 orbitron">No License</h4>
-      <p class="section-subtitle-light text-center">Completely free to use. You are the owner.</p>
+    <nc-card class="feature-card">
+      <span class="flex flex-center circle border w-12 min-w-12 h-12">
+        <nc-no-licence-icon color="var(--nc-input-placeholder-color-hover)"></nc-no-licence-icon>
+      </span>
+      <span>
+        <h4 class="section-title-light mb-2">MIT Licence</h4>
+        <p class="section-subtitle-light">Free to use in any project, commercial or personal.</p>
+      </span>
     </nc-card>
   </section>
 </nc-container>

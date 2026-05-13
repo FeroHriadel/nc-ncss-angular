@@ -17,10 +17,38 @@
     top: -90px;
 }
 
+::ng-deep .feature-card {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+}
+
 @media (max-width: 1000px) {
     .title-image {
         left: 50%;
         transform: translateX(-50%);
         opacity: 0.4;
+    }
+}
+
+@media (max-width: 800px) {
+    .features-section  {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    ::ng-deep .feature-card {
+        justify-content: flex-start;
+        max-width: 75%;
+    }
+}
+
+@media (max-width: 425px) {
+    ::ng-deep .feature-card {
+        justify-content: flex-start;
+        max-width: 100%;
     }
 }

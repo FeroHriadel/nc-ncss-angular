@@ -3,7 +3,7 @@ import { Select } from '../../ncss/inputs/select/select.component';
 import { Container } from '../../ncss/layout/container/container.component';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Button } from '../../ncss/buttons/button/button.component';
-import { DownloadIcon } from '../../ncss/icons/download.icon';
+import { DownloadIcon, NoLicenceIcon, NpmIcon, SettingsIcon } from '../../ncss/icons';
 
 
 
@@ -11,7 +11,7 @@ import { DownloadIcon } from '../../ncss/icons/download.icon';
 
 @Component({
   selector: 'home-page',
-  imports: [Container, Card, Button, DownloadIcon],
+  imports: [Container, Card, Button, DownloadIcon, NoLicenceIcon, NpmIcon, SettingsIcon],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
