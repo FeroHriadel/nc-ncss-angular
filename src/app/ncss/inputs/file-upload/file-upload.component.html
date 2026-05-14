@@ -19,13 +19,18 @@
         (change)="onFileUpload($event)"
     >
 
-    <span class="nc-file-upload-placeholder" aria-hidden="true">
+    <span 
+        [class]="'nc-file-upload-placeholder ' + placeholderClass" 
+        [style]="placeholderStyle"
+        aria-hidden="true"
+    >
         {{ getFileInputText() || placeholder }}
     </span>
 
     <button 
         type="button"
-        class="nc-file-upload-clear-button" 
+        [class]="'nc-file-upload-clear-button ' + closeButtonClass" 
+        [style]="closeButtonStyle"
         (click)="clearFileInput($event)"
         [attr.aria-label]="selectedFiles ? (multiple ? 'Clear selected files' : 'Clear selected file') : 'Clear'"
         [attr.tabindex]="selectedFiles ? 0 : -1"

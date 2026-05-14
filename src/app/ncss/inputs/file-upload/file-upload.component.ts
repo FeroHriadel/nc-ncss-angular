@@ -29,6 +29,10 @@ export class FileUpload {
     @Input() id?: string = '';
     @Input() width?: string = '';
     @Input() placeholder: string = '';
+    @Input() placeholderClass?: string = '';
+    @Input() placeholderStyle?: { [key: string]: string } = {};
+    @Input() closeButtonClass?: string = '';
+    @Input() closeButtonStyle?: { [key: string]: string } = {};
     @Input() disabled: boolean = false;
     @Input() onChange: (value: File | File[] | null) => void = () => {};
     @Input() name: string = '';

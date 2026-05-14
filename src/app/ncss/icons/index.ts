@@ -4,6 +4,7 @@ export { CheckIcon } from './check.icon';
 export { CheckboxIcon } from './checkbox.icon';
 export { CodeIcon } from './code.icon';
 export { TimesIcon } from './times.icon';
+export { InfoIcon } from './info.icon';
 export { ListIcon } from './list.icon';
 export { ButtonIcon } from './button.icon';
 export { TextIcon } from './text.icon';
@@ -28,4 +29,7 @@ export { PalleteIcon } from './pallete.icon';
 export { FilterIcon } from './filter.icon';
 export { ZoomoutIcon } from './zoomout.icon';
 export { ZoominIcon } from './zoomin.icon';
+export { WindowIcon } from './window.icon';
+export { CollectionIcon } from './collection.icon';
+export { WarningIcon } from './warning.icon';
 

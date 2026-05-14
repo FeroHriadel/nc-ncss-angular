@@ -1,5 +1,5 @@
 /* HERO */
-.title-section {
+::ng-deep .title-section {
     display: flex;
     align-items: center;
     justify-content: center;

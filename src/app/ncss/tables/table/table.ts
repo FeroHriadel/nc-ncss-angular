@@ -22,7 +22,7 @@ export interface TableProps {
   hover?: { enabled: boolean; color?: string } | boolean;
   controls?: boolean;
   filterPresets?: FilterPreset[];
-  className?: string;
+  class?: string;
   style?: { [key: string]: string };
   id?: string;
   controlBarClassName?: string;
@@ -55,7 +55,7 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @NgInput() controls: boolean = true;
   @NgInput() filterPresets?: FilterPreset[];
   @NgInput() style?: { [key: string]: string };
-  @NgInput() className?: string;
+  @NgInput('class') class?: string;
   @NgInput() id: string = 'ncss-table';
   @NgInput() ariaLabel?: string;
   @NgInput() ariaDescribedBy?: string;

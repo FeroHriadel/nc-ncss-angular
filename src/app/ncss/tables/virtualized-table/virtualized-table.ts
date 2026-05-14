@@ -23,7 +23,7 @@ export interface VirtualizedTableProps {
   hover?: { enabled: boolean; color?: string } | boolean;
   controls?: boolean;
   filterPresets?: FilterPreset[];
-  className?: string;
+  class?: string;
   style?: { [key: string]: string };
   id?: string;
   controlBarClassName?: string;
@@ -56,7 +56,7 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
   @NgInput() controls: boolean = true;
   @NgInput() filterPresets?: FilterPreset[];
   @NgInput() style?: { [key: string]: string };
-  @NgInput() className?: string;
+  @NgInput('class') class?: string;
   @NgInput() id: string = 'ncss-table';
   @NgInput() ariaLabel?: string;
   @NgInput() ariaDescribedBy?: string;

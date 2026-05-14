@@ -1,18 +1,19 @@
 <nc-container>
 
   <!-- title -->
-   <section class="title-section mb-6 mt-8">
+  <section class="title-section mb-5 mt-8">
     <img 
       [src]="logoPath" 
       alt="Logo" 
       class="title-image"
-    >
+  >
     <span class="page-title">
       <h1 class="page-title orbitron">NCSS ANGULAR</h1>
       <p class="page-subtitle mt-4 orbitron">Simple components. Just work.</p>
     </span>
   </section>
-  <br><br>
+  <br><br><br><br>
+
 
   <!-- features -->
   <section class="features-section flex flex-wrap gap-5 mb-5">
@@ -71,15 +72,170 @@
     </nc-card>
   </section>
 
-  <!-- virtualized table -->
-  <section>
+  <!-- table -->
+  <section class="mb-5">
     <nc-card class="p-4">
-      <h3 class="section-title-light mb-2">Hard components made simple</h3>
-      <p class="section-subtitle-light mb-4">Like tables that have to do a lot</p>
+      <h3 class="section-title mb-2">Hard components made simple</h3>
+      <p class="section-subtitle mb-8">Like tables that have to do a lot</p>
       <nc-table 
         [data]="vtData"
+        class="mb-4"
       ></nc-table>
     </nc-card>
+  </section>
+
+  <!-- forms -->
+  <section class="mb-5 flex gap-5">
+    <nc-card class="form-example-2 p-4 pt-6" [style]="{borderRadius: '15px'}">
+      <h3 class="section-title text-center">Save Project</h3>
+      <p class="section-subtitle mb-12 text-center">Choose regions and DB</p>
+      <form id="example-form" class="w-100">
+        <label class="ml-4 mb-1" for="name">Project Name</label>
+        <input 
+          type="text" 
+          class="w-100 mb-4 p-4" 
+          style="border-radius: 999px; height: 3rem;" 
+          placeholder="Enter project name"
+          name="name"
+          id="name"
+        >
+
+        <label class="ml-4 mb-1" for="author">Author</label>
+        <input 
+          type="text" 
+          class="w-100 mb-4 p-4" 
+          style="border-radius: 999px; height: 3rem;" 
+          placeholder="Enter author name"
+          name="author"
+          id="author"
+        >
+
+        <label class="ml-4 mb-1" for="regions">Accessible to Regions</label>
+        <nc-select 
+          [options]="[
+            { label: 'us-east-1', value: 'us-east-1' },
+            { label: 'us-west-2', value: 'us-west-2' },
+            { label: 'eu-central-1', value: 'eu-central-1' },
+            { label: 'ap-southeast-1', value: 'ap-southeast-1' },
+            { label: 'ap-northeast-1', value: 'ap-northeast-1' }
+          ]" 
+          placeholder="Select regions" 
+          [multiple]="true"
+          class="w-100 mb-4"
+          [inputStyle]="{borderRadius: '999px', textIndent: '1rem', height: '3rem'}"
+          name="regions"
+          id="regions"
+        ></nc-select>
+
+        <label class="ml-4 mb-1" for="note">Note</label>
+        <textarea
+          id="note"
+          class="w-100 mb-4 p-4"
+          style="height: 200px; border-radius: 20px;"
+          placeholder="Additional notes or comments..."
+          name="note"
+          id="note"
+        ></textarea>
+
+        <label class="ml-4 mb-1" for="db">Project Files</label>
+        <nc-file-upload 
+          class="w-100 mb-6 rounded" 
+          [style]="{borderRadius: '999px', height: '3rem'}" 
+          placeholder="Upload project files"
+          name="db"
+          id="db"
+          [multiple]="true"
+          [placeholderStyle]="{textAlign: 'center', color: 'var(--nc-button-dark-text-color)'}"
+          [style]="{borderRadius: '999px', backgroundColor: 'var(--nc-button-dark-bg)', height: '3rem'}"
+          [closeButtonStyle]="{color: 'var(--nc-button-dark-text-color)'}"
+        ></nc-file-upload>
+
+        <nc-switch class="mb-4" label="Save to databse" [checked]="true" id="saveToDb" name="saveToDb"></nc-switch><br>
+        <nc-switch class="mb-4" label="Prioritize recent information" id="prioritizeRecent" name="prioritizeRecent"></nc-switch><br>
+        <nc-switch class="mb-6" label="Overwrite existing data" [disabled]="true" id="overwriteExisting" name="overwriteExisting"></nc-switch><br>
+
+        <div class="w-100 flex justify-end">
+          <nc-button width="100px" variant="outline" class="mr-1" [style]="{borderRadius: '999px'}" type="button">Cancel</nc-button>
+          <nc-button width="100px" variant="dark" [style]="{borderRadius: '999px'}" type="submit">Ok</nc-button>
+        </div>
+      </form>
+    </nc-card>
+
+    <div class="forms-and-dialogs-section w-100">
+      <!-- form handling -->
+      <nc-card class="p-6 pb-8">
+        <h3 class="section-title-light mb-2">Simple and Fast Forms</h3>
+        <p class="section-subtitle-light mb-6">Speed up form handling with zero configuration.</p>
+        <p class="text"></p>
+        <div [style]="{margin: 'auto', maxWidth: '300px'}">
+          <nc-button variant="outline" (click)="getFormValues()" class="w-100 mb-2">Get Form Values</nc-button>
+          <nc-button variant="dark" (click)="setFormValues()" class="w-100 mb-2">Fill Form</nc-button>
+          <nc-button variant="red" (click)="clearForm()" class="w-100">Clear Form</nc-button>
+        </div>
+      </nc-card>
+
+      <!-- popups -->
+      <nc-card class="p-6 pb-8 mt-5">
+        <h3 class="section-title-light mb-6">Popups</h3>
+
+        <div class="buttons">
+          <nc-square-button variant="red" (click)="showErrorToast()" class="mr-2">
+            <nc-warning-icon></nc-warning-icon>
+          </nc-square-button>
+
+          <nc-square-button variant="dark" (click)="showToast()" class="mr-2">
+            <nc-info-icon></nc-info-icon>
+          </nc-square-button>
+
+          <nc-modal>
+            <nc-square-button class="mr-2" slot="modal-trigger" variant="outline">
+              <nc-window-icon></nc-window-icon>
+            </nc-square-button>
+            <div slot="modal-content" class="p-4">
+              <h3 class="section-title mb-2">Modal Title</h3>
+              <p class="section-subtitle mb-4">This is the content of the modal. You can put any HTML content here, including forms, tables, or anything else.</p>
+              <p class="text">Comes with pre-made action buttons and may be customized as needed.</p>
+            </div>
+          </nc-modal>
+
+          <nc-select
+            [customTrigger]="true"
+            [options]="[
+              {label: 'Option 1', value: 'option1'},
+              {label: 'Option 2', value: 'option2'},
+              {label: 'Option 3', value: 'option3'},
+              {label: 'Option 4', value: 'option4'},
+              {label: 'Option 5', value: 'option5'},
+            ]"
+          >
+            <nc-square-button class="mr-2" slot="select-trigger">
+              <nc-hamburger-icon></nc-hamburger-icon>
+            </nc-square-button>
+          </nc-select>
+
+          <nc-collapsible class="mt-5" title="Collapsible Section">
+            <nc-square-button class="mb-2" slot="collapsible-trigger">
+              <nc-chevron-down-icon></nc-chevron-down-icon>
+            </nc-square-button>
+            <nc-card slot="collapsible-content" class="p-4">
+              <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi fugit a error sequi aut? Facilis voluptatum tempora autem illum non eius ex? Dolores rem, quod ab in veniam illo nesciunt earum</p>
+            </nc-card>
+          </nc-collapsible>
+        </div>
+      </nc-card>
+
+      <!-- list -->
+       <nc-card class="p-6 pb-8 mt-5">
+        <h3 class="section-title-light mb-6">Pre-coded Mundane Tasks</h3>
+        <nc-crud-list 
+          [items]="basicItems" 
+          [onCreate]="onBasicCreate" 
+          [onClick]="onBasicUpdate" 
+          [onDelete]="onBasicDelete"
+        ></nc-crud-list>
+      </nc-card>
+
+    </div>
   </section>
 
   <br><br>
