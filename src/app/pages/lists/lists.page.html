@@ -182,6 +182,220 @@
         <li class="ml-7 my-1"><strong>data</strong> (any, optional) - Additional data to store with the item</li>
         <li class="ml-7 mb-1"><strong>onClick</strong> (function, optional) - Item-specific click handler</li>
     </ul>
+    <br><br><br><br>
+
+
+
+    
+    <!-- CARD LIST DOCUMENTATION -->
+    <h1 class="page-title">CARD LIST</h1>
+    <p class="page-subtitle mt-4 mb-8">Enhanced list component with title and optional text for each item</p>
+    <br><br><br>
+
+
+
+    <!-- Card List Example 1: Basic Usage -->
+    <h2 class="section-title mb-2">Basic Card List</h2>
+    <p class="section-subtitle mb-4">Card-style list with titles and optional descriptions</p>
+    <nc-card></nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        For basic usage, create an array of <code>CardListItem</code> objects with <code>title</code> and optional <code>text</code> properties. 
+        Each item displays a prominent title with an optional subtitle/description underneath.
+        The component provides default CRUD operations similar to nc-crud-list.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <nc-card-list 
+        [items]="basicCardItems" 
+        [title]="'Projects'"
+        [onCreate]="onCardBasicCreate" 
+        [onClick]="onCardClick" 
+        [onUpdate]="onCardBasicUpdate" 
+        [onDelete]="onCardBasicDelete"
+    ></nc-card-list>
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="cardBasicHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="cardBasicTs" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br><br>
+
+
+
+    <!-- Card List Example 2: Advanced Props -->
+    <h2 class="section-title mb-2">Card List with Custom Props</h2>
+    <p class="section-subtitle mb-4">Customize appearance and behavior with props</p>
+    <nc-card></nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        You can customize the list behavior by disabling certain buttons (<code>createButton</code>, <code>updateButton</code>, <code>deleteButton</code>), 
+        toggling striped rows (<code>striped</code> - defaults to false), and customizing the "no items" message (<code>noItemsText</code>).
+        You can also pass <code>class</code> and <code>style</code> props to customize appearance.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    <nc-card-list 
+        [items]="advancedCardItems" 
+        [title]="'Task List'"
+        [striped]="true"
+        [noItemsText]="'Add your first task using the + button'"
+        [createButton]="true"
+        [updateButton]="false"
+        [deleteButton]="true"
+        [onCreate]="onCardAdvancedCreate" 
+        [onClick]="onCardClick" 
+        [onDelete]="onCardAdvancedDelete"
+        class="my-custom-class"
+    ></nc-card-list>
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="cardAdvancedHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="cardAdvancedTs" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br><br>
+
+
+
+    <!-- Card List Example 3: Custom Templates -->
+    <h2 class="section-title mb-2">Card List with Custom Templates</h2>
+    <p class="section-subtitle mb-4">Render custom HTML for each card using templates</p>
+    <nc-card></nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        For advanced customization, you can pass a <code>TemplateRef</code> to individual items to render custom HTML instead of the default title/text layout.
+        Create visually distinct cards with badges, status indicators, icons, or custom styling while maintaining consistent alignment.
+        The component automatically wraps template content in <code>nc-card-list-item-content</code> for consistent padding and click handling,
+        so templates should only contain the content itself (no wrapper div needed).
+        <br>
+    </p>
+    <p class="mb-2 text"><strong>Steps:</strong></p>
+    <ul>
+        <li class="ml-4 mb-1 text"><i>0. Read the HTML & TS below if the following lines sound too abstract:</i></li>
+        <li class="ml-4 text">1. Create <code>&lt;ng-template&gt;</code> elements in your HTML with template reference variables (e.g., <code>#myTemplate</code>)</li>
+        <li class="ml-4 text">2. Add <code>@ViewChild('myTemplate') myTemplate!: TemplateRef&lt;any&gt;;</code> in your TypeScript component</li>
+        <li class="ml-4 text">3. Implement <code>AfterViewInit</code> lifecycle hook to assign templates to items after view initialization</li>
+        <li class="ml-4 text">4. Assign the template to the <code>template</code> property of specific items in <code>ngAfterViewInit()</code></li>
+        <li class="ml-4 text">5. Call <code>this.cdr.detectChanges()</code> to trigger change detection (inject <code>ChangeDetectorRef</code> in constructor)</li>
+        <li class="ml-4 text">6. Use <code>let-item</code> and <code>let-i="index"</code> in your template to access item data and index</li>
+    </ul>
+
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Result</h4>
+    
+    <!-- Custom templates for different card items -->
+    <ng-template #cardListBoldTemplate let-item let-i="index">
+        <span style="display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.25rem 0.75rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Featured</span>
+        <span class="nc-card-list-item-title section-title-light">
+            <strong>{{ item.title }}</strong>
+        </span>
+        @if (item.text) {
+            <span class="nc-card-list-item-text section-subtitle-light">
+                {{ item.text }}
+            </span>
+        }
+    </ng-template>
+
+    <ng-template #cardListColorTemplate let-item>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="display: inline-block; width: 8px; height: 8px; background-color: #e74c3c; border-radius: 50%; box-shadow: 0 0 8px rgba(231, 76, 60, 0.6);"></span>
+            <span style="color: #e74c3c; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">Urgent</span>
+        </div>
+        <span class="nc-card-list-item-title section-title-light" style="color: #e74c3c;">
+            <strong>{{ item.title }}</strong>
+        </span>
+        @if (item.text) {
+            <span class="nc-card-list-item-text section-subtitle-light" style="color: #c0392b;">
+                {{ item.text }}
+            </span>
+        }
+    </ng-template>
+
+    <ng-template #cardListAccentTemplate let-item>
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1rem;">⚡</span>
+            <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--nc-text-color-light);">Quick</span>
+        </div>
+        <span class="nc-card-list-item-title section-title-light">
+            {{ item.title }}
+        </span>
+        @if (item.text) {
+            <span class="nc-card-list-item-text section-subtitle-light">
+                {{ item.text }}
+            </span>
+        }
+    </ng-template>
+
+    <nc-card-list 
+        [items]="cardItems" 
+        [title]="cardListTitle"
+        [onCreate]="onCardCreate" 
+        [onClick]="onCardClick" 
+        [onUpdate]="onCardUpdate" 
+        [onDelete]="onCardDelete"
+    ></nc-card-list>
+    <br><br>
+
+    <h4 class="section-subtitle-light">HTML</h4>
+    <nc-card>
+        <pre><code [highlight]="cardTemplateHtml" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light">TypeScript</h4>
+    <nc-card>
+        <pre><code [highlight]="cardTemplateTs" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br><br><br>
+
+    <h4 class="section-title-light">Attributes list:</h4>
+    <ul class="text">
+        <li class="ml-7 my-1"><strong>items</strong> (CardListItem[], required) - Array of items to display in the list</li>
+        <li class="ml-7 my-1"><strong>title</strong> (string, default: 'Item List') - Title displayed in the list header</li>
+        <li class="ml-7 my-1"><strong>striped</strong> (boolean, default: false) - Alternating row colors for better readability</li>
+        <li class="ml-7 my-1"><strong>noItemsText</strong> (string, default: 'No items found') - Message shown when list is empty</li>
+        <li class="ml-7 my-1"><strong>createButton</strong> (boolean, default: true) - Show/hide the create (plus) button</li>
+        <li class="ml-7 my-1"><strong>updateButton</strong> (boolean, default: true) - Show/hide update (edit) buttons</li>
+        <li class="ml-7 my-1"><strong>deleteButton</strong> (boolean, default: true) - Show/hide delete buttons</li>
+        <li class="ml-7 my-1"><strong>onCreate</strong> (function) - Callback when create button is clicked</li>
+        <li class="ml-7 my-1"><strong>onClick</strong> (function) - Callback when item content is clicked</li>
+        <li class="ml-7 my-1"><strong>onUpdate</strong> (function) - Callback when update button is clicked</li>
+        <li class="ml-7 my-1"><strong>onDelete</strong> (function) - Callback when delete button is clicked</li>
+        <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS classes to apply to the component</li>
+        <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Inline styles to apply</li>
+        <li class="ml-7 mb-1"><strong>id</strong> (string, default: '') - HTML id attribute</li>
+    </ul>
+    <br>
+
+    <h4 class="section-title-light">CardListItem Interface:</h4>
+    <ul class="text">
+        <li class="ml-7 my-1"><strong>title</strong> (string, optional) - Title text to display for the item</li>
+        <li class="ml-7 my-1"><strong>text</strong> (string, optional) - Optional description/subtitle to display under the title</li>
+        <li class="ml-7 my-1"><strong>template</strong> (TemplateRef&lt;any&gt;, optional) - Custom template to render instead of default title/text</li>
+        <li class="ml-7 my-1"><strong>data</strong> (any, optional) - Additional data to store with the item</li>
+        <li class="ml-7 mb-1"><strong>onClick</strong> (function, optional) - Item-specific click handler</li>
+    </ul>
     <br><br>
 
 </nc-container>

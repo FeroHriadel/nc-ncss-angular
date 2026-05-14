@@ -19,7 +19,7 @@ import { CrudList, CrudListItem } from '../../ncss/lists/crud-list/crud-list.com
 
 @Component({
   selector: 'home-page',
-  imports: [Container, Card, Button, DownloadIcon, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, Collapsible, HamburgerIcon, CrudList],
+  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, Collapsible, HamburgerIcon, CrudList],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })

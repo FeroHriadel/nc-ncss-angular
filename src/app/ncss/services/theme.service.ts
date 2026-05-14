@@ -69,6 +69,7 @@ export class ThemeService {
             root.style.setProperty('--nc-select-bg', 'transparent');
             root.style.setProperty('--nc-select-options-padding', '0.25rem');
             root.style.setProperty('--nc-select-options-bg', 'var(--nc-white-950)');
+            root.style.setProperty('--nc-select-check-color', 'var(--nc-black-500)');
             root.style.setProperty('--nc-label-text-color', 'var(--nc-black-100)');
             root.style.setProperty('--nc-card-bg', 'var(--nc-white-950)');
             root.style.setProperty('--nc-text-color-strong', 'var(--nc-black-600)');
@@ -123,6 +124,7 @@ export class ThemeService {
             root.style.setProperty('--nc-select-bg', 'transparent');
             root.style.setProperty('--nc-select-options-padding', '0.25rem');
             root.style.setProperty('--nc-select-options-bg', 'var(--nc-black-950)');
+            root.style.setProperty('--nc-select-check-color', 'var(--nc-white-500)');
             root.style.setProperty('--nc-label-text-color', 'var(--nc-white-50)');
             root.style.setProperty('--nc-card-bg', 'var(--nc-black-700)');
             root.style.setProperty('--nc-text-color-strong', 'var(--nc-white-700)');

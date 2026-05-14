@@ -124,6 +124,7 @@
     --nc-select-bg: transparent;
     --nc-select-options-padding: 0.25rem;
     --nc-select-options-bg: var(--nc-white-950);
+    --nc-select-check-color: var(--nc-black-500);
     --nc-label-text-color: var(--nc-black-100);
 
     /* Cards */

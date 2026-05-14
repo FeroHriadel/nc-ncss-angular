@@ -173,3 +173,8 @@
     text-align: center;
     padding: 0.5rem;
 }
+
+.nc-select-check {
+    color: var(--nc-select-check-color);
+    flex-shrink: 0;
+}
