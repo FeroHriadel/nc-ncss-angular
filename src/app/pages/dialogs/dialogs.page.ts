@@ -4,6 +4,7 @@ import { Card } from '../../ncss/cards/card/card.component';
 import { Modal } from '../../ncss/popups/modal/modal.component';
 import { Collapsible } from '../../ncss/popups/collapsible/collapsible.component';
 import { Popover } from '../../ncss/popups/popover/popover.component';
+import { SideDrawer } from '../../ncss/popups/sidedrawer/sidedrawer.component';
 import { Button } from '../../ncss/buttons/button/button.component';
 import {Highlight } from 'ngx-highlightjs';
 import { ToastService } from '../../ncss/services/toast.service';
@@ -14,7 +15,7 @@ import { ToastService } from '../../ncss/services/toast.service';
   selector: 'app-dialogs',
   templateUrl: './dialogs.page.html',
   styleUrls: ['./dialogs.page.css'],
-  imports: [Container, Card, Modal, Collapsible, Popover, Button, Highlight]
+  imports: [Container, Card, Modal, Collapsible, Popover, SideDrawer, Button, Highlight]
 })
 
 
@@ -23,6 +24,7 @@ export class DialogsPage {
   @ViewChild('modal') modal!: Modal;
   @ViewChild('collapsible') collapsible!: Collapsible;
   @ViewChild('popover') popover!: Popover;
+  @ViewChild('sidedrawer') sidedrawer!: SideDrawer;
 
   constructor(private toastService: ToastService) {}
 
@@ -79,6 +81,20 @@ export class DialogsPage {
   getPopoverState() {
     const state = this.popover.getState();
     alert(`Popover is ${state ? 'open' : 'closed'}`);
+  }
+
+  // SideDrawer methods
+  openSideDrawer() {
+    this.sidedrawer.open();
+  }
+
+  closeSideDrawer() {
+    this.sidedrawer.close();
+  }
+
+  getSideDrawerState() {
+    const state = this.sidedrawer.getState();
+    alert(`SideDrawer is ${state ? 'open' : 'closed'}`);
   }
 
   getOpenState() {
@@ -317,6 +333,75 @@ export class DialogsPage {
       getPopoverState() {
         const state = this.popover.getState();
         alert(\`Popover is \${state ? 'open' : 'closed'}\`);
+      }
+    }
+  `;
+
+  sidedrawerHTML = `
+    <!-- Basic SideDrawer with right side (default) -->
+    <nc-sidedrawer #sidedrawer>
+      <nc-button slot="sidedrawer-trigger" width="200px">Open Right Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Drawer Content</h4>
+        <p class="text">This is a side drawer that slides in from the right side.</p>
+        <p class="text mt-2">Click the close button, press Esc, or click outside to close.</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Left side drawer -->
+    <nc-sidedrawer side="left">
+      <nc-button slot="sidedrawer-trigger" variant="outline" width="200px">Open Left Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Left Drawer</h4>
+        <p class="text">This drawer slides in from the left!</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Top side drawer with custom width -->
+    <nc-sidedrawer side="top" width="300px">
+      <nc-button slot="sidedrawer-trigger" variant="ghost" width="200px">Open Top Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Top Drawer</h4>
+        <p class="text">This drawer slides in from the top with custom height!</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Programmatic Control -->
+    <div class="flex w-100 justify-center flex-wrap mt-4">
+      <nc-button (click)="openSideDrawer()" class="mr-1 mb-2" width="200px">Open Programmatically</nc-button>
+      <nc-button (click)="closeSideDrawer()" variant="red" class="mr-1 mb-2" width="200px">Close Programmatically</nc-button>
+      <nc-button (click)="getSideDrawerState()" variant="outline" class="mr-1 mb-2" width="200px">Get State</nc-button>
+    </div>
+  `;
+
+  sidedrawerTS = `
+    import { Component, ViewChild } from '@angular/core';
+    import { SideDrawer } from '../../ncss/popups/sidedrawer/sidedrawer.component';
+
+    @Component({
+      selector: 'app-dialogs',
+      templateUrl: './dialogs.page.html',
+      styleUrls: ['./dialogs.page.css'],
+      imports: [SideDrawer]
+    })
+
+    export class DialogsPage {
+      @ViewChild('sidedrawer') sidedrawer!: SideDrawer;
+
+      openSideDrawer() {
+        this.sidedrawer.open();
+      }
+
+      closeSideDrawer() {
+        this.sidedrawer.close();
+      }
+
+      getSideDrawerState() {
+        const state = this.sidedrawer.getState();
+        alert(\`SideDrawer is \${state ? 'open' : 'closed'}\`);
       }
     }
   `;

@@ -3,7 +3,7 @@ import { Select } from '../../ncss/inputs/select/select.component';
 import { Container } from '../../ncss/layout/container/container.component';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Button } from '../../ncss/buttons/button/button.component';
-import { NoLicenceIcon, NpmIcon, SettingsIcon, ChevronDownIcon, WindowIcon, InfoIcon, WarningIcon, HamburgerIcon } from '../../ncss/icons';
+import { NoLicenceIcon, NpmIcon, SettingsIcon, ChevronDownIcon, WindowIcon, InfoIcon, WarningIcon, HamburgerIcon, DownloadIcon } from '../../ncss/icons';
 import { Table } from "../../ncss/tables/table/table";
 import { Switch } from '../../ncss/inputs/switch/switch.component';
 import { FileUpload } from '../../ncss/inputs/file-upload/file-upload.component';
@@ -13,13 +13,14 @@ import { Modal } from '../../ncss/popups/modal/modal.component';
 import { ToastService } from '../../ncss/services/toast.service';
 import { CardList, CardListItem } from '../../ncss/lists/card-list/card-list.component';
 import { Popover } from '../../ncss/popups/popover/popover.component';
+import { FileService } from '../../ncss/services/file.services';
 
 
 
 
 @Component({
   selector: 'home-page',
-  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, HamburgerIcon, CardList, Popover],
+  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, HamburgerIcon, DownloadIcon, CardList, Popover],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -30,6 +31,7 @@ export class HomePage {
   @ViewChild('mySelect') mySelect?: Select;
   public formService = inject(FormService);
   public toastService = inject(ToastService);
+  public fileService = inject(FileService);
   
   public logoPath = 'images/logo.png';
   public vtData = [
@@ -87,6 +89,10 @@ export class HomePage {
       this.basicItems.splice(index, 1);
     }
   };
+
+  public downloadNcss() {
+    this.fileService.downloadFile('/files/ncss.zip');
+  }
 
 
 }

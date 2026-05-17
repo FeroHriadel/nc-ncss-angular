@@ -1,0 +1,15 @@
+<span (click)="toggleDrawer()" class="sidedrawer-trigger-wrap">
+  <ng-content select="[slot='sidedrawer-trigger']"></ng-content>
+</span>
+
+@if (isOpenState) {
+  <div class="nc-sidedrawer-backdrop" (click)="onBackdropClick($event)">
+    <div [id]="id" [class]="'nc-sidedrawer nc-sidedrawer-' + side + ' ' + class" [style]="style" [style.width]="side === 'left' || side === 'right' ? width : '100%'" [style.height]="side === 'top' || side === 'bottom' ? width : '100vh'">
+      <nc-close-button (click)="close()" class="nc-sidedrawer-close-button"></nc-close-button>
+      
+      <div class="nc-sidedrawer-content">
+        <ng-content select="[slot='sidedrawer-content']"></ng-content>
+      </div>
+    </div>
+  </div>
+}

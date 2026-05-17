@@ -358,4 +358,124 @@
   </ul>
   <br><br>
 
+  <!-- SideDrawer -->
+  <h2 class="section-title mb-2">SideDrawer</h2>
+  <p class="section-subtitle mb-4">Sliding panel from screen edges</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    SideDrawer component displays a sliding panel that emerges from any screen edge. <br>
+    Slides in from top, bottom, left, or right (default: right) with smooth animations. <br>
+    Has a close button in the top-right corner and automatic backdrop with blur effect. <br>
+    Closes on Esc key, click outside backdrop, close button click, or programmatically. <br>
+    Default width/height is 260px, customizable via the width input. <br>
+  </p>
+
+  <div class="flex w-100 justify-center flex-wrap gap-4">
+    <!-- Right drawer (default) -->
+    <nc-sidedrawer #sidedrawer>
+      <nc-button slot="sidedrawer-trigger" width="200px">Open Right Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Right Drawer</h4>
+        <p class="text">This is a side drawer that slides in from the right side (default).</p>
+        <p class="text mt-2">Click the close button, press Esc, or click outside to close.</p>
+        <p class="text mt-2">The drawer has a default width of 260px.</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Left drawer -->
+    <nc-sidedrawer side="left">
+      <nc-button slot="sidedrawer-trigger" variant="outline" width="200px">Open Left Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Left Drawer</h4>
+        <p class="text">This drawer slides in from the left!</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Top drawer with custom size -->
+    <nc-sidedrawer side="top" width="300px">
+      <nc-button slot="sidedrawer-trigger" variant="ghost" width="200px">Open Top Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Top Drawer</h4>
+        <p class="text">This drawer slides in from the top with custom height of 300px!</p>
+      </div>
+    </nc-sidedrawer>
+
+    <!-- Bottom drawer -->
+    <nc-sidedrawer side="bottom" width="250px">
+      <nc-button slot="sidedrawer-trigger" variant="outline" width="200px">Open Bottom Drawer</nc-button>
+      
+      <div slot="sidedrawer-content">
+        <h4 class="section-subtitle mb-4">Bottom Drawer</h4>
+        <p class="text">This drawer slides in from the bottom!</p>
+      </div>
+    </nc-sidedrawer>
+  </div>
+  <br><br>
+
+  <div class="flex w-100 justify-center flex-wrap">
+    <nc-button (click)="openSideDrawer()" class="mr-1 mb-2" width="200px">Open Programmatically</nc-button>
+    <nc-button (click)="closeSideDrawer()" variant="red" class="mr-1 mb-2" width="200px">Close Programmatically</nc-button>
+    <nc-button (click)="getSideDrawerState()" variant="outline" class="mr-1 mb-2" width="200px">Get State</nc-button>
+  </div>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="sidedrawerHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="sidedrawerTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles for the drawer container</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply to the drawer container</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute for the drawer element</li>
+      <li class="ml-7 my-1"><strong>width</strong> (string, default: '260px') - Width for left/right drawers, or height for top/bottom drawers</li>
+      <li class="ml-7 mb-1"><strong>side</strong> ('top' | 'bottom' | 'left' | 'right', default: 'right') - Which edge of the screen the drawer slides from</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Content Slots:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>slot="sidedrawer-trigger"</strong> - Element that will trigger the drawer to open when clicked (required)</li>
+      <li class="ml-7 mb-1"><strong>slot="sidedrawer-content"</strong> - Content to be displayed inside the drawer</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Public Methods:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>open()</strong> - Opens the side drawer programmatically</li>
+      <li class="ml-7 my-1"><strong>close()</strong> - Closes the side drawer programmatically</li>
+      <li class="ml-7 mb-1"><strong>getState()</strong> - Returns boolean indicating if the drawer is currently open</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Features:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1">✓ Slides from any screen edge: top, bottom, left, or right</li>
+      <li class="ml-7 my-1">✓ Smooth slide-in animations (0.3s ease-out)</li>
+      <li class="ml-7 my-1">✓ Backdrop with blur effect (rgba(0, 0, 0, 0.4) + 4px blur)</li>
+      <li class="ml-7 my-1">✓ Default width/height: 260px (customizable)</li>
+      <li class="ml-7 my-1">✓ Close button in top-right corner</li>
+      <li class="ml-7 my-1">✓ Click backdrop to dismiss</li>
+      <li class="ml-7 my-1">✓ Esc key to close</li>
+      <li class="ml-7 my-1">✓ Scrollable content area with padding</li>
+      <li class="ml-7 my-1">✓ Programmatic control via public methods</li>
+      <li class="ml-7 mb-1">✓ Full-height/width depending on side orientation</li>
+  </ul>
+  <br><br>
+
 </nc-container>

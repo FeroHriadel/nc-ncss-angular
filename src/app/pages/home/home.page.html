@@ -72,7 +72,22 @@
     </nc-card>
   </section>
 
-  <!-- table -->
+  <!-- Download -->
+  <div class="w-100 my-12 flex flex-center">
+    <nc-button
+      variant="dark"
+      size="large"
+      (click)="downloadNcss()"    
+    >
+      <span class="flex flex-center">
+        <nc-download-icon class="mr-2"></nc-download-icon>
+        Download NCSS Angular
+      </span>
+    </nc-button>
+  </div>
+  <br><br>
+
+
   <section class="mb-5">
     <nc-card class="p-4">
       <h3 class="section-title mb-2">Hard components made simple</h3>
@@ -137,13 +152,13 @@
           id="note"
         ></textarea>
 
-        <label class="ml-4 mb-1" for="db">Project Files</label>
+        <label class="ml-4 mb-1" for="projectFiles">Project Files</label>
         <nc-file-upload 
           class="w-100 mb-6 rounded" 
           [style]="{borderRadius: '999px', height: '3rem'}" 
           placeholder="Upload project files"
-          name="db"
-          id="db"
+          name="projectFiles"
+          id="projectFiles"
           [multiple]="true"
           [placeholderStyle]="{textAlign: 'center', color: 'var(--nc-button-dark-text-color)'}"
           [style]="{borderRadius: '999px', backgroundColor: 'var(--nc-button-dark-bg)', height: '3rem'}"
@@ -177,7 +192,7 @@
       <!-- popups -->
       <nc-card class="p-6 pb-8 mt-5">
         <h3 class="section-title-light mb-2">Popups</h3>
-        <p class="section-subtitle-light mb-6">Dropdowns, Collapsibles, Popovers, Modals, and Toasts</p>
+        <p class="section-subtitle-light mb-6">Dropdowns, Collapsibles, Popovers, Modals, Sidedrawers and Toasts</p>
 
         <div class="buttons">
           <nc-square-button variant="red" (click)="showErrorToast()" class="mr-2">
@@ -240,6 +255,28 @@
 
     </div>
   </section>
+
+  <!-- Download -->
+  <div class="w-100 my-12 flex flex-center">
+    <nc-button
+      variant="dark"
+      size="large"
+      (click)="downloadNcss()"    
+    >
+      <span class="flex flex-center">
+        <nc-download-icon class="mr-2"></nc-download-icon>
+        Download NCSS Angular
+      </span>
+    </nc-button>
+  </div>
+  <br><br>
+
+  <h2 class="section-title mb-2">How to Use</h2>
+  <p class="section-subtitle mb-4">Just download and include in your project</p>
+  <nc-card class="mb-4"></nc-card>
+  <p class="text mb-2">Just download the library and include the ncss.css file in your project. No build step required.</p>
+  <p class="text mb-2">Import the component you need from the ncss folder.</p>
+  <p class="text mb-2">Each component comes with detailed docs on the use and customization options.</p>
 
   <br><br>
 </nc-container>
