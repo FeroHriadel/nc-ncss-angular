@@ -84,8 +84,8 @@
     </nc-card>
   </section>
 
-  <!-- forms -->
-  <section class="mb-5 flex gap-5">
+  <!-- forms, popups, lists -->
+  <section class="forms-popups-lists mb-5 flex gap-5">
     <nc-card class="form-example-2 p-4 pt-6" [style]="{borderRadius: '15px'}">
       <h3 class="section-title text-center">Save Project</h3>
       <p class="section-subtitle mb-12 text-center">Choose regions and DB</p>
@@ -176,7 +176,8 @@
 
       <!-- popups -->
       <nc-card class="p-6 pb-8 mt-5">
-        <h3 class="section-title-light mb-6">Popups</h3>
+        <h3 class="section-title-light mb-2">Popups</h3>
+        <p class="section-subtitle-light mb-6">Dropdowns, Collapsibles, Popovers, Modals, and Toasts</p>
 
         <div class="buttons">
           <nc-square-button variant="red" (click)="showErrorToast()" class="mr-2">
@@ -228,11 +229,11 @@
 
       <!-- list -->
        <nc-card class="p-6 pb-8 mt-5">
-        <h3 class="section-title-light mb-6">Pre-coded Solutions to everyday tasks</h3>
+        <h3 class="section-title-light mb-6">PreStyled and CRUD PreCoded Lists</h3>
         <nc-card-list 
           [items]="basicItems" 
           [onCreate]="onBasicCreate" 
-          [onClick]="onBasicUpdate" 
+          [onUpdate]="onBasicUpdate" 
           [onDelete]="onBasicDelete"
         ></nc-card-list>
       </nc-card>

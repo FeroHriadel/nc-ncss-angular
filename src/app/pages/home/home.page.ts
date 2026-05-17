@@ -68,7 +68,6 @@ export class HomePage {
   public basicItems: CardListItem[] = [
     { title: 'Task Management', text: 'Pre-built CRUD operations with edit & delete' },
     { title: 'Form Handling', text: 'Service-based form state management' },
-    { title: 'Toast Notifications', text: 'Simple success & error notifications' },
   ];
 
     public onBasicCreate = () => {

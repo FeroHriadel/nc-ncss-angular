@@ -71,3 +71,12 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+
+/* FORMS, POPUPS, LISTS */
+@media (max-width: 768px) {
+    .forms-popups-lists {
+        flex-direction: column;
+    }
+}
