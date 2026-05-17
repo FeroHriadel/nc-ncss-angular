@@ -17,8 +17,8 @@
 /* Variables */
 :root {
     /* Z-indexes */
-    --nc-nav-z-index: 3;
-    --nc-options-z-index: 4;
+    --nc-nav-z-index: 10;
+    --nc-options-z-index: 11;
 
 
     /* Colors scales */

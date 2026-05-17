@@ -229,4 +229,133 @@
   </ul>
   <br><br>
 
+  <!-- Popover -->
+  <h2 class="section-title mb-2">Popover</h2>
+  <p class="section-subtitle mb-4">Smart positioning popover component</p>
+  <nc-card></nc-card>
+  <br>
+  <br>
+
+  <h4 class="section-subtitle-light mb-2">Description</h4>
+  <p class="text mb-8">
+    Popover component displays contextual content in an absolutely positioned card overlay. <br>
+    It intelligently positions itself based on available screen space - defaults to below the trigger, but opens above if no space. <br>
+    Horizontally aligns with trigger's x position and adjusts left if needed to stay on screen. <br>
+    Closes on Esc key, click outside, or programmatically. <br>
+    Built on nc-card with fit-content sizing and smooth fade-in animation. <br>
+  </p>
+
+  <div class="flex w-100 justify-center flex-wrap gap-4">
+    <!-- Basic Popover -->
+    <nc-popover #popover>
+      <nc-button slot="popover-trigger" width="200px">Click to Open Popover</nc-button>
+      
+      <div slot="popover-content" class="p-4">
+        <h4 class="section-subtitle">Popover Content</h4>
+        <p class="text">This is a smart popover that positions itself automatically!</p>
+        <p class="text mt-2">It will open below by default, but if there's no space, it opens above.</p>
+        <p class="text mt-2">Try scrolling to the bottom or top of the page and clicking the trigger.</p>
+      </div>
+    </nc-popover>
+
+    <!-- Force Direction Up -->
+    <nc-popover forceDirection="up">
+      <nc-button slot="popover-trigger" variant="outline" width="200px">Force Open Upward</nc-button>
+      
+      <div slot="popover-content" class="p-4">
+        <p class="text">This popover always opens above the trigger!</p>
+      </div>
+    </nc-popover>
+
+    <!-- Force Direction Down -->
+    <nc-popover forceDirection="down">
+      <nc-button slot="popover-trigger" variant="ghost" width="200px">Force Open Downward</nc-button>
+      
+      <div slot="popover-content" class="p-4">
+        <p class="text">This popover always opens below the trigger!</p>
+      </div>
+    </nc-popover>
+
+    <!-- Custom Styling -->
+    <nc-popover popoverClass="custom-shadow" [popoverStyle]="{ 'border': '2px solid var(--nc-primary-500)' }">
+      <nc-button slot="popover-trigger" variant="outline" width="200px">Custom Styled Popover</nc-button>
+      
+      <div slot="popover-content" class="p-4" style="min-width: 300px;">
+        <h4 class="section-subtitle mb-2">Custom Styles</h4>
+        <p class="text">You can customize the popover with popoverClass and popoverStyle!</p>
+        <p class="text mt-2">The card inside can be styled with class and style inputs.</p>
+      </div>
+    </nc-popover>
+  </div>
+  <br><br>
+
+  <div class="flex w-100 justify-center flex-wrap">
+    <nc-button (click)="openPopover()" class="mr-1 mb-2" width="200px">Open Programmatically</nc-button>
+    <nc-button (click)="closePopover()" variant="red" class="mr-1 mb-2" width="200px">Close Programmatically</nc-button>
+    <nc-button (click)="getPopoverState()" variant="outline" class="mr-1 mb-2" width="200px">Get State</nc-button>
+  </div>
+  <br><br>
+
+  <h4 class="section-subtitle-light">HTML</h4>
+  <nc-card>
+    <pre><code [highlight]="popoverHTML" language="xml" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card> 
+  <br><br>
+
+  <h4 class="section-subtitle-light">TypeScript</h4>
+  <nc-card>
+    <pre><code [highlight]="popoverTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+  </nc-card>
+  <br><br><br>
+
+  <h4 class="section-title-light">Attributes list:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>style</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles for the inner nc-card element</li>
+      <li class="ml-7 my-1"><strong>class</strong> (string, default: '') - CSS class names to apply to the inner nc-card element</li>
+      <li class="ml-7 my-1"><strong>id</strong> (string, default: '') - HTML id attribute for the popover container</li>
+      <li class="ml-7 my-1"><strong>popoverStyle</strong> (object, default: {{ '{' }}{{ '}' }}) - Custom CSS styles for the popover container (absolute positioned element)</li>
+      <li class="ml-7 my-1"><strong>popoverClass</strong> (string, default: '') - CSS class names to apply to the popover container</li>
+      <li class="ml-7 mb-1"><strong>forceDirection</strong> ('up' | 'down', optional) - Forces popover to open in specific direction, overriding auto-positioning</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Content Slots:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>slot="popover-trigger"</strong> - Element that will trigger the popover to toggle when clicked (required)</li>
+      <li class="ml-7 mb-1"><strong>slot="popover-content"</strong> - Content to be displayed inside the popover card</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Public Methods:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1"><strong>open()</strong> - Opens the popover programmatically</li>
+      <li class="ml-7 my-1"><strong>close()</strong> - Closes the popover programmatically</li>
+      <li class="ml-7 mb-1"><strong>getState()</strong> - Returns boolean indicating if the popover is currently open</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">Smart Positioning Features:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1">✓ <strong>Vertical Auto-positioning:</strong> Opens below trigger by default, switches to above if insufficient space</li>
+      <li class="ml-7 my-1">✓ <strong>Horizontal Alignment:</strong> X-position aligns with trigger's left edge</li>
+      <li class="ml-7 my-1">✓ <strong>Horizontal Adjustment:</strong> Shifts left if popover would overflow viewport right edge</li>
+      <li class="ml-7 my-1">✓ <strong>Force Direction:</strong> Use forceDirection='up' or 'down' to override auto-positioning</li>
+      <li class="ml-7 my-1">✓ <strong>Gap Control:</strong> 8px gap maintained between trigger and popover</li>
+      <li class="ml-7 mb-1">✓ <strong>Viewport Aware:</strong> Ensures minimum 8px margin from viewport edges</li>
+  </ul>
+  <br>
+
+  <h4 class="section-title-light">General Features:</h4>
+  <ul class="text">
+      <li class="ml-7 my-1">✓ Fixed positioning</li>
+      <li class="ml-7 my-1">✓ Fit-content width with max-width: 90vw</li>
+      <li class="ml-7 my-1">✓ Smooth fade-in animation (0.15s)</li>
+      <li class="ml-7 my-1">✓ Click outside to dismiss</li>
+      <li class="ml-7 my-1">✓ Esc key to close</li>
+      <li class="ml-7 my-1">✓ Built on nc-card component for consistent styling</li>
+      <li class="ml-7 my-1">✓ Programmatic control via public methods</li>
+      <li class="ml-7 mb-1">✓ Inline-block trigger wrapper with fit-content width</li>
+  </ul>
+  <br><br>
+
 </nc-container>

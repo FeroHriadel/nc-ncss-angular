@@ -3,6 +3,7 @@ import { Container } from '../../ncss/layout/container/container.component';
 import { Card } from '../../ncss/cards/card/card.component';
 import { Modal } from '../../ncss/popups/modal/modal.component';
 import { Collapsible } from '../../ncss/popups/collapsible/collapsible.component';
+import { Popover } from '../../ncss/popups/popover/popover.component';
 import { Button } from '../../ncss/buttons/button/button.component';
 import {Highlight } from 'ngx-highlightjs';
 import { ToastService } from '../../ncss/services/toast.service';
@@ -13,7 +14,7 @@ import { ToastService } from '../../ncss/services/toast.service';
   selector: 'app-dialogs',
   templateUrl: './dialogs.page.html',
   styleUrls: ['./dialogs.page.css'],
-  imports: [Container, Card, Modal, Collapsible, Button, Highlight]
+  imports: [Container, Card, Modal, Collapsible, Popover, Button, Highlight]
 })
 
 
@@ -21,6 +22,7 @@ import { ToastService } from '../../ncss/services/toast.service';
 export class DialogsPage {
   @ViewChild('modal') modal!: Modal;
   @ViewChild('collapsible') collapsible!: Collapsible;
+  @ViewChild('popover') popover!: Popover;
 
   constructor(private toastService: ToastService) {}
 
@@ -63,6 +65,20 @@ export class DialogsPage {
 
   onCollapsibleClose = () => {
     console.log('Collapsible closed!');
+  }
+
+  // Popover methods
+  openPopover() {
+    this.popover.open();
+  }
+
+  closePopover() {
+    this.popover.close();
+  }
+
+  getPopoverState() {
+    const state = this.popover.getState();
+    alert(`Popover is ${state ? 'open' : 'closed'}`);
   }
 
   getOpenState() {
@@ -243,6 +259,64 @@ export class DialogsPage {
 
       onCollapsibleClose = () => {
         console.log('Collapsible closed!');
+      }
+    }
+  `;
+
+  popoverHTML = `
+    <!-- Basic Popover with trigger -->
+    <nc-popover #popover>
+      <nc-button slot="popover-trigger" width="200px">Click to Open Popover</nc-button>
+      
+      <div slot="popover-content" class="p-4">
+        <h4 class="section-subtitle">Popover Content</h4>
+        <p class="text">This is a smart popover that positions itself automatically!</p>
+        <p class="text mt-2">It will open below by default, but if there's no space, it opens above.</p>
+      </div>
+    </nc-popover>
+
+    <!-- Programmatic Control -->
+    <div class="flex w-100 justify-center flex-wrap mt-4">
+      <nc-button (click)="openPopover()" class="mr-1 mb-2" width="200px">Open Programmatically</nc-button>
+      <nc-button (click)="closePopover()" variant="red" class="mr-1 mb-2" width="200px">Close Programmatically</nc-button>
+      <nc-button (click)="getPopoverState()" variant="outline" class="mr-1 mb-2" width="200px">Get State</nc-button>
+    </div>
+
+    <!-- Force Direction -->
+    <nc-popover forceDirection="up">
+      <nc-button slot="popover-trigger" variant="outline" width="200px">Force Open Upward</nc-button>
+      
+      <div slot="popover-content" class="p-4">
+        <p class="text">This popover always opens above the trigger!</p>
+      </div>
+    </nc-popover>
+  `;
+
+  popoverTS = `
+    import { Component, ViewChild } from '@angular/core';
+    import { Popover } from '../../ncss/popups/popover/popover.component';
+
+    @Component({
+      selector: 'app-dialogs',
+      templateUrl: './dialogs.page.html',
+      styleUrls: ['./dialogs.page.css'],
+      imports: [Popover]
+    })
+
+    export class DialogsPage {
+      @ViewChild('popover') popover!: Popover;
+
+      openPopover() {
+        this.popover.open();
+      }
+
+      closePopover() {
+        this.popover.close();
+      }
+
+      getPopoverState() {
+        const state = this.popover.getState();
+        alert(\`Popover is \${state ? 'open' : 'closed'}\`);
       }
     }
   `;
