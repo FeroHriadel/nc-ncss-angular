@@ -7,7 +7,12 @@
     background-color: var(--nc-card-bg);
     box-shadow: 4px 6px 6px rgba(0, 0, 0, 0.1);
     z-index: var(--nc-nav-z-index);
-    transition: all 0.3s ease;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+}
+
+.nc-left-nav-closed {
+    transform: translateX(-100%);
 }
 
 ::ng-deep .nc-left-nav .nc-left-nav-close {
@@ -69,5 +74,15 @@
 .nc-left-nav-options {
     display: flex;
     flex-direction: column;
+}
+
+.nc-left-nav-toggle {
+    position: fixed;
+    left: 1rem;
+    z-index: var(--nc-nav-z-index);
+}
+
+::ng-deep .nc-left-nav-toggle-icon {
+    transform: rotate(-45deg);
 }
 

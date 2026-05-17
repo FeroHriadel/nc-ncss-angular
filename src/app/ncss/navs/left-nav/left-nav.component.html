@@ -1,11 +1,11 @@
 <nav 
-    [class]="'nc-left-nav ' + class" 
+    [class]="'nc-left-nav ' + class + (isOpen ? '' : ' nc-left-nav-closed')" 
     [attr.id]="id" 
     [style]="style" 
     [style.width]="width ? width : null"
     [style.top]="top ? top : 0"
 >
-    <nc-close-button class="nc-left-nav-close"></nc-close-button>
+    <nc-close-button class="nc-left-nav-close" (click)="close()"></nc-close-button>
     <ng-content></ng-content>
     
     @for (link of links; track link.label) {
@@ -23,3 +23,16 @@
         }
     }
 </nav>
+
+@if (!isOpen) {
+    <nc-square-button 
+        class="nc-left-nav-toggle" 
+        variant="ghost"
+        size="2.5rem"
+        ariaLabel="Open navigation"
+        [style.top]="'calc(' + (top || '0px') + ' + 1rem)'"
+        (click)="open()"
+    >
+        <nc-chevron-down-icon [size]="20" class="nc-left-nav-toggle-icon"></nc-chevron-down-icon>
+    </nc-square-button>
+}
