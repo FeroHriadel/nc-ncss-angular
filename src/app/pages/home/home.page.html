@@ -213,14 +213,16 @@
             </nc-square-button>
           </nc-select>
 
-          <nc-collapsible class="mt-5" title="Collapsible Section">
-            <nc-square-button class="mb-2" slot="collapsible-trigger">
+          <nc-popover [popoverClass]="'custom-popover'">
+            <nc-square-button class="mr-2" slot="popover-trigger">
               <nc-chevron-down-icon></nc-chevron-down-icon>
             </nc-square-button>
-            <nc-card slot="collapsible-content" class="p-4">
-              <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi fugit a error sequi aut? Facilis voluptatum tempora autem illum non eius ex? Dolores rem, quod ab in veniam illo nesciunt earum</p>
-            </nc-card>
-          </nc-collapsible>
+            <div slot="popover-content" class="p-4">
+              <h3 class="section-title-light mb-2">Popover Title</h3>
+              <p class="section-subtitle-light mb-4">This is the content of the popover. It can be used for tooltips, dropdowns, or any contextual information.</p>
+              <p class="text">The popover is positioned relative to the trigger and will adjust its position to stay within the viewport.</p>
+            </div>
+          </nc-popover>
         </div>
       </nc-card>
 

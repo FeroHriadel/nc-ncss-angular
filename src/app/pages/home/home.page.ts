@@ -11,15 +11,15 @@ import { FormService } from '../../ncss/services/form.service';
 import { SquareButton } from '../../ncss/buttons/square-button/square-button.component';
 import { Modal } from '../../ncss/popups/modal/modal.component';
 import { ToastService } from '../../ncss/services/toast.service';
-import { Collapsible } from '../../ncss/popups/collapsible/collapsible.component';
 import { CardList, CardListItem } from '../../ncss/lists/card-list/card-list.component';
+import { Popover } from '../../ncss/popups/popover/popover.component';
 
 
 
 
 @Component({
   selector: 'home-page',
-  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, Collapsible, HamburgerIcon, CardList],
+  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, HamburgerIcon, CardList, Popover],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -69,7 +69,6 @@ export class HomePage {
     { title: 'Task Management', text: 'Pre-built CRUD operations with edit & delete' },
     { title: 'Form Handling', text: 'Service-based form state management' },
     { title: 'Toast Notifications', text: 'Simple success & error notifications' },
-    { title: 'Modal Dialogs', text: 'Reusable popup components' }
   ];
 
     public onBasicCreate = () => {
