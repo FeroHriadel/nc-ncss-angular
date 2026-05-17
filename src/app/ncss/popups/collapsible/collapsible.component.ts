@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'nc-collapsible',
+  standalone: true,
   templateUrl: './collapsible.component.html',
   styleUrls: ['./collapsible.component.css'],
   imports: []

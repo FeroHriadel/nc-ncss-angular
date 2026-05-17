@@ -5,13 +5,15 @@ import { Select } from './ncss/inputs/select/select.component';
 import { PalleteIcon } from './ncss/icons';
 import { SquareButton } from './ncss/buttons/square-button/square-button.component';
 import { ThemeService } from './ncss/services/theme.service';
+import { LeftNav } from './ncss/navs/left-nav/left-nav.component'
+import { LeftNavAppWrapper } from './ncss/navs/left-nav/left-nav-app-wrapper.component';
 
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopNav, Select, PalleteIcon, SquareButton],
+  imports: [RouterOutlet, TopNav, Select, PalleteIcon, SquareButton, LeftNav, LeftNavAppWrapper],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })

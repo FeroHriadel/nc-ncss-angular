@@ -1,48 +1,25 @@
-<!-- Open button (shown when nav is closed) -->
-@if (!isOpenState) {
-  <nc-square-button 
-    (click)="open()" 
-    class="nc-left-nav-open-button"
-    ariaLabel="Open navigation"
-  >
-    <nc-chevron-down-icon 
-      [style]="{ transform: 'rotate(-90deg)' }" 
-      [size]="20" 
-      color="currentColor"
-    />
-  </nc-square-button>
-}
-
-<!-- Left navigation panel -->
-@if (isOpenState) {
-  <div 
-    [id]="id" 
+<nav 
     [class]="'nc-left-nav ' + class" 
-    [style]="style"
-    [style.width]="width"
-    [style.top]="offsetTop"
-    [style.height]="'calc(100vh - ' + offsetTop + ')'"
-  >
-    <nc-card 
-      class="nc-left-nav-card"
-      [style]="{
-        height: '100%',
-        borderRadius: '0',
-        border: 'none',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        overflow: 'hidden'
-      }"
-    >
-      <nc-close-button 
-        (click)="close()" 
-        class="nc-left-nav-close-button"
-      />
-      
-      <div class="nc-left-nav-content">
-        <ng-content></ng-content>
-      </div>
-    </nc-card>
-  </div>
-}
+    [attr.id]="id" 
+    [style]="style" 
+    [style.width]="width ? width : null"
+    [style.top]="top ? top : 0"
+>
+    <nc-close-button class="nc-left-nav-close"></nc-close-button>
+    <ng-content></ng-content>
+    
+    @for (link of links; track link.label) {
+        @if (!link.hasOptions) {
+            <a [routerLink]="link.link" class="nc-left-nav-link">{{ link.label }}</a>
+        } @else {
+            <nc-collapsible>
+                <div slot="collapsible-trigger" class="nc-left-nav-link">{{ link.label }}</div>
+                <div slot="collapsible-content" class="nc-left-nav-options">
+                    @for (option of link.options; track option.value) {
+                        <a [routerLink]="option.value" class="nc-left-nav-option-link">{{ option.label }}</a>
+                    }
+                </div>
+            </nc-collapsible>
+        }
+    }
+</nav>
