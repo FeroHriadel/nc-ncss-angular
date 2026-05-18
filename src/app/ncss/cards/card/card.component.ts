@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'nc-card',
+  standalone: true,
   imports: [],
   templateUrl: './card.component.html',
   styleUrl: './card.component.css',

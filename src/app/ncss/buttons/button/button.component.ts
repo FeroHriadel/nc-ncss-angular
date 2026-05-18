@@ -4,6 +4,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'nc-button',
+  standalone: true,
   imports: [],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css',

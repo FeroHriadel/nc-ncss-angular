@@ -5,6 +5,7 @@ import { CloseButton } from '../../buttons/close-button/close-button.component';
 
 @Component({
   selector: 'nc-sidedrawer',
+  standalone: true,
   templateUrl: './sidedrawer.component.html',
   styleUrls: ['./sidedrawer.component.css'],
   imports: [CloseButton]

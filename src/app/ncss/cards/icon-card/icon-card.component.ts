@@ -4,6 +4,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ncss-icon-card',
+  standalone: true,
+  imports: [],
   templateUrl: './icon-card.component.html',
   styleUrls: ['./icon-card.component.css']
 })

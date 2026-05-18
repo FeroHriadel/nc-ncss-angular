@@ -15,6 +15,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-password',
+  standalone: true,
   imports: [EyeIcon, EyeCrossedIcon, SquareButton],
   templateUrl: './password.component.html',
   styleUrl: './password.component.css',

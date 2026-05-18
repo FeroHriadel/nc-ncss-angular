@@ -14,6 +14,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-file-upload',
+  standalone: true,
   imports: [TimesIcon],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css',

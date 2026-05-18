@@ -20,6 +20,7 @@ export interface CardListItem {
 
 @Component({
   selector: 'nc-card-list',
+  standalone: true,
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
   imports: [SquareButton, Card, PlusIcon, EditIcon, DeleteIcon, CommonModule]

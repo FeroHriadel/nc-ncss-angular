@@ -14,6 +14,7 @@ export interface SelectOption {
 
 @Component({
   selector: 'nc-select',
+  standalone: true,
   imports: [ChevronDownIcon, CheckIcon, TimesIcon, JsonPipe],
   templateUrl: './select.component.html',
   styleUrl: './select.component.css',

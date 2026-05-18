@@ -3,7 +3,9 @@ import { TimesIcon } from '../../icons';
 
 
 
-@Component({  selector: 'nc-pill',
+@Component({
+  selector: 'nc-pill',
+  standalone: true,
   templateUrl: './pill.component.html',
   styleUrl: './pill.component.css',
   imports: [TimesIcon]

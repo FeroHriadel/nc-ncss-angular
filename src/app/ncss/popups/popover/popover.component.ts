@@ -5,6 +5,7 @@ import { Card } from '../../cards/card/card.component';
 
 @Component({
   selector: 'nc-popover',
+  standalone: true,
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.css'],
   imports: [Card]

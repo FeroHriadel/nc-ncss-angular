@@ -7,6 +7,7 @@ import { Button } from '../../buttons/button/button.component';
 
 @Component({
   selector: 'nc-modal',
+  standalone: true,
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
   imports: [CloseButton, Button]

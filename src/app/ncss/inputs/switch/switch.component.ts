@@ -3,7 +3,10 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 
 
-@Component({  selector: 'nc-switch',
+@Component({
+  selector: 'nc-switch',
+  standalone: true,
+  imports: [],
   templateUrl: './switch.component.html',
   styleUrl: './switch.component.css',
 })

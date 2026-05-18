@@ -19,6 +19,7 @@ export interface CrudListItem {
 
 @Component({
   selector: 'nc-crud-list',
+  standalone: true,
   templateUrl: './crud-list.component.html',
   styleUrls: ['./crud-list.component.css'],
   imports: [SquareButton, Card, PlusIcon, EditIcon, DeleteIcon, CommonModule]

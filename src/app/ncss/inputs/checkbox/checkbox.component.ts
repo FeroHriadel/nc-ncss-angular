@@ -6,6 +6,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'nc-checkbox',
+  standalone: true,
   imports: [],
   templateUrl: './checkbox.component.html',
   styleUrl: './checkbox.component.css',

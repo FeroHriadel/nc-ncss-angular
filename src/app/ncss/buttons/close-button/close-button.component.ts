@@ -4,7 +4,9 @@ import { Component, Input } from '@angular/core';
 import { TimesIcon } from '../../icons';
 
 
-@Component({  selector: 'nc-close-button',
+@Component({
+  selector: 'nc-close-button',
+  standalone: true,
   templateUrl: './close-button.component.html',
   styleUrl: './close-button.component.css',
   imports: [TimesIcon]
