@@ -14,13 +14,14 @@ import { ToastService } from '../../ncss/services/toast.service';
 import { CardList, CardListItem } from '../../ncss/lists/card-list/card-list.component';
 import { Popover } from '../../ncss/popups/popover/popover.component';
 import { FileService } from '../../ncss/services/file.services';
+import { Highlight } from 'ngx-highlightjs';
 
 
 
 
 @Component({
   selector: 'home-page',
-  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, HamburgerIcon, DownloadIcon, CardList, Popover],
+  imports: [Container, Card, Button, NoLicenceIcon, NpmIcon, SettingsIcon, Table, Select, Switch, FileUpload, SquareButton, ChevronDownIcon, WindowIcon, InfoIcon, Modal, WarningIcon, HamburgerIcon, DownloadIcon, CardList, Popover, Highlight ],
   templateUrl: './home.page.html',
   styleUrl: './home.page.css',
 })
@@ -34,6 +35,7 @@ export class HomePage {
   public fileService = inject(FileService);
   
   public logoPath = 'images/logo.png';
+  public importCode = '@import "./app/ncss/stylesheets/ncss.css";';
   public vtData = [
     { number: 1, string: 'John Doe',boolean: true, html: '<span class="vt-html-example-text" style="color: var(--nc-red-800);">span</span>' },
     { number: 2, string: 'Jane Smith', boolean: false, html: '<h1 class="vt-html-example-text" style="color: var(--nc-gray-500">h1</h1>' },
