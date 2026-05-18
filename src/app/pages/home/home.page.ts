@@ -1,4 +1,5 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, inject, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { Select } from '../../ncss/inputs/select/select.component';
 import { Container } from '../../ncss/layout/container/container.component';
 import { Card } from '../../ncss/cards/card/card.component';
@@ -33,6 +34,7 @@ export class HomePage {
   public formService = inject(FormService);
   public toastService = inject(ToastService);
   public fileService = inject(FileService);
+  private document = inject(DOCUMENT);
   
   public logoPath = 'images/logo.png';
   public importCode = '@import "./app/ncss/stylesheets/ncss.css";';
@@ -93,7 +95,10 @@ export class HomePage {
   };
 
   public downloadNcss() {
-    this.fileService.downloadFile('/files/ncss.zip');
+    const baseHref = this.document.getElementsByTagName('base')[0]?.href || window.location.origin;
+    const baseUrl = new URL(baseHref);
+    const filePath = `${baseUrl.pathname}files/ncss.zip`.replace(/\/\//g, '/');
+    this.fileService.downloadFile(filePath);
   }
 
 
