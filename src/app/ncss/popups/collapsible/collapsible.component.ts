@@ -62,6 +62,32 @@ export class Collapsible implements OnInit {
       event.preventDefault();
       this.toggle();
     }
+    // Support Escape key to close
+    else if (event.key === 'Escape' && this.isOpenState) {
+      event.preventDefault();
+      this.close();
+      // Return focus to trigger
+      this.triggerElement?.nativeElement?.focus();
+    }
+    // Support Arrow Down to open, Arrow Up to close
+    else if (event.key === 'ArrowDown' && !this.isOpenState) {
+      event.preventDefault();
+      this.open();
+    }
+    else if (event.key === 'ArrowUp' && this.isOpenState) {
+      event.preventDefault();
+      this.close();
+    }
+  }
+
+  public handleContentKeydown(event: KeyboardEvent): void {
+    // Allow Escape to close from within content
+    if (event.key === 'Escape' && this.isOpenState) {
+      event.preventDefault();
+      this.close();
+      // Return focus to trigger
+      this.triggerElement?.nativeElement?.focus();
+    }
   }
 
   get isOpen(): boolean {

@@ -20,6 +20,7 @@
     [attr.aria-labelledby]="triggerId"
     [attr.aria-hidden]="!isOpen"
     [class.nc-collapsible-content-open]="isOpen"
+    (keydown)="handleContentKeydown($event)"
   >
     <div class="nc-collapsible-content-inner">
       <ng-content select="[slot='collapsible-content']"></ng-content>
