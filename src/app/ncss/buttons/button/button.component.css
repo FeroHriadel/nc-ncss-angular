@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 /* Variant: "dark" ==> default variant */
 .nc-button {
     appearance: none;

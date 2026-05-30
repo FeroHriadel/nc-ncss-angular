@@ -7,7 +7,7 @@ import { SquareButton } from '../../buttons/square-button/square-button.componen
 
 
 
-interface NavLink {
+export interface NavLink {
     label: string;
     link?: string;
     hasOptions?: boolean;

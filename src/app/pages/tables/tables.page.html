@@ -43,6 +43,7 @@
     <h4 class="section-subtitle-light mb-2">Result</h4>
     <nc-table
         [data]="tableDataSliced"
+        [columnsConfig]="tableColumnsConfig"
         [controls]="true"
         [horizontalSeparators]="true"
         [verticalSeparators]="true"
@@ -115,6 +116,40 @@
         Double-click any cell in the tables above to see the copy-to-clipboard feature in action. The copied content 
         will be available in your system clipboard and can be pasted anywhere.
     </p>
+    <br><br><br>
+
+    <!-- Date Auto-Detection -->
+    <h3 class="section-title-light mb-2">Date Auto-Detection & Formatting</h3>
+    <p class="section-subtitle-light mb-4">Pass dates as ISO strings or Date objects — the table handles the rest</p>
+
+    <h4 class="section-subtitle-light mb-2">Description</h4>
+    <p class="text mb-4">
+        Both <code>&lt;nc-table&gt;</code> and <code>&lt;nc-virtualized-table&gt;</code> automatically detect date values in your
+        data and treat them specially — no extra configuration needed. The <strong>Applied On</strong> column in the first table
+        above demonstrates this feature.
+    </p>
+
+    <h4 class="section-subtitle-light mb-2">What the table does automatically</h4>
+    <ul class="text mb-4" style="list-style: disc; margin-left: 1.5rem;">
+        <li><strong>Human-readable display:</strong> Raw ISO strings or Date objects are rendered as <code>YYYY Mon DD HH:MM</code> (e.g. <code>2024 Jan 10 09:15</code>)</li>
+        <li><strong>Date-aware filtering:</strong> When you open the filter panel and pick a date column, the condition dropdown switches to <em>on</em>, <em>after</em>, <em>before</em> instead of string operators like "contains" or "starts with". Filter values are entered as <code>yyyy/mm/dd</code></li>
+        <li><strong>Chronological sorting:</strong> Clicking a date column header sorts rows by actual date/time, not alphabetically</li>
+    </ul>
+
+    <h4 class="section-subtitle-light mb-2">How to pass date values</h4>
+    <p class="text mb-4">
+        Use an <strong>ISO 8601 string with a time component</strong> (recommended) or a JavaScript <strong>Date object</strong>.
+        Plain date-only strings like <code>'2024-03-15'</code> are <em>not</em> auto-detected — a time component is required.
+    </p>
+    <nc-card>
+        <pre><code [highlight]="dateExampleTS" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
+    <br><br>
+
+    <h4 class="section-subtitle-light mb-2">Accepted formats &amp; display</h4>
+    <nc-card>
+        <pre><code [highlight]="dateFormatNote" language="typescript" style="background-color: var(--nc-white-700); border-radius: var(--nc-border-radius);"></code></pre>
+    </nc-card>
     <br><br><br>
 
     <!-- Example 1: Virtualized Table - basic use -->

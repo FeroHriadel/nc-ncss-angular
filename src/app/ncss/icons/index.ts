@@ -32,4 +32,7 @@ export { ZoominIcon } from './zoomin.icon';
 export { WindowIcon } from './window.icon';
 export { CollectionIcon } from './collection.icon';
 export { WarningIcon } from './warning.icon';
+export { AdjustIcon } from './adjust.icon';
+export { BoxOpenIcon } from './box-open.icon';
+export { TargetHumanIcon } from './target-human.icon';
 
