@@ -62,9 +62,9 @@ export class TableHeader implements OnInit, OnDestroy {
   }
 
   getSortIconClass(col: Column): string {
-    const baseClass = 'header-sort-icon';
+    const baseClass = 'table-header-sort-icon';
     if (this.sortColumn === col.column && this.sortDirection === 'desc') {
-      return `${baseClass} header-sort-desc`;
+      return `${baseClass} table-header-sort-desc`;
     }
     return baseClass;
   }
@@ -94,18 +94,19 @@ export class TableHeader implements OnInit, OnDestroy {
 
   getThStyle(col: Column): { [key: string]: string } {
     const style = { ...this.getColumnStyle(col) };
-    
-    // For flexbox, we need to use flex-basis and prevent shrinking
-    if (col.width) {
-      style['flexBasis'] = col.width;
+    const w = col.width || style['width'];
+
+    if (w) {
+      style['flexBasis'] = w;
       style['flexGrow'] = '0';
       style['flexShrink'] = '0';
     } else {
       style['flexGrow'] = '1';
       style['flexShrink'] = '1';
       style['flexBasis'] = '0';
+      style['minWidth'] = '0';
     }
-    
+
     return style;
   }
 

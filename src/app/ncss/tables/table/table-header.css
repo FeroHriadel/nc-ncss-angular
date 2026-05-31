@@ -18,8 +18,7 @@
 }
 
 .table-header-table {
-  min-width: 100%;
-  width: max-content;
+  width: 100%;
   display: block;
   height: 100%;
 }

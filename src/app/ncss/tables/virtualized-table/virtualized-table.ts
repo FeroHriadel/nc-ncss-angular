@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, effect, signal } from '@angular/core';
+import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, effect, signal, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VirtualizedTableControlBar } from './virtualized-table-control-bar';
 import { VirtualizedTableHeader } from './virtualized-table-header';
@@ -66,15 +66,30 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
   @NgInput() headerStyle?: { [key: string]: string };
 
   columns: Column[] = [];
-  renderingHandlers: any = {};
+  private renderingHandlers: any = {
+    handleBodyScroll: () => {},
+    handleHeaderScroll: () => {},
+    handleWheelEvent: () => {},
+    handleTableMouseDown: () => {},
+    handleTableMouseLeave: () => {},
+    handleKeyDown: () => {}
+  };
   previousZoom: number = 1;
   prevFilteredColumnsLength: number = 0;
   updateCounter = signal(0);
 
+  // Wrapper methods for template bindings - these won't change after initialization
+  readonly handleHeaderScrollWrapper = (e: Event) => this.renderingHandlers.handleHeaderScroll(e);
+  readonly handleBodyScrollWrapper = (e: Event) => this.renderingHandlers.handleBodyScroll(e);
+  readonly handleWheelEventWrapper = (e: WheelEvent) => this.renderingHandlers.handleWheelEvent(e);
+  readonly handleTableMouseDownWrapper = (e: MouseEvent) => this.renderingHandlers.handleTableMouseDown(e);
+  readonly handleTableMouseLeaveWrapper = () => this.renderingHandlers.handleTableMouseLeave();
+
   constructor(
     public filterService: VirtualizedTableFilterService,
     public zoomService: VirtualizedTableZoomService,
-    public renderingService: VirtualizedTableRenderingService
+    public renderingService: VirtualizedTableRenderingService,
+    private cdr: ChangeDetectorRef
   ) {
     // Watch for zoom level changes
     effect(() => {
@@ -143,12 +158,17 @@ export class VirtualizedTable implements OnInit, AfterViewInit, OnDestroy, OnCha
 
   ngAfterViewInit(): void {
     // Setup rendering handlers
-    this.renderingHandlers = this.renderingService.setupDragScrolling(
+    const handlers = this.renderingService.setupDragScrolling(
       this.bodyElementRef.bodyRef,
       this.headerElementRef.headerRef,
       () => this.zoomService.handleZoomIn(),
       () => this.zoomService.handleZoomOut()
     );
+    // Update properties individually - wrapper methods will call through to these
+    Object.assign(this.renderingHandlers, handlers);
+    // Handlers were assigned after the first change detection pass; detectChanges resets
+    // the baseline so Angular's dev-mode verification check doesn't throw NG0100.
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {

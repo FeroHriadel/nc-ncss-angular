@@ -35,4 +35,6 @@ export { WarningIcon } from './warning.icon';
 export { AdjustIcon } from './adjust.icon';
 export { BoxOpenIcon } from './box-open.icon';
 export { TargetHumanIcon } from './target-human.icon';
+export { ReportIcon } from './report.icon';
+export { WeatherIcon } from './weather.icon';
 
