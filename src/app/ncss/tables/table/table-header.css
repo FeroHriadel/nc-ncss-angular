@@ -44,6 +44,7 @@
   user-select: none;
   cursor: grab;
   transition: background-color 0.2s;
+  background-color: var(--nc-input-bg-hover);
   color: var(--nc-text-color-strong);
   box-sizing: border-box;
   overflow: hidden;
