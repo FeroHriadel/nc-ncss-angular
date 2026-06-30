@@ -1,4 +1,4 @@
-import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, effect, ChangeDetectorRef } from '@angular/core';
+import { Component, Input as NgInput, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy, OnChanges, ChangeDetectorRef, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableControlBar } from './table-control-bar';
 import { TableHeader } from './table-header';
@@ -65,24 +65,9 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
   @NgInput() headerStyle?: { [key: string]: string };
 
   columns: Column[] = [];
-  private renderingHandlers: any = {
-    handleBodyScroll: () => {},
-    handleHeaderScroll: () => {},
-    handleWheelEvent: () => {},
-    handleTableMouseDown: () => {},
-    handleTableMouseLeave: () => {},
-    handleKeyDown: () => {},
-    cleanup: () => {}
-  };
+  renderingHandlers: any = {};
   previousZoom: number = 1;
   prevFilteredColumnsLength: number = 0;
-
-  // Wrapper methods for template bindings - these won't change after initialization
-  readonly handleHeaderScrollWrapper = (e: Event) => this.renderingHandlers.handleHeaderScroll(e);
-  readonly handleBodyScrollWrapper = (e: Event) => this.renderingHandlers.handleBodyScroll(e);
-  readonly handleWheelEventWrapper = (e: WheelEvent) => this.renderingHandlers.handleWheelEvent(e);
-  readonly handleTableMouseDownWrapper = (e: MouseEvent) => this.renderingHandlers.handleTableMouseDown(e);
-  readonly handleTableMouseLeaveWrapper = () => this.renderingHandlers.handleTableMouseLeave();
 
   constructor(
     public filterService: TableFilterService,
@@ -136,14 +121,10 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   ngAfterViewInit(): void {
     // Setup rendering handlers for drag scrolling
-    const handlers = this.setupDragScrolling(
+    this.renderingHandlers = this.setupDragScrolling(
       this.bodyElementRef.bodyRef,
       this.headerElementRef.headerRef
     );
-    // Update properties individually - wrapper methods will call through to these
-    Object.assign(this.renderingHandlers, handlers);
-    // Handlers were assigned after the first change detection pass; detectChanges resets
-    // the baseline so Angular's dev-mode verification check doesn't throw NG0100.
     this.cdr.detectChanges();
   }
 
@@ -177,16 +158,11 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
 
   getColumnStyle(columnObj: Column): { [key: string]: string } {
     if (columnObj.width) {
-      return {
+      return { 
         width: columnObj.width,
         minWidth: columnObj.width,
         maxWidth: columnObj.width
       };
-    }
-    const count = this.filteredColumns.length;
-    if (count > 0) {
-      const w = (100 / count) + '%';
-      return { width: w, minWidth: '0', maxWidth: w };
     }
     return {};
   }
@@ -198,8 +174,7 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
     let isDragging = false;
     let lastMousePosition = { x: 0, y: 0 };
     let mouseMoveListener: ((e: MouseEvent) => void) | null = null;
-    let mouseUpListener: ((e: MouseEvent) => void) | null = null;
-    let mouseUpCaptureListener: ((e: MouseEvent) => void) | null = null;
+    let mouseUpListener: (() => void) | null = null;
 
     const handleBodyScroll = (e: Event) => {
       const target = e.currentTarget as HTMLElement;
@@ -226,103 +201,39 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
       }
     };
 
-    const cleanup = () => {
-      // Remove all move listeners
-      if (mouseMoveListener) {
-        document.removeEventListener('mousemove', mouseMoveListener);
-        window.removeEventListener('mousemove', mouseMoveListener);
-        document.body.removeEventListener('mousemove', mouseMoveListener);
-        mouseMoveListener = null;
-      }
-      // Remove all mouseup listeners
-      if (mouseUpListener) {
-        document.removeEventListener('mouseup', mouseUpListener);
-        window.removeEventListener('mouseup', mouseUpListener);
-        document.body.removeEventListener('mouseup', mouseUpListener);
-        if (bodyRef?.nativeElement) {
-          bodyRef.nativeElement.removeEventListener('mouseup', mouseUpListener);
-        }
-        mouseUpListener = null;
-      }
-      // Remove capture listeners
-      if (mouseUpCaptureListener) {
-        document.removeEventListener('mouseup', mouseUpCaptureListener, true);
-        window.removeEventListener('mouseup', mouseUpCaptureListener, true);
-        mouseUpCaptureListener = null;
-      }
-    };
-
     const handleTableMouseDown = (e: MouseEvent) => {
-      // Immediately stop any ongoing drag
-      isDragging = false;
-      cleanup();
-      
-      // Start new drag
       isDragging = true;
       lastMousePosition = { x: e.clientX, y: e.clientY };
       e.preventDefault();
-      e.stopPropagation();
 
       mouseMoveListener = (moveEvent: MouseEvent) => {
-        // Check flag immediately - don't continue if not dragging
-        if (!isDragging) return;
-        if (!bodyRef?.nativeElement) return;
-        
-        moveEvent.preventDefault();
-        moveEvent.stopPropagation();
-        
-        const container = bodyRef.nativeElement;
-        const deltaX = moveEvent.clientX - lastMousePosition.x;
-        const deltaY = moveEvent.clientY - lastMousePosition.y;
-        
-        container.scrollLeft -= deltaX;
-        container.scrollTop -= deltaY;
-        
-        if (headerRef?.nativeElement) {
-          headerRef.nativeElement.scrollLeft = container.scrollLeft;
+        if (isDragging && bodyRef.nativeElement) {
+          const container = bodyRef.nativeElement;
+          const deltaX = moveEvent.clientX - lastMousePosition.x;
+          const deltaY = moveEvent.clientY - lastMousePosition.y;
+          
+          container.scrollLeft -= deltaX;
+          container.scrollTop -= deltaY;
+          
+          if (headerRef?.nativeElement) {
+            headerRef.nativeElement.scrollLeft = container.scrollLeft;
+          }
+          
+          lastMousePosition = { x: moveEvent.clientX, y: moveEvent.clientY };
         }
-        
-        lastMousePosition = { x: moveEvent.clientX, y: moveEvent.clientY };
       };
 
-      mouseUpListener = (upEvent: MouseEvent) => {
-        upEvent.preventDefault();
-        upEvent.stopPropagation();
-        // CRITICAL: Stop dragging and cleanup IMMEDIATELY
-        isDragging = false;
-        // Force cleanup synchronously
-        setTimeout(() => cleanup(), 0);
-        cleanup();
-      };
-
-      // Create a capturing listener that fires first
-      mouseUpCaptureListener = (upEvent: MouseEvent) => {
+      mouseUpListener = () => {
         isDragging = false;
         cleanup();
       };
 
-      // Attach listeners to multiple targets
       document.addEventListener('mousemove', mouseMoveListener);
-      window.addEventListener('mousemove', mouseMoveListener);
-      document.body.addEventListener('mousemove', mouseMoveListener);
-      
-      // Attach mouseup to multiple targets
       document.addEventListener('mouseup', mouseUpListener);
-      window.addEventListener('mouseup', mouseUpListener);
-      document.body.addEventListener('mouseup', mouseUpListener);
-      if (bodyRef?.nativeElement) {
-        bodyRef.nativeElement.addEventListener('mouseup', mouseUpListener);
-      }
-      
-      // Also add capturing phase listener as first line of defense
-      document.addEventListener('mouseup', mouseUpCaptureListener, true);
-      window.addEventListener('mouseup', mouseUpCaptureListener, true);
     };
 
     const handleTableMouseLeave = () => {
-      // Immediately stop dragging
-      isDragging = false;
-      cleanup();
+      // Optional: could stop dragging on leave
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -334,6 +245,15 @@ export class Table implements OnInit, AfterViewInit, OnDestroy, OnChanges {
           e.preventDefault();
           this.zoomService.handleZoomOut();
         }
+      }
+    };
+
+    const cleanup = () => {
+      if (mouseMoveListener) {
+        document.removeEventListener('mousemove', mouseMoveListener);
+      }
+      if (mouseUpListener) {
+        document.removeEventListener('mouseup', mouseUpListener);
       }
     };
 

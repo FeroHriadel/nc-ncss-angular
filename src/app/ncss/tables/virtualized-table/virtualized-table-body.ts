@@ -206,7 +206,7 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
 
   getCellStyle(col: Column, isLastColumn: boolean): { [key: string]: string } {
     const style = { ...this.getColumnStyle(col) };
-
+    
     // For flexbox, we need to use flex-basis and prevent shrinking
     if (col.width) {
       style['flexBasis'] = col.width;
@@ -216,7 +216,6 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit, AfterViewChe
       style['flexGrow'] = '1';
       style['flexShrink'] = '1';
       style['flexBasis'] = '0';
-      style['minWidth'] = '0';
     }
     
     // Horizontal separators are now applied to the row container instead of cells

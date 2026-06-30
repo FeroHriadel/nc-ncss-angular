@@ -153,19 +153,18 @@ export class TableBody implements OnInit, OnDestroy, AfterViewInit {
 
   getCellStyle(col: Column, isLastColumn: boolean): { [key: string]: string } {
     const style = { ...this.getColumnStyle(col) };
-    const w = col.width || style['width'];
-
-    if (w) {
-      style['flexBasis'] = w;
+    
+    // For flexbox, we need to use flex-basis and prevent shrinking
+    if (col.width) {
+      style['flexBasis'] = col.width;
       style['flexGrow'] = '0';
       style['flexShrink'] = '0';
     } else {
       style['flexGrow'] = '1';
       style['flexShrink'] = '1';
       style['flexBasis'] = '0';
-      style['minWidth'] = '0';
     }
-
+    
     if (this.verticalSeparators && !isLastColumn) {
       style['borderRight'] = '1px solid var(--nc-border-color)';
     }

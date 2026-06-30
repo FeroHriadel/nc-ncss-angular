@@ -21,8 +21,7 @@ export class VirtualizedTableRenderingService {
   private isDraggingTable = false;
   private lastMousePosition = { x: 0, y: 0 };
   private mouseMoveListener: ((e: MouseEvent) => void) | null = null;
-  private mouseUpListener: ((e: MouseEvent) => void) | null = null;
-  private mouseUpCaptureListener: ((e: MouseEvent) => void) | null = null;
+  private mouseUpListener: (() => void) | null = null;
 
   initialize(dataLength: number, onUpdate: () => void) {
     this.rowHeights = new Array(dataLength).fill(this.estimatedRowHeight);
@@ -171,78 +170,40 @@ export class VirtualizedTableRenderingService {
   }
 
   private handleTableMouseDown(e: MouseEvent, bodyRef: ElementRef<HTMLDivElement>, headerRef: ElementRef<HTMLDivElement>): void {
-    // Immediately stop any ongoing drag
-    this.isDraggingTable = false;
-    this.cleanup();
-    
-    // Start new drag
     this.isDraggingTable = true;
     this.lastMousePosition = { x: e.clientX, y: e.clientY };
     e.preventDefault();
-    e.stopPropagation();
 
     // Setup mouse listeners
     this.mouseMoveListener = (moveEvent: MouseEvent) => {
-      // Check flag immediately - don't continue if not dragging
-      if (!this.isDraggingTable) return;
-      if (!bodyRef?.nativeElement) return;
-      
-      moveEvent.preventDefault();
-      moveEvent.stopPropagation();
-      
-      const container = bodyRef.nativeElement;
-      const deltaX = moveEvent.clientX - this.lastMousePosition.x;
-      const deltaY = moveEvent.clientY - this.lastMousePosition.y;
-      
-      container.scrollLeft -= deltaX;
-      container.scrollTop -= deltaY;
-      
-      // Explicitly sync header
-      if (headerRef?.nativeElement) {
-        headerRef.nativeElement.scrollLeft = container.scrollLeft;
+      if (this.isDraggingTable && bodyRef.nativeElement) {
+        const container = bodyRef.nativeElement;
+        const deltaX = moveEvent.clientX - this.lastMousePosition.x;
+        const deltaY = moveEvent.clientY - this.lastMousePosition.y;
+        
+        container.scrollLeft -= deltaX;
+        container.scrollTop -= deltaY;
+        
+        // Explicitly sync header
+        if (headerRef?.nativeElement) {
+          headerRef.nativeElement.scrollLeft = container.scrollLeft;
+        }
+        
+        this.lastMousePosition = { x: moveEvent.clientX, y: moveEvent.clientY };
       }
-      
-      this.lastMousePosition = { x: moveEvent.clientX, y: moveEvent.clientY };
     };
 
-    this.mouseUpListener = (upEvent: MouseEvent) => {
-      upEvent.preventDefault();
-      upEvent.stopPropagation();
-      // CRITICAL: Stop dragging and cleanup IMMEDIATELY
-      this.isDraggingTable = false;
-      // Force cleanup synchronously
-      setTimeout(() => this.cleanup(), 0);
-      this.cleanup();
-    };
-
-    // Create a capturing listener that fires first
-    this.mouseUpCaptureListener = (upEvent: MouseEvent) => {
+    this.mouseUpListener = () => {
       this.isDraggingTable = false;
       this.cleanup();
     };
 
-    // Attach listeners to multiple targets
     document.addEventListener('mousemove', this.mouseMoveListener);
-    window.addEventListener('mousemove', this.mouseMoveListener);
-    document.body.addEventListener('mousemove', this.mouseMoveListener);
-    
-    // Attach mouseup to multiple targets
     document.addEventListener('mouseup', this.mouseUpListener);
-    window.addEventListener('mouseup', this.mouseUpListener);
-    document.body.addEventListener('mouseup', this.mouseUpListener);
-    if (bodyRef?.nativeElement) {
-      bodyRef.nativeElement.addEventListener('mouseup', this.mouseUpListener);
-    }
-    
-    // Also add capturing phase listener as first line of defense
-    document.addEventListener('mouseup', this.mouseUpCaptureListener, true);
-    window.addEventListener('mouseup', this.mouseUpCaptureListener, true);
   }
 
   private handleTableMouseLeave(): void {
-    // Immediately stop dragging
     this.isDraggingTable = false;
-    this.cleanup();
   }
 
   private handleKeyDown(
@@ -318,32 +279,13 @@ export class VirtualizedTableRenderingService {
   }
 
   private cleanup(): void {
-    // Remove all move listeners
     if (this.mouseMoveListener) {
       document.removeEventListener('mousemove', this.mouseMoveListener);
-      window.removeEventListener('mousemove', this.mouseMoveListener);
-      document.body.removeEventListener('mousemove', this.mouseMoveListener);
       this.mouseMoveListener = null;
     }
-    // Remove all mouseup listeners
     if (this.mouseUpListener) {
       document.removeEventListener('mouseup', this.mouseUpListener);
-      window.removeEventListener('mouseup', this.mouseUpListener);
-      document.body.removeEventListener('mouseup', this.mouseUpListener);
-      // Try to remove from any table body elements
-      const tableBodies = document.querySelectorAll('.table-body');
-      tableBodies.forEach(body => {
-        if (this.mouseUpListener) {
-          (body as HTMLElement).removeEventListener('mouseup', this.mouseUpListener!);
-        }
-      });
       this.mouseUpListener = null;
-    }
-    // Remove capture listeners
-    if (this.mouseUpCaptureListener) {
-      document.removeEventListener('mouseup', this.mouseUpCaptureListener, true);
-      window.removeEventListener('mouseup', this.mouseUpCaptureListener, true);
-      this.mouseUpCaptureListener = null;
     }
   }
 
