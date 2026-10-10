@@ -1,0 +1,143 @@
+@if (controls()) {
+  <nc-table-controls
+    [rowCount]="state.rowCount()"
+    [loading]="loading() || state.busy()"
+    [columns]="columnOptions()"
+    [visible]="visibleKeys()"
+    [totalCount]="state.totalCount()"
+    (filter)="filterOpen.set(true)"
+    (visibleChange)="state.setVisible($event)"
+    (reload)="onReload()"
+  />
+}
+
+<nc-table-filter [(open)]="filterOpen" [(filters)]="filters" [columns]="filterColumns()" />
+
+@if (state.filters().length) {
+  <ul class="table-filters" aria-label="Active filters">
+    @for (filter of state.filters(); track $index; let i = $index) {
+      @if (i > 0) {
+        <li class="table-filters-join">{{ filter.join === 'or' ? 'OR' : 'AND' }}</li>
+      }
+      <li>
+        <nc-pill closable closeLabel="Remove filter" (closed)="state.removeFilter(i)">{{ state.describe(filter) }}</nc-pill>
+      </li>
+    }
+  </ul>
+}
+
+<div
+  #scroller
+  class="table"
+  role="table"
+  [class.table-striped]="striped()"
+  [attr.aria-label]="ariaLabel() || null"
+  [attr.aria-rowcount]="state.rows().length + 1"
+  [attr.aria-colcount]="state.columns().length"
+  [style.max-height]="maxHeight()"
+  (scroll)="onScroll()"
+  [style.--table-cols]="state.gridTemplate()"
+  [style.--table-min-width]="state.minWidth() + 'px'"
+>
+  <div class="table-head" role="rowgroup">
+    <div class="table-row" role="row" aria-rowindex="1">
+      @for (column of state.columns(); track column.key; let i = $index) {
+        <div
+          #header
+          class="table-header-cell"
+          role="columnheader"
+          [class.table-align-end]="state.alignments()[column.key] === 'end'"
+          [class.table-align-center]="state.alignments()[column.key] === 'center'"
+          [class.table-dragging]="dragKey() === column.key"
+          [class.table-drop-before]="dropSide(column) === 'before'"
+          [class.table-drop-after]="dropSide(column) === 'after'"
+          [attr.aria-sort]="ariaSort(column)"
+          [attr.aria-colindex]="i + 1"
+          [attr.draggable]="reorderable()"
+          (dragstart)="dragStart($event, column)"
+          (dragover)="dragOver($event, column)"
+          (drop)="drop($event, column)"
+          (dragend)="dragEnd()"
+          (keydown)="headerKey($event, column)"
+        >
+          @if (column.sortable !== false) {
+            <button type="button" class="table-sort" (click)="state.toggleSort(column)">
+              <span class="table-header-label">{{ state.label(column) }}</span>
+              <svg class="table-chevron" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path class="table-chevron-up" d="m7 10 5-5 5 5" />
+                <path class="table-chevron-down" d="m7 14 5 5 5-5" />
+              </svg>
+            </button>
+          } @else {
+            <span class="table-header-label">{{ state.label(column) }}</span>
+          }
+          @if (resizable()) {
+            <span
+              class="table-resizer"
+              role="separator"
+              aria-orientation="vertical"
+              tabindex="0"
+              [attr.aria-label]="resizeLabel() + ': ' + state.label(column)"
+              [attr.aria-valuenow]="header.offsetWidth"
+              (pointerdown)="resizeStart($event, header)"
+              (pointermove)="resizeMove($event, column)"
+              (pointerup)="resizeEnd(column)"
+              (pointercancel)="resizeEnd(column)"
+              (dblclick)="state.setWidth(column, undefined)"
+              (keydown)="resizeKey($event, column, header)"
+            ></span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="table-body" role="rowgroup" [style.padding-top.px]="window().before" [style.padding-bottom.px]="window().after">
+    @for (row of renderedRows(); track row.index; let r = $index) {
+      <div
+        class="table-row"
+        role="row"
+        [class.table-row-odd]="(window().start + r) % 2 === 1"
+        [attr.data-row]="row.index"
+        [attr.aria-rowindex]="window().start + r + 2"
+      >
+        @for (column of state.columns(); track column.key; let c = $index) {
+          <div
+            class="table-cell"
+            role="cell"
+            [class.table-align-end]="state.alignments()[column.key] === 'end'"
+            [class.table-align-center]="state.alignments()[column.key] === 'center'"
+            [class.table-cell-pre]="row.cells[c].kind === 'json'"
+            [attr.aria-colindex]="c + 1"
+            [attr.title]="row.cells[c].kind === 'text' ? row.cells[c].text : null"
+            (dblclick)="copy(row.cells[c], row.index + ':' + column.key)"
+          >
+            @switch (row.cells[c].kind) {
+              @case ('html') {
+                <span class="table-html" [innerHTML]="html(row.cells[c])"></span>
+              }
+              @case ('template') {
+                <ng-container *ngTemplateOutlet="row.cells[c].template!; context: row.cells[c].context!" />
+              }
+              @case ('tree') {
+                <nc-tree [value]="row.cells[c].tree" />
+              }
+              @default {
+                {{ row.cells[c].text }}
+              }
+            }
+            @if (copied() === row.index + ':' + column.key) {
+              <span class="table-copied" aria-hidden="true">{{ copiedLabel() }}</span>
+            }
+          </div>
+        }
+      </div>
+    } @empty {
+      <div class="table-row" role="row" aria-rowindex="2">
+        <div class="table-cell table-empty" role="cell">{{ emptyText() }}</div>
+      </div>
+    }
+  </div>
+</div>
+
+<span class="table-status" role="status">{{ state.status() }}</span>

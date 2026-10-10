@@ -1,0 +1,64 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">PopUps</span>
+    <h1 class="title-big">Toast</h1>
+    <p class="page-lede">Fire-and-forget notifications from a single service call. Themed, stacked and screen-reader friendly.</p>
+  </header>
+
+  <h2 class="title-medium">String</h2>
+  <div class="row">
+    <button nc-button (click)="showString()">Show toast</button>
+  </div>
+
+  <h2 class="title-medium">Types</h2>
+  <div class="row">
+    @for (type of types; track type) {
+      <button nc-button variant="outline" (click)="showType(type)">{{ type }}</button>
+    }
+  </div>
+
+  <h2 class="title-medium">Custom duration</h2>
+  <div class="row">
+    <button nc-button variant="ghost" (click)="showLong()">8 seconds</button>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      Inject <app-code>ToastService</app-code> and call <app-code>show()</app-code>. Toasts stack in the bottom right corner,
+      follow the selected theme, and close when clicked. There is no component to place in a template.
+    </p>
+
+    <h3 class="title-small">1. Inject it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Show a toast</h3>
+    <p class="text-medium">Pass a string for a quick info toast that lasts 3 seconds:</p>
+    <app-code block>{{ stringCode }}</app-code>
+    <p class="text-medium">Or pass an object for more control:</p>
+    <app-code block>{{ objectCode }}</app-code>
+
+    <h3 class="title-small">Options</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Option</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="title-medium">Styling</h2>
+    <p class="text-medium">Change the look with CSS variables:</p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">All variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

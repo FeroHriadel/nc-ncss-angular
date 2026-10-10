@@ -1,0 +1,249 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Tables &amp; Lists</span>
+    <h1 class="title-big">Table</h1>
+    <p class="page-lede">Sort, resize, reorder, filter and expand. A data table that remembers how you left it.</p>
+  </header>
+
+  <h2 class="title-medium">Nothing configured</h2>
+  <nc-table [data]="simple" ariaLabel="People, simple" />
+
+  <h2 class="title-medium">Fully configured</h2>
+  <p class="text-medium">
+    Click a header to sort, drag its edge to resize, drag the header (or press Alt+Arrow) to reorder, double-click a cell to copy it.
+    Reload the page: your changes are saved with the two-way <app-code>columns</app-code> and <app-code>sort</app-code>.
+  </p>
+  <div class="demo-actions">
+    <button nc-button variant="outline" (click)="narrowName()">Name: 140px</button>
+    <button nc-button variant="outline" (click)="hideScore()">Hide score</button>
+    <button nc-button variant="outline" (click)="striped.set(!striped())">Striped: {{ striped() }}</button>
+  </div>
+  <nc-table
+    [data]="people"
+    [(columns)]="columns"
+    [(hiddenColumns)]="hidden"
+    [(filters)]="filters"
+    [(sort)]="sort"
+    [loading]="loading()"
+    (reload)="reload()"
+    [striped]="striped()"
+    height="320px"
+    ariaLabel="People"
+  />
+  <app-code block class="demo-state">{{ state() }}</app-code>
+
+  <h2 class="title-medium">Template cells</h2>
+  <p class="text-medium">The Actions column is an <app-code>ng-template</app-code>, so its buttons have real click handlers. {{ lastAction() }}</p>
+  <nc-table [data]="templateRows" [columns]="templateColumns" [controls]="false" ariaLabel="Template cells" />
+  <ng-template #actions let-row="row">
+    <button nc-button variant="outline" (click)="act('Edit', row.name)">Edit</button>
+    <button nc-button variant="outline" (click)="act('Delete', row.name)">Delete</button>
+  </ng-template>
+
+  <h2 class="title-medium">Virtualized</h2>
+  <p class="text-medium">20 000 rows, some taller than others. Only the rows on screen are in the DOM.</p>
+  <nc-table [data]="huge" virtualized ariaLabel="Virtualized" />
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The table is an Angular component with the element selector <app-code>nc-table</app-code>. It is built from <app-code>div</app-code>s with
+      ARIA roles (<app-code>table</app-code>, <app-code>row</app-code>, <app-code>columnheader</app-code>, <app-code>cell</app-code>),
+      not from table markup. Every table on a page has its own state.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ simpleCode }}</app-code>
+
+    <h3 class="title-small">3. Choose the columns</h3>
+    <p class="text-medium">
+      <app-code>columns</app-code> decides what is shown and in which order. Keys of the data that are not listed are not rendered.
+    </p>
+    <app-code block>{{ columnsCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Column options</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Option</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (field of columnFields; track field.name) {
+            <tr>
+              <td><app-code>{{ field.name }}</app-code></td>
+              <td><app-code>{{ field.values }}</app-code></td>
+              <td>@if (field.default) {<app-code>{{ field.default }}</app-code>}</td>
+              <td>{{ field.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Sorting</h3>
+    <p class="text-medium">
+      Clicking a header cycles ascending, descending, unsorted. Numbers and strings that hold numbers are compared as numbers, so
+      1, 2, 10, 13, 101 stay in that order (try the Ticket column, which holds strings). Other text compares naturally ("Item 2" comes before
+      "Item 10"). Numbers come before text, and null, undefined and NaN always come last. Sorting uses the raw data, not what
+      <app-code>render</app-code> shows.
+    </p>
+
+    <h3 class="title-small">Data types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Value</th><th>Shown as</th></tr>
+        </thead>
+        <tbody>
+          @for (type of types; track type.name) {
+            <tr>
+              <td><app-code>{{ type.name }}</app-code></td>
+              <td>{{ type.shows }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Changing what cells show</h3>
+    <p class="text-medium">
+      Give a column a <app-code>render</app-code> function, or the table a <app-code>cellModifier</app-code> for all other columns.
+      It receives the raw value, the row and the column key.
+    </p>
+    <app-code block>{{ renderCode }}</app-code>
+    <p class="text-medium">
+      HTML cells go through Angular's sanitizer, which removes scripts and event handlers. Add <app-code>trustHtml</app-code> only for HTML you wrote.
+      An HTML string cannot contain Angular components: <app-code>&lt;nc-tree&gt;</app-code> inside a string would not work. Use
+      <app-code>asTree(value)</app-code> or <app-code>type: 'tree'</app-code> instead.
+    </p>
+
+    <h3 class="title-small">Cells with your own template</h3>
+    <p class="text-medium">
+      When a cell needs buttons, links, components or pipes, return <app-code>asTemplate(templateRef)</app-code> from <app-code>render</app-code>.
+      The template is normal Angular, so <app-code>(click)</app-code> and your component's methods work. It receives <app-code>$implicit</app-code>
+      (the cell's value), <app-code>row</app-code> (the whole row) and <app-code>key</app-code> (the column key); a second argument,
+      <app-code>asTemplate(templateRef, extra)</app-code>, adds more variables. Read the template with <app-code>viewChild</app-code> inside
+      <app-code>render</app-code> (as below), so the table updates once the template exists. Template cells have no text, so double-click does not copy them
+      and filters see the raw value of the column. Row heights are measured, so tall templates work with <app-code>virtualized</app-code> too.
+    </p>
+    <app-code block>{{ templateCode }}</app-code>
+
+    <h3 class="title-small">Resizing and reordering</h3>
+    <p class="text-medium">
+      Drag the line at the right edge of a header to resize (it respects <app-code>minWidth</app-code> and <app-code>maxWidth</app-code>),
+      or focus it and use Left/Right arrows (Shift for bigger steps). Double-click it or press Escape to give the width back to the table.
+      Drag a header onto another one to reorder, or press Alt+Left/Right on a focused header. Both write to <app-code>columns</app-code>.
+    </p>
+    <app-code block>{{ twoWayCode }}</app-code>
+
+    <h3 class="title-small">Saving the user's changes</h3>
+    <p class="text-medium">
+      Sort, order and widths are plain data in <app-code>columns</app-code> and <app-code>sort</app-code>. Save them with an effect,
+      as this page does. <app-code>serializeColumns</app-code> keeps only the key and width (functions cannot be saved) and
+      <app-code>applyColumnState</app-code> puts them back on your definitions.
+    </p>
+    <app-code block>{{ saveCode }}</app-code>
+
+    <h3 class="title-small">Controls</h3>
+    <p class="text-medium">
+      The bar above the table shows the number of rows on the left and three buttons on the right. <strong>Reload</strong> puts columns (order, widths,
+      visibility) and sort back as they were when the table was created and emits <app-code>(reload)</app-code>, where you fetch new data
+      (set <app-code>loading</app-code> meanwhile). <strong>Columns</strong> opens a list with a tick on the shown columns; the choice is written to
+      <app-code>hiddenColumns</app-code>. <strong>Filter</strong> opens the filter dialog (see below). The bar is as wide as the table. When the space is too small it
+      scrolls sideways by dragging or swiping instead of wrapping. It is also available alone as <app-code>nc-table-controls</app-code>, and
+      <app-code>[controls]="false"</app-code> hides it.
+    </p>
+
+    <h3 class="title-small">Filtering</h3>
+    <p class="text-medium">
+      The Filter button opens a dialog. Each row is a condition: choose a <strong>column</strong>, then an <strong>operator</strong> (the list depends on the
+      column: it only offers "is greater than" when the column holds numbers), then type a <strong>value</strong>. When a row is complete, the
+      <app-code>+ AND / OR</app-code> button under it adds the next row. The x at the end of a row removes it (the first row is only cleared).
+      <strong>Apply</strong> shows the matching rows and the conditions as pills above the table, <strong>Clear</strong> empties the dialog (press Apply to show
+      all rows again). Closing the dialog or pressing Esc throws the changes away. Click the x on a pill to remove that condition.
+    </p>
+    <ul class="text-medium">
+      <li>AND binds tighter than OR: <app-code>A AND B OR C</app-code> means <app-code>(A AND B) OR C</app-code>.</li>
+      <li>Rows that are not complete (no column, operator or value) are ignored when applying.</li>
+      <li>Text is compared as it is <em>shown</em>: after <app-code>render</app-code> / <app-code>cellModifier</app-code>. For HTML cells that is the text of the HTML, so <app-code>contains "chess"</app-code> finds <app-code>&lt;b&gt;chess&lt;/b&gt;</app-code> and the tags themselves cannot be searched. Objects and arrays are searched as their JSON text. Numbers always compare by the raw value.</li>
+      <li>Columns that are hidden can still be filtered, and the filter keeps working when you hide them.</li>
+      <li>The row count in the controls reads "x of y rows" while a filter hides rows.</li>
+    </ul>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Operator</th><th>For</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          @for (operator of filterOperators; track operator.name) {
+            <tr>
+              <td><app-code>{{ operator.name }}</app-code></td>
+              <td>{{ operator.kinds }}</td>
+              <td>{{ operator.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ filterCode }}</app-code>
+    <p class="text-medium">
+      The dialog is also available alone as <app-code>nc-table-filter</app-code> with <app-code>[(open)]</app-code>,
+      <app-code>[columns]</app-code> and <app-code>[(filters)]</app-code>.
+    </p>
+
+    <h3 class="title-small">Copying</h3>
+    <p class="text-medium">
+      Double-clicking a cell copies its text. For HTML cells that is the text of the HTML, for trees the JSON.
+    </p>
+
+    <h3 class="title-small">The tree</h3>
+    <p class="text-medium">
+      <app-code>nc-tree</app-code> shows an object or array as a small button. It opens a floating panel where nested objects have a triangle that
+      expands them. The panel does not make the table cell bigger and is not clipped by the table. It closes with Esc, a click outside or scrolling.
+    </p>
+    <app-code block>{{ treeCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>Roles <app-code>table</app-code>, <app-code>rowgroup</app-code>, <app-code>row</app-code>, <app-code>columnheader</app-code> and <app-code>cell</app-code>, with row and column counts and indexes, so screen readers announce it as a table.</li>
+      <li>Sortable headers are real buttons and the header has <app-code>aria-sort</app-code>. Changes of sort, order and copying are announced in a status region.</li>
+      <li>Resize handles are focusable <app-code>separator</app-code>s with arrow key support. Reordering has the Alt+Arrow keyboard alternative to dragging.</li>
+      <li>The filter dialog is a modal dialog. Its rows are groups with labelled selects and an input, every button has a title and an accessible name, and the applied filters are a labelled list of pills.</li>
+      <li>The controls are buttons with a <app-code>title</app-code> and an accessible name, the row count is a status region, and the column list is a multi-select listbox.</li>
+      <li>Truncated text shows in full as a tooltip.</li>
+      <li>Double-click copy has no keyboard equivalent yet. Text can still be selected and copied normally.</li>
+      <li>The status messages for sort and reorder, and the operator names of the filter, are in English for now (the other filter texts are inputs of <app-code>nc-table-filter</app-code>).</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Colors and sizes come from <app-code>--table-*</app-code> and <app-code>--tree-*</app-code> variables defined in <app-code>:root</app-code>
+      in <app-code>ncss.css</app-code>, and every theme overrides them. The header is a step darker than the rows.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

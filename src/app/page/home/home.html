@@ -1,0 +1,203 @@
+<div class="home">
+  <section class="hero">
+    <nc-pill>Angular · Themeable · Accessible</nc-pill>
+    <h1 class="hero-title">Components that look good out of the box</h1>
+    <p class="hero-text">
+      ncss is a small set of Angular components with one stylesheet of variables. Pick a theme, change a variable, ship.
+      Everything below is built with it.
+    </p>
+    <div class="hero-actions">
+      <button nc-button size="large" (click)="download()">Download</button>
+      <button nc-button variant="outline" size="large" routerLink="/colors">Colors</button>
+    </div>
+    <div class="themes" role="group" aria-label="Try a theme">
+      <span class="themes-label">Try a theme</span>
+      @for (t of themes.themes; track t) {
+        <button nc-button size="small" [variant]="themes.theme() === t ? 'dark' : 'outline'" [attr.aria-pressed]="themes.theme() === t" (click)="themes.setTheme(t)">{{ themeLabels[t] }}</button>
+      }
+    </div>
+  </section>
+
+  <section class="showcase" aria-label="Component showcase">
+    <nc-card class="tile">
+      <div class="tile-row">
+        <button nc-button size="small">Button</button>
+        <button nc-button size="small" variant="outline">Outline</button>
+        <button nc-button size="small" variant="red">Danger</button>
+        <button nc-button size="small" variant="ghost">Ghost</button>
+      </div>
+      <input aria-label="Search" type="search" placeholder="Search…" />
+      <div class="tile-row">
+        <nc-pill>Default</nc-pill>
+        <nc-pill variant="dark">Dark</nc-pill>
+        <nc-pill variant="red">Red</nc-pill>
+        <nc-pill variant="outline" closable>Closable</nc-pill>
+      </div>
+      <div class="tile-row">
+        <nc-switch label="Wi-Fi" [(checked)]="wifi" />
+        <nc-switch label="Dark" [(checked)]="dark" />
+      </div>
+    </nc-card>
+
+    <nc-card class="tile">
+      <h3 class="tile-title">Contribution history</h3>
+      <p class="tile-sub">Last 5 months of activity</p>
+      <div class="chart" role="img" aria-label="Bar chart of the last 5 months">
+        @for (bar of bars; track bar.label) {
+          <div class="chart-col">
+            <div class="chart-bar" [style.height.%]="bar.height"></div>
+            <span class="chart-label">{{ bar.label }}</span>
+          </div>
+        }
+      </div>
+      <button nc-button class="wide">View full report</button>
+    </nc-card>
+
+    <nc-card class="tile">
+      <h3 class="tile-title">Set a new milestone</h3>
+      <p class="tile-sub">Define your target and we'll help you pace your savings.</p>
+      <div class="field">
+        <label class="field-label" for="home-goal">Goal name</label>
+        <input id="home-goal" placeholder="e.g. New car, home downpayment" />
+      </div>
+      <div class="tile-row split">
+        <div class="field">
+          <label class="field-label" for="home-amount">Target amount</label>
+          <input id="home-amount" value="$15,000" />
+        </div>
+        <div class="field">
+          <label class="field-label" for="home-date">Target date</label>
+          <input id="home-date" type="date" />
+        </div>
+      </div>
+      <button nc-button class="wide">Create goal</button>
+      <button nc-button variant="outline" class="wide">Cancel</button>
+    </nc-card>
+
+    <nc-card class="tile tile-center">
+      <span class="icon-badge"><nc-upload-icon [size]="18" /></span>
+      <h3 class="tile-title">Distribute track</h3>
+      <p class="tile-sub">Upload your first master to start reaching listeners everywhere.</p>
+      <button nc-button size="small">Create release</button>
+    </nc-card>
+
+    <nc-card class="tile">
+      <p class="tile-sub">Planning</p>
+      <ul class="menu">
+        @for (item of planning; track item.label) {
+          <li>
+            <span class="menu-link">
+              @switch (item.icon) {
+                @case ('notes') { <nc-notes-icon [size]="16" /> }
+                @case ('list') { <nc-list-icon [size]="16" /> }
+                @case ('edit') { <nc-edit-icon [size]="16" /> }
+                @default { <nc-info-icon [size]="16" /> }
+              }
+              {{ item.label }}
+            </span>
+          </li>
+        }
+      </ul>
+    </nc-card>
+
+    <nc-card class="tile">
+      <h3 class="tile-title">Payout threshold</h3>
+      <p class="tile-sub">Set the minimum balance required before a payout is triggered.</p>
+      <div class="field">
+        <span class="field-label">Preferred currency</span>
+        <nc-select [options]="currencies" [(value)]="currency" ariaLabel="Preferred currency" />
+      </div>
+      <div class="field">
+        <label class="field-label" for="home-notes">Notes</label>
+        <textarea id="home-notes" rows="3" placeholder="Add any notes…"></textarea>
+      </div>
+      <button nc-button class="wide">Save threshold</button>
+    </nc-card>
+
+    <nc-card class="tile">
+      <h3 class="tile-title">Notifications</h3>
+      <p class="tile-sub">Choose which email and push alerts you want to receive.</p>
+      <nc-checkbox label="Transaction alerts" [checked]="alerts().transactions" (checkedChange)="setAlert('transactions', $event)" />
+      <nc-checkbox label="Security alerts" [checked]="alerts().security" (checkedChange)="setAlert('security', $event)" />
+      <nc-checkbox label="Goal milestones" [checked]="alerts().goals" (checkedChange)="setAlert('goals', $event)" />
+      <nc-checkbox label="Market updates" [checked]="alerts().market" (checkedChange)="setAlert('market', $event)" />
+    </nc-card>
+
+    <nc-card class="tile">
+      <p class="tile-sub">Claimable balance</p>
+      <p class="big-number">$1,211.29</p>
+      <nc-pill size="small">Pending setup</nc-pill>
+      <dl class="stats">
+        <div><dt>Net royalties</dt><dd>$1,248.75</dd></div>
+        <div><dt>Processing fee</dt><dd>-$37.46</dd></div>
+        <div class="total"><dt>Total ready</dt><dd>$1,211.29</dd></div>
+      </dl>
+    </nc-card>
+
+    <nc-card class="tile tile-center">
+      <span class="icon-badge"><nc-pallete-icon [size]="18" /></span>
+      <h3 class="tile-title">Make it yours</h3>
+      <p class="tile-sub">Every color, radius and shadow is a CSS variable. Switch themes from the top right.</p>
+      <button nc-button variant="outline" size="small" routerLink="/colors">See the colors</button>
+    </nc-card>
+
+    <nc-card class="tile">
+      <p class="tile-sub">Account</p>
+      <ul class="menu">
+        <li><span class="menu-link"><nc-user-icon [size]="16" /> Profile</span></li>
+        <li><span class="menu-link"><nc-users-icon [size]="16" /> Team</span></li>
+        <li><span class="menu-link"><nc-settings-icon [size]="16" /> Settings</span></li>
+        <li><span class="menu-link"><nc-plus-icon [size]="16" /> Invite</span></li>
+      </ul>
+    </nc-card>
+  </section>
+
+  <section class="setup" aria-labelledby="setup-title">
+    <div class="setup-intro">
+      <nc-pill variant="outline">No installation</nc-pill>
+      <h2 id="setup-title" class="setup-title">Zero setup. Seriously.</h2>
+      <p class="setup-text">
+        No npm package, no build plugin, no config. ncss is a single folder: download it, drop it into your project and
+        import one stylesheet.
+      </p>
+      <div class="setup-facts">
+        <span class="fact"><span class="fact-mark">0</span> dependencies</span>
+        <span class="fact"><span class="fact-mark">0</span> build steps</span>
+        <span class="fact"><span class="fact-mark">1</span> stylesheet</span>
+      </div>
+    </div>
+
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">1</span>
+        <div class="step-body">
+          <h3 class="step-title">Download</h3>
+          <p class="step-text">Grab the zip and unzip it. It's a single folder called ncss.</p>
+          <button nc-button size="small" (click)="download()">Download ncss.zip</button>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num">2</span>
+        <div class="step-body">
+          <h3 class="step-title">Copy</h3>
+          <p class="step-text">Put the folder inside your Angular app.</p>
+          <div class="code-window">
+            <div class="code-bar"><i></i><i></i><i></i><span>your-app/src/app</span></div>
+            <pre class="code"><code>{{ treeCode }}</code></pre>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <span class="step-num">3</span>
+        <div class="step-body">
+          <h3 class="step-title">Import</h3>
+          <p class="step-text">One line in your global stylesheet. That's the whole setup.</p>
+          <div class="code-window">
+            <div class="code-bar"><i></i><i></i><i></i><span>src/styles.css</span></div>
+            <pre class="code"><code>{{ importCode }}</code></pre>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+</div>

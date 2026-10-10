@@ -1,0 +1,109 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Pills</h1>
+    <p class="page-lede">Compact tags and status badges in four variants and three sizes, with an optional remove button.</p>
+  </header>
+
+  <div class="row">
+    @for (variant of variants; track variant) {
+      <nc-pill [variant]="variant">{{ variant }}</nc-pill>
+    }
+  </div>
+
+  <div class="row">
+    @for (size of sizes; track size) {
+      <nc-pill [size]="size">{{ size }}</nc-pill>
+    }
+    @for (variant of variants; track variant) {
+      <nc-pill [variant]="variant" closable>{{ variant }} closable</nc-pill>
+    }
+  </div>
+
+  <div class="row">
+    <nc-pill class="extra" [style]="{ backgroundColor: '#333', color: 'green', textShadow: '0 0 5px green', maxWidth: '12rem' }">Custom class and style with a long text</nc-pill>
+  </div>
+
+  <div class="field">
+    <span class="field-label" id="tags-label">Tags</span>
+    <ul #tagList class="pill-list" aria-labelledby="tags-label">
+      @for (tag of tags(); track tag) {
+        <li><nc-pill closable (closed)="remove(tag, tagList)">{{ tag }}</nc-pill></li>
+      } @empty {
+        <li class="field-hint">No tags</li>
+      }
+    </ul>
+    <div class="group">
+      <input #newTag aria-label="New tag" placeholder="New tag" (keydown.enter)="add(newTag)" />
+      <button nc-button (click)="add(newTag)">Add</button>
+    </div>
+    <span class="field-hint" role="status">{{ status() }}</span>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The pill is an Angular component with the element selector <app-code>nc-pill</app-code>. It is a small rounded label for tags,
+      statuses and filters, with an optional remove button. It shares its variants with the buttons.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Removable pills</h3>
+    <app-code block>{{ closableCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> like on any element. Classes are merged with the
+      pill's classes. A class only overrides a pill style if its CSS comes later or is more specific.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The remove button is a real <app-code>button</app-code> with a name made of <app-code>closeLabel</app-code> and the pill's text ("Remove, Angular"), so each one is distinguishable.</li>
+      <li>The pill itself is static text. Put a group of pills in a <app-code>ul</app-code> with a label, as in the example, so screen readers announce "list, 4 items".</li>
+      <li>When a pill is removed the focus would be lost. Move it to a neighbouring remove button (as the example does) and announce the change in a <app-code>role="status"</app-code> element.</li>
+      <li>The remove button has a visible keyboard focus ring and a hover state, and meaning never depends on color alone.</li>
+      <li>Windows high contrast mode draws a border around pills, and reduced motion turns off the transition.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color and size comes from a <app-code>--pill-*</app-code> variable defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>, and every theme overrides them. The dark, red and outline variants reuse the button variables. Change a
+      variable and every pill follows, or set it on a parent element to change only the pills inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Plain CSS classes</h3>
+    <p class="text-medium">The component only toggles CSS classes, so you can use them without it.</p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

@@ -1,0 +1,119 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Navs</h1>
+    <p class="page-lede">A top navigation bar with dropdown groups, a logo slot and room for your own controls.</p>
+  </header>
+
+  <h2 class="title-medium">Top navigation</h2>
+
+  <div class="demo">
+    <nc-topnav [links]="links" ariaLabel="Demo">
+      <span slot="logo" class="logo">NCSS</span>
+      <button slot="custom" nc-button variant="ghost" square aria-label="Settings">
+        <nc-settings-icon [size]="16" />
+      </button>
+    </nc-topnav>
+    <p class="text-medium">Wide: the links sit in the bar and Components opens a dropdown.</p>
+  </div>
+
+  <div class="demo demo-narrow">
+    <nc-topnav [links]="links" ariaLabel="Narrow demo">
+      <span slot="logo" class="logo">NCSS</span>
+      <button slot="custom" nc-button variant="ghost" square aria-label="Settings">
+        <nc-settings-icon [size]="16" />
+      </button>
+    </nc-topnav>
+    <p class="text-medium">Narrow: below 768px of its own width the links move behind the menu button.</p>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The top navigation is an Angular component with the element selector <app-code>nc-topnav</app-code>. Give it a list of
+      links, and optionally a logo and custom content. Links can be simple routes or dropdowns of routes. It
+      highlights the current page and sticks to the top while the page scrolls.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">NavLink</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Field</th><th>Values</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (field of linkFields; track field.name) {
+            <tr>
+              <td><app-code>{{ field.name }}</app-code></td>
+              <td><app-code>{{ field.values }}</app-code></td>
+              <td>{{ field.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Slots</h3>
+    <app-code block>{{ slotsCode }}</app-code>
+
+    <h3 class="title-small">Responsive behavior</h3>
+    <p class="text-medium">
+      The nav measures its own width, not the window. Below <app-code>768px</app-code> the links are replaced by a menu button that
+      opens a panel with all the links, dropdown items included. This is why both demos above work on the same screen. The
+      breakpoint is fixed, and it is not meant for a long list of links.
+    </p>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code>, <app-code>[style]</app-code> or <app-code>id</app-code> to <app-code>nc-topnav</app-code>
+      like on any element. Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The links sit in a <app-code>nav</app-code> landmark named by <app-code>ariaLabel</app-code> and are a real list of real links, so everything works with Tab and Enter.</li>
+      <li>The current page gets <app-code>aria-current="page"</app-code> and is also bold and underlined, so it is not shown by color alone. A dropdown is marked when one of its pages is current.</li>
+      <li>Dropdowns follow the disclosure pattern: a button with <app-code>aria-expanded</app-code> that reveals a list of links. They are not ARIA menus, because a site's links are navigation, not application commands.</li>
+      <li>Escape closes whatever is open and returns focus to the button that opened it. Clicking outside, tabbing out, or following a link also closes it.</li>
+      <li>The menu button on narrow navs has its own name (<app-code>menuLabel</app-code>) and <app-code>aria-expanded</app-code>. Icons are hidden from screen readers.</li>
+      <li>If the page has more than one navigation, give each a different <app-code>ariaLabel</app-code>. Add a "skip to content" link before the nav on real sites so keyboard users can jump past it.</li>
+      <li>Focus rings, Windows high contrast mode and reduced motion are handled.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Colors, height and shadows come from <app-code>--topnav-*</app-code> variables defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>, and every theme overrides them. Dropdowns reuse the select list variables. Change a variable and
+      every nav follows, or set it on a parent element to change only the navs inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

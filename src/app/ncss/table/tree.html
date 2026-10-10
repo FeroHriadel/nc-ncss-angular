@@ -1,0 +1,45 @@
+@if (isBranch(value())) {
+  <button
+    #trigger
+    type="button"
+    class="tree-trigger"
+    aria-haspopup="true"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="open() ? panelId : null"
+    (click)="toggle()"
+  >{{ label() || summary(value()) }}</button>
+
+  @if (open()) {
+    <div #panel popover="manual" class="tree-panel" role="group" [id]="panelId" [attr.aria-label]="ariaLabel()" [style]="placement()">
+      <ng-container [ngTemplateOutlet]="nodes" [ngTemplateOutletContext]="{ $implicit: value(), path: '' }" />
+    </div>
+  }
+} @else {
+  <span class="tree-primitive">{{ leaf(value()) }}</span>
+}
+
+<ng-template #nodes let-node let-path="path">
+  <ul class="tree-list">
+    @for (entry of entries(node, path); track entry.key) {
+      <li>
+        @if (isBranch(entry.value)) {
+          <button type="button" class="tree-toggle" [attr.aria-expanded]="isExpanded(entry.path)" (click)="toggleNode(entry.path)">
+            <svg class="tree-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 6 6 6-6 6" /></svg>
+            <span class="tree-key">{{ entry.key }}</span>
+            <span class="tree-summary">{{ summary(entry.value) }}</span>
+          </button>
+          @if (isExpanded(entry.path)) {
+            <ng-container [ngTemplateOutlet]="nodes" [ngTemplateOutletContext]="{ $implicit: entry.value, path: entry.path }" />
+          }
+        } @else {
+          <div class="tree-leaf">
+            <span class="tree-key">{{ entry.key }}</span>
+            <span class="tree-value tree-{{ leafKind(entry.value) }}">{{ leaf(entry.value) }}</span>
+          </div>
+        }
+      </li>
+    } @empty {
+      <li class="tree-leaf tree-null">empty</li>
+    }
+  </ul>
+</ng-template>

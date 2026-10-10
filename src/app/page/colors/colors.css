@@ -1,0 +1,20 @@
+.scales {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.swatch {
+  width: 25px;
+  height: 25px;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--gray-200);
+}

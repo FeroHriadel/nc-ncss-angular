@@ -1,0 +1,110 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Inputs</span>
+    <h1 class="title-big">Select</h1>
+    <p class="page-lede">A fully custom, keyboard-friendly select that matches your theme in every state.</p>
+  </header>
+
+  <div class="row">
+    <nc-select [options]="fruits" placeholder="Pick a fruit" />
+    <nc-select [options]="fruits" [(value)]="single" />
+    <nc-select [options]="fruits" [(value)]="multi" multiple placeholder="Pick fruits" />
+    <nc-select [options]="fruits" searchable placeholder="Searchable" />
+  </div>
+
+  <div class="row">
+    <nc-select [options]="fruits" [showCheck]="false" value="kiwi" />
+    <nc-select [options]="fruits" disabled value="apple" />
+    <nc-select customTrigger [options]="fruits" [(value)]="single">
+      <button nc-button variant="outline">Custom trigger</button>
+    </nc-select>
+    <nc-select class="extra" [style]="{ width: '20rem' }" [options]="fruits" placeholder="Custom class and style" />
+  </div>
+
+  <div class="row">
+    <select aria-label="Native select">
+      <option value="">Native select</option>
+      @for (fruit of fruits; track fruit.value) {
+        <option [value]="fruit.value">{{ fruit.label }}</option>
+      }
+    </select>
+    <select aria-label="Disabled native select" disabled>
+      <option>Native disabled</option>
+    </select>
+  </div>
+
+  <p class="text-medium">Single: <app-code>{{ single() }}</app-code> Multiple: <app-code>{{ multi() }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The select is an Angular component with the element selector <app-code>nc-select</app-code>. Give it a list of
+      <app-code>{{ '{ value, label }' }}</app-code> options. It supports single and multiple selection, search, keyboard navigation
+      (arrows, Enter, Space, Escape) and always stays on screen: the list opens upward, shifts sideways or scrolls when there is no room.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Custom trigger</h3>
+    <app-code block>{{ customTriggerCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> to <app-code>nc-select</app-code> like on any element.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h3 class="title-small">Native select</h3>
+    <p class="text-medium">
+      A plain <app-code>select</app-code> element is styled by <app-code>ncss.css</app-code> too, with the same
+      <app-code>--select-*</app-code> variables, so it matches <app-code>nc-select</app-code> in every theme. Only the closed
+      control is styled. The option list is drawn by the browser and can't be themed. Use it when you want native
+      behavior (forms, mobile pickers).
+    </p>
+    <app-code block>{{ nativeCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color, size and shadow comes from a <app-code>--select-*</app-code> variable defined in
+      <app-code>:root</app-code> in <app-code>ncss.css</app-code>, and every theme overrides them. Change a variable and every select follows,
+      or set it on a parent element to change only the selects inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Behavior</h3>
+    <ul class="text-medium">
+      <li>Single select closes after a pick. Multiple select stays open and toggles options.</li>
+      <li>Keyboard: Enter, Space or the arrow keys open it. Arrows move the highlight, Enter or Space picks, Escape closes.</li>
+      <li>The list never leaves the screen: it opens upward when there is no room below, shifts sideways away from the screen edge, and scrolls when it is taller than the space available.</li>
+      <li>Long labels are cut off with an ellipsis. The list scrolls after 6 options.</li>
+      <li>With <app-code>multiple</app-code>, the trigger shows the label for one pick and "N selected" for more.</li>
+    </ul>
+  </section>
+</div>

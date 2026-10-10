@@ -36,3 +36,4 @@ export { AdjustIcon } from './adjust.icon';
 export { BoxOpenIcon } from './box-open.icon';
 export { TargetHumanIcon } from './target-human.icon';
 
+export { ReloadIcon } from './reload.icon';

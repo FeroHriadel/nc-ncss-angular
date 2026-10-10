@@ -1,0 +1,96 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Tables &amp; Lists</span>
+    <h1 class="title-big">Card list</h1>
+    <p class="page-lede">Every item is its own card, with the same add, edit and delete buttons as the crud list.</p>
+  </header>
+
+  <h2 class="title-medium">Add, edit and delete</h2>
+  <div class="row">
+    <nc-card-list class="demo" heading="Projects" [items]="basic()" (add)="add(basic)" (edit)="edit($event)" (remove)="remove(basic, $event)" />
+  </div>
+
+  <h2 class="title-medium">Clickable and striped</h2>
+  <div class="row">
+    <nc-card-list class="demo" heading="Open a project" [items]="clickable()" clickable striped [addButton]="false" (edit)="edit($event)" (remove)="remove(clickable, $event)" (open)="open($event)" />
+  </div>
+
+  <h2 class="title-medium">Custom card template</h2>
+  <div class="row">
+    <ng-template #card let-item>
+      <span class="card-title">
+        {{ item.title }}
+        <nc-pill size="small" [variant]="item.status === 'Live' ? 'dark' : 'outline'">{{ item.status }}</nc-pill>
+      </span>
+      <span class="card-text">{{ item.text }}</span>
+    </ng-template>
+    <nc-card-list class="demo" heading="With status" [items]="withStatus()" [itemTemplate]="card" [addButton]="false" (edit)="edit($event)" (remove)="remove(withStatus, $event)" />
+  </div>
+
+  <h2 class="title-medium">Empty</h2>
+  <div class="row">
+    <nc-card-list class="demo" heading="Nothing here" [items]="empty()" emptyText="Press + to add the first one" (add)="add(empty)" (remove)="remove(empty, $event)" />
+  </div>
+
+  <p class="text-medium" role="status">Last event: <app-code>{{ log() }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      <app-code>nc-card-list</app-code> shows a card per item, with an optional title and text, and edit and delete buttons. It never changes
+      your data: it emits events and you update your own signal. If you want a compact, table-like list instead, use the crud list.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs and outputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="title-medium">Clickable cards</h2>
+    <app-code block>{{ clickableCode }}</app-code>
+
+    <h2 class="title-medium">Custom cards</h2>
+    <p class="text-medium">
+      Give <app-code>[itemTemplate]</app-code> an <app-code>ng-template</app-code> and it is used for every card. Put only the content in it:
+      the card, its padding, click handling and buttons are already there.
+    </p>
+    <app-code block>{{ templateCode }}</app-code>
+
+    <h2 class="title-medium">Your own fields</h2>
+    <p class="text-medium">The events hand back the very same object you put in, so extra fields just work.</p>
+    <app-code block>{{ typedCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>It is a real <app-code>ul</app-code>. Every button has a name that includes the card, such as "Delete, Billing".</li>
+      <li>With <app-code>clickable</app-code> the content is a button: Tab, Enter and Space work and the focus ring follows the theme.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Spacing and colors come from <app-code>--list-*</app-code> variables defined in <app-code>:root</app-code> in <app-code>ncss.css</app-code>.
+      The cards themselves are normal cards, so the <app-code>--card-*</app-code> variables apply too.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

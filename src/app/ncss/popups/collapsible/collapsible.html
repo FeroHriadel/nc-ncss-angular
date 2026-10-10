@@ -1,0 +1,29 @@
+<button
+  type="button"
+  class="collapsible-trigger"
+  [id]="triggerId"
+  [disabled]="disabled()"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="contentId"
+  (click)="toggle()"
+>
+  <span class="collapsible-trigger-text"><ng-content select="[slot=trigger]" /></span>
+  @if (chevron()) {
+    <svg class="collapsible-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  }
+</button>
+
+<div
+  class="collapsible-content"
+  role="region"
+  [class.collapsible-content-open]="open()"
+  [id]="contentId"
+  [attr.aria-labelledby]="triggerId"
+  [attr.inert]="open() ? null : ''"
+>
+  <div class="collapsible-content-inner">
+    <ng-content />
+  </div>
+</div>

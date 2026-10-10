@@ -1,0 +1,26 @@
+.page {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+  padding: 2rem;
+}
+
+h1,
+h2,
+p {
+  margin: 0 0 1.5rem;
+}
+
+h1 {
+  margin-bottom: 0.125rem;
+}
+
+h2 {
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 800px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,69 @@
+<nc-modal [(open)]="open" [heading]="heading()" [actionButtons]="false" width="46rem">
+  <div class="table-filter-rows">
+    @for (row of draft(); track row.id; let i = $index) {
+      @if (i > 0) {
+        <div class="table-filter-join">
+          <nc-select customTrigger overlay [options]="joinOptions" [value]="row.join" [ariaLabel]="joinLabel()" (valueChange)="setJoin(row, $event)">
+            <span class="btn btn-outline btn-small">
+              <span class="btn-label">{{ row.join === 'or' ? 'OR' : 'AND' }}</span>
+            </span>
+          </nc-select>
+        </div>
+      }
+
+      <div class="table-filter-row" role="group" [attr.aria-label]="'#' + (i + 1)">
+        <div class="table-filter-fields">
+          <nc-select
+            class="table-filter-field"
+            overlay
+            [options]="columnOptions()"
+            [value]="row.column"
+            [placeholder]="columnLabel()"
+            [ariaLabel]="columnLabel()"
+            (valueChange)="setColumn(row, $event)"
+          />
+          <nc-select
+            class="table-filter-field"
+            overlay
+            [options]="operatorOptions(row)"
+            [value]="row.operator"
+            [placeholder]="operatorLabel()"
+            [ariaLabel]="operatorLabel()"
+            [disabled]="!row.column"
+            (valueChange)="setOperator(row, $event)"
+          />
+          @if (showValue(row)) {
+            <input
+              class="table-filter-field table-filter-value"
+              [type]="kindOf(row) === 'number' ? 'number' : 'text'"
+              [attr.inputmode]="kindOf(row) === 'number' ? 'decimal' : null"
+              [attr.placeholder]="valueLabel()"
+              [attr.aria-label]="valueLabel()"
+              [attr.aria-invalid]="row.value && !isComplete(row) ? 'true' : null"
+              [disabled]="!row.operator"
+              [value]="row.value"
+              (input)="setValue(row, $any($event.target).value)"
+              (keydown.enter)="apply()"
+            />
+          }
+        </div>
+        <button nc-button type="button" square class="table-filter-remove" variant="ghost" size="medium" [attr.title]="removeLabel()" [attr.aria-label]="removeLabel()" (click)="remove(i)">
+          <nc-times-icon [size]="14" />
+        </button>
+      </div>
+    }
+
+    @if (canAdd()) {
+      <div class="table-filter-join">
+        <nc-select #add customTrigger overlay [options]="joinOptions" [value]="''" [ariaLabel]="joinLabel()" (valueChange)="addRow($event); add.clear()">
+          <span class="btn btn-ghost btn-small">
+            <span class="btn-label">+ {{ addLabel() }}</span>
+          </span>
+        </nc-select>
+      </div>
+    }
+  </div>
+
+  <button slot="footer" nc-button type="button" variant="outline" (click)="clear()">{{ clearLabel() }}</button>
+  <button slot="footer" nc-button type="button" (click)="apply()">{{ applyLabel() }}</button>
+</nc-modal>

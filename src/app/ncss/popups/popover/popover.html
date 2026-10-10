@@ -1,0 +1,17 @@
+<span #triggerWrap class="popover-trigger" (click)="toggle()">
+  <ng-content select="[slot=trigger]" />
+</span>
+
+@if (open()) {
+  <div
+    #panel
+    class="popover-panel"
+    [class]="popoverClass()"
+    [style]="panelStyle()"
+    [id]="panelId"
+    [attr.role]="ariaLabel() ? 'dialog' : null"
+    [attr.aria-label]="ariaLabel() || null"
+  >
+    <ng-content />
+  </div>
+}

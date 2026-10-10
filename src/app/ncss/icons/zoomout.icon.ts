@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   template: `
     <svg
+      aria-hidden="true"
       [attr.id]="id()"
       [attr.class]="class()"
       [ngStyle]="style()"

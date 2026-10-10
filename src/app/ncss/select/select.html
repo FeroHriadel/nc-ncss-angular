@@ -1,0 +1,99 @@
+@if (customTrigger()) {
+  <span
+    #trigger
+    class="select-custom-trigger"
+    role="button"
+    aria-haspopup="listbox"
+    [attr.tabindex]="disabled() ? -1 : 0"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-expanded]="isOpen()"
+    [attr.aria-controls]="isOpen() ? listId : null"
+    [attr.aria-disabled]="disabled() || null"
+    [attr.aria-activedescendant]="activeDescendant()"
+    (click)="toggle()"
+  >
+    <ng-content />
+  </span>
+} @else {
+  <span
+    #trigger
+    class="select-trigger"
+    role="button"
+    aria-haspopup="listbox"
+    [class]="triggerClass()"
+    [class.select-trigger-open]="isOpen()"
+    [style]="triggerStyle()"
+    [attr.tabindex]="disabled() ? -1 : 0"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-expanded]="isOpen()"
+    [attr.aria-controls]="isOpen() ? listId : null"
+    [attr.aria-disabled]="disabled() || null"
+    [attr.aria-activedescendant]="activeDescendant()"
+    (click)="toggle()"
+  >
+    @if (triggerText()) {
+      <span class="select-trigger-text">{{ triggerText() }}</span>
+    } @else {
+      <span class="select-trigger-text select-placeholder">{{ placeholder() }}</span>
+    }
+    <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </span>
+}
+
+@if (isOpen() && options().length) {
+  <ul
+    #list
+    class="select-options"
+    [attr.popover]="overlay() ? 'manual' : null"
+    role="listbox"
+    [id]="listId"
+    [style]="listStyle()"
+    [style.width]="optionsWidth() || null"
+    [attr.aria-multiselectable]="multiple() || null"
+  >
+    @if (searchable()) {
+      <li class="select-search">
+        <input
+          #searchInput
+          type="text"
+          class="select-search-input"
+          placeholder="Search..."
+          aria-label="Search options"
+          [value]="searchTerm()"
+          (input)="onSearch(searchInput.value)"
+        />
+        @if (searchTerm()) {
+          <button type="button" class="select-search-clear" aria-label="Clear search" (click)="clearSearch()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        }
+      </li>
+    }
+    @for (option of shownOptions(); track option.value; let i = $index) {
+      <li
+        class="select-option"
+        role="option"
+        [id]="optionId(i)"
+        [attr.data-index]="i"
+        [attr.title]="option.label"
+        [attr.aria-selected]="isSelected(option)"
+        [class.select-option-selected]="isSelected(option)"
+        [class.select-option-highlighted]="highlightedIndex() === i"
+        (click)="select(option)"
+      >
+        <span class="select-option-text">{{ option.label }}</span>
+        @if (showCheck() && isSelected(option)) {
+          <svg class="select-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        }
+      </li>
+    } @empty {
+      <li class="select-empty">No options found</li>
+    }
+  </ul>
+}

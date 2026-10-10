@@ -1,0 +1,19 @@
+<label class="checkbox-label">
+  <input
+    #box
+    type="checkbox"
+    class="checkbox-input"
+    [class]="inputClass()"
+    [style]="inputStyle()"
+    [checked]="checked()"
+    [indeterminate]="indeterminate()"
+    [disabled]="disabled()"
+    [required]="required()"
+    [attr.name]="name() || null"
+    [attr.value]="value() || null"
+    [attr.aria-label]="ariaLabel() || null"
+    [attr.aria-describedby]="ariaDescribedby() || null"
+    [attr.aria-invalid]="invalid() || null"
+    (change)="onChange(box.checked)"
+  /><span class="checkbox-text">{{ label() }}<ng-content /></span>
+</label>

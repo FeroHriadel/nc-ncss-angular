@@ -1,152 +1,80 @@
-import { Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Injectable, inject } from '@angular/core';
 
-
+export type ToastType = 'info' | 'error' | 'warning';
 
 export interface ToastOptions {
+  title?: string;
   text: string;
+  /** Milliseconds before the toast closes on its own. Defaults to 3000. */
   duration?: number;
+  /** Defaults to 'info'. */
+  type?: ToastType;
 }
 
-interface ActiveToast {
-  element: HTMLDivElement;
-  timeoutId: number;
-}
+const DEFAULT_DURATION = 3000;
+const LEAVE_MS = 200;
 
-
-
-@Injectable({
-  providedIn: 'root'
-})
-
+/**
+ * Shows stacked toasts, styled by the active theme (see the `.toast` rules and `--toast-*` tokens in ncss.css).
+ *
+ *   toast.show('Saved');                                   // info, 3 seconds
+ *   toast.show({ title: 'Oops', text: 'Failed', type: 'error', duration: 5000 });
+ *
+ * Clicking a toast dismisses it.
+ */
+@Injectable({ providedIn: 'root' })
 export class ToastService {
-  private activeToasts: ActiveToast[] = [];
-  private readonly defaultDuration = 2500;
-  private readonly toastSpacing = 16; // Gap between stacked toasts
+  private readonly document = inject(DOCUMENT);
+  private region?: HTMLElement;
 
-  constructor() {}
+  show(options: string | ToastOptions): void {
+    const { title, text, duration = DEFAULT_DURATION, type = 'info' } =
+      typeof options === 'string' ? ({ text: options } as ToastOptions) : options;
 
-  toast(options: ToastOptions): void {
-    this.showToast(options, 'toast');
-  }
+    const el = this.document.createElement('div');
+    el.className = `toast toast-${type}`;
+    // Errors interrupt screen readers; the rest wait their turn.
+    el.setAttribute('role', type === 'error' ? 'alert' : 'status');
 
-  error(options: ToastOptions): void {
-    this.showToast(options, 'error');
-  }
-
-  private showToast(options: ToastOptions, type: 'toast' | 'error'): void {
-    const duration = options.duration ?? this.defaultDuration;
-    
-    // Create toast element
-    const toastElement = document.createElement('div');
-    toastElement.textContent = options.text;
-    
-    // Apply base styles
-    this.applyBaseStyles(toastElement);
-    
-    // Apply type-specific styles
-    if (type === 'toast') {
-      toastElement.style.border = '1px solid var(--nc-toast-border)';
-      toastElement.style.backgroundColor = 'var(--nc-toast-bg)';
-    } else {
-      toastElement.style.border = '1px solid var(--nc-error-toast-border)';
-      toastElement.style.backgroundColor = 'var(--nc-error-toast-bg)';
+    if (title) {
+      const titleEl = this.document.createElement('div');
+      titleEl.className = 'toast-title';
+      titleEl.textContent = title;
+      el.appendChild(titleEl);
     }
-    
-    // Calculate position based on existing toasts
-    const bottomPosition = this.calculateBottomPosition();
-    toastElement.style.bottom = `${bottomPosition}px`;
-    
-    // Add to DOM
-    document.body.appendChild(toastElement);
-    
-    // Trigger animation after a brief delay (for CSS transition)
-    setTimeout(() => {
-      toastElement.style.opacity = '0.8';
-      toastElement.style.transform = 'translateX(0)';
-    }, 10);
-    
-    // Set up auto-removal
-    const timeoutId = window.setTimeout(() => {
-      this.removeToast(toastElement);
-    }, duration);
-    
-    // Track this toast
-    this.activeToasts.push({ element: toastElement, timeoutId });
-  }
+    const textEl = this.document.createElement('p');
+    textEl.className = 'toast-text';
+    textEl.textContent = text;
+    el.appendChild(textEl);
 
-  private applyBaseStyles(element: HTMLDivElement): void {
-    element.style.position = 'fixed';
-    element.style.right = '20px';
-    element.style.padding = '12px 20px';
-    element.style.borderRadius = 'var(--nc-border-radius)';
-    element.style.color = 'var(--nc-white-900)';
-    element.style.fontSize = '16px';
-    element.style.fontWeight = '500';
-    element.style.boxShadow = 'var(--nc-box-shadow)';
-    element.style.zIndex = '9999';
-    element.style.minWidth = '260px';
-    element.style.maxWidth = '260px';
-    element.style.minHeight = '100px';
-    element.style.wordWrap = 'break-word';
-    element.style.display = 'flex';
-    element.style.justifyContent = 'center';
-    element.style.alignItems = 'center';
-    element.style.textAlign = 'center';
-    element.style.transition = 'all 0.3s ease-in-out';
-    element.style.opacity = '0';
-    element.style.transform = 'translateX(100px)';
-    element.style.pointerEvents = 'auto';
-    element.style.cursor = 'pointer';
-    
-    // Allow click to dismiss
-    element.addEventListener('click', () => {
-      this.removeToast(element);
+    const timer = setTimeout(() => this.dismiss(el), duration);
+    el.addEventListener('click', () => {
+      clearTimeout(timer);
+      this.dismiss(el);
     });
+
+    this.getRegion().appendChild(el);
   }
 
-  private calculateBottomPosition(): number {
-    let totalHeight = 20; // Initial bottom margin
-    
-    this.activeToasts.forEach(toast => {
-      totalHeight += toast.element.offsetHeight + this.toastSpacing;
-    });
-    
-    return totalHeight;
-  }
-
-  private removeToast(element: HTMLDivElement): void {
-    // Find the toast in our tracking array
-    const index = this.activeToasts.findIndex(t => t.element === element);
-    
-    if (index === -1) return;
-    
-    // Clear the timeout
-    clearTimeout(this.activeToasts[index].timeoutId);
-    
-    // Fade out animation
-    element.style.opacity = '0';
-    element.style.transform = 'translateX(100px)';
-    
-    // Remove from DOM after animation
+  private dismiss(el: HTMLElement): void {
+    if (el.classList.contains('toast-leaving')) return;
+    el.classList.add('toast-leaving');
     setTimeout(() => {
-      if (element.parentNode) {
-        element.parentNode.removeChild(element);
+      el.remove();
+      if (this.region && !this.region.hasChildNodes()) {
+        this.region.remove();
+        this.region = undefined;
       }
-      
-      // Remove from tracking array
-      this.activeToasts.splice(index, 1);
-      
-      // Reposition remaining toasts
-      this.repositionToasts();
-    }, 300);
+    }, LEAVE_MS);
   }
 
-  private repositionToasts(): void {
-    let currentBottom = 20;
-    
-    this.activeToasts.forEach(toast => {
-      toast.element.style.bottom = `${currentBottom}px`;
-      currentBottom += toast.element.offsetHeight + this.toastSpacing;
-    });
+  private getRegion(): HTMLElement {
+    if (!this.region?.isConnected) {
+      this.region = this.document.createElement('div');
+      this.region.className = 'toast-region';
+      this.document.body.appendChild(this.region);
+    }
+    return this.region;
   }
 }

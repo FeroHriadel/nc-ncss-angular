@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ncss-angular": {
+    "nc-ncss-angular2": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,8 +24,9 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"],
-            "externalDependencies": ["fonts/*"]
+            "styles": [
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -55,19 +56,16 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ncss-angular:build:production"
+              "buildTarget": "nc-ncss-angular2:build:production"
             },
             "development": {
-              "buildTarget": "ncss-angular:build:development"
+              "buildTarget": "nc-ncss-angular2:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
         "test": {
           "builder": "@angular/build:unit-test"
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

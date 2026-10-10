@@ -1,0 +1,104 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Inputs</span>
+    <h1 class="title-big">Switch</h1>
+    <p class="page-lede">A toggle with a label and a knob that follows your theme, with native checkbox semantics underneath.</p>
+  </header>
+
+  <div class="row">
+    <nc-switch label="Off" />
+    <nc-switch label="On" [checked]="true" />
+    <nc-switch label="Disabled" disabled />
+    <nc-switch label="Disabled on" disabled [checked]="true" />
+  </div>
+
+  <div class="row">
+    <nc-switch label="Two-way bound" [(checked)]="wifi" />
+    <nc-switch [(checked)]="notifications">Rich <strong>label</strong></nc-switch>
+    <nc-switch ariaLabel="No visible label" />
+    <nc-switch class="extra" [style]="{ maxWidth: '14rem' }" label="Custom class and style with a very long label that wraps onto several lines" />
+  </div>
+
+  <div class="row">
+    <fieldset>
+      <legend class="title-small">Notifications</legend>
+      <nc-switch label="Emails" [(checked)]="emails" />
+      <nc-switch label="SMS" [(checked)]="sms" ariaDescribedby="sms-hint" />
+      <p id="sms-hint" class="text-small">Carrier charges may apply.</p>
+    </fieldset>
+  </div>
+
+  <p class="text-medium">Wi-Fi: <app-code>{{ wifi() }}</app-code> Notifications: <app-code>{{ notifications() }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The switch is an Angular component with the element selector <app-code>nc-switch</app-code>. Inside it is a real
+      <app-code>input type="checkbox"</app-code> with <app-code>role="switch"</app-code>, wrapped in a <app-code>label</app-code> and
+      drawn with CSS. Use it for settings that take effect immediately (on/off). For choices that are submitted with a
+      form, use a checkbox.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Rich label</h3>
+    <app-code block>{{ richLabelCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> to <app-code>nc-switch</app-code> like on any element.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>It is a native checkbox with <app-code>role="switch"</app-code>, so Space toggles it, Tab moves to it, and screen readers announce "switch" with its on/off state.</li>
+      <li>The visible label is the accessible name, and clicking it toggles the switch. Use <app-code>ariaLabel</app-code> only when there is no visible label.</li>
+      <li><app-code>ariaDescribedby</app-code> links a hint, so it is read together with the switch.</li>
+      <li>State is never shown by color alone: the knob also moves from one side to the other.</li>
+      <li>The knob is CSS only, so it is never read out. Disabled switches leave the tab order.</li>
+      <li>Related switches should sit in a <app-code>fieldset</app-code> with a <app-code>legend</app-code>.</li>
+      <li>The focus ring shows for keyboard focus only. Windows high contrast mode uses system colors, and reduced motion turns off the transitions.</li>
+    </ul>
+    <app-code block>{{ groupCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color, size and shadow comes from a <app-code>--switch-*</app-code> variable defined in
+      <app-code>:root</app-code> in <app-code>ncss.css</app-code>, and every theme overrides them. Change a variable and every switch follows,
+      or set it on a parent element to change only the switches inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Plain CSS classes</h3>
+    <p class="text-medium">The component only adds markup, so the classes work without it.</p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

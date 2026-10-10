@@ -1,0 +1,68 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">PopUps</span>
+    <h1 class="title-big">Collapsible</h1>
+    <p class="page-lede">A show/hide section that animates smoothly and hides closed content from assistive tech.</p>
+  </header>
+
+  <div class="faq">
+    <nc-collapsible [(open)]="faqOpen">
+      <span slot="trigger">What is ncss?</span>
+      <p class="text-medium faq-body">A small, themeable component library with five themes.</p>
+    </nc-collapsible>
+    <nc-collapsible>
+      <span slot="trigger">Is it accessible?</span>
+      <p class="text-medium faq-body">That is the goal. Every component is built on native elements where possible.</p>
+    </nc-collapsible>
+    <nc-collapsible disabled>
+      <span slot="trigger">Disabled</span>
+      <p class="text-medium faq-body">You cannot see this.</p>
+    </nc-collapsible>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      <app-code>nc-collapsible</app-code> is a show/hide section. The trigger text goes in <app-code>slot="trigger"</app-code>, the rest is
+      the content. The trigger is a button, so do not put links or buttons inside it. It opens and closes through
+      <app-code>[(open)]</app-code> or <app-code>show()</app-code>, <app-code>hide()</app-code> and <app-code>toggle()</app-code>.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ collapsibleCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of collapsibleInputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The collapsible is a button with <app-code>aria-expanded</app-code> and a labelled region. Closed content is <app-code>inert</app-code>, so Tab skips it and screen readers do not read it.</li>
+      <li>Animations stop with reduced motion.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      The hover colors come from variables defined in <app-code>:root</app-code> in <app-code>ncss.css</app-code>, and every theme overrides them.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

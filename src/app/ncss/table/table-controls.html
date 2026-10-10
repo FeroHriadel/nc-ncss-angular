@@ -1,0 +1,39 @@
+<div class="table-controls-inner" (pointerdown)="dragStart($event)" (pointermove)="dragMove($event)" (pointerup)="dragEnd($event)" (pointercancel)="dragEnd($event)">
+  <span class="table-controls-info" role="status">
+    @if (loading()) {
+      {{ loadingLabel() }}
+    } @else {
+      @if (totalCount() !== null && totalCount() !== rowCount()) {
+        {{ rowCount() }} {{ ofLabel() }} {{ totalCount() }} {{ rowsLabel() }}
+      } @else {
+        {{ rowCount() }} {{ rowCount() === 1 ? rowLabel() : rowsLabel() }}
+      }
+    }
+  </span>
+
+  <div class="table-controls-actions">
+    <button nc-button type="button" square variant="outline" size="medium" [attr.title]="reloadLabel()" [attr.aria-label]="reloadLabel()" (click)="reload.emit()">
+      <nc-reload-icon [size]="16" />
+    </button>
+
+    <nc-select
+      multiple
+      customTrigger
+      overlay
+      optionsWidth="12rem"
+      [optionsStyle]="{ maxWidth: '12rem' }"
+      [options]="columns()"
+      [value]="visible()"
+      [ariaLabel]="columnsLabel()"
+      (valueChange)="onVisibleChange($event)"
+    >
+      <span class="btn btn-outline btn-medium btn-square" [attr.title]="columnsLabel()">
+        <span class="btn-label"><nc-list-icon [size]="16" /></span>
+      </span>
+    </nc-select>
+
+    <button nc-button type="button" square variant="outline" size="medium" [attr.title]="filterLabel()" [attr.aria-label]="filterLabel()" aria-haspopup="dialog" (click)="filter.emit()">
+      <nc-filter-icon [size]="16" />
+    </button>
+  </div>
+</div>

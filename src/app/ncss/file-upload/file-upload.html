@@ -1,0 +1,45 @@
+<div class="file-upload-box" [class.file-upload-has-files]="files().length > 0">
+  <input
+    #box
+    type="file"
+    class="file-upload-input"
+    [class]="inputClass()"
+    [style]="inputStyle()"
+    [id]="id()"
+    [disabled]="disabled()"
+    [required]="required()"
+    [multiple]="multiple()"
+    [attr.accept]="accept() || null"
+    [attr.name]="name() || null"
+    [attr.title]="title()"
+    [attr.aria-label]="ariaLabel() || null"
+    [attr.aria-describedby]="ariaDescribedby() || null"
+    [attr.aria-invalid]="invalid() || null"
+    (change)="onChange()"
+  />
+  <svg class="file-upload-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 15V3m0 0L7 8m5-5 5 5" />
+    <path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4" />
+  </svg>
+  <span class="file-upload-text" [class.file-upload-placeholder]="files().length === 0" aria-hidden="true">{{ text() }}</span>
+</div>
+
+@if (files().length) {
+  <button
+    nc-button
+    type="button"
+    square
+    variant="ghost"
+    size="small"
+    class="file-upload-clear"
+    [disabled]="disabled()"
+    [attr.aria-label]="clearLabel()"
+    (click)="clear()"
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  </button>
+}
+
+<span class="file-upload-status" role="status">{{ status() }}</span>

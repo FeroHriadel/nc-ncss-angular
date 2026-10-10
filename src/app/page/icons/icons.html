@@ -1,0 +1,103 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Icons</h1>
+    <p class="page-lede">A consistent icon set where every icon is a tiny component with a size input.</p>
+  </header>
+
+  <div class="field search">
+    <label class="field-label" for="icon-search">Search icons</label>
+    <input id="icon-search" type="search" placeholder="e.g. eye, user, check" [value]="query()" #search (input)="query.set(search.value)" />
+    <span class="field-hint" role="status">{{ shown().length }} of {{ icons.length }} icons</span>
+  </div>
+
+  <div class="gallery">
+    @for (icon of shown(); track icon.name) {
+      <nc-card>
+        <ng-container *ngComponentOutlet="icon.component; inputs: { size: 32 }" />
+        <span class="name text-medium">{{ icon.name }}</span>
+        <app-code>{{ '<' + icon.tag + ' />' }}</app-code>
+      </nc-card>
+    } @empty {
+      <p class="empty text-medium">No icons match "{{ query() }}".</p>
+    }
+  </div>
+
+  <h2 class="title-medium">In use</h2>
+
+  <div class="row">
+    <div class="group">
+      @for (size of sizes; track size) {
+        <nc-eye-icon [size]="size" />
+      }
+    </div>
+
+    <div class="group">
+      <nc-check-icon [size]="32" />
+      <nc-check-icon [size]="32" color="seagreen" />
+      <nc-warning-icon [size]="32" color="crimson" />
+      <nc-warning-icon [size]="32" [style]="{ opacity: '0.4' }" />
+    </div>
+
+    <div class="group">
+      <button nc-button><nc-plus-icon [size]="16" /> Add</button>
+      <button nc-button variant="red"><nc-upload-icon [size]="16" /> Upload</button>
+      <button nc-button variant="outline" square aria-label="Settings"><nc-settings-icon [size]="16" /></button>
+      <button nc-button variant="ghost" square aria-label="Menu"><nc-hamburger-icon [size]="16" /></button>
+      <button nc-button variant="ghost" square aria-label="Close"><nc-times-icon [size]="16" /></button>
+    </div>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      Every icon is a small standalone Angular component with the selector <app-code>nc-*-icon</app-code>. They are exported from the
+      same <app-code>ncss</app-code> entry as the other components, so import only the ones you need. Each one renders an inline
+      <app-code>svg</app-code>.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">Color</h3>
+    <p class="text-medium">
+      By default an icon takes the text color of its parent, so it follows the theme and button colors automatically.
+      Only set <app-code>color</app-code> when you want a fixed color.
+    </p>
+    <app-code block>{{ colorCode }}</app-code>
+
+    <h3 class="title-small">In buttons</h3>
+    <app-code block>{{ buttonCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>Icons are decorative by default: the inner <app-code>svg</app-code> has <app-code>aria-hidden="true"</app-code>, so screen readers skip it. Next to a label there is nothing more to do.</li>
+      <li>An icon-only control needs a name on the control itself, such as <app-code>aria-label</app-code> on the button.</li>
+      <li>If an icon alone carries meaning (for example a status), put <app-code>role="img"</app-code> and an <app-code>aria-label</app-code> on the icon element itself.</li>
+      <li>Do not use color as the only signal. A red warning icon still needs text or a name.</li>
+    </ul>
+    <app-code block>{{ accessibilityCode }}</app-code>
+  </section>
+</div>

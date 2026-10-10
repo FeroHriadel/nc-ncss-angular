@@ -1,49 +1,51 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './pages/home/home.page';
+import { Home } from './page/home/home';
+import { Colors } from './page/colors/colors';
+import { Typography } from './page/typography/typography';
+import { Buttons } from './page/buttons/buttons';
+import { Cards } from './page/cards/cards';
+import { SelectPage } from './page/select/select';
+import { CheckboxPage } from './page/checkbox/checkbox';
+import { SwitchPage } from './page/switch/switch';
+import { InputPage } from './page/input/input';
+import { FileUploadPage } from './page/fileupload/fileupload';
+import { IconsPage } from './page/icons/icons';
+import { PillsPage } from './page/pills/pills';
+import { LayoutPage } from './page/layout/layout';
+import { NavsPage } from './page/navs/navs';
+import { ThemeSwitchPage } from './page/themeswitch/themeswitch';
+import { ModalPage } from './page/modal/modal';
+import { DrawerPage } from './page/drawer/drawer';
+import { PopoverPage } from './page/popover/popover';
+import { CollapsiblePage } from './page/collapsible/collapsible';
 
-// form elements
-import { InputsPage } from './pages/inputs/inputs.page';
-import { ButtonsPage } from './pages/buttons/buttons.page';
-import { SelectPage } from './pages/select/select.page';
-import { TextInputsPage } from './pages/text-inputs/text-inputs.page';
-import { CheckboxPage } from './pages/checkbox/checkbox.page';
-import { FileUploadPage } from './pages/file-upload/file-upload.page';
-import { FormServicePage } from './pages/form-service/form-service.page';
-
-// navs
-import { NavsPage } from './pages/navs/navs.page';
-
-// pills and tags
-import { PillsPage } from './pages/pills/pills.page';
-
-// dialogs
-import { DialogsPage } from './pages/dialogs/dialogs.page';
-
-// lists
-import { ListsPage } from './pages/lists/lists.page';
-
-// tables
-import { TablesPage } from './pages/tables/tables.page';
-
-// layout
-import { LayoutPage } from './pages/layout/layout.page';
-
-
+import { CrudListPage } from './page/crudlist/crudlist';
+import { CardListPage } from './page/cardlist/cardlist';
+import { ToastPage } from './page/toast/toast';
+import { TablePage } from './page/table/table';
 
 export const routes: Routes = [
-  { path: '', component: HomePage },
-  { path: 'inputs', component: InputsPage },
-  { path: 'inputs/select', component: SelectPage },
-  { path: 'inputs/buttons', component: ButtonsPage },
-  { path: 'inputs/text-inputs', component: TextInputsPage },
-  { path: 'inputs/checkbox', component: CheckboxPage },
-  { path: 'inputs/file-upload', component: FileUploadPage },
-  { path: 'inputs/form-service', component: FormServicePage },
-  { path: 'navs', component: NavsPage },
+  { path: '', component: Home, pathMatch: 'full' },
+  { path: 'colors', component: Colors },
+  { path: 'typography', component: Typography },
+  { path: 'buttons', component: Buttons },
+  { path: 'cards', component: Cards },
+  { path: 'select', component: SelectPage },
+  { path: 'checkbox', component: CheckboxPage },
+  { path: 'switch', component: SwitchPage },
+  { path: 'input', component: InputPage },
+  { path: 'fileupload', component: FileUploadPage },
+  { path: 'icons', component: IconsPage },
   { path: 'pills', component: PillsPage },
-  { path: 'popups', component: DialogsPage },
-  { path: 'lists', component: ListsPage },
-  { path: 'tables', component: TablesPage },
   { path: 'layout', component: LayoutPage },
-  { path: '**', redirectTo: '' }  // fallback route for undefined paths
+  { path: 'navs', component: NavsPage },
+  { path: 'themeswitch', component: ThemeSwitchPage },
+  { path: 'modal', component: ModalPage },
+  { path: 'drawer', component: DrawerPage },
+  { path: 'popover', component: PopoverPage },
+  { path: 'collapsible', component: CollapsiblePage },
+  { path: 'table', component: TablePage },
+  { path: 'crud-list', component: CrudListPage },
+  { path: 'card-list', component: CardListPage },
+  { path: 'toast', component: ToastPage },
 ];

@@ -1,0 +1,80 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Layout</h1>
+    <p class="page-lede">A container that keeps your content centered, padded and readable at every width.</p>
+  </header>
+
+  <h2 class="title-medium">Container</h2>
+
+  <div class="stage">
+    <nc-container>
+      <div class="content">
+        <p class="text-medium">Default container: centered, with a maximum width of 1200px and 1rem of side padding. Resize the window to see it shrink.</p>
+      </div>
+    </nc-container>
+  </div>
+
+  <div class="stage">
+    <nc-container [style]="{ maxWidth: '600px' }">
+      <div class="content">
+        <p class="text-medium">Narrow container: <app-code>[style]="{{ '{ maxWidth: \'600px\' }' }}"</app-code></p>
+      </div>
+    </nc-container>
+  </div>
+
+  <div class="stage">
+    <nc-container class="extra" id="demo-container">
+      <nc-card>
+        <p class="text-medium">A container holding a card, with a custom class and id.</p>
+      </nc-card>
+    </nc-container>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The container is an Angular component with the element selector <app-code>nc-container</app-code>. It centers its content
+      and limits its width to <app-code>1200px</app-code>, with side padding that shrinks on very narrow screens. Use it to keep
+      page content readable on wide monitors.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+    <p class="text-medium">
+      It has no inputs. It is a block element, so it takes the full width up to its maximum.
+    </p>
+
+    <h3 class="title-small">Class, style and attributes</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code>, <app-code>[style]</app-code>, <app-code>id</app-code> or any other attribute to
+      <app-code>nc-container</app-code> like on any element. Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The container is purely visual and has no role, so screen readers ignore it and read its content as usual.</li>
+      <li>Give the page real landmarks: wrap the container in <app-code>main</app-code>, <app-code>header</app-code>, <app-code>nav</app-code> or <app-code>footer</app-code>, or set a <app-code>role</app-code> on the container itself.</li>
+      <li>The side padding keeps text from touching the screen edge, and the maximum width keeps lines a readable length. Zooming in still works, because nothing has a fixed width below the maximum.</li>
+    </ul>
+    <app-code block>{{ semanticCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      The width and padding come from <app-code>--container-*</app-code> variables defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>. Change a variable and every container follows, or set it on a parent element to change only the
+      containers inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Plain CSS class</h3>
+    <p class="text-medium">The component only adds a CSS class, so you can use it without it.</p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

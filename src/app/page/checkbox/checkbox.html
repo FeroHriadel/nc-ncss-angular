@@ -1,0 +1,114 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Inputs</span>
+    <h1 class="title-big">Checkbox</h1>
+    <p class="page-lede">A native checkbox underneath, a themed one on top. Groups, nested children and validation included.</p>
+  </header>
+
+  <div class="row">
+    <nc-checkbox label="Unchecked" />
+    <nc-checkbox label="Checked" [checked]="true" />
+    <nc-checkbox label="Indeterminate" [indeterminate]="true" />
+    <nc-checkbox label="Disabled" disabled />
+    <nc-checkbox label="Disabled checked" disabled [checked]="true" />
+  </div>
+
+  <div class="row">
+    <nc-checkbox label="Two-way bound" [(checked)]="accepted" />
+    <nc-checkbox [(checked)]="terms">I accept the <a href="#terms">terms</a></nc-checkbox>
+    <nc-checkbox ariaLabel="No visible label" />
+    <nc-checkbox class="extra" [style]="{ maxWidth: '12rem' }" label="Custom class and style with a very long label that wraps onto several lines" />
+  </div>
+
+  <div class="row">
+    <fieldset>
+      <legend class="title-small">Toppings</legend>
+      <nc-checkbox label="All toppings" [checked]="allChecked()" [indeterminate]="someChecked()" (checkedChange)="toggleAll($event)" />
+      <div class="children">
+        @for (topping of toppings(); track topping.name; let i = $index) {
+          <nc-checkbox [label]="topping.name" [checked]="topping.checked" (checkedChange)="toggleTopping(i, $event)" />
+        }
+      </div>
+    </fieldset>
+
+    <div>
+      <nc-checkbox label="I accept (required)" required invalid ariaDescribedby="terms-error" />
+      <p id="terms-error" class="error">You must accept to continue.</p>
+    </div>
+  </div>
+
+  <p class="text-medium">Two-way: <app-code>{{ accepted() }}</app-code> Terms: <app-code>{{ terms() }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The checkbox is an Angular component with the element selector <app-code>nc-checkbox</app-code>. Inside it is a real
+      <app-code>input type="checkbox"</app-code> wrapped in a <app-code>label</app-code>, drawn with CSS. Because the native
+      element stays in the DOM, keyboard, focus, form and screen reader support come from the browser.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Rich label</h3>
+    <app-code block>{{ richLabelCode }}</app-code>
+
+    <h3 class="title-small">Select all (indeterminate)</h3>
+    <app-code block>{{ selectAllCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> to <app-code>nc-checkbox</app-code> like on any element.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>It is a native checkbox, so Space toggles it, Tab moves to it, and screen readers announce its role, name and state.</li>
+      <li>The visible label is the accessible name, and clicking it toggles the checkbox. Use <app-code>ariaLabel</app-code> only when there is no visible label.</li>
+      <li><app-code>indeterminate</app-code> is exposed as the mixed state. <app-code>required</app-code> and <app-code>invalid</app-code> are announced, and <app-code>ariaDescribedby</app-code> links a hint or error message.</li>
+      <li>The check mark is CSS only, so it is never read out. Disabled checkboxes leave the tab order.</li>
+      <li>Related checkboxes should sit in a <app-code>fieldset</app-code> with a <app-code>legend</app-code>.</li>
+      <li>The focus ring shows for keyboard focus only. Windows high contrast mode uses system colors, and reduced motion turns off the transitions.</li>
+    </ul>
+    <app-code block>{{ groupCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color, size and shadow comes from a <app-code>--checkbox-*</app-code> variable defined in
+      <app-code>:root</app-code> in <app-code>ncss.css</app-code>, and every theme overrides them. Change a variable and every checkbox follows,
+      or set it on a parent element to change only the checkboxes inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Plain CSS classes</h3>
+    <p class="text-medium">The component only adds markup, so the classes work without it.</p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

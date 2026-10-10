@@ -1,0 +1,40 @@
+<button
+  #trigger
+  nc-button
+  type="button"
+  square
+  class="theme-switch-trigger"
+  [variant]="variant()"
+  [size]="size()"
+  [attr.aria-label]="label() + ': ' + labelOf(current())"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="open() ? panelId : null"
+  (click)="toggle()"
+>
+  <nc-pallete-icon [size]="18" />
+</button>
+
+@if (open()) {
+  <div #panel class="theme-switch-panel" [class.theme-switch-panel-start]="align() === 'start'" [id]="panelId" [style]="panelStyle()">
+    <fieldset class="theme-switch-fieldset">
+      <legend class="theme-switch-legend">{{ label() }}</legend>
+      @for (theme of available(); track theme) {
+        <label
+          class="theme-switch-option"
+          [class.theme-switch-option-selected]="theme === current()"
+          (click)="onOptionClick($event, theme)"
+        >
+          <input
+            type="radio"
+            class="theme-switch-radio"
+            [name]="groupName"
+            [value]="theme"
+            [checked]="theme === current()"
+            (change)="select(theme)"
+          />
+          <span class="theme-switch-option-text">{{ labelOf(theme) }}</span>
+        </label>
+      }
+    </fieldset>
+  </div>
+}

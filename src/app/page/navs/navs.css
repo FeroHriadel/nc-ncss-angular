@@ -1,0 +1,105 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+
+.docs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 50rem;
+  margin-top: 2rem;
+}
+
+.docs h2 {
+  margin-top: 1.5rem;
+}
+
+.docs h3 {
+  margin-top: 1rem;
+}
+
+.docs ul {
+  padding-left: 1.5rem;
+}
+
+.docs li + li {
+  margin-top: 0.25rem;
+}
+
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+th {
+  color: var(--gray-800);
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 14rem;
+  border: 0;
+}
+
+legend {
+  margin-bottom: 0.5rem;
+}
+
+.children {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.75rem;
+}
+
+.error {
+  font-size: 0.75rem;
+  color: var(--red-500);
+}
+
+.demo {
+  min-height: 20rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+.demo-narrow {
+  max-width: 26rem;
+}
+
+.demo p {
+  padding: 1rem;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.125rem;
+  color: var(--gray-900);
+}

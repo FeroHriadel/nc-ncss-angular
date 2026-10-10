@@ -1,0 +1,108 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">PopUps</span>
+    <h1 class="title-big">Modal</h1>
+    <p class="page-lede">A focused dialog on a dimmed page. Focus trap, inert background and alert dialogs, built to work anywhere.</p>
+  </header>
+
+  <div class="row">
+    <button nc-button (click)="modalOpen.set(true)">Open modal</button>
+    <button nc-button variant="red" (click)="confirmOpen.set(true)">Delete item</button>
+    <button nc-button variant="outline" (click)="longOpen.set(true)">Long content</button>
+  </div>
+
+  <nc-modal [(open)]="modalOpen" heading="Edit profile" (confirmed)="log.set('Profile saved')" (closed)="onClosed('Modal', $event)">
+    <div class="field">
+      <label class="field-label" for="popup-name">Name</label>
+      <input id="popup-name" data-autofocus autocomplete="name" placeholder="Your name" />
+    </div>
+    <p class="text-medium">Focus starts on the first field and stays inside the modal. Escape, the X, Close and the backdrop all close it.</p>
+  </nc-modal>
+
+  <nc-modal [(open)]="confirmOpen" role="alertdialog" heading="Delete this item?" confirmLabel="Delete" cancelLabel="Cancel" [closeButton]="false" (confirmed)="deleteItem()" (closed)="onClosed('Alert', $event)">
+    This cannot be undone.
+  </nc-modal>
+
+  <nc-modal [(open)]="longOpen" heading="Long content" [actionButtons]="false" (closed)="onClosed('Long modal', $event)">
+    @for (line of lines; track line) {
+      <p class="text-medium">Line {{ line }}: the body scrolls while the heading and footer stay put.</p>
+    }
+    <button nc-button slot="footer" (click)="longOpen.set(false)">Done</button>
+  </nc-modal>
+
+  <p class="text-medium" role="status">Last event: <app-code>{{ log() }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      <app-code>nc-modal</app-code> is a dialog on top of a dimmed page. It is built from plain elements instead of the native
+      <app-code>dialog</app-code> element, with the dialog semantics added by hand. It opens and closes through <app-code>[(open)]</app-code>,
+      or through the methods <app-code>show()</app-code>, <app-code>hide()</app-code> and <app-code>toggle()</app-code>. It has no trigger
+      of its own: use a normal button.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ modalCode }}</app-code>
+
+    <h3 class="title-small">Inputs shared by the modal and the side drawer</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of dialogInputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <h3 class="title-small">Modal only</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of modalInputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ alertCode }}</app-code>
+    <app-code block>{{ apiCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The modal is <app-code>role="dialog"</app-code> (or <app-code>alertdialog</app-code>) with <app-code>aria-modal="true"</app-code>, named by its heading through <app-code>aria-labelledby</app-code>. Give an <app-code>ariaLabel</app-code> if there is no heading.</li>
+      <li>While it is open, the rest of the page is made <app-code>inert</app-code>: it cannot be reached by keyboard, mouse or screen reader, and the page does not scroll. This is what the native dialog element does, done by hand so the overlay works in any layout.</li>
+      <li>Focus moves inside when it opens (to <app-code>data-autofocus</app-code>, else the first field or button) and goes back to the button that opened it when it closes. Tab and Shift+Tab stay inside.</li>
+      <li>Escape closes the top-most dialog only. A click or drag that starts inside the panel never closes it, only a click that starts and ends on the backdrop.</li>
+      <li>Use <app-code>role="alertdialog"</app-code> for questions that need an answer. Its content is read automatically, and putting <app-code>data-autofocus</app-code> on the safest button is a good habit.</li>
+      <li>Animations stop with reduced motion, and Windows high contrast mode draws borders.</li>
+      <li>Content inside a closed modal is still created once, like any projected content, but not shown.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Colors, sizes and shadows come from <app-code>--popup-*</app-code> variables defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>, and every theme overrides them. The surfaces reuse the select list variables so they always match.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

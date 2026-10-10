@@ -1,0 +1,161 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Inputs</span>
+    <h1 class="title-big">Input</h1>
+    <p class="page-lede">Text fields, search, dates and textareas, all styled by one set of variables.</p>
+  </header>
+
+  <div class="row">
+    <input aria-label="Default" placeholder="Placeholder" />
+    <input aria-label="With a value" value="With a value" />
+    <input aria-label="Disabled" disabled value="Disabled" />
+    <input aria-label="Read only" readonly value="Read only" />
+    <input aria-label="Invalid" aria-invalid="true" value="Invalid" />
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label class="field-label" for="demo-name">Name</label>
+      <input #nameBox id="demo-name" autocomplete="name" placeholder="Your name" [value]="name()" (input)="name.set(nameBox.value)" />
+      <span class="field-hint" id="demo-name-hint">Shown on your profile.</span>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="demo-email">Email</label>
+      <input id="demo-email" type="email" autocomplete="email" required aria-describedby="demo-email-hint" placeholder="you@example.com" />
+      <span class="field-hint" id="demo-email-hint">We never share it.</span>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="demo-age">Age</label>
+      <input id="demo-age" type="number" aria-invalid="true" aria-describedby="demo-age-error" value="7" />
+      <span class="field-error" id="demo-age-error">Enter a number between 18 and 99.</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="password" aria-label="Password" placeholder="Password" />
+    <input type="search" aria-label="Search" placeholder="Search" />
+    <input type="date" aria-label="Date" />
+    <input class="extra" aria-label="Custom class and style" placeholder="Custom class and style" [style]="{ width: '20rem', borderRadius: '999px', paddingLeft: '1.25rem' }" />
+  </div>
+  <div class="row">
+    <div class="field">
+      <label class="field-label" for="demo-pass">Password</label>
+      <nc-password inputId="demo-pass" [(value)]="password" autocomplete="new-password" placeholder="Choose a password" ariaDescribedby="demo-pass-hint" />
+      <span class="field-hint" id="demo-pass-hint">At least 8 characters.</span>
+    </div>
+    <nc-password ariaLabel="Disabled password" disabled value="secret" />
+    <nc-password ariaLabel="Invalid password" invalid value="abc" />
+    <nc-password class="extra" ariaLabel="Custom class and style" placeholder="Custom class and style" [style]="{ width: '20rem' }" />
+  </div>
+
+
+  <div class="row">
+    <div class="field">
+      <label class="field-label" for="demo-message">Message</label>
+      <textarea id="demo-message" placeholder="Your message"></textarea>
+    </div>
+    <div class="field">
+      <label class="field-label" for="demo-message-disabled">Disabled</label>
+      <textarea id="demo-message-disabled" disabled>Disabled textarea</textarea>
+    </div>
+  </div>
+
+  <p class="text-medium">Name: <app-code>{{ name() }}</app-code> Password length: <app-code>{{ password().length }}</app-code></p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      There is no component to import. Native <app-code>input</app-code> and <app-code>textarea</app-code> elements are styled by
+      <app-code>ncss.css</app-code> directly, so everything the browser gives you (forms, validation, autofill, mobile keyboards,
+      <app-code>ngModel</app-code>) keeps working. In the light theme the field has a slight gray background to set it apart from the page.
+    </p>
+
+    <h3 class="title-small">1. Use it</h3>
+    <app-code block>{{ importCode }}</app-code>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Supported types</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Type</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (item of types; track item.type) {
+            <tr>
+              <td><app-code>{{ item.type }}</app-code></td>
+              <td>{{ item.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <p class="text-medium">
+      Checkboxes, radios, ranges, files and buttons are not touched by these styles.
+    </p>
+
+    <h3 class="title-small">Password</h3>
+    <p class="text-medium">
+      <app-code>nc-password</app-code> is a password input with a show/hide button inside it. The inner element is still a native
+      input, so password managers and autofill work. Use <app-code>autocomplete="new-password"</app-code> on sign-up and
+      change-password forms.
+    </p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of passwordInputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ passwordCode }}</app-code>
+    <p class="text-medium">
+      The eye button is a real button with a fixed name ("Show password") and <app-code>aria-pressed</app-code>, so screen readers say
+      whether the password is currently shown. It points at the input with <app-code>aria-controls</app-code>. <app-code>class</app-code> and
+      <app-code>[style]</app-code> go on <app-code>nc-password</app-code>, and <app-code>inputClass</app-code> / <app-code>inputStyle</app-code> on the input.
+    </p>
+
+    <h3 class="title-small">Label, hint and error</h3>
+    <app-code block>{{ fieldCode }}</app-code>
+
+    <h3 class="title-small">Reading the value</h3>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> like on any element. The default styles use
+      <app-code>:where()</app-code>, so they have no specificity and your class always wins, even if its CSS comes earlier.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>Give every input a label: a <app-code>label</app-code> with <app-code>for</app-code>, or <app-code>aria-label</app-code> when there is no visible text. A placeholder is not a label.</li>
+      <li>Link hints and errors with <app-code>aria-describedby</app-code>, and set <app-code>aria-invalid="true"</app-code> on invalid fields. Invalid inputs also get the red border, after the user has interacted with them (native <app-code>:user-invalid</app-code>).</li>
+      <li>Use the right <app-code>type</app-code> and <app-code>autocomplete</app-code> so browsers, password managers and mobile keyboards can help.</li>
+      <li>Disabled inputs are dimmed and leave the tab order. Use <app-code>readonly</app-code> if the value should still be focusable and readable.</li>
+      <li>The focus ring shows for keyboard focus only, and the border never carries state alone: invalid also needs the error text.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color, size and shadow comes from an <app-code>--input-*</app-code> variable defined in
+      <app-code>:root</app-code> in <app-code>ncss.css</app-code>, and every theme overrides them. Change a variable and every input follows,
+      or set it on a parent element to change only the inputs inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

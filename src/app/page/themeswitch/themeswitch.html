@@ -1,0 +1,100 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">PopUps</span>
+    <h1 class="title-big">Theme switch</h1>
+    <p class="page-lede">One drop-in control to flip between five themes, remembered across visits.</p>
+  </header>
+
+  <div class="row">
+    <div class="field">
+      <span class="field-label">All themes</span>
+      <nc-theme-switch />
+    </div>
+    <div class="field">
+      <span class="field-label">Light and dark</span>
+      <nc-theme-switch [themes]="lightDark" />
+    </div>
+    <div class="field">
+      <span class="field-label">Custom names, aligned to the start</span>
+      <nc-theme-switch [themes]="lightDark" [labels]="labels" align="start" label="Appearance" />
+    </div>
+    <div class="field">
+      <span class="field-label">Outline, large</span>
+      <nc-theme-switch variant="outline" size="large" />
+    </div>
+  </div>
+
+  <p class="text-medium">Current theme: <app-code>{{ themeService.theme() }}</app-code></p>
+
+  <div class="row">
+    @for (theme of themeService.themes; track theme) {
+      <button nc-button variant="outline" size="small" [attr.aria-pressed]="themeService.theme() === theme" (click)="themeService.setTheme(theme)">{{ theme }}</button>
+    }
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The theme switch is an Angular component with the element selector <app-code>nc-theme-switch</app-code>. It is an icon button that
+      opens a short list of themes, and it does its work through <app-code>ThemeService</app-code>. The choice is applied to the whole
+      page and remembered between visits. Place it anywhere, usually in the top bar.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="title-small">ThemeService</h3>
+    <p class="text-medium">
+      Everything the switch does is available in code, for example to set a theme from a button, from user settings or from the
+      system preference. All switches on the page stay in sync because they read the same signal.
+    </p>
+    <app-code block>{{ serviceCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> or <app-code>[style]</app-code> to <app-code>nc-theme-switch</app-code> like on any element.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The trigger is a real button. Its name includes the current theme ("Theme: Dark") and updates when it changes, and <app-code>aria-expanded</app-code> says whether the list is open. The palette icon is hidden from screen readers.</li>
+      <li>The list is a group of native radio buttons with a hidden "Theme" legend, so screen readers announce "Theme, group, Dark, radio button, 2 of 5, selected". Arrow keys move between themes and apply them straight away, which also gives a live preview.</li>
+      <li>Opening the list moves focus to the current theme. Escape closes it and returns focus to the button. Clicking outside, tabbing away or choosing a theme with the mouse also closes it.</li>
+      <li>The selected theme is shown by a filled dot and bold text, not by color alone. Focus rings, Windows high contrast mode and the themes themselves are handled.</li>
+      <li>Use <app-code>label</app-code> and <app-code>labels</app-code> to translate the names.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      The button is an <app-code>nc-button</app-code>, so its look comes from the button variables. The list reuses the select list variables and
+      the radio dots reuse the checkbox variables, so it always matches them in every theme.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

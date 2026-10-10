@@ -1,0 +1,80 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Cards</h1>
+    <p class="page-lede">Surfaces that adapt to every theme: flat, frosted glass or soft neumorphic, from the same markup.</p>
+  </header>
+
+  <div class="row">
+    @for (variant of variants; track variant) {
+      <nc-card [variant]="variant">
+        <h3 class="title-small">Card {{ variant }}</h3>
+        <p class="text-medium">Some content inside the {{ variant }} card.</p>
+      </nc-card>
+    }
+  </div>
+
+  <div class="row">
+    <nc-card class="extra" [style]="{ padding: '2rem', borderRadius: '1.5rem', backgroundColor: '#333', color: 'green', borderColor: 'green' }">
+      <h3 class="title-small">Custom class and style</h3>
+      <p class="text-medium">Padding, radius and colors set through [style].</p>
+    </nc-card>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The card is an Angular component with the element selector <app-code>nc-card</app-code>. It is a block
+      container with a background, border, rounded corners and a default padding of <app-code>1rem</app-code>.
+      Put anything inside it.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> like on any element. Classes are merged with the
+      card's classes. A class only overrides a card style if its CSS comes later or is more specific.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Colors and spacing come from <app-code>--card-*</app-code> variables defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>. Change a variable and every card follows, or set it on a parent element to change
+      only the cards inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Plain CSS classes</h3>
+    <p class="text-medium">The component only toggles CSS classes, so you can use them without it.</p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

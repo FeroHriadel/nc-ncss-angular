@@ -1,0 +1,50 @@
+<div class="list-header">
+  <span class="list-heading">{{ heading() }}</span>
+  @if (addButton()) {
+    <button nc-button square size="small" type="button" [attr.aria-label]="addLabel()" (click)="add.emit()">
+      <nc-plus-icon [size]="20" />
+    </button>
+  }
+</div>
+
+<ng-template #content let-item let-i="index">
+  @if (itemTemplate(); as template) {
+    <ng-container *ngTemplateOutlet="template; context: { $implicit: item, index: i }" />
+  } @else {
+    {{ item.text }}
+  }
+</ng-template>
+
+@if (items().length === 0) {
+  <p class="list-empty">{{ emptyText() }}</p>
+} @else {
+  <ul class="list-body">
+    @for (item of items(); track item; let i = $index) {
+      <li class="list-item" [class.list-item-striped]="striped() && i % 2 === 1">
+        @if (clickable()) {
+          <button type="button" class="list-item-main list-item-button" (click)="open.emit(item)">
+            <ng-container *ngTemplateOutlet="content; context: { $implicit: item, index: i }" />
+          </button>
+        } @else {
+          <div class="list-item-main">
+            <ng-container *ngTemplateOutlet="content; context: { $implicit: item, index: i }" />
+          </div>
+        }
+        @if (editButton() || removeButton()) {
+          <span class="list-item-actions">
+            @if (editButton()) {
+              <button nc-button square variant="ghost" size="small" type="button" [attr.aria-label]="label(editLabel(), item)" (click)="edit.emit(item)">
+                <nc-edit-icon [size]="18" />
+              </button>
+            }
+            @if (removeButton()) {
+              <button nc-button square variant="ghost" size="small" type="button" [attr.aria-label]="label(removeLabel(), item)" (click)="remove.emit(item)">
+                <nc-delete-icon [size]="18" />
+              </button>
+            }
+          </span>
+        }
+      </li>
+    }
+  </ul>
+}

@@ -1,0 +1,70 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">PopUps</span>
+    <h1 class="title-big">Popover</h1>
+    <p class="page-lede">A small floating panel anchored to its trigger. It keeps itself on screen and closes when you are done.</p>
+  </header>
+
+  <div class="row">
+    <nc-popover [(open)]="popoverOpen" ariaLabel="Share options">
+      <button nc-button slot="trigger" variant="outline">Share</button>
+      <p class="text-medium">Anything goes in here.</p>
+      <button nc-button size="small" (click)="popoverOpen.set(false)">Copy link</button>
+    </nc-popover>
+
+    <nc-popover align="end" direction="up">
+      <button nc-button slot="trigger" variant="ghost">Opens up, aligned to the end</button>
+      <p class="text-medium">Popovers keep themselves on screen, even next to the window edge.</p>
+    </nc-popover>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      <app-code>nc-popover</app-code> is a small floating panel next to its trigger, for extra information or a few controls. Put a button
+      in <app-code>slot="trigger"</app-code>. It is not modal: the page stays usable, and it closes on Escape, an outside click, or when
+      focus leaves. It also opens and closes through <app-code>[(open)]</app-code> or <app-code>show()</app-code>,
+      <app-code>hide()</app-code> and <app-code>toggle()</app-code>.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ popoverCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr></thead>
+        <tbody>
+          @for (input of popoverInputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td>@if (input.default) {<app-code>{{ input.default }}</app-code>}</td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <h3 class="title-small">Class and style</h3>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The trigger button gets <app-code>aria-expanded</app-code> and <app-code>aria-controls</app-code> automatically. Add an <app-code>ariaLabel</app-code> to announce the panel as a dialog.</li>
+      <li>Animations stop with reduced motion, and Windows high contrast mode draws borders.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Colors and shadows come from <app-code>--popup-*</app-code> variables defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code>, and every theme overrides them.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

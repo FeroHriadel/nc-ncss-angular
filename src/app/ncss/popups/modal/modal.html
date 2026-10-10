@@ -1,0 +1,47 @@
+@if (open()) {
+  <div #overlay class="popup-overlay modal-overlay" (mousedown)="onBackdropDown($event)" (click)="onBackdropClick($event)">
+    <div
+      #dialog
+      class="modal"
+      [class]="dialogClass()"
+      [class.modal-has-heading]="!!heading()"
+      [class.modal-has-close]="closeButton()"
+      [style]="dialogStyle()"
+      [style.width]="width() || null"
+      [style.height]="height() || null"
+      [attr.role]="role()"
+      aria-modal="true"
+      tabindex="-1"
+      [attr.aria-labelledby]="heading() ? headingId : null"
+      [attr.aria-label]="heading() ? null : (ariaLabel() || null)"
+      [attr.aria-describedby]="ariaDescribedby() || (role() === 'alertdialog' ? bodyId : null)"
+      (keydown)="onKeydown($event)"
+    >
+      @if (closeButton()) {
+        <button nc-button type="button" square variant="ghost" size="small" class="popup-close" [attr.aria-label]="closeLabel()" (click)="hide('close')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" />
+          </svg>
+        </button>
+      }
+
+      @if (heading()) {
+        <h2 class="modal-heading" [id]="headingId">{{ heading() }}</h2>
+      }
+
+      <div #body class="modal-body" [id]="bodyId">
+        <ng-content />
+      </div>
+
+      @if (actionButtons()) {
+        <div class="popup-footer">
+          <button nc-button type="button" variant="outline" (click)="hide('close')">{{ cancelLabel() }}</button>
+          <button nc-button type="button" (click)="confirm()">{{ confirmLabel() }}</button>
+        </div>
+      }
+      <div class="popup-footer">
+        <ng-content select="[slot=footer]" />
+      </div>
+    </div>
+  </div>
+}

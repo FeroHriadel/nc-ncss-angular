@@ -1,0 +1,106 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Inputs</span>
+    <h1 class="title-big">File upload</h1>
+    <p class="page-lede">A themed file picker built on the native file input.</p>
+  </header>
+
+  <div class="row">
+    <nc-file-upload ariaLabel="Single file" />
+    <nc-file-upload ariaLabel="Photos" multiple accept="image/*" placeholder="Choose photos" [(files)]="images" />
+    <nc-file-upload ariaLabel="Disabled" disabled placeholder="Disabled" />
+    <nc-file-upload class="extra" ariaLabel="Custom class and style" placeholder="Custom class and style" [style]="{ width: '20rem' }" />
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label class="field-label" for="demo-cv">CV</label>
+      <nc-file-upload inputId="demo-cv" accept=".pdf" [maxSize]="maxSize" ariaDescribedby="demo-cv-hint" placeholder="Choose a PDF" [(files)]="single" (rejected)="refused.set($event)" />
+      <span class="field-hint" id="demo-cv-hint">PDF only, up to 1 MB. Try dropping other files on it.</span>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="demo-id">Passport</label>
+      <nc-file-upload inputId="demo-id" invalid required ariaDescribedby="demo-id-error" />
+      <span class="field-error" id="demo-id-error">A passport scan is required.</span>
+    </div>
+  </div>
+
+  <p class="text-medium">
+    CV: <app-code>{{ single().length ? describe(single()[0]) : 'none' }}</app-code>
+    Photos: <app-code>{{ images().length }}</app-code>
+    @for (rejection of refused(); track rejection.file.name) {
+      <br />Rejected: <app-code>{{ rejection.file.name }} ({{ reasonOf(rejection) }})</app-code>
+    }
+  </p>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The file upload is an Angular component with the element selector <app-code>nc-file-upload</app-code>. It looks like an
+      <app-code>input</app-code>, but a real <app-code>input type="file"</app-code> is stretched invisibly over it. Clicking,
+      keyboard use (Tab, then Enter or Space), dragging files onto it and form submits are all handled by the browser.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+    <p class="text-medium">
+      Files that are the wrong type or too big are never added to <app-code>files</app-code>. They are reported through the
+      <app-code>(rejected)</app-code> output as <app-code>{{ '{ file, reason }' }}</app-code> with the reason <app-code>'type'</app-code> or
+      <app-code>'size'</app-code>, so you decide how to tell the user. Programmatically you can only clear the field, not add files to it.
+    </p>
+
+    <h3 class="title-small">Label, hint and error</h3>
+    <app-code block>{{ fieldCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> to <app-code>nc-file-upload</app-code> like on any element.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">Accessibility</h2>
+    <ul class="text-medium">
+      <li>The native file input stays in the page (only invisible), so it is focusable and announced as a file chooser. It is the one control screen readers and keyboards use.</li>
+      <li>Give it a name: a <app-code>label</app-code> with <app-code>for</app-code> pointing at <app-code>inputId</app-code>, or <app-code>ariaLabel</app-code>. The placeholder is only decoration.</li>
+      <li>Choosing, rejecting or clearing files is announced through a polite live region ("report.pdf selected", "1 file rejected", "Selection cleared").</li>
+      <li>The clear button only exists while there are files, is a real button with its own name, and returns focus to the field.</li>
+      <li>Link hints and errors with <app-code>ariaDescribedby</app-code> and set <app-code>invalid</app-code>. Do not rely on the red border alone, show the error text too.</li>
+      <li>The focus ring shows for keyboard focus only, and the drag-over state uses the same ring plus a dashed border. Windows high contrast mode and reduced motion are respected.</li>
+    </ul>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      It uses the same <app-code>--input-*</app-code> variables as the input and password, defined in <app-code>:root</app-code> in
+      <app-code>ncss.css</app-code> and overridden by every theme. Change a variable and all of them follow, or set it on a parent element to
+      change only the ones inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+  </section>
+</div>

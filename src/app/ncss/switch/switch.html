@@ -1,0 +1,17 @@
+<label class="switch-label">
+  <input
+    #box
+    type="checkbox"
+    role="switch"
+    class="switch-input"
+    [class]="inputClass()"
+    [style]="inputStyle()"
+    [checked]="checked()"
+    [disabled]="disabled()"
+    [attr.name]="name() || null"
+    [attr.value]="value() || null"
+    [attr.aria-label]="ariaLabel() || null"
+    [attr.aria-describedby]="ariaDescribedby() || null"
+    (change)="onChange(box.checked)"
+  /><span class="switch-text">{{ label() }}<ng-content /></span>
+</label>

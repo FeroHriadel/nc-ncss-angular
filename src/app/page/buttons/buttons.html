@@ -1,0 +1,102 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Buttons</h1>
+    <p class="page-lede">Four variants, three sizes, one native button. Everything you expect from a button, and nothing to fight.</p>
+  </header>
+
+  <div class="row">
+    <button nc-button>Button dark</button>
+    <button nc-button variant="red">Button red</button>
+    <button nc-button variant="outline">Button outline</button>
+    <button nc-button variant="ghost">Button ghost</button>
+  </div>
+
+  <div class="row">
+    <button nc-button size="small">Button small</button>
+    <button nc-button size="medium">Button medium</button>
+    <button nc-button size="large">Button large</button>
+  </div>
+
+  <div class="row">
+    @for (variant of variants; track variant) {
+      <div class="group">
+        @for (size of sizes; track size) {
+          <button nc-button square [variant]="variant" [size]="size">+</button>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="row">
+    <button nc-button class="extra" [style]="{ borderRadius: '999px', backgroundColor: '#333',color: 'green', textShadow: '0px 0px 5px green', width: '100%', maxWidth: '20rem', minHeight: '4rem', fontSize: '1.25rem' }">Custom class and style</button>
+  </div>
+
+  <section class="docs">
+    <h2 class="title-medium">How to use</h2>
+    <p class="text-medium">
+      The button is an Angular component that sits on a native <app-code>button</app-code> element, using the
+      attribute selector <app-code>nc-button</app-code>. Because the real element stays in the DOM,
+      <app-code>type</app-code>, <app-code>disabled</app-code>, <app-code>aria-*</app-code> and click events all work as usual.
+    </p>
+
+    <h3 class="title-small">1. Import it</h3>
+    <app-code block>{{ importCode }}</app-code>
+
+    <h3 class="title-small">2. Use it</h3>
+    <app-code block>{{ usageCode }}</app-code>
+
+    <h3 class="title-small">Inputs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Input</th><th>Values</th><th>Default</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          @for (input of inputs; track input.name) {
+            <tr>
+              <td><app-code>{{ input.name }}</app-code></td>
+              <td><app-code>{{ input.values }}</app-code></td>
+              <td><app-code>{{ input.default }}</app-code></td>
+              <td>{{ input.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <app-code block>{{ bindingCode }}</app-code>
+
+    <h3 class="title-small">Class and style</h3>
+    <p class="text-medium">
+      Add your own <app-code>class</app-code> and <app-code>[style]</app-code> like on any element. Classes are merged with the
+      button's classes. A class only overrides a button style if its CSS comes later or is more specific.
+      Styles in <app-code>[style]</app-code> are inline, so they always win.
+    </p>
+    <app-code block>{{ classStyleCode }}</app-code>
+
+    <h2 class="title-medium">How to modify it</h2>
+    <p class="text-medium">
+      Every color, size and spacing comes from a <app-code>--button-*</app-code> variable defined in
+      <app-code>:root</app-code> in <app-code>ncss.css</app-code>. Change a variable and every button follows. You can also set
+      a variable on a parent element to change only the buttons inside it.
+    </p>
+    <app-code block>{{ variablesCode }}</app-code>
+    <p class="text-medium">Available variables:</p>
+    <app-code block>{{ variablesList }}</app-code>
+
+    <h3 class="title-small">Behavior</h3>
+    <ul class="text-medium">
+      <li>Long labels stay on one line and are cut off with an ellipsis. The button never grows wider than its container.</li>
+      <li>Keyboard focus shows a ring from <app-code>--button-focus-box-shadow</app-code> (only for keyboard focus, not mouse clicks).</li>
+      <li>Pressing a button scales it to 98%.</li>
+      <li>The outline variant reuses <app-code>--button-ghost-hover-bg</app-code> for its hover color.</li>
+    </ul>
+
+    <h3 class="title-small">Plain CSS classes</h3>
+    <p class="text-medium">
+      The component only toggles CSS classes, so you can use them without it. Note that plain markup has no label
+      wrapper, so long text is clipped without an ellipsis.
+    </p>
+    <app-code block>{{ classesCode }}</app-code>
+  </section>
+</div>

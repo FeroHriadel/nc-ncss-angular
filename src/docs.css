@@ -1,0 +1,242 @@
+/* Docs site chrome: the shared look of every demo page (not part of ncss itself).
+   Selectors start with app-root so they win over each page's own scoped styles. */
+
+app-root .page {
+  position: relative;
+  isolation: isolate;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 5rem;
+  gap: 1.25rem;
+}
+
+/* ---------- Page header ---------- */
+.page-head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.25rem 0 1.5rem;
+}
+
+/* A soft glow behind the title: a hint of red over a neutral wash */
+.page-head::before {
+  content: '';
+  position: absolute;
+  inset: -4rem -2rem auto -2rem;
+  height: 18rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 70% at 12% 20%, color-mix(in oklab, var(--red-400) 22%, transparent), transparent 70%),
+    radial-gradient(55% 80% at 55% 0%, color-mix(in oklab, var(--gray-500) 20%, transparent), transparent 70%);
+}
+
+.page-eyebrow {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--gray-500) 8%, transparent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+.page-eyebrow::before {
+  content: '';
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--red-500);
+}
+
+app-root .page-head .title-big {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  background: linear-gradient(120deg, var(--gray-950) 35%, var(--red-500));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  width: fit-content;
+  max-width: 100%;
+  padding-bottom: 0.1em;
+}
+
+.page-lede {
+  max-width: 42rem;
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--gray-500);
+}
+
+/* ---------- Demo sections ---------- */
+/* Section label: small caps with a rule running out to the right */
+app-root .page > h2.title-medium {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 -0.25rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+app-root .page > h2.title-medium::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+/* Stage: demos sit on a dotted board. No filters or transforms here: popups and select lists are positioned inside. */
+app-root .page > .row {
+  padding: 2rem;
+  gap: 1.5rem 2rem;
+  border: var(--card-border);
+  border-radius: calc(var(--border-radius) * 2);
+  background:
+    radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--gray-500) 24%, transparent) 1px, transparent 0) 0 0 / 1.25rem 1.25rem,
+    var(--card-medium-bg);
+  box-shadow: var(--card-dark-shadow, none);
+}
+
+/* ---------- Documentation ---------- */
+app-root .page .docs {
+  position: relative;
+  max-width: none;
+  margin-top: 3rem;
+  padding: 2.25rem 2.5rem;
+  gap: 1rem;
+  border: var(--card-border);
+  border-radius: calc(var(--border-radius) * 2);
+  background: var(--card-light-bg);
+  box-shadow: var(--card-light-shadow, none);
+}
+
+app-root .page .docs::before {
+  content: 'Documentation';
+  align-self: flex-start;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: var(--gray-800);
+  color: var(--gray-50);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+app-root .page .docs > p,
+app-root .page .docs > ul {
+  max-width: 68ch;
+}
+
+app-root .page .docs h2 {
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-color);
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--gray-800);
+}
+
+app-root .page .docs h2:first-of-type {
+  margin-top: 0.5rem;
+  padding-top: 0;
+  border-top: 0;
+}
+
+app-root .page .docs h3 {
+  margin-top: 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+}
+
+app-root .page .docs li::marker {
+  color: var(--red-500);
+}
+
+app-root .page .docs .table-wrap {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+}
+
+app-root .page .docs table th {
+  background: color-mix(in oklab, var(--gray-500) 9%, transparent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+
+app-root .page .docs table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+app-root .page .docs table tbody tr:hover {
+  background: color-mix(in oklab, var(--gray-500) 6%, transparent);
+}
+
+/* ---------- Entrance ---------- */
+@keyframes page-rise {
+  from { opacity: 0; transform: translateY(0.75rem); }
+}
+
+app-root .page > * {
+  animation: page-rise 0.5s ease-out backwards;
+}
+
+app-root .page > :nth-child(2) { animation-delay: 0.05s; }
+app-root .page > :nth-child(3) { animation-delay: 0.1s; }
+app-root .page > :nth-child(4) { animation-delay: 0.15s; }
+app-root .page > :nth-child(n + 5) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  app-root .page > * {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  app-root .page-head .title-big {
+    background: none;
+    color: CanvasText;
+  }
+}
+
+@media (max-width: 40rem) {
+  app-root .page {
+    padding: 1.5rem 1rem 4rem;
+  }
+
+  .page-head::before {
+    inset: -4rem -1rem auto -1rem;
+  }
+
+  app-root .page > .row {
+    padding: 1.25rem 1rem;
+  }
+
+  app-root .page .docs {
+    padding: 1.5rem 1.1rem;
+  }
+}

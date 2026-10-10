@@ -1,0 +1,21 @@
+<div class="page">
+  <header class="page-head">
+    <span class="page-eyebrow">Foundations</span>
+    <h1 class="title-big">Colors</h1>
+    <p class="page-lede">Every scale is a set of CSS variables. Switch the theme and the whole palette follows.</p>
+  </header>
+
+  <div class="scales">
+    @for (scale of scales; track scale) {
+      <section>
+        <h2>{{ scale }}</h2>
+        @for (step of steps; track step) {
+          <div class="row">
+            <div class="swatch" [style.background]="'var(--' + scale + '-' + step + ')'"></div>
+            <span>{{ scale }}-{{ step }}</span>
+          </div>
+        }
+      </section>
+    }
+  </div>
+</div>

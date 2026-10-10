@@ -1,0 +1,116 @@
+<div class="topnav-bar">
+  <div class="topnav-logo">
+    <ng-content select="[slot=logo]" />
+  </div>
+
+  <div class="topnav-right">
+    <!-- Links for wide navs -->
+    <nav class="topnav-nav" [attr.aria-label]="ariaLabel()">
+      <ul class="topnav-links">
+        @for (item of links(); track item.label; let i = $index) {
+          @if (item.children?.length) {
+            <li class="topnav-item" routerLinkActive="topnav-item-active">
+              <button
+                type="button"
+                class="topnav-link topnav-trigger"
+                [attr.aria-expanded]="openIndex() === i"
+                [attr.aria-controls]="openIndex() === i ? menuId(i) : null"
+                (click)="toggleMenu(i)"
+              >
+                {{ item.label }}
+                <svg class="topnav-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              @if (openIndex() === i) {
+                <ul class="topnav-menu" [id]="menuId(i)" [style]="menuStyle()">
+                  @for (child of item.children; track child.link) {
+                    <li>
+                      <a
+                        class="topnav-menu-link"
+                        [routerLink]="child.link"
+                        routerLinkActive="topnav-link-active"
+                        ariaCurrentWhenActive="page"
+                        (click)="close()"
+                      >{{ child.label }}</a>
+                    </li>
+                  }
+                </ul>
+              }
+            </li>
+          } @else {
+            <li class="topnav-item">
+              <a
+                class="topnav-link"
+                [routerLink]="item.link"
+                routerLinkActive="topnav-link-active"
+                [routerLinkActiveOptions]="{ exact: !!item.exact }"
+                ariaCurrentWhenActive="page"
+                (click)="close()"
+              >{{ item.label }}</a>
+            </li>
+          }
+        }
+      </ul>
+    </nav>
+
+    <div class="topnav-custom">
+      <ng-content select="[slot=custom]" />
+    </div>
+
+    <!-- Menu button for narrow navs -->
+    <button
+      nc-button
+      type="button"
+      square
+      variant="ghost"
+      class="topnav-hamburger"
+      [attr.aria-label]="menuLabel()"
+      [attr.aria-expanded]="mobileOpen()"
+      [attr.aria-controls]="mobileOpen() ? mobileId : null"
+      (click)="toggleMobile()"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+@if (mobileOpen()) {
+  <nav class="topnav-mobile" [id]="mobileId" [attr.aria-label]="ariaLabel()">
+    <ul>
+      @for (item of links(); track item.label; let i = $index) {
+        @if (item.children?.length) {
+          <li>
+            <span class="topnav-mobile-heading" [id]="menuId(i) + '-heading'">{{ item.label }}</span>
+            <ul [attr.aria-labelledby]="menuId(i) + '-heading'">
+              @for (child of item.children; track child.link) {
+                <li>
+                  <a
+                    class="topnav-mobile-link"
+                    [routerLink]="child.link"
+                    routerLinkActive="topnav-link-active"
+                    ariaCurrentWhenActive="page"
+                    (click)="close()"
+                  >{{ child.label }}</a>
+                </li>
+              }
+            </ul>
+          </li>
+        } @else {
+          <li>
+            <a
+              class="topnav-mobile-link"
+              [routerLink]="item.link"
+              routerLinkActive="topnav-link-active"
+              [routerLinkActiveOptions]="{ exact: !!item.exact }"
+              ariaCurrentWhenActive="page"
+              (click)="close()"
+            >{{ item.label }}</a>
+          </li>
+        }
+      }
+    </ul>
+  </nav>
+}
