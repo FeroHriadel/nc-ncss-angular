@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "zip:ncss": "node -e \"require('fs').mkdirSync('public/files',{recursive:true})\" && tar -a -c -f public/files/ncss.zip -C src/app/ncss ."
+    "zip:ncss": "node -e \"require('fs').mkdirSync('public/files',{recursive:true})\" && powershell -NoProfile -Command \"Compress-Archive -Path 'src/app/ncss/*' -DestinationPath 'public/files/ncss.zip' -Force\""
   },
   "private": true,
   "packageManager": "npm@11.13.0",
