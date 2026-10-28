@@ -6,6 +6,7 @@ import { DialogBase } from '../../utils/dialog';
   selector: 'nc-modal',
   imports: [Button],
   templateUrl: './modal.html',
+  styleUrls: ['../popup-base.css', './modal.css'],
   host: { '(document:keydown.escape)': 'onEscape($event)' }
 })
 export class Modal extends DialogBase {

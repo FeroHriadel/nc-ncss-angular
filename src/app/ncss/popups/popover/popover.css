@@ -1,0 +1,39 @@
+/* Popover */
+:host(.popover) {
+    display: inline-block;
+    position: relative;
+}
+
+.popover-trigger {
+    display: inline-block;
+}
+
+.popover-panel {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    z-index: var(--select-z-index);
+    width: max-content;
+    max-width: min(24rem, 90vw);
+    padding: var(--popover-padding);
+    color: var(--gray-700);
+    background: var(--popup-bg);
+    border: var(--popup-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--popup-shadow);
+    -webkit-backdrop-filter: var(--popup-backdrop);
+    backdrop-filter: var(--popup-backdrop);
+    animation: modal-in 0.15s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popover-panel {
+        animation: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .popover-panel {
+        border: 1px solid CanvasText;
+    }
+}

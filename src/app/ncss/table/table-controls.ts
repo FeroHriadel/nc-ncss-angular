@@ -16,6 +16,7 @@ import { Select, SelectOption } from '../select/select';
   selector: 'nc-table-controls',
   imports: [Button, Select, ReloadIcon, ListIcon, FilterIcon],
   templateUrl: './table-controls.html',
+  styleUrl: './table-controls.css',
   host: { class: 'table-controls' }
 })
 export class TableControls {

@@ -1,0 +1,49 @@
+/* Shared between CrudList and CardList: both render these same class names in their own templates. */
+.list-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem var(--list-padding-x);
+}
+
+.list-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.list-body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list-empty {
+    padding: 1rem var(--list-padding-x);
+    color: var(--list-text-muted);
+}
+
+.list-item-button {
+    appearance: none;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.list-item-button:focus-visible {
+    outline: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--list-focus-box-shadow);
+}
+
+.list-item-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.25rem;
+}

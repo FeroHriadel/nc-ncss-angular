@@ -8,6 +8,7 @@ let nextId = 0;
 @Component({
   selector: 'nc-pill',
   templateUrl: './pill.html',
+  styleUrl: './pill.css',
   host: { '[class]': 'classes()' }
 })
 export class Pill {

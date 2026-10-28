@@ -1,51 +1,27 @@
 import { Routes } from '@angular/router';
-import { Home } from './page/home/home';
-import { Colors } from './page/colors/colors';
-import { Typography } from './page/typography/typography';
-import { Buttons } from './page/buttons/buttons';
-import { Cards } from './page/cards/cards';
-import { SelectPage } from './page/select/select';
-import { CheckboxPage } from './page/checkbox/checkbox';
-import { SwitchPage } from './page/switch/switch';
-import { InputPage } from './page/input/input';
-import { FileUploadPage } from './page/fileupload/fileupload';
-import { IconsPage } from './page/icons/icons';
-import { PillsPage } from './page/pills/pills';
-import { LayoutPage } from './page/layout/layout';
-import { NavsPage } from './page/navs/navs';
-import { ThemeSwitchPage } from './page/themeswitch/themeswitch';
-import { ModalPage } from './page/modal/modal';
-import { DrawerPage } from './page/drawer/drawer';
-import { PopoverPage } from './page/popover/popover';
-import { CollapsiblePage } from './page/collapsible/collapsible';
-
-import { CrudListPage } from './page/crudlist/crudlist';
-import { CardListPage } from './page/cardlist/cardlist';
-import { ToastPage } from './page/toast/toast';
-import { TablePage } from './page/table/table';
 
 export const routes: Routes = [
-  { path: '', component: Home, pathMatch: 'full' },
-  { path: 'colors', component: Colors },
-  { path: 'typography', component: Typography },
-  { path: 'buttons', component: Buttons },
-  { path: 'cards', component: Cards },
-  { path: 'select', component: SelectPage },
-  { path: 'checkbox', component: CheckboxPage },
-  { path: 'switch', component: SwitchPage },
-  { path: 'input', component: InputPage },
-  { path: 'fileupload', component: FileUploadPage },
-  { path: 'icons', component: IconsPage },
-  { path: 'pills', component: PillsPage },
-  { path: 'layout', component: LayoutPage },
-  { path: 'navs', component: NavsPage },
-  { path: 'themeswitch', component: ThemeSwitchPage },
-  { path: 'modal', component: ModalPage },
-  { path: 'drawer', component: DrawerPage },
-  { path: 'popover', component: PopoverPage },
-  { path: 'collapsible', component: CollapsiblePage },
-  { path: 'table', component: TablePage },
-  { path: 'crud-list', component: CrudListPage },
-  { path: 'card-list', component: CardListPage },
-  { path: 'toast', component: ToastPage },
+  { path: '', pathMatch: 'full', loadComponent: () => import('./page/home/home').then(m => m.Home) },
+  { path: 'colors', loadComponent: () => import('./page/colors/colors').then(m => m.Colors) },
+  { path: 'typography', loadComponent: () => import('./page/typography/typography').then(m => m.Typography) },
+  { path: 'buttons', loadComponent: () => import('./page/buttons/buttons').then(m => m.Buttons) },
+  { path: 'cards', loadComponent: () => import('./page/cards/cards').then(m => m.Cards) },
+  { path: 'select', loadComponent: () => import('./page/select/select').then(m => m.SelectPage) },
+  { path: 'checkbox', loadComponent: () => import('./page/checkbox/checkbox').then(m => m.CheckboxPage) },
+  { path: 'switch', loadComponent: () => import('./page/switch/switch').then(m => m.SwitchPage) },
+  { path: 'input', loadComponent: () => import('./page/input/input').then(m => m.InputPage) },
+  { path: 'fileupload', loadComponent: () => import('./page/fileupload/fileupload').then(m => m.FileUploadPage) },
+  { path: 'icons', loadComponent: () => import('./page/icons/icons').then(m => m.IconsPage) },
+  { path: 'pills', loadComponent: () => import('./page/pills/pills').then(m => m.PillsPage) },
+  { path: 'layout', loadComponent: () => import('./page/layout/layout').then(m => m.LayoutPage) },
+  { path: 'navs', loadComponent: () => import('./page/navs/navs').then(m => m.NavsPage) },
+  { path: 'themeswitch', loadComponent: () => import('./page/themeswitch/themeswitch').then(m => m.ThemeSwitchPage) },
+  { path: 'modal', loadComponent: () => import('./page/modal/modal').then(m => m.ModalPage) },
+  { path: 'drawer', loadComponent: () => import('./page/drawer/drawer').then(m => m.DrawerPage) },
+  { path: 'popover', loadComponent: () => import('./page/popover/popover').then(m => m.PopoverPage) },
+  { path: 'collapsible', loadComponent: () => import('./page/collapsible/collapsible').then(m => m.CollapsiblePage) },
+  { path: 'table', loadComponent: () => import('./page/table/table').then(m => m.TablePage) },
+  { path: 'crud-list', loadComponent: () => import('./page/crudlist/crudlist').then(m => m.CrudListPage) },
+  { path: 'card-list', loadComponent: () => import('./page/cardlist/cardlist').then(m => m.CardListPage) },
+  { path: 'toast', loadComponent: () => import('./page/toast/toast').then(m => m.ToastPage) },
 ];

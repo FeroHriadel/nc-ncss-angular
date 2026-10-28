@@ -36,6 +36,7 @@ const single = (value: string | string[]): string => (Array.isArray(value) ? val
   selector: 'nc-table-filter',
   imports: [Modal, Select, Button, TimesIcon],
   templateUrl: './table-filter.html',
+  styleUrl: './table-filter.css',
   host: { class: 'table-filter' }
 })
 export class TableFilterDialog {

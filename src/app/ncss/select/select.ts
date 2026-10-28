@@ -12,6 +12,7 @@ let nextId = 0;
 @Component({
   selector: 'nc-select',
   templateUrl: './select.html',
+  styleUrl: './select.css',
   host: {
     class: 'select',
     '[class.select-disabled]': 'disabled()',

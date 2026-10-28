@@ -35,6 +35,7 @@ const DEFAULT_VIRTUAL_HEIGHT = '500px';
   selector: 'nc-table',
   imports: [NgTemplateOutlet, Tree, TableControls, TableFilterDialog, Pill],
   templateUrl: './table.html',
+  styleUrl: './table.css',
   providers: [TableState],
   host: { class: 'table-host' }
 })

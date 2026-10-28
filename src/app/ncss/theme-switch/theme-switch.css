@@ -1,0 +1,134 @@
+/* Theme switch: an icon button that opens a list of radio options.
+   It reuses the select list and checkbox variables, so it matches them in every theme. */
+:host(.theme-switch) {
+    display: inline-block;
+    position: relative;
+}
+
+.theme-switch-panel {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: 0;
+    z-index: var(--select-z-index);
+    min-width: 11rem;
+    padding: 0.25rem;
+    background: var(--select-options-bg);
+    border: var(--select-options-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--select-options-shadow);
+    -webkit-backdrop-filter: var(--select-backdrop);
+    backdrop-filter: var(--select-backdrop);
+}
+
+.theme-switch-panel-start {
+    right: auto;
+    left: 0;
+}
+
+.theme-switch-fieldset {
+    min-width: 0;
+    border: 0;
+}
+
+/* The group name for screen readers, not shown */
+.theme-switch-legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+.theme-switch-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: var(--select-option-height);
+    padding: 0 0.5rem;
+    font-size: var(--select-text);
+    font-weight: 600;
+    color: var(--select-text-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.theme-switch-option:hover {
+    background: var(--select-option-hover-bg);
+    box-shadow: var(--select-option-hover-shadow);
+}
+
+.theme-switch-option:has(.theme-switch-radio:focus-visible) {
+    background: var(--select-option-hover-bg);
+    box-shadow: var(--select-focus-box-shadow);
+}
+
+.theme-switch-option-selected {
+    color: var(--gray-900);
+    font-weight: 700;
+}
+
+.theme-switch-option-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.theme-switch-radio {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    background: var(--checkbox-bg);
+    border: var(--checkbox-border);
+    border-radius: 50%;
+    box-shadow: var(--checkbox-shadow);
+    cursor: pointer;
+}
+
+.theme-switch-radio::after {
+    content: '';
+    position: absolute;
+    inset: 25%;
+    background: var(--theme-switch-dot);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.theme-switch-radio:checked {
+    background: var(--checkbox-checked-bg);
+    border-color: var(--checkbox-checked-bg);
+    box-shadow: var(--checkbox-checked-shadow);
+}
+
+.theme-switch-radio:checked::after {
+    opacity: 1;
+}
+
+.theme-switch-radio:focus-visible {
+    outline: none;
+}
+
+@media (forced-colors: active) {
+    .theme-switch-radio {
+        forced-color-adjust: none;
+        background: Canvas;
+        border: 1px solid ButtonText;
+    }
+
+    .theme-switch-radio:checked {
+        background: Highlight;
+        border-color: Highlight;
+    }
+
+    .theme-switch-radio::after {
+        background: HighlightText;
+    }
+
+    .theme-switch-option:has(.theme-switch-radio:focus-visible) {
+        outline: 2px solid Highlight;
+    }
+}

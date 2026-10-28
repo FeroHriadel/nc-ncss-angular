@@ -1,0 +1,125 @@
+/* Switch (a real <input type="checkbox" role="switch"> inside a <label>, drawn with CSS) */
+:host(.switch) {
+    display: inline-block;
+    max-width: 100%;
+}
+
+:host(.switch-disabled) {
+    opacity: var(--switch-disabled-opacity);
+}
+
+.switch-label {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--switch-label-gap);
+    max-width: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+
+:host(.switch-disabled) .switch-label {
+    cursor: not-allowed;
+}
+
+.switch-input {
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    margin: 0;
+    background: var(--switch-bg);
+    border: var(--switch-border);
+    border-radius: 9999px;
+    box-shadow: var(--switch-shadow);
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* The knob */
+.switch-input::after {
+    --knob: calc(var(--switch-height) - 2 * var(--switch-knob-gap) - 2px);
+
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: var(--switch-knob-gap);
+    width: var(--knob);
+    height: var(--knob);
+    transform: translateY(-50%);
+    background: var(--switch-knob-bg);
+    border-radius: 50%;
+    box-shadow: var(--switch-knob-shadow);
+    transition: left 0.2s, background-color 0.2s;
+}
+
+.switch-input:hover:not(:disabled):not(:checked) {
+    border-color: var(--switch-hover-border-color);
+}
+
+.switch-input:checked {
+    background: var(--switch-checked-bg);
+    border-color: var(--switch-checked-bg);
+    box-shadow: var(--switch-checked-shadow);
+}
+
+.switch-input:checked::after {
+    left: calc(100% - var(--switch-knob-gap) - var(--knob));
+    background: var(--switch-checked-knob-bg);
+}
+
+.switch-input:focus-visible {
+    outline: none;
+    box-shadow: var(--switch-focus-box-shadow);
+}
+
+.switch-input:disabled {
+    cursor: not-allowed;
+}
+
+.switch-text {
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: var(--switch-height);
+    color: var(--gray-700);
+    overflow-wrap: anywhere;
+}
+
+.switch-text:empty {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .switch-input,
+    .switch-input::after {
+        transition: none;
+    }
+}
+
+/* Windows high contrast: use system colors */
+@media (forced-colors: active) {
+    .switch-input {
+        forced-color-adjust: none;
+        background: Canvas;
+        border: 1px solid ButtonText;
+    }
+
+    .switch-input::after {
+        background: ButtonText;
+    }
+
+    .switch-input:checked {
+        background: Highlight;
+        border-color: Highlight;
+    }
+
+    .switch-input:checked::after {
+        background: HighlightText;
+    }
+
+    .switch-input:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+    }
+}

@@ -90,10 +90,4 @@ export class MyPage {
 --switch-knob-bg / -knob-shadow
 --switch-checked-bg / -checked-shadow / -checked-knob-bg
 --switch-focus-box-shadow / -disabled-opacity`;
-
-  protected readonly classesCode = `<!-- Without the component, use the CSS classes on plain markup -->
-<label class="switch-label">
-  <input type="checkbox" role="switch" class="switch-input" />
-  <span class="switch-text">Plain markup</span>
-</label>`;
 }

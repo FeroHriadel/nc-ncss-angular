@@ -20,6 +20,7 @@ export interface ListItemContext<T> {
   selector: 'nc-crud-list',
   imports: [NgTemplateOutlet, Button, PlusIcon, EditIcon, DeleteIcon],
   templateUrl: './crud-list.html',
+  styleUrls: ['../list-base.css', './crud-list.css'],
   host: { class: 'crud-list card card-light' }
 })
 export class CrudList<T extends CrudListItem = CrudListItem> {

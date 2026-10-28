@@ -3,6 +3,7 @@ import { booleanAttribute, Component, input, model } from '@angular/core';
 @Component({
   selector: 'nc-switch',
   templateUrl: './switch.html',
+  styleUrl: './switch.css',
   host: {
     class: 'switch',
     '[class.switch-disabled]': 'disabled()'

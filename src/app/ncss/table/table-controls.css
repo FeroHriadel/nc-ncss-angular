@@ -1,0 +1,43 @@
+/* Table controls: row count on the left, tools on the right. Scrolls sideways (no scrollbar) when too narrow. */
+:host(.table-controls) {
+    display: block;
+    /* The padding gives the focus rings room, the negative margin keeps the content aligned with the table. */
+    margin: -4px -4px calc(var(--table-controls-gap) - 4px);
+    padding: 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+:host(.table-controls)::-webkit-scrollbar {
+    display: none;
+}
+
+:host(.table-controls-dragging) {
+    cursor: grabbing;
+    user-select: none;
+}
+
+.table-controls-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    min-width: max-content;
+}
+
+.table-controls-info {
+    font-size: var(--table-font-size);
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--gray-600);
+}
+
+.table-controls-actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 0.5rem;
+}

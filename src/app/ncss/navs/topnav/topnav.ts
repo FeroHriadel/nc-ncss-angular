@@ -24,6 +24,7 @@ let nextId = 0;
   selector: 'nc-topnav',
   imports: [RouterLink, RouterLinkActive, Button],
   templateUrl: './topnav.html',
+  styleUrl: './topnav.css',
   host: {
     class: 'topnav',
     '(document:click)': 'onDocumentClick($event)',

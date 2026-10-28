@@ -1,0 +1,98 @@
+/* Pill */
+:host(.pill) {
+    --pill-h: var(--pill-medium-height);
+    --pill-fs: var(--pill-medium-text);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    max-width: 100%;
+    height: var(--pill-h);
+    padding: 0 var(--pill-padding-x);
+    font-size: var(--pill-fs);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--pill-text);
+    background: var(--pill-bg);
+    border: var(--pill-border);
+    border-radius: 9999px;
+    box-shadow: var(--pill-shadow);
+    white-space: nowrap;
+}
+
+:host(.pill-small)  { --pill-h: var(--pill-small-height);  --pill-fs: var(--pill-small-text); }
+:host(.pill-medium) { --pill-h: var(--pill-medium-height); --pill-fs: var(--pill-medium-text); }
+:host(.pill-large)  { --pill-h: var(--pill-large-height);  --pill-fs: var(--pill-large-text); }
+
+:host(.pill-dark) {
+    color: var(--pill-dark-text);
+    background: var(--pill-dark-bg);
+    border: var(--pill-dark-border);
+    box-shadow: var(--button-shadow);
+}
+
+:host(.pill-red) {
+    color: var(--pill-red-text);
+    background: var(--pill-red-bg);
+    border: var(--pill-red-border);
+    box-shadow: var(--button-shadow);
+}
+
+:host(.pill-outline) {
+    color: var(--pill-outline-text);
+    background: var(--pill-outline-bg);
+    border: var(--pill-outline-border);
+    box-shadow: var(--button-outline-shadow);
+}
+
+.pill-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host(.pill-closable) {
+    padding-right: 0.25rem;
+}
+
+.pill-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: calc(var(--pill-h) - 0.5rem);
+    height: calc(var(--pill-h) - 0.5rem);
+    padding: 0;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.pill-close:hover {
+    background: color-mix(in oklab, currentColor 18%, transparent);
+}
+
+.pill-close:focus-visible {
+    outline: none;
+    box-shadow: var(--button-focus-box-shadow);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pill-close {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    :host(.pill) {
+        border: 1px solid ButtonText;
+    }
+
+    .pill-close:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 1px;
+    }
+}

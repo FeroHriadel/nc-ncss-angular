@@ -1,0 +1,128 @@
+/* Checkbox (a real <input type="checkbox"> inside a <label>, drawn with CSS) */
+:host(.checkbox) {
+    display: inline-block;
+    max-width: 100%;
+}
+
+:host(.checkbox-disabled) {
+    opacity: var(--checkbox-disabled-opacity);
+}
+
+.checkbox-label {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--checkbox-label-gap);
+    max-width: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+
+:host(.checkbox-disabled) .checkbox-label {
+    cursor: not-allowed;
+}
+
+.checkbox-input {
+    --checkbox-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+
+    appearance: none;
+    position: relative;
+    flex-shrink: 0;
+    width: var(--checkbox-size);
+    height: var(--checkbox-size);
+    margin: 0;
+    background: var(--checkbox-bg);
+    border: var(--checkbox-border);
+    border-radius: var(--checkbox-radius);
+    box-shadow: var(--checkbox-shadow);
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+
+.checkbox-input:indeterminate {
+    --checkbox-mark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E");
+}
+
+/* The check / dash mark: a mask filled with the theme's check color */
+.checkbox-input::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--checkbox-check-color);
+    -webkit-mask: var(--checkbox-mark) center / 80% no-repeat;
+    mask: var(--checkbox-mark) center / 80% no-repeat;
+    opacity: 0;
+    transition: opacity 0.15s;
+}
+
+.checkbox-input:hover:not(:disabled):not(:checked):not(:indeterminate) {
+    border-color: var(--checkbox-hover-border-color);
+}
+
+.checkbox-input:checked,
+.checkbox-input:indeterminate {
+    background: var(--checkbox-checked-bg);
+    border-color: var(--checkbox-checked-bg);
+    box-shadow: var(--checkbox-checked-shadow);
+}
+
+.checkbox-input:checked::after,
+.checkbox-input:indeterminate::after {
+    opacity: 1;
+}
+
+.checkbox-input[aria-invalid='true'] {
+    border-color: var(--checkbox-invalid-border-color);
+}
+
+.checkbox-input:focus-visible {
+    outline: none;
+    box-shadow: var(--checkbox-focus-box-shadow);
+}
+
+.checkbox-input:disabled {
+    cursor: not-allowed;
+}
+
+.checkbox-text {
+    min-width: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: var(--checkbox-size);
+    color: var(--gray-700);
+    overflow-wrap: anywhere;
+}
+
+.checkbox-text:empty {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .checkbox-input,
+    .checkbox-input::after {
+        transition: none;
+    }
+}
+
+/* Windows high contrast: use system colors, the theme's colors are overridden anyway */
+@media (forced-colors: active) {
+    .checkbox-input {
+        forced-color-adjust: none;
+        background: Canvas;
+        border: 1px solid ButtonText;
+    }
+
+    .checkbox-input:checked,
+    .checkbox-input:indeterminate {
+        background: Highlight;
+        border-color: Highlight;
+    }
+
+    .checkbox-input::after {
+        background: HighlightText;
+    }
+
+    .checkbox-input:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+    }
+}

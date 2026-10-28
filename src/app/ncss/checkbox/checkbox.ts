@@ -3,6 +3,7 @@ import { booleanAttribute, Component, input, model } from '@angular/core';
 @Component({
   selector: 'nc-checkbox',
   templateUrl: './checkbox.html',
+  styleUrl: './checkbox.css',
   host: {
     class: 'checkbox',
     '[class.checkbox-disabled]': 'disabled()'

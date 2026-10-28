@@ -1,0 +1,49 @@
+/* CRUD list */
+:host(.crud-list) {
+    padding: 0;
+    overflow: hidden;
+    color: var(--list-text);
+}
+
+:host(.crud-list) > .list-header {
+    background: var(--list-header-bg);
+    color: var(--list-header-text);
+    border-bottom: 1px solid var(--list-border-color);
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: var(--list-item-min-height);
+    padding-left: var(--list-padding-x);
+    padding-right: 0.5rem;
+    border-bottom: 1px solid var(--list-border-color);
+    transition: background-color 0.2s ease;
+}
+
+.list-item:last-child {
+    border-bottom: 0;
+}
+
+.list-item-striped {
+    background: var(--list-stripe-bg);
+}
+
+.list-item:hover {
+    background: var(--list-hover-bg);
+}
+
+.list-item-main {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 0;
+    line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .list-item {
+        transition: none;
+    }
+}

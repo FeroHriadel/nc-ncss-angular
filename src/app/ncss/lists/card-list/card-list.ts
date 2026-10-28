@@ -16,6 +16,7 @@ export interface CardListItem {
   selector: 'nc-card-list',
   imports: [NgTemplateOutlet, Button, PlusIcon, EditIcon, DeleteIcon],
   templateUrl: './card-list.html',
+  styleUrls: ['../list-base.css', './card-list.css'],
   host: { class: 'card-list' }
 })
 export class CardList<T extends CardListItem = CardListItem> {

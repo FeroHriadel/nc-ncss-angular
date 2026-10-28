@@ -5,6 +5,7 @@ let nextId = 0;
 @Component({
   selector: 'nc-collapsible',
   templateUrl: './collapsible.html',
+  styleUrl: './collapsible.css',
   host: { class: 'collapsible' }
 })
 export class Collapsible {

@@ -8,6 +8,7 @@ let nextId = 0;
 @Component({
   selector: 'nc-popover',
   templateUrl: './popover.html',
+  styleUrls: ['../popup-base.css', './popover.css'],
   host: {
     class: 'popover',
     '(document:click)': 'onDocumentClick($event)',

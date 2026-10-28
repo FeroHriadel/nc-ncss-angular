@@ -7,6 +7,7 @@ let nextId = 0;
   selector: 'nc-password',
   imports: [Button],
   templateUrl: './password.html',
+  styleUrl: './password.css',
   host: { class: 'password' }
 })
 export class Password {

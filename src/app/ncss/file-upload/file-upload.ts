@@ -14,6 +14,7 @@ let nextId = 0;
   selector: 'nc-file-upload',
   imports: [Button],
   templateUrl: './file-upload.html',
+  styleUrl: './file-upload.css',
   host: {
     class: 'file-upload',
     '[class.file-upload-disabled]': 'disabled()',

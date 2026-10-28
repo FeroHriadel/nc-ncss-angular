@@ -1,0 +1,136 @@
+/* File upload: a field-like box with the real <input type="file"> stretched invisibly over it,
+   so clicking, dropping and keyboard use are all handled natively by the browser. */
+:host(.file-upload) {
+    display: inline-block;
+    position: relative;
+    width: var(--input-width);
+    max-width: 100%;
+}
+
+:host(.file-upload-disabled) {
+    opacity: var(--input-disabled-opacity);
+    cursor: not-allowed;
+}
+
+.file-upload-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: var(--input-height);
+    padding: 0 var(--input-padding-x);
+    font-size: var(--input-text);
+    font-weight: 500;
+    color: var(--input-text-color);
+    background: var(--input-bg);
+    border: var(--input-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--input-shadow);
+    -webkit-backdrop-filter: var(--input-backdrop);
+    backdrop-filter: var(--input-backdrop);
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.file-upload-has-files {
+    padding-right: var(--input-height);
+}
+
+:host(.file-upload):not(.file-upload-disabled):not(.file-upload-invalid):hover .file-upload-box {
+    border-color: var(--input-hover-border-color);
+}
+
+:host(.file-upload-invalid) .file-upload-box {
+    border-color: var(--input-invalid-border-color);
+}
+
+.file-upload-box:has(.file-upload-input:focus-visible) {
+    box-shadow: var(--input-focus-box-shadow);
+}
+
+/* A file is being dragged over the field */
+:host(.file-upload-dragging) .file-upload-box {
+    border-style: dashed;
+    box-shadow: var(--input-focus-box-shadow);
+}
+
+.file-upload-input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.file-upload-input::file-selector-button {
+    cursor: pointer;
+}
+
+.file-upload-input:disabled {
+    cursor: not-allowed;
+}
+
+.file-upload-icon {
+    flex-shrink: 0;
+    color: var(--input-placeholder-color);
+    pointer-events: none;
+}
+
+.file-upload-text {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.file-upload-placeholder {
+    color: var(--input-placeholder-color);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.file-upload-clear {
+    position: absolute;
+    top: 50%;
+    right: calc((var(--input-height) - var(--button-small-height)) / 2);
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.file-upload-clear:active {
+    transform: translateY(-50%) scale(0.98);
+}
+
+.file-upload-clear:disabled {
+    cursor: not-allowed;
+}
+
+/* Announcements for screen readers only */
+.file-upload-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .file-upload-box {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .file-upload-box:has(.file-upload-input:focus-visible),
+    :host(.file-upload-dragging) .file-upload-box {
+        outline: 2px solid Highlight;
+        outline-offset: 2px;
+    }
+}

@@ -94,7 +94,4 @@ export class MyPage {
 --pill-{dark|red|outline}-bg / -text / -border
 --pill-{small|medium|large}-height / -text
 --pill-padding-x`;
-
-  protected readonly classesCode = `<!-- Without the component, use the CSS classes directly -->
-<span class="pill pill-dark pill-large"><span class="pill-text">Dark large</span></span>`;
 }

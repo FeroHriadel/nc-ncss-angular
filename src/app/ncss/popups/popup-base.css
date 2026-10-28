@@ -1,0 +1,94 @@
+/* Shared between Modal, Drawer and Popover: they render these same class names and keyframes in their
+   own, separate templates (Drawer's own heading literally reuses the class name "modal-heading"). */
+
+/* Full-screen layer shared by the modal and the side drawer. It is moved to <body> when it opens. */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: var(--popup-z-index);
+    display: flex;
+    background: var(--popup-overlay-bg);
+    -webkit-backdrop-filter: var(--popup-overlay-blur);
+    backdrop-filter: var(--popup-overlay-blur);
+    animation: popup-fade-in 0.15s ease-out;
+}
+
+.modal,
+.drawer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    color: var(--gray-700);
+    background: var(--popup-bg);
+    border: var(--popup-border);
+    box-shadow: var(--popup-shadow);
+    -webkit-backdrop-filter: var(--popup-backdrop);
+    backdrop-filter: var(--popup-backdrop);
+    outline: none;
+}
+
+.popup-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1;
+}
+
+.modal-heading {
+    padding: var(--popup-padding) var(--popup-padding) 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gray-800);
+}
+
+.modal-has-close .modal-heading,
+.drawer-has-close .modal-heading {
+    padding-right: 3.5rem;
+}
+
+.modal-body,
+.drawer-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: var(--popup-padding);
+}
+
+.modal-heading + .modal-body,
+.modal-heading + .drawer-body {
+    padding-top: 1rem;
+}
+
+/* No heading: leave room for the close button */
+.modal-has-close:not(.modal-has-heading) .modal-body,
+.drawer-has-close:not(.drawer-has-heading) .drawer-body {
+    padding-top: 2.75rem;
+}
+
+.popup-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 0 var(--popup-padding) var(--popup-padding);
+}
+
+.popup-footer:empty {
+    display: none;
+}
+
+@keyframes popup-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: translateY(0.5rem) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .popup-overlay {
+        animation: none;
+    }
+}

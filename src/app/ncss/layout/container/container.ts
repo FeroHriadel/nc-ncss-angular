@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'nc-container',
   template: '<ng-content />',
+  styleUrl: './container.css',
   host: { class: 'container' }
 })
 export class Container {}

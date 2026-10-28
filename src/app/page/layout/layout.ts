@@ -52,7 +52,4 @@ export class MyPage {}`;
   protected readonly variablesList = `--container-max-width
 --container-padding-x
 --container-padding-x-small   (used at 320px wide and below)`;
-
-  protected readonly classesCode = `<!-- Without the component, use the CSS class directly -->
-<div class="container">...</div>`;
 }

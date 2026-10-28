@@ -21,6 +21,7 @@ interface TreeEntry {
   selector: 'nc-tree',
   imports: [NgTemplateOutlet],
   templateUrl: './tree.html',
+  styleUrl: './tree.css',
   host: {
     class: 'tree',
     '(document:click)': 'onDocumentClick($event)',

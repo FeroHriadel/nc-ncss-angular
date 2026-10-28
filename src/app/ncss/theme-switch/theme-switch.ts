@@ -10,6 +10,7 @@ let nextId = 0;
   selector: 'nc-theme-switch',
   imports: [Button, PalleteIcon],
   templateUrl: './theme-switch.html',
+  styleUrl: './theme-switch.css',
   host: {
     class: 'theme-switch',
     '(document:click)': 'onDocumentClick($event)',

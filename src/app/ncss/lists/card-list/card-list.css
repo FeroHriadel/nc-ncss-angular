@@ -1,0 +1,69 @@
+/* Card list */
+:host(.card-list) {
+    color: var(--list-text);
+}
+
+:host(.card-list) > .list-header {
+    padding-inline: 0;
+}
+
+:host(.card-list) > .list-header .list-heading {
+    font-size: 1.4rem;
+    color: var(--list-text);
+}
+
+:host(.card-list) > .list-body {
+    gap: var(--list-gap);
+}
+
+:host(.card-list) > .list-empty {
+    padding-inline: 0;
+}
+
+:host(.card-list) .card-list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: var(--list-item-min-height);
+    padding: 0 0.5rem 0 0;
+    transition: background-color 0.2s ease;
+}
+
+:host(.card-list) .card-list-item-striped {
+    background: var(--list-stripe-bg);
+}
+
+:host(.card-list) .card-list-item:hover {
+    background: var(--list-hover-bg);
+}
+
+.card-list-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0.75rem 0;
+    line-height: 1.5;
+}
+
+.card-list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem var(--list-padding-x);
+}
+
+.card-list-title {
+    font-weight: 700;
+    color: var(--list-text);
+}
+
+.card-list-text {
+    font-size: 0.9rem;
+    color: var(--list-text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :host(.card-list) .card-list-item {
+        transition: none;
+    }
+}

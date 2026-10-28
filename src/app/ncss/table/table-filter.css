@@ -1,0 +1,45 @@
+/* Filter dialog */
+.table-filter-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.table-filter-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+/* The remove button lines up with the first line of inputs, even when the fields wrap */
+.table-filter-remove {
+    flex-shrink: 0;
+    margin-top: calc((var(--select-height) - var(--btn-h)) / 2);
+}
+
+.table-filter-fields {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.table-filter-field {
+    flex: 1 1 10rem;
+    min-width: 0;
+}
+
+.table-filter-field.select,
+.table-filter-field.table-filter-value {
+    width: 100%;
+}
+
+.table-filter-value {
+    height: var(--select-height);
+}
+
+.table-filter-join {
+    display: flex;
+}

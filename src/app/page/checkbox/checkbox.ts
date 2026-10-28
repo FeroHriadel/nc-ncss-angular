@@ -117,10 +117,4 @@ export class MyPage {
 --checkbox-checked-bg / -checked-shadow / -check-color
 --checkbox-invalid-border-color / -focus-box-shadow
 --checkbox-disabled-opacity`;
-
-  protected readonly classesCode = `<!-- Without the component, use the CSS classes on plain markup -->
-<label class="checkbox-label">
-  <input type="checkbox" class="checkbox-input" />
-  <span class="checkbox-text">Plain markup</span>
-</label>`;
 }

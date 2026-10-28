@@ -1,0 +1,207 @@
+/* Top navigation. It reacts to its own width (container query), not to the window. */
+:host(.topnav) {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: var(--topnav-z-index);
+    container-type: inline-size;
+}
+
+.topnav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    height: var(--topnav-height);
+    padding: 0 var(--topnav-padding-x);
+    color: var(--topnav-text);
+    background: var(--topnav-bg);
+    border-bottom: var(--topnav-border);
+    box-shadow: var(--topnav-shadow);
+    -webkit-backdrop-filter: var(--topnav-backdrop);
+    backdrop-filter: var(--topnav-backdrop);
+}
+
+.topnav-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.topnav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.topnav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+}
+
+.topnav-item {
+    position: relative;
+}
+
+.topnav-custom {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.topnav-link,
+.topnav-menu-link,
+.topnav-mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    height: 2rem;
+    padding: 0 0.75rem;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--topnav-text);
+    text-decoration: none;
+    white-space: nowrap;
+    background: transparent;
+    border: 0;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.15s, box-shadow 0.15s;
+}
+
+.topnav-link:hover,
+.topnav-menu-link:hover,
+.topnav-mobile-link:hover {
+    background: var(--topnav-link-hover-bg);
+    box-shadow: var(--topnav-link-hover-shadow);
+}
+
+.topnav-link:focus-visible,
+.topnav-menu-link:focus-visible,
+.topnav-mobile-link:focus-visible,
+.topnav-hamburger:focus-visible {
+    outline: none;
+    box-shadow: var(--topnav-focus-box-shadow);
+}
+
+/* Current page: bolder and underlined, never color alone */
+.topnav-link-active,
+.topnav-item-active > .topnav-link {
+    color: var(--topnav-link-active-text);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.4rem;
+}
+
+.topnav-chevron {
+    flex-shrink: 0;
+    transition: transform 0.15s;
+}
+
+.topnav-trigger[aria-expanded='true'] .topnav-chevron {
+    transform: rotate(180deg);
+}
+
+.topnav-menu {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    right: 0;
+    min-width: 12rem;
+    padding: 0.25rem;
+    list-style: none;
+    background: var(--topnav-menu-bg);
+    border: var(--topnav-menu-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--topnav-menu-shadow);
+    -webkit-backdrop-filter: var(--select-backdrop);
+    backdrop-filter: var(--select-backdrop);
+}
+
+.topnav-menu-link {
+    width: 100%;
+}
+
+.topnav-hamburger {
+    display: none;
+}
+
+/* Mobile panel, below the bar */
+.topnav-mobile {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - var(--topnav-height));
+    overflow-y: auto;
+    padding: 0.5rem var(--topnav-padding-x);
+    background: var(--topnav-menu-bg);
+    border-bottom: var(--topnav-border);
+    box-shadow: var(--topnav-menu-shadow);
+    -webkit-backdrop-filter: var(--select-backdrop);
+    backdrop-filter: var(--select-backdrop);
+}
+
+.topnav-mobile ul {
+    list-style: none;
+}
+
+.topnav-mobile-link {
+    width: 100%;
+}
+
+.topnav-mobile-heading {
+    display: block;
+    padding: 0.5rem 0.75rem 0.25rem;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+}
+
+.topnav-mobile ul ul {
+    padding-left: 0.75rem;
+}
+
+/* Narrow nav (its own width): links collapse into the menu button */
+@container (max-width: 768px) {
+    .topnav-nav {
+        display: none;
+    }
+
+    .topnav-hamburger {
+        display: inline-flex;
+    }
+}
+
+@container (min-width: 769px) {
+    .topnav-mobile {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .topnav-link,
+    .topnav-menu-link,
+    .topnav-mobile-link,
+    .topnav-chevron {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .topnav-bar {
+        border-bottom: 1px solid CanvasText;
+    }
+
+    .topnav-link:focus-visible,
+    .topnav-menu-link:focus-visible,
+    .topnav-mobile-link:focus-visible,
+    .topnav-hamburger:focus-visible {
+        outline: 2px solid Highlight;
+        outline-offset: 1px;
+    }
+}

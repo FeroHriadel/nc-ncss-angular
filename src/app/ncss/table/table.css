@@ -1,0 +1,261 @@
+/* Table: divs with ARIA roles. Every row is a grid that shares --table-cols (set by the component). */
+:host(.table-host) {
+    display: block;
+}
+
+.table {
+    position: relative;
+    overflow: auto;
+    font-size: var(--table-font-size);
+    color: var(--table-text);
+    background: var(--table-bg);
+    border: 1px solid var(--table-border-color);
+    border-radius: var(--table-radius);
+    box-shadow: var(--table-shadow);
+}
+
+.table-head,
+.table-body {
+    min-width: var(--table-min-width);
+}
+
+.table-head {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: var(--table-cols);
+}
+
+.table-header-cell,
+.table-cell {
+    position: relative;
+    min-width: 0;
+    padding: var(--table-padding-y) var(--table-padding-x);
+    text-align: start;
+}
+
+.table-header-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding-right: calc(var(--table-padding-x) + 0.25rem);
+    font-weight: 700;
+    color: var(--table-header-text);
+    background: var(--table-header-bg);
+    border-bottom: 1px solid var(--table-border-color);
+    user-select: none;
+}
+
+.table-header-cell[draggable='true'] {
+    cursor: grab;
+}
+
+.table-cell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--table-border-color);
+}
+
+.table-body .table-row:last-child .table-cell {
+    border-bottom: 0;
+}
+
+.table-striped .table-body .table-row-odd {
+    background: var(--table-stripe-bg);
+}
+
+.table-body .table-row:hover {
+    background: var(--table-hover-bg);
+}
+
+.table-align-end {
+    text-align: end;
+    justify-content: flex-end;
+}
+
+.table-align-center {
+    text-align: center;
+    justify-content: center;
+}
+
+.table-cell:not(.table-header-cell).table-align-end {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Objects shown as JSON keep their line breaks */
+.table-cell-pre {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.8125em;
+    white-space: pre;
+    text-overflow: clip;
+}
+
+.table-html {
+    display: inline;
+}
+
+.table-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--gray-500);
+}
+
+.table-sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.table-sort:focus-visible,
+.table-resizer:focus-visible {
+    outline: none;
+    box-shadow: var(--table-focus-box-shadow);
+}
+
+.table-header-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.table-chevron {
+    flex-shrink: 0;
+    width: 0.875rem;
+    height: 0.875rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.table-chevron path {
+    opacity: 0.3;
+    transition: opacity 0.15s;
+}
+
+.table-sort:hover .table-chevron path {
+    opacity: 0.6;
+}
+
+[aria-sort='ascending'] .table-chevron-up,
+[aria-sort='descending'] .table-chevron-down {
+    opacity: 1;
+    stroke: var(--table-accent);
+}
+
+/* Drag handle on the right edge of a header */
+.table-resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0.625rem;
+    cursor: col-resize;
+    touch-action: none;
+    border-radius: 4px;
+}
+
+.table-resizer::after {
+    content: '';
+    position: absolute;
+    top: 25%;
+    bottom: 25%;
+    left: 50%;
+    width: 2px;
+    background: var(--table-border-color);
+    border-radius: 1px;
+    transform: translateX(-50%);
+    transition: background-color 0.15s;
+}
+
+.table-resizer:hover::after,
+.table-resizer:focus-visible::after {
+    background: var(--table-accent);
+}
+
+.table-dragging {
+    opacity: 0.5;
+}
+
+.table-drop-before {
+    box-shadow: inset 3px 0 0 var(--table-accent);
+}
+
+.table-drop-after {
+    box-shadow: inset -3px 0 0 var(--table-accent);
+}
+
+/* "Copied" flash in a cell */
+.table-copied {
+    position: absolute;
+    top: 50%;
+    right: 0.375rem;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gray-0);
+    background: var(--gray-800);
+    border-radius: 9999px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.table-status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+/* Applied filters: pills above the table */
+.table-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+    margin: 0 0 var(--table-controls-gap);
+    padding: 0;
+    list-style: none;
+}
+
+.table-filters-join {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gray-500);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .table-chevron path,
+    .table-resizer::after {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .table {
+        border-color: CanvasText;
+    }
+
+    .table-sort:focus-visible,
+    .table-resizer:focus-visible {
+        outline: 2px solid Highlight;
+    }
+}

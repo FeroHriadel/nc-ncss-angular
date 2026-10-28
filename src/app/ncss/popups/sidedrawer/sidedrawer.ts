@@ -8,6 +8,7 @@ export type DrawerSide = 'left' | 'right' | 'top' | 'bottom';
   selector: 'nc-sidedrawer',
   imports: [Button],
   templateUrl: './sidedrawer.html',
+  styleUrls: ['../popup-base.css', './sidedrawer.css'],
   host: { '(document:keydown.escape)': 'onEscape($event)' }
 })
 export class SideDrawer extends DialogBase {
