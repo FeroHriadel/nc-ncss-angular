@@ -1,0 +1,52 @@
+import{$ as Ip,It as yI,Mt as tI,Ot as pI,S as Zs,Tt as mp,X as Gf,Z as Go,at as NE,dt as TI,gt as _y,mt as Wf,nt as Ka,q as Ep,wt as mo,xt as eE,yt as bE}from"./main-GNGQ2IH4.js";import{t as w}from"./chunk-B1XGx-5t.js";var k=()=>({maxWidth:`14rem`});var _=(c,r)=>r.name;function P(c,r){if(c&1&&(Go(0,`tr`)(1,`td`)(2,`app-code`),pI(3),Ka()(),Go(4,`td`)(5,`app-code`),pI(6),Ka()(),Go(7,`td`)(8,`app-code`),pI(9),Ka()(),Go(10,`td`),pI(11),Ka()()),c&2){let d=r.$implicit;_y(3),mp(d.name),_y(3),mp(d.values),_y(3),mp(d.default),_y(2),mp(d.note)}}var C=class c{wifi=mo(!0);notifications=mo(!1);emails=mo(!0);sms=mo(!1);inputs=[{name:`checked`,values:`boolean`,default:`false`,note:`On/off state. Two-way: [(checked)].`},{name:`label`,values:`string`,default:`''`,note:`Visible label. Project content instead for a richer label (links, bold text).`},{name:`disabled`,values:`boolean`,default:`false`,note:`Disables the switch (removed from the tab order).`},{name:`name / value`,values:`string`,default:`''`,note:`Passed to the native input, for forms.`},{name:`ariaLabel`,values:`string`,default:`''`,note:`Accessible name when there is no visible label.`},{name:`ariaDescribedby`,values:`string`,default:`''`,note:`Id of an element with a hint.`},{name:`inputClass / inputStyle`,values:`string / object`,default:`''`,note:`Class and style for the switch track itself.`}];importCode=`// my-page.ts
+import { Component, signal } from '@angular/core';
+import { Switch } from '../../ncss';
+
+@Component({
+  selector: 'app-my-page',
+  imports: [Switch],
+  templateUrl: './my-page.html'
+})
+export class MyPage {
+  wifi = signal(true);
+}`;usageCode=`<nc-switch label="Wi-Fi" />
+<nc-switch label="Wi-Fi" [(checked)]="wifi" />
+<nc-switch label="Disabled" disabled />
+<nc-switch ariaLabel="Dark mode" />`;bindingCode=`<!-- Two-way, or one-way with (checkedChange) -->
+<nc-switch label="Wi-Fi" [(checked)]="wifi" />
+<nc-switch label="Wi-Fi" [checked]="wifi()" (checkedChange)="save($event)" />
+
+<!-- Or drive it from code -->
+<nc-switch #sw label="Wi-Fi" />
+<button nc-button (click)="sw.toggle()">Toggle</button>`;richLabelCode=`<!-- Projected content is part of the label (and of the accessible name) -->
+<nc-switch [(checked)]="emails">
+  Send me <strong>emails</strong>
+</nc-switch>`;groupCode=`<!-- Group related switches in a fieldset with a legend -->
+<fieldset>
+  <legend>Notifications</legend>
+  <nc-switch label="Emails" />
+  <nc-switch label="SMS" />
+</fieldset>
+
+<!-- Link a hint so it is read with the switch -->
+<nc-switch label="Wi-Fi" ariaDescribedby="wifi-hint" />
+<p id="wifi-hint">Turning this off disconnects all devices.</p>`;classStyleCode=`<!-- class and [style] go on the nc-switch element itself -->
+<nc-switch class="my-switch" [style]="{ width: '100%' }" label="Custom" />
+
+<!-- inputClass and inputStyle go on the track -->
+<nc-switch label="Wide" [inputStyle]="{ width: '4rem' }" />`;variablesCode=`/* Override the variables globally, e.g. in styles.css */
+:root {
+    --switch-width: 3rem;
+    --switch-height: 1.75rem;
+    --switch-checked-bg: var(--red-700);
+    --switch-checked-knob-bg: var(--gray-0);
+}
+
+/* ...or only inside one part of the page */
+.settings {
+    --switch-label-gap: 1rem;
+}`;variablesList=`--switch-width / -height / -knob-gap / -label-gap
+--switch-bg / -border / -hover-border-color / -shadow
+--switch-knob-bg / -knob-shadow
+--switch-checked-bg / -checked-shadow / -checked-knob-bg
+--switch-focus-box-shadow / -disabled-opacity`;static ɵfac=function(d){return new(d||c)};static ɵcmp=eE({type:c,selectors:[[`app-switch-page`]],decls:154,vars:19,consts:[[1,`page`],[1,`page-head`],[1,`page-eyebrow`],[1,`title-big`],[1,`page-lede`],[1,`row`],[`label`,`Off`],[`label`,`On`,3,`checked`],[`label`,`Disabled`,`disabled`,``],[`label`,`Disabled on`,`disabled`,``,3,`checked`],[`label`,`Two-way bound`,3,`checkedChange`,`checked`],[3,`checkedChange`,`checked`],[`ariaLabel`,`No visible label`],[`label`,`Custom class and style with a very long label that wraps onto several lines`,1,`extra`],[1,`title-small`],[`label`,`Emails`,3,`checkedChange`,`checked`],[`label`,`SMS`,`ariaDescribedby`,`sms-hint`,3,`checkedChange`,`checked`],[`id`,`sms-hint`,1,`text-small`],[1,`text-medium`],[1,`docs`],[1,`title-medium`],[`block`,``],[1,`table-wrap`]],template:function(d,n){d&1&&(Go(0,`div`,0)(1,`header`,1)(2,`span`,2),pI(3,`Inputs`),Ka(),Go(4,`h1`,3),pI(5,`Switch`),Ka(),Go(6,`p`,4),pI(7,`A toggle with a label and a knob that follows your theme, with native checkbox semantics underneath.`),Ka()(),Go(8,`div`,5),Gf(9,`nc-switch`,6)(10,`nc-switch`,7)(11,`nc-switch`,8)(12,`nc-switch`,9),Ka(),Go(13,`div`,5)(14,`nc-switch`,10),Ip(`checkedChange`,function(l){return yI(n.wifi,l)||(n.wifi=l),l}),Ka(),Go(15,`nc-switch`,11),Ip(`checkedChange`,function(l){return yI(n.notifications,l)||(n.notifications=l),l}),pI(16,`Rich `),Go(17,`strong`),pI(18,`label`),Ka()(),Gf(19,`nc-switch`,12)(20,`nc-switch`,13),Ka(),Go(21,`div`,5)(22,`fieldset`)(23,`legend`,14),pI(24,`Notifications`),Ka(),Go(25,`nc-switch`,15),Ip(`checkedChange`,function(l){return yI(n.emails,l)||(n.emails=l),l}),Ka(),Go(26,`nc-switch`,16),Ip(`checkedChange`,function(l){return yI(n.sms,l)||(n.sms=l),l}),Ka(),Go(27,`p`,17),pI(28,`Carrier charges may apply.`),Ka()()(),Go(29,`p`,18),pI(30,`Wi-Fi: `),Go(31,`app-code`),pI(32),Ka(),pI(33,` Notifications: `),Go(34,`app-code`),pI(35),Ka()(),Go(36,`section`,19)(37,`h2`,20),pI(38,`How to use`),Ka(),Go(39,`p`,18),pI(40,` The switch is an Angular component with the element selector `),Go(41,`app-code`),pI(42,`nc-switch`),Ka(),pI(43,`. Inside it is a real `),Go(44,`app-code`),pI(45,`input type="checkbox"`),Ka(),pI(46,` with `),Go(47,`app-code`),pI(48,`role="switch"`),Ka(),pI(49,`, wrapped in a `),Go(50,`app-code`),pI(51,`label`),Ka(),pI(52,` and drawn with CSS. Use it for settings that take effect immediately (on/off). For choices that are submitted with a form, use a checkbox. `),Ka(),Go(53,`h3`,14),pI(54,`1. Import it`),Ka(),Go(55,`app-code`,21),pI(56),Ka(),Go(57,`h3`,14),pI(58,`2. Use it`),Ka(),Go(59,`app-code`,21),pI(60),Ka(),Go(61,`h3`,14),pI(62,`Inputs`),Ka(),Go(63,`div`,22)(64,`table`)(65,`thead`)(66,`tr`)(67,`th`),pI(68,`Input`),Ka(),Go(69,`th`),pI(70,`Values`),Ka(),Go(71,`th`),pI(72,`Default`),Ka(),Go(73,`th`),pI(74,`Description`),Ka()()(),Go(75,`tbody`),bE(76,P,12,4,`tr`,null,_),Ka()()(),Go(78,`app-code`,21),pI(79),Ka(),Go(80,`h3`,14),pI(81,`Rich label`),Ka(),Go(82,`app-code`,21),pI(83),Ka(),Go(84,`h3`,14),pI(85,`Class and style`),Ka(),Go(86,`p`,18),pI(87,` Add your own `),Go(88,`app-code`),pI(89,`class`),Ka(),pI(90,` and `),Go(91,`app-code`),pI(92,`[style]`),Ka(),pI(93,` to `),Go(94,`app-code`),pI(95,`nc-switch`),Ka(),pI(96,` like on any element. Styles in `),Go(97,`app-code`),pI(98,`[style]`),Ka(),pI(99,` are inline, so they always win. `),Ka(),Go(100,`app-code`,21),pI(101),Ka(),Go(102,`h2`,20),pI(103,`Accessibility`),Ka(),Go(104,`ul`,18)(105,`li`),pI(106,`It is a native checkbox with `),Go(107,`app-code`),pI(108,`role="switch"`),Ka(),pI(109,`, so Space toggles it, Tab moves to it, and screen readers announce "switch" with its on/off state.`),Ka(),Go(110,`li`),pI(111,`The visible label is the accessible name, and clicking it toggles the switch. Use `),Go(112,`app-code`),pI(113,`ariaLabel`),Ka(),pI(114,` only when there is no visible label.`),Ka(),Go(115,`li`)(116,`app-code`),pI(117,`ariaDescribedby`),Ka(),pI(118,` links a hint, so it is read together with the switch.`),Ka(),Go(119,`li`),pI(120,`State is never shown by color alone: the knob also moves from one side to the other.`),Ka(),Go(121,`li`),pI(122,`The knob is CSS only, so it is never read out. Disabled switches leave the tab order.`),Ka(),Go(123,`li`),pI(124,`Related switches should sit in a `),Go(125,`app-code`),pI(126,`fieldset`),Ka(),pI(127,` with a `),Go(128,`app-code`),pI(129,`legend`),Ka(),pI(130,`.`),Ka(),Go(131,`li`),pI(132,`The focus ring shows for keyboard focus only. Windows high contrast mode uses system colors, and reduced motion turns off the transitions.`),Ka()(),Go(133,`app-code`,21),pI(134),Ka(),Go(135,`h2`,20),pI(136,`How to modify it`),Ka(),Go(137,`p`,18),pI(138,` Every color, size and shadow comes from a `),Go(139,`app-code`),pI(140,`--switch-*`),Ka(),pI(141,` variable defined in `),Go(142,`app-code`),pI(143,`:root`),Ka(),pI(144,` in `),Go(145,`app-code`),pI(146,`ncss.css`),Ka(),pI(147,`, and every theme overrides them. Change a variable and every switch follows, or set it on a parent element to change only the switches inside it. `),Ka(),Go(148,`app-code`,21),pI(149),Ka(),Go(150,`p`,18),pI(151,`Available variables:`),Ka(),Go(152,`app-code`,21),pI(153),Ka()()()),d&2&&(_y(10),Wf(`checked`,!0),_y(2),Wf(`checked`,!0),_y(2),Ep(`checked`,n.wifi),_y(),Ep(`checked`,n.notifications),_y(5),tI(TI(18,k)),_y(5),Ep(`checked`,n.emails),_y(),Ep(`checked`,n.sms),_y(6),mp(n.wifi()),_y(3),mp(n.notifications()),_y(21),mp(n.importCode),_y(4),mp(n.usageCode),_y(16),NE(n.inputs),_y(3),mp(n.bindingCode),_y(4),mp(n.richLabelCode),_y(18),mp(n.classStyleCode),_y(33),mp(n.groupCode),_y(15),mp(n.variablesCode),_y(4),mp(n.variablesList))},dependencies:[Zs,w],styles:[`.page[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:2rem;padding:2rem}.row[_ngcontent-%COMP%]{display:flex;flex-wrap:wrap;align-items:flex-start;gap:2rem}.docs[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:1rem;max-width:50rem;margin-top:2rem}.docs[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%]{margin-top:1.5rem}.docs[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin-top:1rem}.docs[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]{padding-left:1.5rem}.docs[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] + li[_ngcontent-%COMP%]{margin-top:.25rem}.table-wrap[_ngcontent-%COMP%]{overflow-x:auto}table[_ngcontent-%COMP%]{border-collapse:collapse;width:100%;font-size:.875rem}th[_ngcontent-%COMP%], td[_ngcontent-%COMP%]{text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--%NS%border-color)}th[_ngcontent-%COMP%]{color:var(--%NS%gray-800)}fieldset[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:.75rem;min-width:14rem;border:0}legend[_ngcontent-%COMP%]{margin-bottom:.5rem}.children[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:.75rem;padding-left:1.75rem}.error[_ngcontent-%COMP%]{font-size:.75rem;color:var(--%NS%red-500)}`]})};export{C as SwitchPage};

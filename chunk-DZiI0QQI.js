@@ -1,0 +1,33 @@
+import{Et as nc,Mt as tI,Ot as pI,Tt as mp,Z as Go,dt as TI,gt as _y,k as js,nt as Ka,s as Fs,xt as eE}from"./main-GNGQ2IH4.js";import{t as w}from"./chunk-B1XGx-5t.js";var u=()=>({maxWidth:`600px`});var h=class d{importCode=`// my-page.ts
+import { Component } from '@angular/core';
+import { Container } from '../../ncss';
+
+@Component({
+  selector: 'app-my-page',
+  imports: [Container],
+  templateUrl: './my-page.html'
+})
+export class MyPage {}`;usageCode=`<nc-container>
+  <h1>Page title</h1>
+  <p>Content stays centered and never wider than 1200px.</p>
+</nc-container>`;semanticCode=`<!-- The container has no meaning of its own. Put it inside, or on, a landmark -->
+<main>
+  <nc-container>...</nc-container>
+</main>
+
+<nc-container role="main" id="content">...</nc-container>`;classStyleCode=`<!-- class, [style], id and any attribute go on nc-container itself -->
+<nc-container class="my-container" id="content">Custom class</nc-container>
+
+<!-- [style] overrides everything else -->
+<nc-container [style]="{ maxWidth: '600px' }">Narrow</nc-container>`;variablesCode=`/* Override the variables globally, e.g. in styles.css */
+:root {
+    --container-max-width: 1440px;
+    --container-padding-x: 1.5rem;
+}
+
+/* ...or only inside one part of the page */
+.article {
+    --container-max-width: 720px;
+}`;variablesList=`--container-max-width
+--container-padding-x
+--container-padding-x-small   (used at 320px wide and below)`;static ɵfac=function(r){return new(r||d)};static ɵcmp=eE({type:d,selectors:[[`app-layout-page`]],decls:114,vars:10,consts:[[1,`page`],[1,`page-head`],[1,`page-eyebrow`],[1,`title-big`],[1,`page-lede`],[1,`title-medium`],[1,`stage`],[1,`content`],[1,`text-medium`],[`id`,`demo-container`,1,`extra`],[1,`docs`],[1,`title-small`],[`block`,``]],template:function(r,o){r&1&&(Go(0,`div`,0)(1,`header`,1)(2,`span`,2),pI(3,`Foundations`),Ka(),Go(4,`h1`,3),pI(5,`Layout`),Ka(),Go(6,`p`,4),pI(7,`A container that keeps your content centered, padded and readable at every width.`),Ka()(),Go(8,`h2`,5),pI(9,`Container`),Ka(),Go(10,`div`,6)(11,`nc-container`)(12,`div`,7)(13,`p`,8),pI(14,`Default container: centered, with a maximum width of 1200px and 1rem of side padding. Resize the window to see it shrink.`),Ka()()()(),Go(15,`div`,6)(16,`nc-container`)(17,`div`,7)(18,`p`,8),pI(19,`Narrow container: `),Go(20,`app-code`),pI(21),Ka()()()()(),Go(22,`div`,6)(23,`nc-container`,9)(24,`nc-card`)(25,`p`,8),pI(26,`A container holding a card, with a custom class and id.`),Ka()()()(),Go(27,`section`,10)(28,`h2`,5),pI(29,`How to use`),Ka(),Go(30,`p`,8),pI(31,` The container is an Angular component with the element selector `),Go(32,`app-code`),pI(33,`nc-container`),Ka(),pI(34,`. It centers its content and limits its width to `),Go(35,`app-code`),pI(36,`1200px`),Ka(),pI(37,`, with side padding that shrinks on very narrow screens. Use it to keep page content readable on wide monitors. `),Ka(),Go(38,`h3`,11),pI(39,`1. Import it`),Ka(),Go(40,`app-code`,12),pI(41),Ka(),Go(42,`h3`,11),pI(43,`2. Use it`),Ka(),Go(44,`app-code`,12),pI(45),Ka(),Go(46,`p`,8),pI(47,` It has no inputs. It is a block element, so it takes the full width up to its maximum. `),Ka(),Go(48,`h3`,11),pI(49,`Class, style and attributes`),Ka(),Go(50,`p`,8),pI(51,` Add your own `),Go(52,`app-code`),pI(53,`class`),Ka(),pI(54,`, `),Go(55,`app-code`),pI(56,`[style]`),Ka(),pI(57,`, `),Go(58,`app-code`),pI(59,`id`),Ka(),pI(60,` or any other attribute to `),Go(61,`app-code`),pI(62,`nc-container`),Ka(),pI(63,` like on any element. Styles in `),Go(64,`app-code`),pI(65,`[style]`),Ka(),pI(66,` are inline, so they always win. `),Ka(),Go(67,`app-code`,12),pI(68),Ka(),Go(69,`h2`,5),pI(70,`Accessibility`),Ka(),Go(71,`ul`,8)(72,`li`),pI(73,`The container is purely visual and has no role, so screen readers ignore it and read its content as usual.`),Ka(),Go(74,`li`),pI(75,`Give the page real landmarks: wrap the container in `),Go(76,`app-code`),pI(77,`main`),Ka(),pI(78,`, `),Go(79,`app-code`),pI(80,`header`),Ka(),pI(81,`, `),Go(82,`app-code`),pI(83,`nav`),Ka(),pI(84,` or `),Go(85,`app-code`),pI(86,`footer`),Ka(),pI(87,`, or set a `),Go(88,`app-code`),pI(89,`role`),Ka(),pI(90,` on the container itself.`),Ka(),Go(91,`li`),pI(92,`The side padding keeps text from touching the screen edge, and the maximum width keeps lines a readable length. Zooming in still works, because nothing has a fixed width below the maximum.`),Ka()(),Go(93,`app-code`,12),pI(94),Ka(),Go(95,`h2`,5),pI(96,`How to modify it`),Ka(),Go(97,`p`,8),pI(98,` The width and padding come from `),Go(99,`app-code`),pI(100,`--container-*`),Ka(),pI(101,` variables defined in `),Go(102,`app-code`),pI(103,`:root`),Ka(),pI(104,` in `),Go(105,`app-code`),pI(106,`ncss.css`),Ka(),pI(107,`. Change a variable and every container follows, or set it on a parent element to change only the containers inside it. `),Ka(),Go(108,`app-code`,12),pI(109),Ka(),Go(110,`p`,8),pI(111,`Available variables:`),Ka(),Go(112,`app-code`,12),pI(113),Ka()()()),r&2&&(_y(16),tI(TI(9,u)),_y(5),nc(`[style]="`,`{ maxWidth: '600px' }`,`"`),_y(20),mp(o.importCode),_y(4),mp(o.usageCode),_y(23),mp(o.classStyleCode),_y(26),mp(o.semanticCode),_y(15),mp(o.variablesCode),_y(4),mp(o.variablesList))},dependencies:[js,Fs,w],styles:[`.page[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:2rem;padding:2rem}.row[_ngcontent-%COMP%]{display:flex;flex-wrap:wrap;align-items:flex-start;gap:2rem}.docs[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:1rem;max-width:50rem;margin-top:2rem}.docs[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%]{margin-top:1.5rem}.docs[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%]{margin-top:1rem}.docs[_ngcontent-%COMP%]   ul[_ngcontent-%COMP%]{padding-left:1.5rem}.docs[_ngcontent-%COMP%]   li[_ngcontent-%COMP%] + li[_ngcontent-%COMP%]{margin-top:.25rem}.table-wrap[_ngcontent-%COMP%]{overflow-x:auto}table[_ngcontent-%COMP%]{border-collapse:collapse;width:100%;font-size:.875rem}th[_ngcontent-%COMP%], td[_ngcontent-%COMP%]{text-align:left;padding:.5rem .75rem;border-bottom:1px solid var(--%NS%border-color)}th[_ngcontent-%COMP%]{color:var(--%NS%gray-800)}fieldset[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:.75rem;min-width:14rem;border:0}legend[_ngcontent-%COMP%]{margin-bottom:.5rem}.children[_ngcontent-%COMP%]{display:flex;flex-direction:column;gap:.75rem;padding-left:1.75rem}.error[_ngcontent-%COMP%]{font-size:.75rem;color:var(--%NS%red-500)}.stage[_ngcontent-%COMP%]{padding:1rem 0;background:var(--%NS%border-color);border-radius:var(--%NS%border-radius)}.content[_ngcontent-%COMP%]{padding:1rem;border:1px dashed var(--%NS%gray-500);border-radius:var(--%NS%border-radius)}`]})};export{h as LayoutPage};
